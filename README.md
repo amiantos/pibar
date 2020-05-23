@@ -42,7 +42,7 @@ PiBar gives you all the tools you need to manage your [Pi-hole](https://pi-hole.
 ## Get Help
 
 - Feel free to [post an issue](https://github.com/amiantos/pibar/issues/new) if you need help or have a feature suggestion. Dream big!
-- There's a subreddit over at [/r/PiBar](https://www.reddit.com/r/PiBar) if you want to talk about PiBar with the community
+- There's a subreddit over at [/r/PiBar](https://www.reddit.com/r/PiBar) if you want to talk about PiBar with the community. I'll also be posting news about updates and possible beta tests over there, so you should join if that sounds up your alley!
 - You can also write to me on Twitter @[amiantos](https://twitter.com/amiantos)
 
 ## Credits
