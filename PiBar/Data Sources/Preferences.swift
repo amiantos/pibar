@@ -60,7 +60,8 @@ extension UserDefaults {
                         port: pihole.port,
                         useSSL: pihole.useSSL,
                         token: pihole.token,
-                        passwordProtected: true)
+                        passwordProtected: true
+                    )
                     )
                 }
                 set([], for: Preferences.Key.piholes)

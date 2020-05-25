@@ -13,6 +13,7 @@ import Foundation
 
 // MARK: - Pi-hole Connections
 
+// PiBar v1.0 format
 struct PiholeConnectionV1: Codable {
     let hostname: String
     let port: Int
@@ -42,6 +43,7 @@ extension PiholeConnectionV1 {
     }
 }
 
+// PiBar v1.1 format
 struct PiholeConnectionV2: Codable {
     let hostname: String
     let port: Int

@@ -19,6 +19,15 @@ protocol PreferencesDelegate: AnyObject {
 class PreferencesViewController: NSViewController {
     weak var delegate: PreferencesDelegate?
 
+    lazy var piholeSheetController: PiholeSettingsViewController? = {
+        guard let controller = self.storyboard!.instantiateController(
+            withIdentifier: "piHoleDialog"
+            ) as? PiholeSettingsViewController else {
+                return nil
+        }
+        return controller
+    }()
+
     // MARK: - Outlets
 
     @IBOutlet var tableView: NSTableView!
@@ -32,12 +41,26 @@ class PreferencesViewController: NSViewController {
 
     @IBOutlet var shortcutEnabledCheckbox: NSButton!
 
+    @IBOutlet weak var editButton: NSButton!
     @IBOutlet var removeButton: NSButton!
 
     // MARK: - Actions
 
     @IBAction func addButtonActiom(_: NSButton) {
+        guard let controller = piholeSheetController else { return }
+        controller.connection = nil
+        controller.currentIndex = -1
+        presentAsSheet(controller)
+    }
 
+    @IBAction func editButtonAction(_ sender: NSButton) {
+        guard let controller = piholeSheetController else { return }
+        if tableView.selectedRow >= 0 {
+            let pihole = Preferences.standard.piholes[tableView.selectedRow]
+            controller.connection = pihole
+            controller.currentIndex = tableView.selectedRow
+        }
+        presentAsSheet(controller)
     }
 
     @IBAction func removeButtonAction(_: NSButton) {
@@ -106,11 +129,21 @@ class PreferencesViewController: NSViewController {
     }
 }
 
+extension PreferencesViewController: PiholeSettingsViewControllerDelegate {
+    func savePiholeConnection(_ connection: PiholeConnectionV2, at index: Int?) {
+        // TODO
+    }
+}
+
 // MARK: - TableView Data Source
 
 extension PreferencesViewController: NSTableViewDataSource {
     func numberOfRows(in _: NSTableView) -> Int {
-        return Preferences.standard.piholes.count
+        let numberOfRows = Preferences.standard.piholes.count
+        if numberOfRows > 0 {
+            editButton.isEnabled = true
+        }
+        return numberOfRows
     }
 }
 
@@ -134,5 +167,9 @@ extension PreferencesViewController: NSTableViewDelegate {
             return cell
         }
         return nil
+    }
+
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        editButton.isEnabled = true
     }
 }
