@@ -76,7 +76,6 @@ extension PiholeConnectionV2 {
 
 enum PiholeConnectionTestResult {
     case success
-    case successNoToken
     case failure
     case failureInvalidToken
 }

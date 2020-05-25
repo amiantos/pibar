@@ -573,7 +573,7 @@ of Pi-hole LLC.</string>
                                         </button>
                                         <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3yj-eZ-X0Q">
                                             <rect key="frame" x="18" y="23" width="231" height="16"/>
-                                            <textFieldCell key="cell" lineBreakMode="clipping" id="qJD-6U-lOR">
+                                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" id="qJD-6U-lOR">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -638,6 +638,7 @@ of Pi-hole LLC.</string>
                         <outlet property="portTextField" destination="i4e-zs-pkU" id="crJ-yc-pNH"/>
                         <outlet property="saveAndCloseButton" destination="vfb-vc-iXD" id="dB9-fJ-Qls"/>
                         <outlet property="testConnectionButton" destination="8yS-Xd-FIv" id="3qZ-7N-jrE"/>
+                        <outlet property="testConnectionLabel" destination="3yj-eZ-X0Q" id="hCe-oh-1Th"/>
                         <outlet property="useSSLCheckbox" destination="Ey9-va-KwP" id="gdT-ZG-lrd"/>
                     </connections>
                 </viewController>

@@ -24,6 +24,7 @@ class PiholeSettingsViewController: NSViewController {
     @IBOutlet weak var apiTokenTextField: NSTextField!
 
     @IBOutlet weak var testConnectionButton: NSButton!
+    @IBOutlet weak var testConnectionLabel: NSTextField!
     @IBOutlet weak var saveAndCloseButton: NSButton!
     @IBOutlet weak var closeButton: NSButton!
 
@@ -32,6 +33,7 @@ class PiholeSettingsViewController: NSViewController {
     }
 
     @IBAction func testConnectionButtonAction(_ sender: NSButton) {
+        testConnection()
     }
 
     @IBAction func saveAndCloseButtonAction(_ sender: NSButton) {
@@ -59,6 +61,40 @@ class PiholeSettingsViewController: NSViewController {
             portTextField.stringValue = "80"
             useSSLCheckbox.state = .off
             apiTokenTextField.stringValue = ""
+        }
+        testConnectionLabel.stringValue = ""
+        saveAndCloseButton.isEnabled = false
+    }
+
+    // MARK: - Functions
+
+    func testConnection() {
+        Log.debug("Testing connection...")
+
+        testConnectionLabel.stringValue = "Testing..."
+
+        let connection = PiholeConnectionV2(
+            hostname: hostnameTextField.stringValue,
+            port: Int(portTextField.stringValue) ?? 80,
+            useSSL: useSSLCheckbox.state == .on ? true : false,
+            token: apiTokenTextField.stringValue,
+            passwordProtected: apiTokenTextField.stringValue.isEmpty ? true : false
+        )
+
+        let api = PiholeAPI(connection: connection)
+
+        api.testConnection { status in
+            switch status {
+            case .success:
+                self.testConnectionLabel.stringValue = "Success"
+                self.saveAndCloseButton.isEnabled = true
+            case .failure:
+                self.testConnectionLabel.stringValue = "Unable to Connect"
+                self.saveAndCloseButton.isEnabled = false
+            case .failureInvalidToken:
+                self.testConnectionLabel.stringValue = "Invalid API Token"
+                self.saveAndCloseButton.isEnabled = false
+            }
         }
     }
 }
