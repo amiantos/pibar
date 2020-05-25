@@ -26,7 +26,7 @@ class PiBarManager: NSObject {
     private let updateInterval: TimeInterval = 3
 
     override init() {
-        Log.logLevel = .off
+        Log.logLevel = .debug
         Log.useEmoji = true
 
         networkOverview = PiholeNetworkOverview(
@@ -121,7 +121,7 @@ class PiBarManager: NSObject {
         )
     }
 
-    private func createPiholes(_ connections: [PiholeConnection]) {
+    private func createPiholes(_ connections: [PiholeConnectionV2]) {
         Log.debug("Manager: Updating Connections")
 
         stopTimer()
@@ -269,7 +269,6 @@ class PiBarManager: NSObject {
     }
 
     private func canManage() -> Bool {
-        // We return true here
         for pihole in piholes.values where pihole.canBeManaged ?? false {
             return true
         }

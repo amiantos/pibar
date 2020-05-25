@@ -12,7 +12,7 @@
 import Cocoa
 
 class PiholeAPI: NSObject {
-    let connection: PiholeConnection
+    let connection: PiholeConnectionV2
 
     var identifier: String {
         return "\(connection.hostname)"
@@ -32,11 +32,11 @@ class PiholeAPI: NSObject {
     }
 
     override init() {
-        connection = PiholeConnection(hostname: "pi-hole.local", port: 80, useSSL: false, token: "")
+        connection = PiholeConnectionV2(hostname: "pi-hole.local", port: 80, useSSL: false, token: "", passwordProtected: true)
         super.init()
     }
 
-    init(connection: PiholeConnection) {
+    init(connection: PiholeConnectionV2) {
         self.connection = connection
         super.init()
     }

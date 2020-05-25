@@ -13,7 +13,8 @@ import Foundation
 
 struct Preferences {
     fileprivate enum Key {
-        static let piholes = "piholes"
+        static let piholes = "piholes" // Deprecated in PiBar 1.1
+        static let piholesV2 = "piholesV2"
         static let showBlocked = "showBlocked"
         static let showQueries = "showQueries"
         static let showPercentage = "showPercentage"
@@ -26,6 +27,7 @@ struct Preferences {
         let database = UserDefaults.standard
         database.register(defaults: [
             Key.piholes: [],
+            Key.piholesV2: [],
             Key.showBlocked: true,
             Key.showQueries: true,
             Key.showPercentage: true,
@@ -39,22 +41,49 @@ struct Preferences {
 }
 
 extension UserDefaults {
-    var piholes: [PiholeConnection] {
-        if let array = array(forKey: Preferences.Key.piholes) {
-            var piholes: [PiholeConnection] = []
+    var piholes: [PiholeConnectionV2] {
+        if let array = array(forKey: Preferences.Key.piholes), !array.isEmpty {
+            // Migrate from PiBar v1.0 format to PiBar v1.1 format if needed
+            Log.debug("Found V1 Pi-holes")
+            var piholesV2: [PiholeConnectionV2] = []
+            var piholesV1: [PiholeConnectionV1] = []
             for data in array {
-                guard let data = data as? Data, let piholeConnection = PiholeConnection(data: data) else { continue }
-                piholes.append(piholeConnection)
+                Log.debug("Loading Pi-hole V1...")
+                guard let data = data as? Data, let piholeConnection = PiholeConnectionV1(data: data) else { continue }
+                piholesV1.append(piholeConnection)
             }
-            return piholes
-        } else {
-            return []
+            if !piholesV1.isEmpty {
+                for pihole in piholesV1 {
+                    Log.debug("Converting V1 Pi-hole to V2")
+                    piholesV2.append(PiholeConnectionV2(
+                        hostname: pihole.hostname,
+                        port: pihole.port,
+                        useSSL: pihole.useSSL,
+                        token: pihole.token,
+                        passwordProtected: true)
+                    )
+                }
+                set([], for: Preferences.Key.piholes)
+                let encodedArray = piholesV2.map { $0.encode()! }
+                set(encodedArray, for: Preferences.Key.piholesV2)
+            }
+            return piholesV2
+        } else if let array = array(forKey: Preferences.Key.piholesV2) {
+            // Load Pi-holes in PiBar v1.1 format
+            var piholesV2: [PiholeConnectionV2] = []
+            for data in array {
+                Log.debug("Loading Pi-hole V2...")
+                guard let data = data as? Data, let piholeConnection = PiholeConnectionV2(data: data) else { continue }
+                piholesV2.append(piholeConnection)
+            }
+            return piholesV2
         }
+        return []
     }
 
-    func set(piholes: [PiholeConnection]) {
+    func set(piholes: [PiholeConnectionV2]) {
         let array = piholes.map { $0.encode()! }
-        set(array, for: Preferences.Key.piholes)
+        set(array, for: Preferences.Key.piholesV2)
     }
 
     var showBlocked: Bool {

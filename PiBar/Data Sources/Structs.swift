@@ -13,19 +13,51 @@ import Foundation
 
 // MARK: - Pi-hole Connections
 
-struct PiholeConnection: Codable {
+struct PiholeConnectionV1: Codable {
     let hostname: String
     let port: Int
     let useSSL: Bool
     let token: String
 }
 
-extension PiholeConnection {
+extension PiholeConnectionV1 {
     init?(data: Data) {
         let jsonDecoder = JSONDecoder()
-        if let object = try? jsonDecoder.decode(PiholeConnection.self, from: data) {
+        do {
+            let object = try jsonDecoder.decode(PiholeConnectionV1.self, from: data)
             self = object
+        } catch {
+            Log.debug("Couldn't decode connection: \(error.localizedDescription)")
+            return nil
+        }
+    }
+
+    func encode() -> Data? {
+        let jsonEncoder = JSONEncoder()
+        if let data = try? jsonEncoder.encode(self) {
+            return data
         } else {
+            return nil
+        }
+    }
+}
+
+struct PiholeConnectionV2: Codable {
+    let hostname: String
+    let port: Int
+    let useSSL: Bool
+    let token: String
+    let passwordProtected: Bool
+}
+
+extension PiholeConnectionV2 {
+    init?(data: Data) {
+        let jsonDecoder = JSONDecoder()
+        do {
+            let object = try jsonDecoder.decode(PiholeConnectionV2.self, from: data)
+            self = object
+        } catch {
+            Log.debug("Couldn't decode connection: \(error.localizedDescription)")
             return nil
         }
     }
