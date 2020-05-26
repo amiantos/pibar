@@ -138,7 +138,10 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
 
     @objc func launchWebAdmin(sender: NSMenuItem) {
         if sender.title == "Web Admin" {
-            guard let piholeIdentifier = manager.networkOverview.piholes.keys.first else { return }
+            guard let piholeIdentifier = manager.networkOverview.piholes.keys.first else {
+                Log.debug("No Pi-holes found.")
+                return
+            }
             launchWebAdmin(for: piholeIdentifier)
         } else {
             launchWebAdmin(for: sender.title)
