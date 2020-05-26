@@ -168,7 +168,7 @@ class PiBarManager: NSObject {
                     if summary.status != "enabled" {
                         enabled = false
                     }
-                    if !pihole.api.connection.token.isEmpty {
+                    if !pihole.api.connection.token.isEmpty ||  !pihole.api.connection.passwordProtected {
                         canBeManaged = true
                     }
                 } else {

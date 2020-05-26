@@ -48,6 +48,7 @@ class PreferencesViewController: NSViewController {
 
     @IBAction func addButtonActiom(_: NSButton) {
         guard let controller = piholeSheetController else { return }
+        controller.delegate = self
         controller.connection = nil
         controller.currentIndex = -1
         presentAsSheet(controller)
@@ -57,6 +58,7 @@ class PreferencesViewController: NSViewController {
         guard let controller = piholeSheetController else { return }
         if tableView.selectedRow >= 0 {
             let pihole = Preferences.standard.piholes[tableView.selectedRow]
+            controller.delegate = self
             controller.connection = pihole
             controller.currentIndex = tableView.selectedRow
         }
@@ -68,6 +70,10 @@ class PreferencesViewController: NSViewController {
         piholes.remove(at: tableView.selectedRow)
         tableView.removeRows(at: tableView.selectedRowIndexes, withAnimation: .slideUp)
         Preferences.standard.set(piholes: piholes)
+        if piholes.isEmpty {
+            removeButton.isEnabled = false
+            editButton.isEnabled = false
+        }
         delegate?.updatedConnections()
     }
 
@@ -130,8 +136,21 @@ class PreferencesViewController: NSViewController {
 }
 
 extension PreferencesViewController: PiholeSettingsViewControllerDelegate {
-    func savePiholeConnection(_ connection: PiholeConnectionV2, at index: Int?) {
-        // TODO
+    func savePiholeConnection(_ connection: PiholeConnectionV2, at index: Int) {
+        var piholes = Preferences.standard.piholes
+        if index == -1 {
+            piholes.append(connection)
+            Preferences.standard.set(piholes: piholes)
+            let newRowIndexSet = IndexSet(integer: piholes.count - 1)
+            tableView.insertRows(at: newRowIndexSet, withAnimation: .slideDown)
+            tableView.selectRowIndexes(newRowIndexSet, byExtendingSelection: false)
+        } else {
+            piholes[index] = connection
+            Preferences.standard.set(piholes: piholes)
+            tableView.reloadData()
+            tableView.selectRowIndexes(IndexSet(integer: index), byExtendingSelection: false)
+        }
+        delegate?.updatedConnections()
     }
 }
 
@@ -142,6 +161,10 @@ extension PreferencesViewController: NSTableViewDataSource {
         let numberOfRows = Preferences.standard.piholes.count
         if numberOfRows > 0 {
             editButton.isEnabled = true
+            removeButton.isEnabled = true
+        } else {
+            removeButton.isEnabled = false
+            editButton.isEnabled = false
         }
         return numberOfRows
     }
@@ -171,5 +194,6 @@ extension PreferencesViewController: NSTableViewDelegate {
 
     func tableViewSelectionDidChange(_ notification: Notification) {
         editButton.isEnabled = true
+        removeButton.isEnabled = true
     }
 }

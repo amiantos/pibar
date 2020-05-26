@@ -50,6 +50,7 @@ struct PiholeConnectionV2: Codable {
     let useSSL: Bool
     let token: String
     let passwordProtected: Bool
+    let adminPanelURL: String
 }
 
 extension PiholeConnectionV2 {
@@ -71,6 +72,11 @@ extension PiholeConnectionV2 {
         } else {
             return nil
         }
+    }
+
+    static func generateAdminPanelURL(hostname: String, port: Int, useSSL: Bool) -> String {
+        let prefix: String = useSSL ? "https" : "http"
+        return "\(prefix)://\(hostname):\(port)/admin/"
     }
 }
 

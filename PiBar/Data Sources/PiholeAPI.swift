@@ -32,7 +32,7 @@ class PiholeAPI: NSObject {
     }
 
     override init() {
-        connection = PiholeConnectionV2(hostname: "pi-hole.local", port: 80, useSSL: false, token: "", passwordProtected: true)
+        connection = PiholeConnectionV2(hostname: "pi.hole", port: 80, useSSL: false, token: "", passwordProtected: true, adminPanelURL: "http://pi.hole/admin/")
         super.init()
     }
 

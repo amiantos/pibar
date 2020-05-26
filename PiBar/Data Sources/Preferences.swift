@@ -60,9 +60,12 @@ extension UserDefaults {
                         port: pihole.port,
                         useSSL: pihole.useSSL,
                         token: pihole.token,
-                        passwordProtected: true
-                    )
-                    )
+                        passwordProtected: true,
+                        adminPanelURL: PiholeConnectionV2.generateAdminPanelURL(
+                            hostname: pihole.hostname,
+                            port: pihole.port,
+                            useSSL: pihole.useSSL)
+                    ))
                 }
                 set([], for: Preferences.Key.piholes)
                 let encodedArray = piholesV2.map { $0.encode()! }
