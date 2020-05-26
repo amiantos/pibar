@@ -18,6 +18,7 @@
                 <outlet property="mainNetworkStatusMenuItem" destination="p0e-fZ-XzR" id="ihg-ID-5O7"/>
                 <outlet property="mainTotalBlockedMenuItem" destination="yIe-yf-Thr" id="Z4H-md-6lA"/>
                 <outlet property="mainTotalQueriesMenuItem" destination="WSh-qS-r63" id="aJQ-ta-NS1"/>
+                <outlet property="webAdminMenuItem" destination="3md-Pe-xgY" id="Syp-qg-PMb"/>
             </connections>
         </customObject>
         <menu title="Main Menu" systemMenu="main" id="5KW-ob-Fg0">

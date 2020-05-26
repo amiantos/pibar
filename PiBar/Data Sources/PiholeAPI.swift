@@ -69,7 +69,7 @@ class PiholeAPI: NSObject {
         urlRequest.httpMethod = "GET"
         urlRequest.timeoutInterval = 3
         let session = URLSession(configuration: .default)
-        let dataTask = session.dataTask(with: urlRequest) { (data, response, error) in
+        let dataTask = session.dataTask(with: urlRequest) { data, response, error in
             if error != nil {
                 completion(nil)
             }

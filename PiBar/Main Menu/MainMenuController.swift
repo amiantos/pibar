@@ -37,6 +37,7 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
     @IBOutlet var mainBlocklistMenuItem: NSMenuItem!
     @IBOutlet var disableNetworkMenuItem: NSMenuItem!
     @IBOutlet var enableNetworkMenuItem: NSMenuItem!
+    @IBOutlet var webAdminMenuItem: NSMenuItem!
 
     // MARK: - Sub-menus for Multi-hole Setups
 
@@ -51,6 +52,9 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
 
     private var blocklistMenu = NSMenu()
     private var blocklistMenuItems: [String: NSMenuItem] = [:]
+
+    private var webAdminMenu = NSMenu()
+    private var webAdminMenuItems: [String: NSMenuItem] = [:]
 
     // MARK: - Actions
 
@@ -90,6 +94,8 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
 
         enableKeyboardShortcut()
 
+        setupWebAdminMenus()
+
         if let viewController = preferencesWindowController?.contentViewController as? PreferencesViewController {
             viewController.delegate = self
         }
@@ -119,12 +125,33 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
         Log.debug("Connections Updated")
         clearSubmenus()
         manager.loadConnections()
+        setupWebAdminMenus()
     }
 
     internal func networkUpdated() {
         DispatchQueue.main.asyncDeduped(target: self, after: 1) { [weak self] in
             self?.updateInterface()
         }
+    }
+
+    // MARK: - Functions
+
+    @objc func launchWebAdmin(sender: NSMenuItem) {
+        if sender.title == "Web Admin" {
+            guard let piholeIdentifier = manager.networkOverview.piholes.keys.first else { return }
+            launchWebAdmin(for: piholeIdentifier)
+        } else {
+            launchWebAdmin(for: sender.title)
+        }
+    }
+
+    private func launchWebAdmin(for identifier: String) {
+        guard let pihole = manager.networkOverview.piholes[identifier],
+            let adminURL = URL(string: pihole.api.connection.adminPanelURL) else {
+            Log.debug("Could not find Pi-hole with identifier \(identifier)")
+            return
+        }
+        NSWorkspace.shared.open(adminURL)
     }
 
     // MARK: - UI Updates
@@ -322,6 +349,38 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
         }
     }
 
+    private func setupWebAdminMenus() {
+        guard let mainMenu = mainNetworkStatusMenuItem.menu else { return }
+        let piholes = manager.networkOverview.piholes
+        if piholes.count > 1 {
+            let piholeIdentifiersAlphabetized: [String] = piholes.keys.sorted()
+
+            for identifier in piholeIdentifiersAlphabetized {
+                // Web Admin Submenu
+                if webAdminMenuItems[identifier] == nil {
+                    let menuItem = NSMenuItem(
+                        title: identifier,
+                        action: #selector(launchWebAdmin(sender:)),
+                        keyEquivalent: ""
+                    )
+                    menuItem.isEnabled = true
+                    menuItem.target = self
+                    webAdminMenuItems[identifier] = menuItem
+                    webAdminMenu.addItem(menuItem)
+                }
+
+                if !webAdminMenuItem.hasSubmenu {
+                    mainMenu.setSubmenu(webAdminMenu, for: webAdminMenuItem)
+                    webAdminMenuItem.isEnabled = true
+                }
+            }
+        } else if piholes.count == 1 {
+            webAdminMenuItem.target = self
+            webAdminMenuItem.action = #selector(launchWebAdmin(sender:))
+            webAdminMenuItem.isEnabled = true
+        }
+    }
+
     private func clearSubmenus() {
         guard let mainMenu = mainNetworkStatusMenuItem.menu else { return }
         if mainNetworkStatusMenuItem.hasSubmenu {
@@ -347,6 +406,14 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
             blocklistMenu.removeAllItems()
             blocklistMenuItems.removeAll()
         }
+
+        if webAdminMenuItem.hasSubmenu {
+            mainMenu.setSubmenu(nil, for: webAdminMenuItem)
+            webAdminMenu.removeAllItems()
+            webAdminMenuItems.removeAll()
+        }
+        webAdminMenuItem.action = nil
+        webAdminMenuItem.isEnabled = false
     }
 
     private func updateMenuButtons() {
