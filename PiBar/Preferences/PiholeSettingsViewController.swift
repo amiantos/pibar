@@ -129,7 +129,7 @@ class PiholeSettingsViewController: NSViewController {
     func testConnection() {
         Log.debug("Testing connection...")
 
-        testConnectionLabel.stringValue = "Testing..."
+        testConnectionLabel.stringValue = "Testing... Please wait..."
 
         let connection = PiholeConnectionV2(
             hostname: hostnameTextField.stringValue,
