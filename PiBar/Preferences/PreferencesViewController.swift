@@ -19,17 +19,18 @@ protocol PreferencesDelegate: AnyObject {
 class PreferencesViewController: NSViewController {
     weak var delegate: PreferencesDelegate?
 
+    lazy var piholeSheetController: PiholeSettingsViewController? = {
+        guard let controller = self.storyboard!.instantiateController(
+            withIdentifier: "piHoleDialog"
+            ) as? PiholeSettingsViewController else {
+                return nil
+        }
+        return controller
+    }()
+
     // MARK: - Outlets
 
     @IBOutlet var tableView: NSTableView!
-
-    @IBOutlet var testLabel: NSTextField!
-    @IBOutlet var testButton: NSButton!
-
-    @IBOutlet var hostnameTextField: NSTextField!
-    @IBOutlet var portTextField: NSTextField!
-    @IBOutlet var tokenTextField: NSTextField!
-    @IBOutlet var useSSLCheckbox: NSButton!
 
     @IBOutlet var showBlockedCheckbox: NSButton!
     @IBOutlet var showQueriesCheckbox: NSButton!
@@ -40,19 +41,28 @@ class PreferencesViewController: NSViewController {
 
     @IBOutlet var shortcutEnabledCheckbox: NSButton!
 
+    @IBOutlet weak var editButton: NSButton!
     @IBOutlet var removeButton: NSButton!
-    @IBOutlet var saveButton: NSButton!
 
     // MARK: - Actions
 
     @IBAction func addButtonActiom(_: NSButton) {
-        var piholes = Preferences.standard.piholes
-        piholes.append(PiholeConnection(hostname: "pi-hole.local", port: 80, useSSL: false, token: ""))
-        Preferences.standard.set(piholes: piholes)
-        let newRowIndexSet = IndexSet(integer: piholes.count - 1)
-        tableView.insertRows(at: newRowIndexSet, withAnimation: .slideDown)
-        tableView.selectRowIndexes(newRowIndexSet, byExtendingSelection: false)
-        delegate?.updatedConnections()
+        guard let controller = piholeSheetController else { return }
+        controller.delegate = self
+        controller.connection = nil
+        controller.currentIndex = -1
+        presentAsSheet(controller)
+    }
+
+    @IBAction func editButtonAction(_ sender: NSButton) {
+        guard let controller = piholeSheetController else { return }
+        if tableView.selectedRow >= 0 {
+            let pihole = Preferences.standard.piholes[tableView.selectedRow]
+            controller.delegate = self
+            controller.connection = pihole
+            controller.currentIndex = tableView.selectedRow
+        }
+        presentAsSheet(controller)
     }
 
     @IBAction func removeButtonAction(_: NSButton) {
@@ -60,43 +70,15 @@ class PreferencesViewController: NSViewController {
         piholes.remove(at: tableView.selectedRow)
         tableView.removeRows(at: tableView.selectedRowIndexes, withAnimation: .slideUp)
         Preferences.standard.set(piholes: piholes)
-        delegate?.updatedConnections()
-    }
-
-    @IBAction func textFieldChangedAction(_: NSTextField) {
-        saveButton.isEnabled = false
-        saveButton.toolTip = "Test connection to save changes."
-        testLabel.stringValue = ""
-        sslFailSafe()
-    }
-
-    @IBAction func useSSLCheckboxAction(_: NSButton) {
-        sslFailSafe()
-    }
-
-    @IBAction func saveButtonAction(_: Any) {
-        let selectedIndex = tableView.selectedRow
-        var piholes = Preferences.standard.piholes
-
-        piholes[selectedIndex] = PiholeConnection(
-            hostname: hostnameTextField.stringValue,
-            port: Int(portTextField.stringValue) ?? 80,
-            useSSL: useSSLCheckbox.state == .on ? true : false,
-            token: tokenTextField.stringValue
-        )
-
-        Preferences.standard.set(piholes: piholes)
-        tableView.reloadData()
-        tableView.selectRowIndexes(IndexSet(integer: selectedIndex), byExtendingSelection: false)
+        if piholes.isEmpty {
+            removeButton.isEnabled = false
+            editButton.isEnabled = false
+        }
         delegate?.updatedConnections()
     }
 
     @IBAction func checkboxAction(_: NSButtonCell) {
         saveSettings()
-    }
-
-    @IBAction func testButtonAction(_: NSButton) {
-        testConnection()
     }
 
     @IBAction func linkAction(_: NSButton) {
@@ -111,9 +93,6 @@ class PreferencesViewController: NSViewController {
 
         updateUI()
 
-        loadDataFromTable()
-
-        tokenTextField.toolTip = "Get your API token from Pi-hole: Settings -> API / Web Interface -> Show API token"
         shortcutEnabledCheckbox.toolTip = "This shortcut allows you to easily enable and disable your Pi-hole(s)"
     }
 
@@ -136,21 +115,7 @@ class PreferencesViewController: NSViewController {
 
     // MARK: - Functions
 
-    fileprivate func sslFailSafe() {
-        let useSSL = useSSLCheckbox.state == .on ? true : false
-
-        var port = portTextField.stringValue
-        if useSSL, port == "80" {
-            port = "443"
-        } else if !useSSL, port == "443" {
-            port = "80"
-        }
-        portTextField.stringValue = port
-    }
-
     func saveSettings() {
-        testLabel.stringValue = ""
-
         Preferences.standard.set(showBlocked: showBlockedCheckbox.state == .on ? true : false)
         Preferences.standard.set(showQueries: showQueriesCheckbox.state == .on ? true : false)
         Preferences.standard.set(showPercentage: showPercentageCheckbox.state == .on ? true : false)
@@ -168,33 +133,24 @@ class PreferencesViewController: NSViewController {
 
         updateUI()
     }
+}
 
-    func testConnection() {
-        let connection = PiholeConnection(
-            hostname: hostnameTextField.stringValue,
-            port: Int(portTextField.stringValue) ?? 80,
-            useSSL: useSSLCheckbox.state == .on ? true : false,
-            token: tokenTextField.stringValue
-        )
-
-        let api = PiholeAPI(connection: connection)
-
-        api.testConnection { status in
-            switch status {
-            case .success:
-                self.testLabel.stringValue = "Success!"
-                self.saveButton.isEnabled = true
-            case .successNoToken:
-                self.testLabel.stringValue = "Success (No Admin)"
-                self.saveButton.isEnabled = true
-            case .failure:
-                self.testLabel.stringValue = "Failure (No Connection)"
-                self.saveButton.isEnabled = false
-            case .failureInvalidToken:
-                self.testLabel.stringValue = "Failure (Invalid Token)"
-                self.saveButton.isEnabled = false
-            }
+extension PreferencesViewController: PiholeSettingsViewControllerDelegate {
+    func savePiholeConnection(_ connection: PiholeConnectionV2, at index: Int) {
+        var piholes = Preferences.standard.piholes
+        if index == -1 {
+            piholes.append(connection)
+            Preferences.standard.set(piholes: piholes)
+            let newRowIndexSet = IndexSet(integer: piholes.count - 1)
+            tableView.insertRows(at: newRowIndexSet, withAnimation: .slideDown)
+            tableView.selectRowIndexes(newRowIndexSet, byExtendingSelection: false)
+        } else {
+            piholes[index] = connection
+            Preferences.standard.set(piholes: piholes)
+            tableView.reloadData()
+            tableView.selectRowIndexes(IndexSet(integer: index), byExtendingSelection: false)
         }
+        delegate?.updatedConnections()
     }
 }
 
@@ -202,7 +158,15 @@ class PreferencesViewController: NSViewController {
 
 extension PreferencesViewController: NSTableViewDataSource {
     func numberOfRows(in _: NSTableView) -> Int {
-        return Preferences.standard.piholes.count
+        let numberOfRows = Preferences.standard.piholes.count
+        if numberOfRows > 0 {
+            editButton.isEnabled = true
+            removeButton.isEnabled = true
+        } else {
+            removeButton.isEnabled = false
+            editButton.isEnabled = false
+        }
+        return numberOfRows
     }
 }
 
@@ -228,45 +192,8 @@ extension PreferencesViewController: NSTableViewDelegate {
         return nil
     }
 
-    fileprivate func loadDataFromTable() {
-        if tableView.selectedRow >= 0 {
-            let pihole = Preferences.standard.piholes[tableView.selectedRow]
-            hostnameTextField.stringValue = pihole.hostname
-            portTextField.stringValue = "\(pihole.port)"
-            tokenTextField.stringValue = pihole.token
-            useSSLCheckbox.state = pihole.useSSL ? .on : .off
-
-            hostnameTextField.isEnabled = true
-            portTextField.isEnabled = true
-            tokenTextField.isEnabled = true
-            useSSLCheckbox.isEnabled = true
-
-            removeButton.isEnabled = true
-            testButton.isEnabled = true
-            saveButton.isEnabled = false
-            saveButton.toolTip = "Test connection to save changes."
-            testLabel.stringValue = ""
-        } else {
-            hostnameTextField.stringValue = ""
-            portTextField.stringValue = ""
-            tokenTextField.stringValue = ""
-            useSSLCheckbox.state = .off
-
-            hostnameTextField.isEnabled = false
-            portTextField.isEnabled = false
-            tokenTextField.isEnabled = false
-            useSSLCheckbox.isEnabled = false
-
-            removeButton.isEnabled = false
-            testButton.isEnabled = false
-            saveButton.isEnabled = false
-            saveButton.toolTip = nil
-
-            testLabel.stringValue = ""
-        }
-    }
-
-    func tableViewSelectionDidChange(_: Notification) {
-        loadDataFromTable()
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        editButton.isEnabled = true
+        removeButton.isEnabled = true
     }
 }

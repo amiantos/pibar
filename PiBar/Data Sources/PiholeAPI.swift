@@ -12,7 +12,7 @@
 import Cocoa
 
 class PiholeAPI: NSObject {
-    let connection: PiholeConnection
+    let connection: PiholeConnectionV2
 
     var identifier: String {
         return "\(connection.hostname)"
@@ -32,11 +32,11 @@ class PiholeAPI: NSObject {
     }
 
     override init() {
-        connection = PiholeConnection(hostname: "pi-hole.local", port: 80, useSSL: false, token: "")
+        connection = PiholeConnectionV2(hostname: "pi.hole", port: 80, useSSL: false, token: "", passwordProtected: true, adminPanelURL: "http://pi.hole/admin/")
         super.init()
     }
 
-    init(connection: PiholeConnection) {
+    init(connection: PiholeConnectionV2) {
         self.connection = connection
         super.init()
     }
@@ -54,14 +54,33 @@ class PiholeAPI: NSObject {
             builtURLString.append(contentsOf: "=\(argument)")
         }
 
+        Log.debug("Built API String: \(builtURLString)")
+
         guard let builtURL = URL(string: builtURLString) else { return completion(nil) }
 
-        do {
-            let string = try String(contentsOf: builtURL)
-            completion(string)
-        } catch {
-            completion(nil)
+        var urlRequest = URLRequest(url: builtURL)
+        urlRequest.httpMethod = "GET"
+        urlRequest.timeoutInterval = 3
+        let session = URLSession(configuration: .default)
+        let dataTask = session.dataTask(with: urlRequest) { (data, response, error) in
+            if error != nil {
+                completion(nil)
+            }
+            if let response = response as? HTTPURLResponse {
+                if 200 ..< 300 ~= response.statusCode {
+                    if let data = data, let string = String(data: data, encoding: .utf8) {
+                        completion(string)
+                    } else {
+                        completion(nil)
+                    }
+                } else {
+                    completion(nil)
+                }
+            } else {
+                completion(nil)
+            }
         }
+        dataTask.resume()
     }
 
     private func decodeJSON<T>(_ string: String) -> T? where T: Decodable {
@@ -90,28 +109,16 @@ class PiholeAPI: NSObject {
     // MARK: - Testing
 
     func testConnection(completion: @escaping (PiholeConnectionTestResult) -> Void) {
-        if connection.token.isEmpty {
-            fetchSummary { summary in
-                DispatchQueue.main.async {
-                    if summary != nil {
-                        completion(.successNoToken)
+        fetchTopItems { string in
+            DispatchQueue.main.async {
+                if let contents = string {
+                    if contents == "[]" {
+                        completion(.failureInvalidToken)
                     } else {
-                        completion(.failure)
+                        completion(.success)
                     }
-                }
-            }
-        } else {
-            fetchTopItems { string in
-                DispatchQueue.main.async {
-                    if let contents = string {
-                        if contents == "[]" {
-                            completion(.failureInvalidToken)
-                        } else {
-                            completion(.success)
-                        }
-                    } else {
-                        completion(.failure)
-                    }
+                } else {
+                    completion(.failure)
                 }
             }
         }
