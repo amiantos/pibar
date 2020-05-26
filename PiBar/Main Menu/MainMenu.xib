@@ -341,13 +341,13 @@
                         </items>
                     </menu>
                 </menuItem>
-                <menuItem isSeparatorItem="YES" id="F8B-GT-2q1"/>
+                <menuItem title="Web Admin" enabled="NO" keyEquivalent="a" id="3md-Pe-xgY"/>
+                <menuItem isSeparatorItem="YES" id="h1c-RQ-KIw"/>
                 <menuItem title="Preferences" keyEquivalent="," id="A0X-KF-WHH">
                     <connections>
                         <action selector="configureMenuBarAction:" target="Ufk-kp-3MV" id="vGa-8p-QNC"/>
                     </connections>
                 </menuItem>
-                <menuItem isSeparatorItem="YES" id="h1c-RQ-KIw"/>
                 <menuItem title="Quit PiBar" keyEquivalent="q" id="ETE-5r-Mpn">
                     <connections>
                         <action selector="quitMenuBarAction:" target="Ufk-kp-3MV" id="BIl-j0-uBf"/>
