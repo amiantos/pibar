@@ -32,7 +32,14 @@ class PiholeAPI: NSObject {
     }
 
     override init() {
-        connection = PiholeConnectionV2(hostname: "pi.hole", port: 80, useSSL: false, token: "", passwordProtected: true, adminPanelURL: "http://pi.hole/admin/")
+        connection = PiholeConnectionV2(
+            hostname: "pi.hole",
+            port: 80,
+            useSSL: false,
+            token: "",
+            passwordProtected: true,
+            adminPanelURL: "http://pi.hole/admin/"
+        )
         super.init()
     }
 
@@ -62,7 +69,7 @@ class PiholeAPI: NSObject {
         urlRequest.httpMethod = "GET"
         urlRequest.timeoutInterval = 3
         let session = URLSession(configuration: .default)
-        let dataTask = session.dataTask(with: urlRequest) { (data, response, error) in
+        let dataTask = session.dataTask(with: urlRequest) { data, response, error in
             if error != nil {
                 completion(nil)
             }

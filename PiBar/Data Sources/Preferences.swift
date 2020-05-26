@@ -64,7 +64,8 @@ extension UserDefaults {
                         adminPanelURL: PiholeConnectionV2.generateAdminPanelURL(
                             hostname: pihole.hostname,
                             port: pihole.port,
-                            useSSL: pihole.useSSL)
+                            useSSL: pihole.useSSL
+                        )
                     ))
                 }
                 set([], for: Preferences.Key.piholes)

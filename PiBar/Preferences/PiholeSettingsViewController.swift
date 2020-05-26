@@ -13,7 +13,6 @@ protocol PiholeSettingsViewControllerDelegate: AnyObject {
 }
 
 class PiholeSettingsViewController: NSViewController {
-
     var connection: PiholeConnectionV2?
     var currentIndex: Int = -1
     weak var delegate: PiholeSettingsViewControllerDelegate?
@@ -21,40 +20,43 @@ class PiholeSettingsViewController: NSViewController {
     var passwordProtected: Bool = true
 
     // MARK: - Outlets
-    @IBOutlet weak var hostnameTextField: NSTextField!
-    @IBOutlet weak var portTextField: NSTextField!
-    @IBOutlet weak var useSSLCheckbox: NSButton!
-    @IBOutlet weak var apiTokenTextField: NSTextField!
-    @IBOutlet weak var adminURLTextField: NSTextField!
 
-    @IBOutlet weak var testConnectionButton: NSButton!
-    @IBOutlet weak var testConnectionLabel: NSTextField!
-    @IBOutlet weak var saveAndCloseButton: NSButton!
-    @IBOutlet weak var closeButton: NSButton!
+    @IBOutlet var hostnameTextField: NSTextField!
+    @IBOutlet var portTextField: NSTextField!
+    @IBOutlet var useSSLCheckbox: NSButton!
+    @IBOutlet var apiTokenTextField: NSTextField!
+    @IBOutlet var adminURLTextField: NSTextField!
+
+    @IBOutlet var testConnectionButton: NSButton!
+    @IBOutlet var testConnectionLabel: NSTextField!
+    @IBOutlet var saveAndCloseButton: NSButton!
+    @IBOutlet var closeButton: NSButton!
 
     // MARK: - Actions
-    @IBAction func textFieldDidChangeAction(_ sender: NSTextField) {
+
+    @IBAction func textFieldDidChangeAction(_: NSTextField) {
         updateAdminURLPlaceholder()
         saveAndCloseButton.isEnabled = false
     }
 
-    @IBAction func useSSLCheckboxAction(_ sender: NSButton) {
+    @IBAction func useSSLCheckboxAction(_: NSButton) {
         sslFailSafe()
         updateAdminURLPlaceholder()
         saveAndCloseButton.isEnabled = false
     }
 
-    @IBAction func testConnectionButtonAction(_ sender: NSButton) {
+    @IBAction func testConnectionButtonAction(_: NSButton) {
         testConnection()
     }
 
-    @IBAction func saveAndCloseButtonAction(_ sender: NSButton) {
+    @IBAction func saveAndCloseButtonAction(_: NSButton) {
         var adminPanelURL = adminURLTextField.stringValue
         if adminPanelURL.isEmpty {
             adminPanelURL = PiholeConnectionV2.generateAdminPanelURL(
                 hostname: hostnameTextField.stringValue,
                 port: Int(portTextField.stringValue) ?? 80,
-                useSSL: apiTokenTextField.stringValue.isEmpty ? true : false)
+                useSSL: useSSLCheckbox.state == .on ? true : false
+            )
         }
         delegate?.savePiholeConnection(PiholeConnectionV2(
             hostname: hostnameTextField.stringValue,
@@ -64,10 +66,11 @@ class PiholeSettingsViewController: NSViewController {
             passwordProtected: passwordProtected,
             adminPanelURL: adminPanelURL
         ), at: currentIndex)
-        self.dismiss(self)
+        dismiss(self)
     }
 
     // MARK: - View Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -119,11 +122,11 @@ class PiholeSettingsViewController: NSViewController {
 
     private func updateAdminURLPlaceholder() {
         let adminURLString = PiholeConnectionV2.generateAdminPanelURL(
-           hostname: hostnameTextField.stringValue,
-           port: Int(portTextField.stringValue) ?? 80,
-           useSSL: (useSSLCheckbox.state == .on ? true : false)
-       )
-       adminURLTextField.placeholderString = "\(adminURLString)"
+            hostname: hostnameTextField.stringValue,
+            port: Int(portTextField.stringValue) ?? 80,
+            useSSL: useSSLCheckbox.state == .on ? true : false
+        )
+        adminURLTextField.placeholderString = "\(adminURLString)"
     }
 
     func testConnection() {

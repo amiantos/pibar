@@ -18,6 +18,7 @@
                 <outlet property="mainNetworkStatusMenuItem" destination="p0e-fZ-XzR" id="ihg-ID-5O7"/>
                 <outlet property="mainTotalBlockedMenuItem" destination="yIe-yf-Thr" id="Z4H-md-6lA"/>
                 <outlet property="mainTotalQueriesMenuItem" destination="WSh-qS-r63" id="aJQ-ta-NS1"/>
+                <outlet property="webAdminMenuItem" destination="3md-Pe-xgY" id="Syp-qg-PMb"/>
             </connections>
         </customObject>
         <menu title="Main Menu" systemMenu="main" id="5KW-ob-Fg0">
@@ -341,13 +342,14 @@
                         </items>
                     </menu>
                 </menuItem>
-                <menuItem isSeparatorItem="YES" id="F8B-GT-2q1"/>
+                <menuItem isSeparatorItem="YES" id="WFt-y1-3Cx"/>
+                <menuItem title="Web Admin" enabled="NO" keyEquivalent="a" id="3md-Pe-xgY"/>
+                <menuItem isSeparatorItem="YES" id="h1c-RQ-KIw"/>
                 <menuItem title="Preferences" keyEquivalent="," id="A0X-KF-WHH">
                     <connections>
                         <action selector="configureMenuBarAction:" target="Ufk-kp-3MV" id="vGa-8p-QNC"/>
                     </connections>
                 </menuItem>
-                <menuItem isSeparatorItem="YES" id="h1c-RQ-KIw"/>
                 <menuItem title="Quit PiBar" keyEquivalent="q" id="ETE-5r-Mpn">
                     <connections>
                         <action selector="quitMenuBarAction:" target="Ufk-kp-3MV" id="BIl-j0-uBf"/>

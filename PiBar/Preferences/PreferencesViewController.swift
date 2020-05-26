@@ -22,8 +22,8 @@ class PreferencesViewController: NSViewController {
     lazy var piholeSheetController: PiholeSettingsViewController? = {
         guard let controller = self.storyboard!.instantiateController(
             withIdentifier: "piHoleDialog"
-            ) as? PiholeSettingsViewController else {
-                return nil
+        ) as? PiholeSettingsViewController else {
+            return nil
         }
         return controller
     }()
@@ -41,7 +41,7 @@ class PreferencesViewController: NSViewController {
 
     @IBOutlet var shortcutEnabledCheckbox: NSButton!
 
-    @IBOutlet weak var editButton: NSButton!
+    @IBOutlet var editButton: NSButton!
     @IBOutlet var removeButton: NSButton!
 
     // MARK: - Actions
@@ -54,7 +54,7 @@ class PreferencesViewController: NSViewController {
         presentAsSheet(controller)
     }
 
-    @IBAction func editButtonAction(_ sender: NSButton) {
+    @IBAction func editButtonAction(_: NSButton) {
         guard let controller = piholeSheetController else { return }
         if tableView.selectedRow >= 0 {
             let pihole = Preferences.standard.piholes[tableView.selectedRow]
@@ -192,7 +192,7 @@ extension PreferencesViewController: NSTableViewDelegate {
         return nil
     }
 
-    func tableViewSelectionDidChange(_ notification: Notification) {
+    func tableViewSelectionDidChange(_: Notification) {
         editButton.isEnabled = true
         removeButton.isEnabled = true
     }
