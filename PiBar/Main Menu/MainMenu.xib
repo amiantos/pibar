@@ -342,6 +342,7 @@
                         </items>
                     </menu>
                 </menuItem>
+                <menuItem isSeparatorItem="YES" id="WFt-y1-3Cx"/>
                 <menuItem title="Web Admin" enabled="NO" keyEquivalent="a" id="3md-Pe-xgY"/>
                 <menuItem isSeparatorItem="YES" id="h1c-RQ-KIw"/>
                 <menuItem title="Preferences" keyEquivalent="," id="A0X-KF-WHH">
