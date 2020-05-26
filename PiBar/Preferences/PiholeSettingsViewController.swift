@@ -54,7 +54,8 @@ class PiholeSettingsViewController: NSViewController {
             adminPanelURL = PiholeConnectionV2.generateAdminPanelURL(
                 hostname: hostnameTextField.stringValue,
                 port: Int(portTextField.stringValue) ?? 80,
-                useSSL: apiTokenTextField.stringValue.isEmpty ? true : false)
+                useSSL: useSSLCheckbox.state == .on ? true : false
+            )
         }
         delegate?.savePiholeConnection(PiholeConnectionV2(
             hostname: hostnameTextField.stringValue,
