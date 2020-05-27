@@ -105,8 +105,6 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
 
         enableKeyboardShortcut()
 
-        setupWebAdminMenus()
-
         if let viewController = preferencesWindowController?.contentViewController as? PreferencesViewController {
             viewController.delegate = self
         }
@@ -140,9 +138,8 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
     }
 
     internal func networkUpdated() {
-        DispatchQueue.main.asyncDeduped(target: self, after: 1) { [weak self] in
-            self?.updateInterface()
-        }
+        self.updateInterface()
+        setupWebAdminMenus()
     }
 
     // MARK: - Functions

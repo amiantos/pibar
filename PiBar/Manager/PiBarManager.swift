@@ -16,11 +16,7 @@ protocol PiBarManagerDelegate: AnyObject {
 }
 
 class PiBarManager: NSObject {
-    private var piholes: [String: Pihole] = [:] {
-        didSet {
-            updateNetworkOverview()
-        }
-    }
+    private var piholes: [String: Pihole] = [:]
 
     private var timer: Timer?
     private var updateInterval: TimeInterval
@@ -79,23 +75,33 @@ class PiBarManager: NSObject {
     }
 
     func disableNetwork(seconds: Int? = nil) {
-        for pihole in piholes.values {
-            pihole.api.disable(seconds: seconds) { success in
-                if success {
-                    self.updatePihole(pihole)
-                }
-            }
+        stopTimer()
+        let operationQueue = OperationQueue()
+        let completionOperation = BlockOperation {
+            self.updatePiholes()
+            self.startTimer()
         }
+        piholes.values.forEach { pihole in
+            let operation = ChangePiholeStatusOperation(pihole: pihole, status: .disable, seconds: seconds)
+            completionOperation.addDependency(operation)
+            operationQueue.addOperation(operation)
+        }
+        operationQueue.addOperation(completionOperation)
     }
 
     func enableNetwork() {
-        piholes.values.forEach { pihole in
-            pihole.api.enable { success in
-                if success {
-                    self.updatePihole(pihole)
-                }
-            }
+        stopTimer()
+        let operationQueue = OperationQueue()
+        let completionOperation = BlockOperation {
+            self.updatePiholes()
+            self.startTimer()
         }
+        piholes.values.forEach { pihole in
+            let operation = ChangePiholeStatusOperation(pihole: pihole, status: .enable)
+            completionOperation.addDependency(operation)
+            operationQueue.addOperation(operation)
+        }
+        operationQueue.addOperation(completionOperation)
     }
 
     // MARK: - Private Functions
@@ -163,52 +169,66 @@ class PiBarManager: NSObject {
     @objc private func updatePiholes() {
         Log.debug("Manager: Updating Pi-holes")
 
-        piholes.values.forEach {
-            updatePihole($0)
-        }
-
         if piholes.isEmpty {
             updateNetworkOverview()
-        }
-    }
+        } else {
+            let operationQueue = OperationQueue()
 
-    private func updatePihole(_ pihole: Pihole) {
-        pihole.api.fetchSummary { summary in
-            DispatchQueue.main.async {
-                var enabled: Bool? = true
-                var online = true
-                var canBeManaged: Bool = false
-
-                if let summary = summary {
-                    if summary.status != "enabled" {
-                        enabled = false
-                    }
-                    if !pihole.api.connection.token.isEmpty || !pihole.api.connection.passwordProtected {
-                        canBeManaged = true
-                    }
-                } else {
-                    enabled = nil
-                    online = false
-                    canBeManaged = false
-                }
-
-                let pihole: Pihole = Pihole(
-                    api: pihole.api,
-                    identifier: pihole.api.identifier,
-                    online: online,
-                    summary: summary,
-                    canBeManaged: canBeManaged,
-                    enabled: enabled
-                )
-
-                self.piholes[pihole.identifier] = pihole
-
-                Log.debug("Updated Pi-hole: \(pihole.identifier)")
+            let completionOperation = BlockOperation {
+                self.updateNetworkOverview()
             }
+
+            piholes.values.forEach { pihole in
+                Log.debug("Creating operation for \(pihole.identifier)")
+                let operation = UpdatePiholeOperation(pihole)
+                operation.completionBlock = { [unowned operation] in
+                    self.piholes[operation.pihole.identifier] = operation.pihole
+                }
+                completionOperation.addDependency(operation)
+                operationQueue.addOperation(operation)
+            }
+
+            operationQueue.addOperation(completionOperation)
         }
     }
+
+//    private func updatePihole(_ pihole: Pihole) {
+//        Log.debug("Updating Pi-hole: \(pihole.identifier)")
+//        pihole.api.fetchSummary { summary in
+//            Log.debug("Updating Pi-hole: \(pihole.identifier) - Received Summary")
+//            var enabled: Bool? = true
+//            var online = true
+//            var canBeManaged: Bool = false
+//
+//            if let summary = summary {
+//                if summary.status != "enabled" {
+//                    enabled = false
+//                }
+//                if !pihole.api.connection.token.isEmpty || !pihole.api.connection.passwordProtected {
+//                    canBeManaged = true
+//                }
+//            } else {
+//                enabled = nil
+//                online = false
+//                canBeManaged = false
+//            }
+//
+//            let pihole: Pihole = Pihole(
+//                api: pihole.api,
+//                identifier: pihole.api.identifier,
+//                online: online,
+//                summary: summary,
+//                canBeManaged: canBeManaged,
+//                enabled: enabled
+//            )
+//
+//            self.piholes[pihole.identifier] = pihole
+//        }
+//    }
 
     private func updateNetworkOverview() {
+        Log.debug("Updating Network Overview")
+
         networkOverview = PiholeNetworkOverview(
             networkStatus: networkStatus(),
             canBeManaged: canManage(),
