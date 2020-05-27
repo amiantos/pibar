@@ -22,7 +22,7 @@ class PiBarManager: NSObject {
     private var updateInterval: TimeInterval
 
     override init() {
-        Log.logLevel = .debug
+        Log.logLevel = .off
         Log.useEmoji = true
 
         updateInterval = TimeInterval(Preferences.standard.pollingRate)
