@@ -10,6 +10,8 @@
 		32954590BDD997C520227DB6 /* Pods_PiBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04F07DFA596CEEEADF9A90A0 /* Pods_PiBar.framework */; };
 		4415D73424731FE0009E0B31 /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4415D73324731FE0009E0B31 /* Structs.swift */; };
 		4415D73624747331009E0B31 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4415D73524747331009E0B31 /* Logging.swift */; };
+		441E78A9247E21DE00FBC7A0 /* LaunchAtLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 441E78A8247E21DE00FBC7A0 /* LaunchAtLogin.framework */; };
+		441E78AA247E21DE00FBC7A0 /* LaunchAtLogin.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 441E78A8247E21DE00FBC7A0 /* LaunchAtLogin.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		442F6F852471D334008F1101 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 442F6F842471D334008F1101 /* README.md */; };
 		442F6F872471E8DF008F1101 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442F6F862471E8DF008F1101 /* Extensions.swift */; };
 		442F6F89247212D2008F1101 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442F6F88247212D1008F1101 /* Preferences.swift */; };
@@ -27,11 +29,26 @@
 		44FFB092247627B100DCEDEC /* PiBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FFB091247627B100DCEDEC /* PiBarManager.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		441E78AB247E21DE00FBC7A0 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				441E78AA247E21DE00FBC7A0 /* LaunchAtLogin.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		04F07DFA596CEEEADF9A90A0 /* Pods_PiBar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PiBar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		08A4966FFD2196F42B1CA80F /* Pods-PiBar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PiBar.release.xcconfig"; path = "Target Support Files/Pods-PiBar/Pods-PiBar.release.xcconfig"; sourceTree = "<group>"; };
 		4415D73324731FE0009E0B31 /* Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
 		4415D73524747331009E0B31 /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
+		441E78A8247E21DE00FBC7A0 /* LaunchAtLogin.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LaunchAtLogin.framework; path = Carthage/Build/Mac/LaunchAtLogin.framework; sourceTree = "<group>"; };
 		442F6F842471D334008F1101 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		442F6F862471E8DF008F1101 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		442F6F88247212D1008F1101 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
@@ -58,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				441E78A9247E21DE00FBC7A0 /* LaunchAtLogin.framework in Frameworks */,
 				32954590BDD997C520227DB6 /* Pods_PiBar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -169,6 +187,7 @@
 		913B94517DDE1EF8E0C98FB2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				441E78A8247E21DE00FBC7A0 /* LaunchAtLogin.framework */,
 				04F07DFA596CEEEADF9A90A0 /* Pods_PiBar.framework */,
 			);
 			name = Frameworks;
@@ -188,6 +207,9 @@
 				449395D02471ABD600FA0C34 /* Resources */,
 				4415D73124731CA2009E0B31 /* Run SwiftLint */,
 				CF30F66DAC81C5868939E5C0 /* [CP] Embed Pods Frameworks */,
+				441E78AB247E21DE00FBC7A0 /* Embed Frameworks */,
+				441E78A7247E203700FBC7A0 /* LaunchAtLogin */,
+				441E78AC247E221800FBC7A0 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -263,6 +285,42 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
+		441E78A7247E203700FBC7A0 /* LaunchAtLogin */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = LaunchAtLogin;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PROJECT_DIR}/Carthage/Build/Mac/LaunchAtLogin.framework/Resources/copy-helper.sh\"\n";
+		};
+		441E78AC247E221800FBC7A0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/Mac/LaunchAtLogin.framework",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
 		44B6DAF3247CC9A000D364EC /* Increment Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -483,6 +541,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2Y9M69QJKZ;
 				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = PiBar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -508,6 +570,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2Y9M69QJKZ;
 				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = PiBar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

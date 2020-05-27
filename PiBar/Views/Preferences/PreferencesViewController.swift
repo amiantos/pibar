@@ -10,6 +10,7 @@
 //  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import Cocoa
+import LaunchAtLogin
 
 protocol PreferencesDelegate: AnyObject {
     func updatedPreferences()
@@ -40,6 +41,7 @@ class PreferencesViewController: NSViewController {
     @IBOutlet var verboseLabelsCheckbox: NSButton!
 
     @IBOutlet var shortcutEnabledCheckbox: NSButton!
+    @IBOutlet weak var launchAtLoginCheckbox: NSButton!
 
     @IBOutlet var editButton: NSButton!
     @IBOutlet var removeButton: NSButton!
@@ -92,6 +94,8 @@ class PreferencesViewController: NSViewController {
     }
 
     func updateUI() {
+        Log.debug("Updating Preferences UI")
+
         showBlockedCheckbox.state = Preferences.standard.showBlocked ? .on : .off
         showQueriesCheckbox.state = Preferences.standard.showQueries ? .on : .off
         showPercentageCheckbox.state = Preferences.standard.showPercentage ? .on : .off
@@ -106,6 +110,8 @@ class PreferencesViewController: NSViewController {
             showLabelsCheckbox.isEnabled = true
             verboseLabelsCheckbox.isEnabled = showLabelsCheckbox.state == .on ? true : false
         }
+
+        launchAtLoginCheckbox.state = LaunchAtLogin.isEnabled ? .on : .off
     }
 
     // MARK: - Functions
@@ -123,6 +129,12 @@ class PreferencesViewController: NSViewController {
         Preferences.standard.set(verboseLabels: verboseLabelsCheckbox.state == .on ? true : false)
 
         Preferences.standard.set(shortcutEnabled: shortcutEnabledCheckbox.state == .on ? true : false)
+
+        if launchAtLoginCheckbox.state == .on {
+            LaunchAtLogin.isEnabled = true
+        } else {
+            LaunchAtLogin.isEnabled = false
+        }
 
         delegate?.updatedPreferences()
 
