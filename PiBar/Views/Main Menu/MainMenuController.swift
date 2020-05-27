@@ -22,14 +22,14 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
     private let statusBarItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
 
     private lazy var preferencesWindowController = NSStoryboard(
-        name: "Preferences",
+        name: "Main",
         bundle: nil
     ).instantiateController(
         withIdentifier: "PreferencesWindowContoller"
     ) as? PreferencesWindowController
 
     private lazy var aboutWindowController = NSStoryboard(
-        name: "Preferences",
+        name: "Main",
         bundle: nil
     ).instantiateController(
         withIdentifier: "AboutWindowController"

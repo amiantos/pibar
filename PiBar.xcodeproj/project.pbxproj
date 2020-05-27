@@ -18,7 +18,7 @@
 		44381850247DE41B009D9B3F /* AboutWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4438184F247DE41B009D9B3F /* AboutWindowController.swift */; };
 		449395D62471ABD600FA0C34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449395D52471ABD600FA0C34 /* AppDelegate.swift */; };
 		449395DA2471ABD700FA0C34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 449395D92471ABD700FA0C34 /* Assets.xcassets */; };
-		449395DD2471ABD700FA0C34 /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 449395DB2471ABD700FA0C34 /* Preferences.storyboard */; };
+		449395DD2471ABD700FA0C34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 449395DB2471ABD700FA0C34 /* Main.storyboard */; };
 		449395E62471AC0700FA0C34 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 449395E52471AC0700FA0C34 /* MainMenu.xib */; };
 		449395E82471AC9D00FA0C34 /* MainMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449395E72471AC9D00FA0C34 /* MainMenuController.swift */; };
 		449395EC2471B1EB00FA0C34 /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449395EB2471B1EB00FA0C34 /* PreferencesWindowController.swift */; };
@@ -41,7 +41,7 @@
 		449395D22471ABD600FA0C34 /* PiBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PiBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		449395D52471ABD600FA0C34 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		449395D92471ABD700FA0C34 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		449395DC2471ABD700FA0C34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Preferences.storyboard; sourceTree = "<group>"; };
+		449395DC2471ABD700FA0C34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		449395DE2471ABD700FA0C34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		449395DF2471ABD700FA0C34 /* PiBar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PiBar.entitlements; sourceTree = "<group>"; };
 		449395E52471AC0700FA0C34 /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
@@ -85,10 +85,20 @@
 			path = "Data Sources";
 			sourceTree = "<group>";
 		};
+		441E78A6247DE6CB00FBC7A0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				449395DB2471ABD700FA0C34 /* Main.storyboard */,
+				449395E92471B10500FA0C34 /* Main Menu */,
+				442F6F8C24723D60008F1101 /* Preferences */,
+				44381851247DE467009D9B3F /* About */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		442F6F8C24723D60008F1101 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
-				449395DB2471ABD700FA0C34 /* Preferences.storyboard */,
 				442F6F8A24721523008F1101 /* PreferencesViewController.swift */,
 				449395EB2471B1EB00FA0C34 /* PreferencesWindowController.swift */,
 				44B6DAF1247C70F500D364EC /* PiholeSettingsViewController.swift */,
@@ -132,9 +142,7 @@
 				449395D92471ABD700FA0C34 /* Assets.xcassets */,
 				449395D52471ABD600FA0C34 /* AppDelegate.swift */,
 				4415D73224731E2F009E0B31 /* Data Sources */,
-				449395E92471B10500FA0C34 /* Main Menu */,
-				442F6F8C24723D60008F1101 /* Preferences */,
-				44381851247DE467009D9B3F /* About */,
+				441E78A6247DE6CB00FBC7A0 /* Views */,
 				44AC125F2476F1F300851ED9 /* Utilities */,
 			);
 			path = PiBar;
@@ -229,7 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				449395DA2471ABD700FA0C34 /* Assets.xcassets in Resources */,
-				449395DD2471ABD700FA0C34 /* Preferences.storyboard in Resources */,
+				449395DD2471ABD700FA0C34 /* Main.storyboard in Resources */,
 				442F6F852471D334008F1101 /* README.md in Resources */,
 				449395E62471AC0700FA0C34 /* MainMenu.xib in Resources */,
 			);
@@ -339,12 +347,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		449395DB2471ABD700FA0C34 /* Preferences.storyboard */ = {
+		449395DB2471ABD700FA0C34 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				449395DC2471ABD700FA0C34 /* Base */,
 			);
-			name = Preferences.storyboard;
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
