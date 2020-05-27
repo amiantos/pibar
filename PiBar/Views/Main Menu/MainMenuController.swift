@@ -180,6 +180,8 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
         } else if !Preferences.standard.shortcutEnabled {
             disableKeyboardShortcut()
         }
+
+        manager.setPollingRate(to: Preferences.standard.pollingRate)
     }
 
     private func updateInterface() {

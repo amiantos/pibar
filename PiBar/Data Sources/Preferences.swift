@@ -142,7 +142,12 @@ extension UserDefaults {
     }
 
     var pollingRate: Int {
-        return integer(forKey: Preferences.Key.pollingRate)
+        let savedPollingRate = integer(forKey: Preferences.Key.pollingRate)
+        if savedPollingRate >= 3 {
+            return savedPollingRate
+        }
+        set(pollingRate: 3)
+        return 3
     }
 
     func set(pollingRate: Int) {
