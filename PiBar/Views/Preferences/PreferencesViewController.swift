@@ -42,6 +42,7 @@ class PreferencesViewController: NSViewController {
 
     @IBOutlet var shortcutEnabledCheckbox: NSButton!
     @IBOutlet weak var launchAtLoginCheckbox: NSButton!
+    @IBOutlet weak var pollingRateTextField: NSTextField!
 
     @IBOutlet var editButton: NSButton!
     @IBOutlet var removeButton: NSButton!
@@ -83,6 +84,15 @@ class PreferencesViewController: NSViewController {
         saveSettings()
     }
 
+    @IBAction func pollingRateTextFieldAction(_ sender: NSTextField) {
+        saveSettings()
+    }
+
+    @IBAction func saveAndCloseButtonAction(_ sender: NSButton) {
+        saveSettings()
+        self.view.window?.close()
+    }
+
     // MARK: - View Lifecycle
 
     override func viewDidLoad() {
@@ -91,6 +101,8 @@ class PreferencesViewController: NSViewController {
         updateUI()
 
         shortcutEnabledCheckbox.toolTip = "This shortcut allows you to easily enable and disable your Pi-hole(s)"
+
+        pollingRateTextField.toolTip = "Polling rate cannot be less than 3 seconds"
     }
 
     func updateUI() {
@@ -134,6 +146,13 @@ class PreferencesViewController: NSViewController {
             LaunchAtLogin.isEnabled = true
         } else {
             LaunchAtLogin.isEnabled = false
+        }
+
+        let input = pollingRateTextField.stringValue
+        if let intValue = Int(input), intValue >= 3 {
+            Preferences.standard.set(pollingRate: intValue)
+        } else {
+            pollingRateTextField.stringValue = "\(Preferences.standard.pollingRate)"
         }
 
         delegate?.updatedPreferences()
