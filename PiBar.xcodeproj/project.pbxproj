@@ -235,6 +235,7 @@
 				441E78AB247E21DE00FBC7A0 /* Embed Frameworks */,
 				441E78A7247E203700FBC7A0 /* LaunchAtLogin */,
 				441E78AC247E221800FBC7A0 /* ShellScript */,
+				441E78B5247ECBD700FBC7A0 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -346,6 +347,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+		441E78B5247ECBD700FBC7A0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\n\nframework_path=\"$BUILT_PRODUCTS_DIR/$FRAMEWORKS_FOLDER_PATH/LaunchAtLogin.framework\"\norigin_helper_path=\"$framework_path/Resources/LaunchAtLoginHelper.app\"\nhelper_dir=\"$BUILT_PRODUCTS_DIR/$CONTENTS_FOLDER_PATH/Library/LoginItems\"\nhelper_path=\"$helper_dir/LaunchAtLoginHelper.app\"\n\nrm -rf \"$helper_path\"\nmkdir -p \"$helper_dir\"\ncp -rf \"$origin_helper_path\" \"$helper_dir/\"\n\ndefaults write \"$helper_path/Contents/Info\" CFBundleIdentifier -string \"$PRODUCT_BUNDLE_IDENTIFIER-LaunchAtLoginHelper\"\n\nif [[ -z ${CODE_SIGN_ENTITLEMENTS} ]];\nthen\n    codesign --verbose --force -o runtime --deep --sign=\"$EXPANDED_CODE_SIGN_IDENTITY_NAME\" \"$helper_path\"\nelse\n    codesign --verbose --force --entitlements=\"$CODE_SIGN_ENTITLEMENTS\" -o runtime --deep --sign=\"$EXPANDED_CODE_SIGN_IDENTITY_NAME\" \"$helper_path\"\nfi\n\nif [[ $CONFIGURATION == \"Release\" ]]; then\n    rm -rf \"$origin_helper_path\"\n    rm \"$(dirname \"$origin_helper_path\")/copy-helper.sh\"\nfi\n\ncodesign --verbose --force -o runtime --sign \"$EXPANDED_CODE_SIGN_IDENTITY_NAME\" \"$framework_path/Versions/A\"\n";
 		};
 		44B6DAF3247CC9A000D364EC /* Increment Build Number */ = {
 			isa = PBXShellScriptBuildPhase;

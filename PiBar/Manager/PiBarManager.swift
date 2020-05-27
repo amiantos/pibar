@@ -22,7 +22,7 @@ class PiBarManager: NSObject {
     private var updateInterval: TimeInterval
 
     override init() {
-        Log.logLevel = .debug
+        Log.logLevel = .off
         Log.useEmoji = true
 
         updateInterval = TimeInterval(Preferences.standard.pollingRate)
@@ -113,7 +113,7 @@ class PiBarManager: NSObject {
 
         let newTimer = Timer(timeInterval: updateInterval, target: self, selector: #selector(updatePiholes), userInfo: nil, repeats: true)
         newTimer.tolerance = 0.2
-        RunLoop.current.add(newTimer, forMode: .common)
+        RunLoop.main.add(newTimer, forMode: .common)
 
         timer = newTimer
 
@@ -168,28 +168,25 @@ class PiBarManager: NSObject {
 
     @objc private func updatePiholes() {
         Log.debug("Manager: Updating Pi-holes")
+        let operationQueue = OperationQueue()
 
-        if piholes.isEmpty {
-            updateNetworkOverview()
-        } else {
-            let operationQueue = OperationQueue()
-
-            let completionOperation = BlockOperation {
-                self.updateNetworkOverview()
-            }
-
-            piholes.values.forEach { pihole in
-                Log.debug("Creating operation for \(pihole.identifier)")
-                let operation = UpdatePiholeOperation(pihole)
-                operation.completionBlock = { [unowned operation] in
-                    self.piholes[operation.pihole.identifier] = operation.pihole
-                }
-                completionOperation.addDependency(operation)
-                operationQueue.addOperation(operation)
-            }
-
-            operationQueue.addOperation(completionOperation)
+        let completionOperation = BlockOperation {
+            // If we don't sleep here we run into some weird timing issues with dictionaries
+            sleep(1)
+            self.updateNetworkOverview()
         }
+
+        piholes.values.forEach { pihole in
+            Log.debug("Creating operation for \(pihole.identifier)")
+            let operation = UpdatePiholeOperation(pihole)
+            operation.completionBlock = { [unowned operation] in
+                self.piholes[operation.pihole.identifier] = operation.pihole
+            }
+            completionOperation.addDependency(operation)
+            operationQueue.addOperation(operation)
+        }
+
+        operationQueue.addOperation(completionOperation)
     }
 
     private func updateNetworkOverview() {
