@@ -45,6 +45,10 @@ class PiholeSettingsViewController: NSViewController {
         saveAndCloseButton.isEnabled = false
     }
 
+    @IBAction func tokenHelpButtonAction(_: NSButton) {
+        NSWorkspace.shared.open(URL(string: "https://github.com/amiantos/pibar/wiki/How-to-Find-Your-API-Token")!)
+    }
+
     @IBAction func testConnectionButtonAction(_: NSButton) {
         testConnection()
     }

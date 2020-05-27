@@ -23,11 +23,13 @@ class PiBarManager: NSObject {
     }
 
     private var timer: Timer?
-    private let updateInterval: TimeInterval = 3
+    private var updateInterval: TimeInterval
 
     override init() {
         Log.logLevel = .debug
         Log.useEmoji = true
+
+        updateInterval = TimeInterval(Preferences.standard.pollingRate)
 
         networkOverview = PiholeNetworkOverview(
             networkStatus: .initializing,
@@ -55,6 +57,18 @@ class PiBarManager: NSObject {
     func loadConnections() {
         createPiholes(Preferences.standard.piholes)
     }
+
+    func setPollingRate(to seconds: Int) {
+        let newPollingRate = TimeInterval(seconds)
+        if newPollingRate != updateInterval {
+            Log.debug("Changed polling rate to: \(seconds)")
+            updateInterval = newPollingRate
+            startTimer()
+        }
+
+    }
+
+    // Enable / Disable Pi-hole(s)
 
     func toggleNetwork() {
         if networkStatus() == .enabled || networkStatus() == .partiallyEnabled {
@@ -102,6 +116,7 @@ class PiBarManager: NSObject {
 
     private func stopTimer() {
         if let existingTimer = timer {
+            Log.debug("Manager: Timer Stopped")
             existingTimer.invalidate()
             timer = nil
         }

@@ -342,12 +342,18 @@
                         </items>
                     </menu>
                 </menuItem>
-                <menuItem isSeparatorItem="YES" id="WFt-y1-3Cx"/>
-                <menuItem title="Web Admin" enabled="NO" keyEquivalent="a" id="3md-Pe-xgY"/>
+                <menuItem title="Admin Console" enabled="NO" keyEquivalent="a" id="3md-Pe-xgY"/>
                 <menuItem isSeparatorItem="YES" id="h1c-RQ-KIw"/>
                 <menuItem title="Preferences" keyEquivalent="," id="A0X-KF-WHH">
                     <connections>
                         <action selector="configureMenuBarAction:" target="Ufk-kp-3MV" id="vGa-8p-QNC"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="Jp9-vn-utI"/>
+                <menuItem title="About PiBar" id="YMn-9f-Uru">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="aboutAction:" target="Ufk-kp-3MV" id="pAS-t6-Vla"/>
                     </connections>
                 </menuItem>
                 <menuItem title="Quit PiBar" keyEquivalent="q" id="ETE-5r-Mpn">

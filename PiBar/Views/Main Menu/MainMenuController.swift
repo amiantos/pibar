@@ -21,12 +21,19 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
 
     private let statusBarItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
 
-    private let preferencesWindowController = NSStoryboard(
-        name: "Preferences",
+    private lazy var preferencesWindowController = NSStoryboard(
+        name: "Main",
         bundle: nil
     ).instantiateController(
         withIdentifier: "PreferencesWindowContoller"
     ) as? PreferencesWindowController
+
+    private lazy var aboutWindowController = NSStoryboard(
+        name: "Main",
+        bundle: nil
+    ).instantiateController(
+        withIdentifier: "AboutWindowController"
+    ) as? NSWindowController
 
     // MARK: - Outlets
 
@@ -74,6 +81,10 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
 
     @IBAction func enableMenuBarAction(_: NSMenuItem) {
         manager.enableNetwork()
+    }
+
+    @IBAction func aboutAction(_: NSMenuItem) {
+        aboutWindowController?.showWindow(self)
     }
 
     // MARK: - View Lifecycle
@@ -137,7 +148,7 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
     // MARK: - Functions
 
     @objc func launchWebAdmin(sender: NSMenuItem) {
-        if sender.title == "Web Admin" {
+        if sender.title == "Admin Console" {
             guard let piholeIdentifier = manager.networkOverview.piholes.keys.first else {
                 Log.debug("No Pi-holes found.")
                 return
@@ -169,6 +180,8 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
         } else if !Preferences.standard.shortcutEnabled {
             disableKeyboardShortcut()
         }
+
+        manager.setPollingRate(to: Preferences.standard.pollingRate)
     }
 
     private func updateInterface() {

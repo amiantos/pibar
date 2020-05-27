@@ -21,6 +21,7 @@ struct Preferences {
         static let showLabels = "showLabels"
         static let verboseLabels = "verboseLabels"
         static let shortcutEnabled = "shortcutEnabled"
+        static let pollingRate = "pollingRate"
     }
 
     static var standard: UserDefaults {
@@ -34,6 +35,7 @@ struct Preferences {
             Key.showLabels: false,
             Key.verboseLabels: false,
             Key.shortcutEnabled: true,
+            Key.pollingRate: 3,
         ])
 
         return database
@@ -138,6 +140,21 @@ extension UserDefaults {
     func set(shortcutEnabled: Bool) {
         set(shortcutEnabled, for: Preferences.Key.shortcutEnabled)
     }
+
+    var pollingRate: Int {
+        let savedPollingRate = integer(forKey: Preferences.Key.pollingRate)
+        if savedPollingRate >= 3 {
+            return savedPollingRate
+        }
+        set(pollingRate: 3)
+        return 3
+    }
+
+    func set(pollingRate: Int) {
+        set(pollingRate, for: Preferences.Key.pollingRate)
+    }
+
+    // Helpers
 
     var showTitle: Bool {
         return showQueries || showBlocked || showPercentage

@@ -10,13 +10,17 @@
 		32954590BDD997C520227DB6 /* Pods_PiBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04F07DFA596CEEEADF9A90A0 /* Pods_PiBar.framework */; };
 		4415D73424731FE0009E0B31 /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4415D73324731FE0009E0B31 /* Structs.swift */; };
 		4415D73624747331009E0B31 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4415D73524747331009E0B31 /* Logging.swift */; };
+		441E78A9247E21DE00FBC7A0 /* LaunchAtLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 441E78A8247E21DE00FBC7A0 /* LaunchAtLogin.framework */; };
+		441E78AA247E21DE00FBC7A0 /* LaunchAtLogin.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 441E78A8247E21DE00FBC7A0 /* LaunchAtLogin.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		442F6F852471D334008F1101 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 442F6F842471D334008F1101 /* README.md */; };
 		442F6F872471E8DF008F1101 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442F6F862471E8DF008F1101 /* Extensions.swift */; };
 		442F6F89247212D2008F1101 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442F6F88247212D1008F1101 /* Preferences.swift */; };
 		442F6F8B24721523008F1101 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442F6F8A24721523008F1101 /* PreferencesViewController.swift */; };
+		4438184E247DE31A009D9B3F /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4438184D247DE31A009D9B3F /* AboutViewController.swift */; };
+		44381850247DE41B009D9B3F /* AboutWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4438184F247DE41B009D9B3F /* AboutWindowController.swift */; };
 		449395D62471ABD600FA0C34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449395D52471ABD600FA0C34 /* AppDelegate.swift */; };
 		449395DA2471ABD700FA0C34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 449395D92471ABD700FA0C34 /* Assets.xcassets */; };
-		449395DD2471ABD700FA0C34 /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 449395DB2471ABD700FA0C34 /* Preferences.storyboard */; };
+		449395DD2471ABD700FA0C34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 449395DB2471ABD700FA0C34 /* Main.storyboard */; };
 		449395E62471AC0700FA0C34 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 449395E52471AC0700FA0C34 /* MainMenu.xib */; };
 		449395E82471AC9D00FA0C34 /* MainMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449395E72471AC9D00FA0C34 /* MainMenuController.swift */; };
 		449395EC2471B1EB00FA0C34 /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449395EB2471B1EB00FA0C34 /* PreferencesWindowController.swift */; };
@@ -25,19 +29,36 @@
 		44FFB092247627B100DCEDEC /* PiBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FFB091247627B100DCEDEC /* PiBarManager.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		441E78AB247E21DE00FBC7A0 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				441E78AA247E21DE00FBC7A0 /* LaunchAtLogin.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		04F07DFA596CEEEADF9A90A0 /* Pods_PiBar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PiBar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		08A4966FFD2196F42B1CA80F /* Pods-PiBar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PiBar.release.xcconfig"; path = "Target Support Files/Pods-PiBar/Pods-PiBar.release.xcconfig"; sourceTree = "<group>"; };
 		4415D73324731FE0009E0B31 /* Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
 		4415D73524747331009E0B31 /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
+		441E78A8247E21DE00FBC7A0 /* LaunchAtLogin.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LaunchAtLogin.framework; path = Carthage/Build/Mac/LaunchAtLogin.framework; sourceTree = "<group>"; };
 		442F6F842471D334008F1101 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		442F6F862471E8DF008F1101 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		442F6F88247212D1008F1101 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		442F6F8A24721523008F1101 /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
+		4438184D247DE31A009D9B3F /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		4438184F247DE41B009D9B3F /* AboutWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutWindowController.swift; sourceTree = "<group>"; };
 		449395D22471ABD600FA0C34 /* PiBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PiBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		449395D52471ABD600FA0C34 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		449395D92471ABD700FA0C34 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		449395DC2471ABD700FA0C34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Preferences.storyboard; sourceTree = "<group>"; };
+		449395DC2471ABD700FA0C34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		449395DE2471ABD700FA0C34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		449395DF2471ABD700FA0C34 /* PiBar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PiBar.entitlements; sourceTree = "<group>"; };
 		449395E52471AC0700FA0C34 /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
@@ -54,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				441E78A9247E21DE00FBC7A0 /* LaunchAtLogin.framework in Frameworks */,
 				32954590BDD997C520227DB6 /* Pods_PiBar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -81,15 +103,34 @@
 			path = "Data Sources";
 			sourceTree = "<group>";
 		};
+		441E78A6247DE6CB00FBC7A0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				449395DB2471ABD700FA0C34 /* Main.storyboard */,
+				449395E92471B10500FA0C34 /* Main Menu */,
+				442F6F8C24723D60008F1101 /* Preferences */,
+				44381851247DE467009D9B3F /* About */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		442F6F8C24723D60008F1101 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
-				449395DB2471ABD700FA0C34 /* Preferences.storyboard */,
 				442F6F8A24721523008F1101 /* PreferencesViewController.swift */,
 				449395EB2471B1EB00FA0C34 /* PreferencesWindowController.swift */,
 				44B6DAF1247C70F500D364EC /* PiholeSettingsViewController.swift */,
 			);
 			path = Preferences;
+			sourceTree = "<group>";
+		};
+		44381851247DE467009D9B3F /* About */ = {
+			isa = PBXGroup;
+			children = (
+				4438184D247DE31A009D9B3F /* AboutViewController.swift */,
+				4438184F247DE41B009D9B3F /* AboutWindowController.swift */,
+			);
+			path = About;
 			sourceTree = "<group>";
 		};
 		449395C92471ABD600FA0C34 = {
@@ -119,8 +160,7 @@
 				449395D92471ABD700FA0C34 /* Assets.xcassets */,
 				449395D52471ABD600FA0C34 /* AppDelegate.swift */,
 				4415D73224731E2F009E0B31 /* Data Sources */,
-				449395E92471B10500FA0C34 /* Main Menu */,
-				442F6F8C24723D60008F1101 /* Preferences */,
+				441E78A6247DE6CB00FBC7A0 /* Views */,
 				44AC125F2476F1F300851ED9 /* Utilities */,
 			);
 			path = PiBar;
@@ -147,6 +187,7 @@
 		913B94517DDE1EF8E0C98FB2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				441E78A8247E21DE00FBC7A0 /* LaunchAtLogin.framework */,
 				04F07DFA596CEEEADF9A90A0 /* Pods_PiBar.framework */,
 			);
 			name = Frameworks;
@@ -166,6 +207,9 @@
 				449395D02471ABD600FA0C34 /* Resources */,
 				4415D73124731CA2009E0B31 /* Run SwiftLint */,
 				CF30F66DAC81C5868939E5C0 /* [CP] Embed Pods Frameworks */,
+				441E78AB247E21DE00FBC7A0 /* Embed Frameworks */,
+				441E78A7247E203700FBC7A0 /* LaunchAtLogin */,
+				441E78AC247E221800FBC7A0 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -215,7 +259,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				449395DA2471ABD700FA0C34 /* Assets.xcassets in Resources */,
-				449395DD2471ABD700FA0C34 /* Preferences.storyboard in Resources */,
+				449395DD2471ABD700FA0C34 /* Main.storyboard in Resources */,
 				442F6F852471D334008F1101 /* README.md in Resources */,
 				449395E62471AC0700FA0C34 /* MainMenu.xib in Resources */,
 			);
@@ -241,6 +285,42 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
+		441E78A7247E203700FBC7A0 /* LaunchAtLogin */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = LaunchAtLogin;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PROJECT_DIR}/Carthage/Build/Mac/LaunchAtLogin.framework/Resources/copy-helper.sh\"\n";
+		};
+		441E78AC247E221800FBC7A0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/Mac/LaunchAtLogin.framework",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
 		44B6DAF3247CC9A000D364EC /* Increment Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -309,9 +389,11 @@
 				4415D73424731FE0009E0B31 /* Structs.swift in Sources */,
 				442F6F89247212D2008F1101 /* Preferences.swift in Sources */,
 				442F6F872471E8DF008F1101 /* Extensions.swift in Sources */,
+				44381850247DE41B009D9B3F /* AboutWindowController.swift in Sources */,
 				449395EC2471B1EB00FA0C34 /* PreferencesWindowController.swift in Sources */,
 				44B6DAF2247C70F500D364EC /* PiholeSettingsViewController.swift in Sources */,
 				449395EE2471C47F00FA0C34 /* PiholeAPI.swift in Sources */,
+				4438184E247DE31A009D9B3F /* AboutViewController.swift in Sources */,
 				449395D62471ABD600FA0C34 /* AppDelegate.swift in Sources */,
 				44FFB092247627B100DCEDEC /* PiBarManager.swift in Sources */,
 				442F6F8B24721523008F1101 /* PreferencesViewController.swift in Sources */,
@@ -323,12 +405,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		449395DB2471ABD700FA0C34 /* Preferences.storyboard */ = {
+		449395DB2471ABD700FA0C34 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				449395DC2471ABD700FA0C34 /* Base */,
 			);
-			name = Preferences.storyboard;
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -459,6 +541,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2Y9M69QJKZ;
 				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = PiBar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -484,6 +570,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2Y9M69QJKZ;
 				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = PiBar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
