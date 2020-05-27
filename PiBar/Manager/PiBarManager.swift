@@ -113,7 +113,7 @@ class PiBarManager: NSObject {
 
         let newTimer = Timer(timeInterval: updateInterval, target: self, selector: #selector(updatePiholes), userInfo: nil, repeats: true)
         newTimer.tolerance = 0.2
-        RunLoop.current.add(newTimer, forMode: .common)
+        RunLoop.main.add(newTimer, forMode: .common)
 
         timer = newTimer
 
