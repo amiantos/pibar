@@ -124,6 +124,8 @@ class PreferencesViewController: NSViewController {
         }
 
         launchAtLoginCheckbox.state = LaunchAtLogin.isEnabled ? .on : .off
+
+        pollingRateTextField.stringValue = "\(Preferences.standard.pollingRate)"
     }
 
     // MARK: - Functions
