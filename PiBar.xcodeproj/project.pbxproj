@@ -14,6 +14,8 @@
 		442F6F872471E8DF008F1101 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442F6F862471E8DF008F1101 /* Extensions.swift */; };
 		442F6F89247212D2008F1101 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442F6F88247212D1008F1101 /* Preferences.swift */; };
 		442F6F8B24721523008F1101 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442F6F8A24721523008F1101 /* PreferencesViewController.swift */; };
+		4438184E247DE31A009D9B3F /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4438184D247DE31A009D9B3F /* AboutViewController.swift */; };
+		44381850247DE41B009D9B3F /* AboutWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4438184F247DE41B009D9B3F /* AboutWindowController.swift */; };
 		449395D62471ABD600FA0C34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449395D52471ABD600FA0C34 /* AppDelegate.swift */; };
 		449395DA2471ABD700FA0C34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 449395D92471ABD700FA0C34 /* Assets.xcassets */; };
 		449395DD2471ABD700FA0C34 /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 449395DB2471ABD700FA0C34 /* Preferences.storyboard */; };
@@ -34,6 +36,8 @@
 		442F6F862471E8DF008F1101 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		442F6F88247212D1008F1101 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		442F6F8A24721523008F1101 /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
+		4438184D247DE31A009D9B3F /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		4438184F247DE41B009D9B3F /* AboutWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutWindowController.swift; sourceTree = "<group>"; };
 		449395D22471ABD600FA0C34 /* PiBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PiBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		449395D52471ABD600FA0C34 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		449395D92471ABD700FA0C34 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -92,6 +96,15 @@
 			path = Preferences;
 			sourceTree = "<group>";
 		};
+		44381851247DE467009D9B3F /* About */ = {
+			isa = PBXGroup;
+			children = (
+				4438184D247DE31A009D9B3F /* AboutViewController.swift */,
+				4438184F247DE41B009D9B3F /* AboutWindowController.swift */,
+			);
+			path = About;
+			sourceTree = "<group>";
+		};
 		449395C92471ABD600FA0C34 = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +134,7 @@
 				4415D73224731E2F009E0B31 /* Data Sources */,
 				449395E92471B10500FA0C34 /* Main Menu */,
 				442F6F8C24723D60008F1101 /* Preferences */,
+				44381851247DE467009D9B3F /* About */,
 				44AC125F2476F1F300851ED9 /* Utilities */,
 			);
 			path = PiBar;
@@ -309,9 +323,11 @@
 				4415D73424731FE0009E0B31 /* Structs.swift in Sources */,
 				442F6F89247212D2008F1101 /* Preferences.swift in Sources */,
 				442F6F872471E8DF008F1101 /* Extensions.swift in Sources */,
+				44381850247DE41B009D9B3F /* AboutWindowController.swift in Sources */,
 				449395EC2471B1EB00FA0C34 /* PreferencesWindowController.swift in Sources */,
 				44B6DAF2247C70F500D364EC /* PiholeSettingsViewController.swift in Sources */,
 				449395EE2471C47F00FA0C34 /* PiholeAPI.swift in Sources */,
+				4438184E247DE31A009D9B3F /* AboutViewController.swift in Sources */,
 				449395D62471ABD600FA0C34 /* AppDelegate.swift in Sources */,
 				44FFB092247627B100DCEDEC /* PiBarManager.swift in Sources */,
 				442F6F8B24721523008F1101 /* PreferencesViewController.swift in Sources */,

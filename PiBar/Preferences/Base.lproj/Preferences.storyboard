@@ -27,24 +27,137 @@
             </objects>
             <point key="canvasLocation" x="-139" y="-102"/>
         </scene>
+        <!--Window Controller-->
+        <scene sceneID="9IB-04-fo0">
+            <objects>
+                <windowController storyboardIdentifier="AboutWindowController" id="gmV-ql-AU5" customClass="AboutWindowController" customModule="PiBar" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" title="About PiBar" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="eLV-a3-iIv">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="425" y="461" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
+                        <connections>
+                            <outlet property="delegate" destination="gmV-ql-AU5" id="9K8-z3-n76"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="8lv-Nf-Li8" kind="relationship" relationship="window.shadowedContentViewController" id="6Lz-V6-DHI"/>
+                    </connections>
+                </windowController>
+                <customObject id="e71-B7-9zx" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-350" y="315"/>
+        </scene>
+        <!--About View Controller-->
+        <scene sceneID="hDB-Cw-Vyc">
+            <objects>
+                <viewController id="8lv-Nf-Li8" customClass="AboutViewController" customModule="PiBar" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="4DW-02-72t">
+                        <rect key="frame" x="0.0" y="0.0" width="270" height="273"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <box title="About" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="JNj-dj-3s6">
+                                <rect key="frame" x="17" y="16" width="236" height="239"/>
+                                <view key="contentView" id="EhY-3x-KuI">
+                                    <rect key="frame" x="3" y="3" width="230" height="233"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TtV-qo-CDH">
+                                            <rect key="frame" x="20" y="69" width="190" height="16"/>
+                                            <buttonCell key="cell" type="bevel" title="github.com/amiantos/pibar" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="5B4-TG-p0I">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="label" size="13"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="aboutURLAction:" target="8lv-Nf-Li8" id="fNG-su-UEV"/>
+                                            </connections>
+                                        </button>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="59Q-Jm-Cbr">
+                                            <rect key="frame" x="18" y="16" width="194" height="42"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" id="WN0-cg-lqh">
+                                                <font key="font" metaFont="message" size="11"/>
+                                                <string key="title">PiBar © 2020 Brad Root 
+Pi-hole® is a registered trademark
+of Pi-hole LLC.</string>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QQK-OP-L9S">
+                                            <rect key="frame" x="83" y="153" width="64" height="64"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="iconImage" id="ISi-XG-hOU"/>
+                                        </imageView>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HRV-Iq-n3o">
+                                            <rect key="frame" x="77" y="108" width="77" height="38"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="PiBar" id="ryo-yk-Q62">
+                                                <font key="font" metaFont="system" size="32"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gPz-LR-6t6">
+                                            <rect key="frame" x="85" y="94" width="60" height="14"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Version 1.1" id="oRj-Vt-ZIN">
+                                                <font key="font" metaFont="message" size="11"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="59Q-Jm-Cbr" firstAttribute="leading" secondItem="EhY-3x-KuI" secondAttribute="leading" constant="20" id="2Rs-LP-WyE"/>
+                                        <constraint firstItem="59Q-Jm-Cbr" firstAttribute="top" secondItem="TtV-qo-CDH" secondAttribute="bottom" constant="11" id="71g-7H-sar"/>
+                                        <constraint firstItem="HRV-Iq-n3o" firstAttribute="top" secondItem="QQK-OP-L9S" secondAttribute="bottom" constant="7" id="Dvq-gD-VtN"/>
+                                        <constraint firstItem="HRV-Iq-n3o" firstAttribute="centerX" secondItem="EhY-3x-KuI" secondAttribute="centerX" id="FN8-cO-lrw"/>
+                                        <constraint firstItem="TtV-qo-CDH" firstAttribute="leading" secondItem="EhY-3x-KuI" secondAttribute="leading" constant="20" id="FUC-dk-MqT"/>
+                                        <constraint firstAttribute="bottom" secondItem="59Q-Jm-Cbr" secondAttribute="bottom" constant="16" id="GwW-Rw-Sxy"/>
+                                        <constraint firstAttribute="trailing" secondItem="59Q-Jm-Cbr" secondAttribute="trailing" constant="20" id="MnL-aM-uPl"/>
+                                        <constraint firstItem="gPz-LR-6t6" firstAttribute="centerX" secondItem="EhY-3x-KuI" secondAttribute="centerX" id="QVn-8V-UwT"/>
+                                        <constraint firstItem="gPz-LR-6t6" firstAttribute="top" secondItem="HRV-Iq-n3o" secondAttribute="bottom" id="YcA-64-RhE"/>
+                                        <constraint firstItem="TtV-qo-CDH" firstAttribute="top" secondItem="gPz-LR-6t6" secondAttribute="bottom" constant="9" id="hf5-ID-Jft"/>
+                                        <constraint firstItem="QQK-OP-L9S" firstAttribute="top" secondItem="EhY-3x-KuI" secondAttribute="top" constant="16" id="qmi-Ba-Xvx"/>
+                                        <constraint firstItem="QQK-OP-L9S" firstAttribute="centerX" secondItem="EhY-3x-KuI" secondAttribute="centerX" id="wop-ky-YwN"/>
+                                        <constraint firstAttribute="trailing" secondItem="TtV-qo-CDH" secondAttribute="trailing" constant="20" id="zdH-4q-oH7"/>
+                                    </constraints>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="230" id="fGs-0n-AYg"/>
+                                </constraints>
+                            </box>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="JNj-dj-3s6" firstAttribute="top" secondItem="4DW-02-72t" secondAttribute="top" constant="20" id="0Lg-w8-Uke"/>
+                            <constraint firstAttribute="trailing" secondItem="JNj-dj-3s6" secondAttribute="trailing" constant="20" id="95t-R5-yIY"/>
+                            <constraint firstItem="JNj-dj-3s6" firstAttribute="leading" secondItem="4DW-02-72t" secondAttribute="leading" constant="20" id="Ffb-yJ-uEL"/>
+                            <constraint firstAttribute="bottom" secondItem="JNj-dj-3s6" secondAttribute="bottom" constant="20" id="oP2-AS-bMX"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="sda" destination="TtV-qo-CDH" id="ouZ-uE-lkf"/>
+                    </connections>
+                </viewController>
+                <customObject id="IGy-iL-Pfb" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="197" y="315"/>
+        </scene>
         <!--Preferences View Controller-->
         <scene sceneID="PXR-hs-Mxg">
             <objects>
                 <viewController id="GTm-9k-36S" customClass="PreferencesViewController" customModule="PiBar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="77P-BY-lJe">
-                        <rect key="frame" x="0.0" y="0.0" width="779" height="296"/>
+                        <rect key="frame" x="0.0" y="0.0" width="529" height="296"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iau-X6-RVt">
-                                <rect key="frame" x="553" y="264" width="208" height="16"/>
+                                <rect key="frame" x="303" y="264" width="208" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Preferences" id="KWY-Db-no8">
                                     <font key="font" metaFont="label" size="13"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <box borderType="line" title="About" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="kjd-Se-RaQ">
-                                <rect key="frame" x="552" y="16" width="210" height="242"/>
+                            <box borderType="line" title="Preferences" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="kjd-Se-RaQ" userLabel="Preferences">
+                                <rect key="frame" x="302" y="16" width="210" height="242"/>
                                 <view key="contentView" id="lOO-sf-eYN">
                                     <rect key="frame" x="3" y="3" width="204" height="236"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -167,7 +280,7 @@
                                 </view>
                             </box>
                             <box title="Pi-holes" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="rf3-sM-sEw">
-                                <rect key="frame" x="267" y="16" width="271" height="242"/>
+                                <rect key="frame" x="17" y="16" width="271" height="242"/>
                                 <view key="contentView" id="U8L-6W-MRA">
                                     <rect key="frame" x="3" y="3" width="265" height="236"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -337,84 +450,8 @@
                                 </view>
                                 <font key="titleFont" size="14" name="HelveticaNeue"/>
                             </box>
-                            <box title="About" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="JNj-dj-3s6">
-                                <rect key="frame" x="17" y="16" width="236" height="242"/>
-                                <view key="contentView" id="EhY-3x-KuI">
-                                    <rect key="frame" x="3" y="3" width="230" height="236"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TtV-qo-CDH">
-                                            <rect key="frame" x="20" y="69" width="190" height="16"/>
-                                            <buttonCell key="cell" type="bevel" title="github.com/amiantos/pibar" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="5B4-TG-p0I">
-                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="label" size="13"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="linkAction:" target="GTm-9k-36S" id="dRN-kn-Sr6"/>
-                                            </connections>
-                                        </button>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="59Q-Jm-Cbr">
-                                            <rect key="frame" x="18" y="16" width="194" height="42"/>
-                                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" id="WN0-cg-lqh">
-                                                <font key="font" metaFont="message" size="11"/>
-                                                <string key="title">PiBar © 2020 Brad Root 
-Pi-hole® is a registered trademark
-of Pi-hole LLC.</string>
-                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QQK-OP-L9S">
-                                            <rect key="frame" x="83" y="153" width="64" height="67"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="iconImage" id="ISi-XG-hOU"/>
-                                        </imageView>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HRV-Iq-n3o">
-                                            <rect key="frame" x="77" y="108" width="77" height="38"/>
-                                            <textFieldCell key="cell" lineBreakMode="clipping" title="PiBar" id="ryo-yk-Q62">
-                                                <font key="font" metaFont="system" size="32"/>
-                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gPz-LR-6t6">
-                                            <rect key="frame" x="84" y="94" width="62" height="14"/>
-                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Version 1.0" id="oRj-Vt-ZIN">
-                                                <font key="font" metaFont="message" size="11"/>
-                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="59Q-Jm-Cbr" firstAttribute="leading" secondItem="EhY-3x-KuI" secondAttribute="leading" constant="20" id="2Rs-LP-WyE"/>
-                                        <constraint firstItem="59Q-Jm-Cbr" firstAttribute="top" secondItem="TtV-qo-CDH" secondAttribute="bottom" constant="11" id="71g-7H-sar"/>
-                                        <constraint firstItem="HRV-Iq-n3o" firstAttribute="top" secondItem="QQK-OP-L9S" secondAttribute="bottom" constant="7" id="Dvq-gD-VtN"/>
-                                        <constraint firstItem="HRV-Iq-n3o" firstAttribute="centerX" secondItem="EhY-3x-KuI" secondAttribute="centerX" id="FN8-cO-lrw"/>
-                                        <constraint firstItem="TtV-qo-CDH" firstAttribute="leading" secondItem="EhY-3x-KuI" secondAttribute="leading" constant="20" id="FUC-dk-MqT"/>
-                                        <constraint firstAttribute="bottom" secondItem="59Q-Jm-Cbr" secondAttribute="bottom" constant="16" id="GwW-Rw-Sxy"/>
-                                        <constraint firstAttribute="trailing" secondItem="59Q-Jm-Cbr" secondAttribute="trailing" constant="20" id="MnL-aM-uPl"/>
-                                        <constraint firstItem="gPz-LR-6t6" firstAttribute="centerX" secondItem="EhY-3x-KuI" secondAttribute="centerX" id="QVn-8V-UwT"/>
-                                        <constraint firstItem="gPz-LR-6t6" firstAttribute="top" secondItem="HRV-Iq-n3o" secondAttribute="bottom" id="YcA-64-RhE"/>
-                                        <constraint firstItem="TtV-qo-CDH" firstAttribute="top" secondItem="gPz-LR-6t6" secondAttribute="bottom" constant="9" id="hf5-ID-Jft"/>
-                                        <constraint firstItem="QQK-OP-L9S" firstAttribute="top" secondItem="EhY-3x-KuI" secondAttribute="top" constant="16" id="qmi-Ba-Xvx"/>
-                                        <constraint firstItem="QQK-OP-L9S" firstAttribute="centerX" secondItem="EhY-3x-KuI" secondAttribute="centerX" id="wop-ky-YwN"/>
-                                        <constraint firstAttribute="trailing" secondItem="TtV-qo-CDH" secondAttribute="trailing" constant="20" id="zdH-4q-oH7"/>
-                                    </constraints>
-                                </view>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="230" id="fGs-0n-AYg"/>
-                                </constraints>
-                            </box>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uI5-1x-0KN">
-                                <rect key="frame" x="18" y="264" width="234" height="16"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="About" id="91W-2J-3Oi">
-                                    <font key="font" metaFont="label" size="13"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="J44-eX-Cmj">
-                                <rect key="frame" x="268" y="264" width="269" height="16"/>
+                                <rect key="frame" x="18" y="264" width="269" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Pi-holes" id="1au-rN-a6J">
                                     <font key="font" metaFont="label" size="13"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -425,21 +462,14 @@ of Pi-hole LLC.</string>
                         <constraints>
                             <constraint firstItem="iau-X6-RVt" firstAttribute="top" secondItem="77P-BY-lJe" secondAttribute="top" constant="16" id="3R8-PM-dN1"/>
                             <constraint firstItem="J44-eX-Cmj" firstAttribute="trailing" secondItem="U8L-6W-MRA" secondAttribute="trailing" id="BwR-Le-khW"/>
-                            <constraint firstItem="uI5-1x-0KN" firstAttribute="leading" secondItem="EhY-3x-KuI" secondAttribute="leading" id="Exl-gy-bVq"/>
                             <constraint firstItem="kjd-Se-RaQ" firstAttribute="height" secondItem="rf3-sM-sEw" secondAttribute="height" id="Hge-qt-qJL"/>
                             <constraint firstItem="J44-eX-Cmj" firstAttribute="top" secondItem="77P-BY-lJe" secondAttribute="top" constant="16" id="Lim-R2-iyT"/>
                             <constraint firstItem="iau-X6-RVt" firstAttribute="trailing" secondItem="lOO-sf-eYN" secondAttribute="trailing" id="SSB-Oe-ddr"/>
-                            <constraint firstItem="rf3-sM-sEw" firstAttribute="height" secondItem="JNj-dj-3s6" secondAttribute="height" id="TMl-5q-KbH"/>
                             <constraint firstItem="kjd-Se-RaQ" firstAttribute="leading" secondItem="iau-X6-RVt" secondAttribute="leading" id="TxM-se-eyr"/>
                             <constraint firstItem="kjd-Se-RaQ" firstAttribute="leading" secondItem="rf3-sM-sEw" secondAttribute="trailing" constant="20" id="WHo-No-bYz"/>
+                            <constraint firstItem="rf3-sM-sEw" firstAttribute="leading" secondItem="77P-BY-lJe" secondAttribute="leading" constant="20" id="Whp-qV-auV"/>
                             <constraint firstItem="J44-eX-Cmj" firstAttribute="leading" secondItem="U8L-6W-MRA" secondAttribute="leading" id="ZcR-qj-ztm"/>
-                            <constraint firstItem="JNj-dj-3s6" firstAttribute="top" secondItem="uI5-1x-0KN" secondAttribute="bottom" constant="8" id="bb5-ot-HfE"/>
-                            <constraint firstItem="uI5-1x-0KN" firstAttribute="trailing" secondItem="EhY-3x-KuI" secondAttribute="trailing" id="eY1-Co-WNa"/>
-                            <constraint firstAttribute="bottom" secondItem="JNj-dj-3s6" secondAttribute="bottom" constant="20" id="f97-R7-ped"/>
                             <constraint firstItem="iau-X6-RVt" firstAttribute="leading" secondItem="U8L-6W-MRA" secondAttribute="trailing" constant="20" id="fTb-qu-enh"/>
-                            <constraint firstItem="rf3-sM-sEw" firstAttribute="leading" secondItem="JNj-dj-3s6" secondAttribute="trailing" constant="20" id="nge-e0-09I"/>
-                            <constraint firstItem="JNj-dj-3s6" firstAttribute="leading" secondItem="77P-BY-lJe" secondAttribute="leading" constant="20" id="qRb-8V-P5Q"/>
-                            <constraint firstItem="uI5-1x-0KN" firstAttribute="top" secondItem="77P-BY-lJe" secondAttribute="top" constant="16" id="rTG-6m-rz1"/>
                             <constraint firstAttribute="trailing" secondItem="kjd-Se-RaQ" secondAttribute="trailing" constant="20" id="uzv-xU-jWd"/>
                             <constraint firstItem="rf3-sM-sEw" firstAttribute="top" secondItem="J44-eX-Cmj" secondAttribute="bottom" constant="8" id="yh3-Wv-5zs"/>
                             <constraint firstItem="kjd-Se-RaQ" firstAttribute="top" secondItem="iau-X6-RVt" secondAttribute="bottom" constant="8" id="z2W-5g-Ex7"/>
@@ -464,7 +494,7 @@ of Pi-hole LLC.</string>
                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                 </textFieldCell>
             </objects>
-            <point key="canvasLocation" x="570.5" y="-108"/>
+            <point key="canvasLocation" x="445.5" y="-108"/>
         </scene>
         <!--Pihole Settings View Controller-->
         <scene sceneID="ayz-je-3b6">
@@ -692,7 +722,7 @@ of Pi-hole LLC.</string>
                 </viewController>
                 <customObject id="IJx-K2-eHd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="546" y="301.5"/>
+            <point key="canvasLocation" x="735" y="237"/>
         </scene>
     </scenes>
     <resources>

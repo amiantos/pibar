@@ -21,12 +21,19 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
 
     private let statusBarItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
 
-    private let preferencesWindowController = NSStoryboard(
+    private lazy var preferencesWindowController = NSStoryboard(
         name: "Preferences",
         bundle: nil
     ).instantiateController(
         withIdentifier: "PreferencesWindowContoller"
     ) as? PreferencesWindowController
+
+    private lazy var aboutWindowController = NSStoryboard(
+        name: "Preferences",
+        bundle: nil
+    ).instantiateController(
+        withIdentifier: "AboutWindowController"
+    ) as? NSWindowController
 
     // MARK: - Outlets
 
@@ -74,6 +81,10 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
 
     @IBAction func enableMenuBarAction(_: NSMenuItem) {
         manager.enableNetwork()
+    }
+
+    @IBAction func aboutAction(_: NSMenuItem) {
+        aboutWindowController?.showWindow(self)
     }
 
     // MARK: - View Lifecycle

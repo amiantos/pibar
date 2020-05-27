@@ -81,11 +81,6 @@ class PreferencesViewController: NSViewController {
         saveSettings()
     }
 
-    @IBAction func linkAction(_: NSButton) {
-        let url = URL(string: "https://github.com/amiantos/pibar")!
-        NSWorkspace.shared.open(url)
-    }
-
     // MARK: - View Lifecycle
 
     override func viewDidLoad() {
