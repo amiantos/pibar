@@ -75,7 +75,7 @@
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="59Q-Jm-Cbr">
                                             <rect key="frame" x="18" y="16" width="194" height="42"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" id="WN0-cg-lqh">
-                                                <font key="font" metaFont="controlContent" size="11"/>
+                                                <font key="font" metaFont="message" size="11"/>
                                                 <string key="title">PiBar © 2020 Brad Root 
 Pi-hole® is a registered trademark
 of Pi-hole LLC.</string>
@@ -98,7 +98,7 @@ of Pi-hole LLC.</string>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gPz-LR-6t6">
                                             <rect key="frame" x="85" y="94" width="60" height="14"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Version 1.1" id="oRj-Vt-ZIN">
-                                                <font key="font" metaFont="controlContent" size="11"/>
+                                                <font key="font" metaFont="message" size="11"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
@@ -512,7 +512,7 @@ of Pi-hole LLC.</string>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="saveAndCloseButtonAction:" target="GTm-9k-36S" id="KyB-mY-8o7"/>
+                                    <action selector="saveAndCloseButtonAction:" target="GTm-9k-36S" id="4Qt-0R-cqA"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -538,7 +538,7 @@ of Pi-hole LLC.</string>
                     <connections>
                         <outlet property="editButton" destination="UaV-nP-7Dw" id="MZb-jQ-rWV"/>
                         <outlet property="launchAtLoginCheckbox" destination="o8Y-zF-1Yn" id="vZO-L4-1ql"/>
-                        <outlet property="pollingRateTextField" destination="gxv-8Y-s1p" id="dp6-e0-8cm"/>
+                        <outlet property="pollingRateTextField" destination="gxv-8Y-s1p" id="1WS-E7-ekX"/>
                         <outlet property="removeButton" destination="tFg-7b-Rry" id="Hnp-f3-vw3"/>
                         <outlet property="shortcutEnabledCheckbox" destination="xv5-Li-uDo" id="2X1-v2-Zg4"/>
                         <outlet property="showBlockedCheckbox" destination="MiM-8y-LcW" id="BLs-6A-5qO"/>
