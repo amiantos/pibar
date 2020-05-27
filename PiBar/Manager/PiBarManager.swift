@@ -192,40 +192,6 @@ class PiBarManager: NSObject {
         }
     }
 
-//    private func updatePihole(_ pihole: Pihole) {
-//        Log.debug("Updating Pi-hole: \(pihole.identifier)")
-//        pihole.api.fetchSummary { summary in
-//            Log.debug("Updating Pi-hole: \(pihole.identifier) - Received Summary")
-//            var enabled: Bool? = true
-//            var online = true
-//            var canBeManaged: Bool = false
-//
-//            if let summary = summary {
-//                if summary.status != "enabled" {
-//                    enabled = false
-//                }
-//                if !pihole.api.connection.token.isEmpty || !pihole.api.connection.passwordProtected {
-//                    canBeManaged = true
-//                }
-//            } else {
-//                enabled = nil
-//                online = false
-//                canBeManaged = false
-//            }
-//
-//            let pihole: Pihole = Pihole(
-//                api: pihole.api,
-//                identifier: pihole.api.identifier,
-//                online: online,
-//                summary: summary,
-//                canBeManaged: canBeManaged,
-//                enabled: enabled
-//            )
-//
-//            self.piholes[pihole.identifier] = pihole
-//        }
-//    }
-
     private func updateNetworkOverview() {
         Log.debug("Updating Network Overview")
 
