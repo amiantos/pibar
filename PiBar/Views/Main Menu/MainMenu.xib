@@ -342,7 +342,7 @@
                         </items>
                     </menu>
                 </menuItem>
-                <menuItem title="Web Admin" enabled="NO" keyEquivalent="a" id="3md-Pe-xgY"/>
+                <menuItem title="Admin Console" enabled="NO" keyEquivalent="a" id="3md-Pe-xgY"/>
                 <menuItem isSeparatorItem="YES" id="h1c-RQ-KIw"/>
                 <menuItem title="Preferences" keyEquivalent="," id="A0X-KF-WHH">
                     <connections>
