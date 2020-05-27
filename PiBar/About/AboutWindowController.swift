@@ -9,8 +9,8 @@
 import Cocoa
 
 class AboutWindowController: NSWindowController {
-    override func windowDidLoad() {
-        super.windowDidLoad()
+    override func showWindow(_ sender: Any?) {
+        super.showWindow(sender)
 
         AppDelegate.bringToFront(window: window!)
     }
