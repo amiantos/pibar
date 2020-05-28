@@ -18,7 +18,7 @@ final class UpdatePiholeOperation: AsyncOperation {
     override func main() {
         Log.debug("Updating Pi-hole: \(pihole.identifier)")
         pihole.api.fetchSummary { summary in
-            Log.debug("Updating Pi-hole: \(self.pihole.identifier) - Received Summary")
+            Log.debug("Received Summary for \(self.pihole.identifier)")
             var enabled: Bool? = true
             var online = true
             var canBeManaged: Bool = false
