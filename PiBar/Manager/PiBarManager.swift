@@ -12,11 +12,17 @@
 import Foundation
 
 protocol PiBarManagerDelegate: AnyObject {
-    func networkUpdated()
+    func updateNetwork(_ network: PiholeNetworkOverview)
 }
 
 class PiBarManager: NSObject {
     private var piholes: [String: Pihole] = [:]
+
+    private var networkOverview: PiholeNetworkOverview {
+        didSet {
+            delegate?.updateNetwork(self.networkOverview)
+        }
+    }
 
     private var timer: Timer?
     private var updateInterval: TimeInterval
@@ -37,18 +43,15 @@ class PiBarManager: NSObject {
             piholes: [:]
         )
         super.init()
+
+        delegate?.updateNetwork(networkOverview)
+
         loadConnections()
     }
 
     // MARK: - Public Variables and Functions
 
     weak var delegate: PiBarManagerDelegate?
-
-    private(set) var networkOverview: PiholeNetworkOverview {
-        didSet {
-            delegate?.networkUpdated()
-        }
-    }
 
     func loadConnections() {
         createPiholes(Preferences.standard.piholes)
@@ -77,6 +80,8 @@ class PiBarManager: NSObject {
     func disableNetwork(seconds: Int? = nil) {
         stopTimer()
         let operationQueue = OperationQueue()
+        operationQueue.qualityOfService = .background
+
         let completionOperation = BlockOperation {
             self.updatePiholes()
             self.startTimer()
@@ -92,6 +97,8 @@ class PiBarManager: NSObject {
     func enableNetwork() {
         stopTimer()
         let operationQueue = OperationQueue()
+        operationQueue.qualityOfService = .background
+
         let completionOperation = BlockOperation {
             self.updatePiholes()
             self.startTimer()
@@ -169,6 +176,7 @@ class PiBarManager: NSObject {
     @objc private func updatePiholes() {
         Log.debug("Manager: Updating Pi-holes")
         let operationQueue = OperationQueue()
+        operationQueue.qualityOfService = .background
 
         let completionOperation = BlockOperation {
             // If we don't sleep here we run into some weird timing issues with dictionaries
@@ -180,7 +188,7 @@ class PiBarManager: NSObject {
             Log.debug("Creating operation for \(pihole.identifier)")
             let operation = UpdatePiholeOperation(pihole)
             operation.completionBlock = { [unowned operation] in
-                self.piholes[operation.pihole.identifier] = operation.pihole
+                self.piholes[pihole.identifier] = operation.pihole
             }
             completionOperation.addDependency(operation)
             operationQueue.addOperation(operation)

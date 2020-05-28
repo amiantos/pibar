@@ -71,7 +71,7 @@ class PiholeAPI: NSObject {
         let session = URLSession(configuration: .default)
         let dataTask = session.dataTask(with: urlRequest) { data, response, error in
             if error != nil {
-                completion(nil)
+                return completion(nil)
             }
             if let response = response as? HTTPURLResponse {
                 if 200 ..< 300 ~= response.statusCode {

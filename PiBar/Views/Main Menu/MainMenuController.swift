@@ -17,6 +17,8 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
 
     private let manager: PiBarManager = PiBarManager()
 
+    private var networkOverview: PiholeNetworkOverview?
+
     // MARK: - Internal Views
 
     private let statusBarItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
@@ -134,19 +136,24 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
         Log.debug("Connections Updated")
         clearSubmenus()
         manager.loadConnections()
-        setupWebAdminMenus()
+        DispatchQueue.main.async {
+            self.setupWebAdminMenus()
+        }
     }
 
-    internal func networkUpdated() {
+    internal func updateNetwork(_ network: PiholeNetworkOverview) {
+        self.networkOverview = network
         self.updateInterface()
-        setupWebAdminMenus()
+        DispatchQueue.main.async {
+            self.setupWebAdminMenus()
+        }
     }
 
     // MARK: - Functions
 
     @objc func launchWebAdmin(sender: NSMenuItem) {
         if sender.title == "Admin Console" {
-            guard let piholeIdentifier = manager.networkOverview.piholes.keys.first else {
+            guard let piholeIdentifier = networkOverview?.piholes.keys.first else {
                 Log.debug("No Pi-holes found.")
                 return
             }
@@ -157,7 +164,7 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
     }
 
     private func launchWebAdmin(for identifier: String) {
-        guard let pihole = manager.networkOverview.piholes[identifier],
+        guard let pihole = networkOverview?.piholes[identifier],
             let adminURL = URL(string: pihole.api.connection.adminPanelURL) else {
             Log.debug("Could not find Pi-hole with identifier \(identifier)")
             return
@@ -208,7 +215,8 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
     }
 
     private func updateMenuBarTitle() {
-        let currentStatus = manager.networkOverview.networkStatus
+        guard let networkOverview = networkOverview else { return }
+        let currentStatus = networkOverview.networkStatus
 
         var titleElements: [String] = []
 
@@ -220,7 +228,7 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
                     let label = verboseLabels ? "Queries:" : "Q:"
                     titleElements.append(label)
                 }
-                titleElements.append(manager.networkOverview.totalQueriesToday.string)
+                titleElements.append(networkOverview.totalQueriesToday.string)
                 if Preferences.standard.showBlocked || Preferences.standard.showPercentage, showLabels {
                     titleElements.append("•")
                 }
@@ -233,18 +241,18 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
                 if Preferences.standard.showQueries, !showLabels {
                     titleElements.append("/")
                 }
-                titleElements.append(manager.networkOverview.adsBlockedToday.string)
+                titleElements.append(networkOverview.adsBlockedToday.string)
             }
 
             if Preferences.standard.showPercentage {
                 if Preferences.standard.showBlocked || (Preferences.standard.showQueries && !showLabels) {
-                    titleElements.append("(\(manager.networkOverview.adsPercentageToday.string))")
+                    titleElements.append("(\(networkOverview.adsPercentageToday.string))")
                 } else {
                     if showLabels {
                         let label = verboseLabels ? "Blocked:" : "B:"
                         titleElements.append(label)
                     }
-                    titleElements.append("\(manager.networkOverview.adsPercentageToday.string)")
+                    titleElements.append("\(networkOverview.adsPercentageToday.string)")
                 }
             }
         } else {
@@ -257,25 +265,27 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
     }
 
     private func updateStatusButtons() {
-        mainNetworkStatusMenuItem.title = "Status: \(manager.networkOverview.networkStatus.rawValue)"
-        mainTotalQueriesMenuItem.title = "Queries: \(manager.networkOverview.totalQueriesToday.string)"
+        guard let networkOverview = networkOverview else { return }
+        mainNetworkStatusMenuItem.title = "Status: \(networkOverview.networkStatus.rawValue)"
+        mainTotalQueriesMenuItem.title = "Queries: \(networkOverview.totalQueriesToday.string)"
         mainTotalBlockedMenuItem.title = "Blocked: " +
-            "\(manager.networkOverview.adsBlockedToday.string) " +
-            "(\(manager.networkOverview.adsPercentageToday.string))"
-        mainBlocklistMenuItem.title = "Blocklist: \(manager.networkOverview.averageBlocklist.string)"
+            "\(networkOverview.adsBlockedToday.string) " +
+            "(\(networkOverview.adsPercentageToday.string))"
+        mainBlocklistMenuItem.title = "Blocklist: \(networkOverview.averageBlocklist.string)"
 
         updateStatusSubmenus()
     }
 
     private func updateStatusSubmenus() {
+        guard let networkOverview = networkOverview else { return }
         guard let mainMenu = mainNetworkStatusMenuItem.menu else { return }
 
-        let piholes = manager.networkOverview.piholes
+        let piholes = networkOverview.piholes
         if piholes.count > 1 {
             let piholeIdentifiersAlphabetized: [String] = piholes.keys.sorted()
 
             for identifier in piholeIdentifiersAlphabetized {
-                let pihole = piholes[identifier]!
+                guard let pihole = piholes[identifier] else { continue }
 
                 // Status Submenu
                 if networkStatusMenuItems[identifier] == nil {
@@ -363,8 +373,10 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
     }
 
     private func setupWebAdminMenus() {
+        guard let networkOverview = networkOverview else { return }
         guard let mainMenu = mainNetworkStatusMenuItem.menu else { return }
-        let piholes = manager.networkOverview.piholes
+        let piholes = networkOverview.piholes
+
         if piholes.count > 1 {
             let piholeIdentifiersAlphabetized: [String] = piholes.keys.sorted()
 
@@ -430,9 +442,10 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
     }
 
     private func updateMenuButtons() {
-        let currentStatus = manager.networkOverview.networkStatus
+        guard let networkOverview = networkOverview else { return }
+        let currentStatus = networkOverview.networkStatus
 
-        if !manager.networkOverview.canBeManaged {
+        if !networkOverview.canBeManaged {
             disableNetworkMenuItem.isEnabled = false
             enableNetworkMenuItem.isEnabled = false
         } else if currentStatus == .enabled || currentStatus == .partiallyEnabled {
@@ -450,7 +463,7 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
             enableNetworkMenuItem.isEnabled = false
         }
 
-        if manager.networkOverview.piholes.count > 1 {
+        if networkOverview.piholes.count > 1 {
             disableNetworkMenuItem.title = "Disable Pi-holes"
             enableNetworkMenuItem.title = "Enable Pi-holes"
         } else {
