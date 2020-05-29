@@ -26,9 +26,8 @@ PiBar gives you all the tools you need to manage your [Pi-hole](https://pi-hole.
 
 1. Launch PiBar
 2. Click on the PiBar icon in your menu bar and go to Preferences
-3. Click Add to add your Pi-hole and API token
-    1. *You can use PiBar without an API token for a "stats only" mode*
-4. Click Test, if the test is successful, click "Save"
+3. Click Add to add your Pi-hole details
+4. Click Test, if the test is successful, click Save & Close
 5. Add more Pi-holes if you have them :)
 6. Adjust your menu bar display preferences
 7. Close the Preferences window and enjoy!
