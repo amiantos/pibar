@@ -25,7 +25,7 @@ final class ChangePiholeStatusOperation: AsyncOperation {
     }
 
     override func main() {
-        if self.status == .disable {
+        if status == .disable {
             pihole.api.disable(seconds: seconds) { _ in
                 self.state = .isFinished
             }

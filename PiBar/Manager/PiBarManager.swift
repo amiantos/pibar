@@ -20,7 +20,7 @@ class PiBarManager: NSObject {
 
     private var networkOverview: PiholeNetworkOverview {
         didSet {
-            delegate?.updateNetwork(self.networkOverview)
+            delegate?.updateNetwork(networkOverview)
         }
     }
 
@@ -67,7 +67,6 @@ class PiBarManager: NSObject {
             updateInterval = newPollingRate
             startTimer()
         }
-
     }
 
     // Enable / Disable Pi-hole(s)
@@ -185,7 +184,7 @@ class PiBarManager: NSObject {
             Log.debug("Creating operation for \(pihole.identifier)")
             let operation = UpdatePiholeOperation(pihole)
             operation.completionBlock = { [unowned operation] in
-                    self.piholes[pihole.identifier] = operation.pihole
+                self.piholes[pihole.identifier] = operation.pihole
             }
             completionOperation.addDependency(operation)
             operationQueue.addOperation(operation)

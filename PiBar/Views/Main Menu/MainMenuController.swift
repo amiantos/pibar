@@ -142,8 +142,8 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
     }
 
     internal func updateNetwork(_ network: PiholeNetworkOverview) {
-        self.networkOverview = network
-        self.updateInterface()
+        networkOverview = network
+        updateInterface()
         DispatchQueue.main.async {
             self.setupWebAdminMenus()
         }

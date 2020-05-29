@@ -41,8 +41,8 @@ class PreferencesViewController: NSViewController {
     @IBOutlet var verboseLabelsCheckbox: NSButton!
 
     @IBOutlet var shortcutEnabledCheckbox: NSButton!
-    @IBOutlet weak var launchAtLoginCheckbox: NSButton!
-    @IBOutlet weak var pollingRateTextField: NSTextField!
+    @IBOutlet var launchAtLoginCheckbox: NSButton!
+    @IBOutlet var pollingRateTextField: NSTextField!
 
     @IBOutlet var editButton: NSButton!
     @IBOutlet var removeButton: NSButton!
@@ -84,13 +84,13 @@ class PreferencesViewController: NSViewController {
         saveSettings()
     }
 
-    @IBAction func pollingRateTextFieldAction(_ sender: NSTextField) {
+    @IBAction func pollingRateTextFieldAction(_: NSTextField) {
         saveSettings()
     }
 
-    @IBAction func saveAndCloseButtonAction(_ sender: NSButton) {
+    @IBAction func saveAndCloseButtonAction(_: NSButton) {
         saveSettings()
-        self.view.window?.close()
+        view.window?.close()
     }
 
     // MARK: - View Lifecycle
