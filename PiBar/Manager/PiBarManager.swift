@@ -26,10 +26,13 @@ class PiBarManager: NSObject {
 
     private var timer: Timer?
     private var updateInterval: TimeInterval
+    private let operationQueue: OperationQueue = OperationQueue()
 
     override init() {
         Log.logLevel = .off
         Log.useEmoji = true
+
+        operationQueue.maxConcurrentOperationCount = 1
 
         updateInterval = TimeInterval(Preferences.standard.pollingRate)
 
@@ -79,8 +82,6 @@ class PiBarManager: NSObject {
 
     func disableNetwork(seconds: Int? = nil) {
         stopTimer()
-        let operationQueue = OperationQueue()
-        operationQueue.qualityOfService = .background
 
         let completionOperation = BlockOperation {
             self.updatePiholes()
@@ -96,8 +97,6 @@ class PiBarManager: NSObject {
 
     func enableNetwork() {
         stopTimer()
-        let operationQueue = OperationQueue()
-        operationQueue.qualityOfService = .background
 
         let completionOperation = BlockOperation {
             self.updatePiholes()
@@ -175,8 +174,6 @@ class PiBarManager: NSObject {
 
     @objc private func updatePiholes() {
         Log.debug("Manager: Updating Pi-holes")
-        let operationQueue = OperationQueue()
-        operationQueue.qualityOfService = .background
 
         let completionOperation = BlockOperation {
             // If we don't sleep here we run into some weird timing issues with dictionaries
@@ -184,11 +181,11 @@ class PiBarManager: NSObject {
             self.updateNetworkOverview()
         }
 
-        piholes.values.forEach { pihole in
+        for pihole in piholes.values {
             Log.debug("Creating operation for \(pihole.identifier)")
             let operation = UpdatePiholeOperation(pihole)
             operation.completionBlock = { [unowned operation] in
-                self.piholes[pihole.identifier] = operation.pihole
+                    self.piholes[pihole.identifier] = operation.pihole
             }
             completionOperation.addDependency(operation)
             operationQueue.addOperation(operation)
