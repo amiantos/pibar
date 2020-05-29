@@ -49,13 +49,13 @@
       "size" : "256x256"
     },
     {
-      "filename" : "pibar_icon_256px@2x-1.png",
+      "filename" : "pibar_icon_512px.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "512x512"
     },
     {
-      "filename" : "pibar_icon_512px@2x (1).png",
+      "filename" : "pibar_icon_512px@2x.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "512x512"
