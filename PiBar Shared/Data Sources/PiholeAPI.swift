@@ -9,9 +9,13 @@
 //  License, v. 2.0. If a copy of the MPL was not distributed with this
 //  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import Cocoa
+#if os(macOS)
+    import Cocoa
+#elseif os(iOS)
+    import UIKit
+#endif
 
-class PiholeAPI: NSObject {
+final class PiholeAPI {
     let connection: PiholeConnectionV2
 
     var identifier: String {
@@ -31,7 +35,7 @@ class PiholeAPI: NSObject {
         static let recentBlocked = PiholeAPIEndpoint(queryParameter: "recentBlocked", authorizationRequired: false)
     }
 
-    override init() {
+    init() {
         connection = PiholeConnectionV2(
             hostname: "pi.hole",
             port: 80,
@@ -40,12 +44,10 @@ class PiholeAPI: NSObject {
             passwordProtected: true,
             adminPanelURL: "http://pi.hole/admin/"
         )
-        super.init()
     }
 
     init(connection: PiholeConnectionV2) {
         self.connection = connection
-        super.init()
     }
 
     private func get(_ endpoint: PiholeAPIEndpoint, argument: String? = nil, completion: @escaping (String?) -> Void) {

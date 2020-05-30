@@ -14,6 +14,15 @@
 		440DE46D2482D37D00C55354 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 440DE46B2482D37D00C55354 /* Main.storyboard */; };
 		440DE46F2482D37D00C55354 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 440DE46E2482D37D00C55354 /* Assets.xcassets */; };
 		440DE4722482D37D00C55354 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 440DE4702482D37D00C55354 /* LaunchScreen.storyboard */; };
+		440DE4782482D58B00C55354 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442F6F862471E8DF008F1101 /* Extensions.swift */; };
+		440DE4792482D58D00C55354 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4415D73524747331009E0B31 /* Logging.swift */; };
+		440DE47A2482D59000C55354 /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4415D73324731FE0009E0B31 /* Structs.swift */; };
+		440DE47B2482D59300C55354 /* PiholeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449395ED2471C47F00FA0C34 /* PiholeAPI.swift */; };
+		440DE47C2482D59500C55354 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442F6F88247212D1008F1101 /* Preferences.swift */; };
+		440DE47D2482D59900C55354 /* PiBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FFB091247627B100DCEDEC /* PiBarManager.swift */; };
+		440DE47E2482D59C00C55354 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441E78AD247E3AF300FBC7A0 /* AsyncOperation.swift */; };
+		440DE47F2482D59F00C55354 /* UpdatePiholeOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441E78AF247E3BC500FBC7A0 /* UpdatePiholeOperation.swift */; };
+		440DE4802482D5A100C55354 /* ChangePiholeStatusOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441E78B3247E3F9400FBC7A0 /* ChangePiholeStatusOperation.swift */; };
 		4415D73424731FE0009E0B31 /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4415D73324731FE0009E0B31 /* Structs.swift */; };
 		4415D73624747331009E0B31 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4415D73524747331009E0B31 /* Logging.swift */; };
 		441E78A9247E21DE00FBC7A0 /* LaunchAtLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 441E78A8247E21DE00FBC7A0 /* LaunchAtLogin.framework */; };
@@ -140,6 +149,16 @@
 			path = "PiBar for iOS";
 			sourceTree = "<group>";
 		};
+		440DE4772482D54E00C55354 /* PiBar Shared */ = {
+			isa = PBXGroup;
+			children = (
+				441E78B2247E3ED700FBC7A0 /* Manager */,
+				4415D73224731E2F009E0B31 /* Data Sources */,
+				44AC125F2476F1F300851ED9 /* Utilities */,
+			);
+			path = "PiBar Shared";
+			sourceTree = "<group>";
+		};
 		4415D73224731E2F009E0B31 /* Data Sources */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				442F6F842471D334008F1101 /* README.md */,
+				440DE4772482D54E00C55354 /* PiBar Shared */,
 				449395D42471ABD600FA0C34 /* PiBar for macOS */,
 				440DE4622482D37D00C55354 /* PiBar for iOS */,
 				449395D32471ABD600FA0C34 /* Products */,
@@ -227,10 +247,7 @@
 				449395DF2471ABD700FA0C34 /* PiBar.entitlements */,
 				449395D92471ABD700FA0C34 /* Assets.xcassets */,
 				449395D52471ABD600FA0C34 /* AppDelegate.swift */,
-				441E78B2247E3ED700FBC7A0 /* Manager */,
-				4415D73224731E2F009E0B31 /* Data Sources */,
 				441E78A6247DE6CB00FBC7A0 /* Views */,
-				44AC125F2476F1F300851ED9 /* Utilities */,
 			);
 			path = "PiBar for macOS";
 			sourceTree = "<group>";
@@ -504,10 +521,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				440DE4782482D58B00C55354 /* Extensions.swift in Sources */,
+				440DE47E2482D59C00C55354 /* AsyncOperation.swift in Sources */,
+				440DE4792482D58D00C55354 /* Logging.swift in Sources */,
 				440DE46A2482D37D00C55354 /* SecondViewController.swift in Sources */,
+				440DE47A2482D59000C55354 /* Structs.swift in Sources */,
 				440DE4682482D37D00C55354 /* FirstViewController.swift in Sources */,
+				440DE47B2482D59300C55354 /* PiholeAPI.swift in Sources */,
+				440DE47F2482D59F00C55354 /* UpdatePiholeOperation.swift in Sources */,
+				440DE47D2482D59900C55354 /* PiBarManager.swift in Sources */,
 				440DE4642482D37D00C55354 /* AppDelegate.swift in Sources */,
+				440DE4802482D5A100C55354 /* ChangePiholeStatusOperation.swift in Sources */,
 				440DE4662482D37D00C55354 /* SceneDelegate.swift in Sources */,
+				440DE47C2482D59500C55354 /* Preferences.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
