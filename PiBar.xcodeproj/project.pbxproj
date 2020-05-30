@@ -7,7 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		32954590BDD997C520227DB6 /* Pods_PiBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04F07DFA596CEEEADF9A90A0 /* Pods_PiBar.framework */; };
+		440DE4642482D37D00C55354 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440DE4632482D37D00C55354 /* AppDelegate.swift */; };
+		440DE4662482D37D00C55354 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440DE4652482D37D00C55354 /* SceneDelegate.swift */; };
+		440DE4682482D37D00C55354 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440DE4672482D37D00C55354 /* FirstViewController.swift */; };
+		440DE46A2482D37D00C55354 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440DE4692482D37D00C55354 /* SecondViewController.swift */; };
+		440DE46D2482D37D00C55354 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 440DE46B2482D37D00C55354 /* Main.storyboard */; };
+		440DE46F2482D37D00C55354 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 440DE46E2482D37D00C55354 /* Assets.xcassets */; };
+		440DE4722482D37D00C55354 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 440DE4702482D37D00C55354 /* LaunchScreen.storyboard */; };
 		4415D73424731FE0009E0B31 /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4415D73324731FE0009E0B31 /* Structs.swift */; };
 		4415D73624747331009E0B31 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4415D73524747331009E0B31 /* Logging.swift */; };
 		441E78A9247E21DE00FBC7A0 /* LaunchAtLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 441E78A8247E21DE00FBC7A0 /* LaunchAtLogin.framework */; };
@@ -30,6 +36,7 @@
 		449395EE2471C47F00FA0C34 /* PiholeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449395ED2471C47F00FA0C34 /* PiholeAPI.swift */; };
 		44B6DAF2247C70F500D364EC /* PiholeSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B6DAF1247C70F500D364EC /* PiholeSettingsViewController.swift */; };
 		44FFB092247627B100DCEDEC /* PiBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FFB091247627B100DCEDEC /* PiBarManager.swift */; };
+		D8E2BD45380E2681F4F7BF99 /* Pods_PiBar_for_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB442844C550DE69A8DE1422 /* Pods_PiBar_for_macOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -47,8 +54,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		04F07DFA596CEEEADF9A90A0 /* Pods_PiBar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PiBar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		08A4966FFD2196F42B1CA80F /* Pods-PiBar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PiBar.release.xcconfig"; path = "Target Support Files/Pods-PiBar/Pods-PiBar.release.xcconfig"; sourceTree = "<group>"; };
+		440DE4612482D37C00C55354 /* PiBar for iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PiBar for iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		440DE4632482D37D00C55354 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		440DE4652482D37D00C55354 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		440DE4672482D37D00C55354 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		440DE4692482D37D00C55354 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		440DE46C2482D37D00C55354 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		440DE46E2482D37D00C55354 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		440DE4712482D37D00C55354 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		440DE4732482D37D00C55354 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4415D73324731FE0009E0B31 /* Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
 		4415D73524747331009E0B31 /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 		441E78A8247E21DE00FBC7A0 /* LaunchAtLogin.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LaunchAtLogin.framework; path = Carthage/Build/Mac/LaunchAtLogin.framework; sourceTree = "<group>"; };
@@ -61,7 +76,7 @@
 		442F6F8A24721523008F1101 /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		4438184D247DE31A009D9B3F /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		4438184F247DE41B009D9B3F /* AboutWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutWindowController.swift; sourceTree = "<group>"; };
-		449395D22471ABD600FA0C34 /* PiBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PiBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		449395D22471ABD600FA0C34 /* PiBar for macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PiBar for macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		449395D52471ABD600FA0C34 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		449395D92471ABD700FA0C34 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		449395DC2471ABD700FA0C34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -74,15 +89,25 @@
 		44B6DAF1247C70F500D364EC /* PiholeSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiholeSettingsViewController.swift; sourceTree = "<group>"; };
 		44FFB091247627B100DCEDEC /* PiBarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiBarManager.swift; sourceTree = "<group>"; };
 		A8CE572444810D388817476D /* Pods-PiBar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PiBar.debug.xcconfig"; path = "Target Support Files/Pods-PiBar/Pods-PiBar.debug.xcconfig"; sourceTree = "<group>"; };
+		AB442844C550DE69A8DE1422 /* Pods_PiBar_for_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PiBar_for_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCE170268940B6C31FF721B6 /* Pods-PiBar for macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PiBar for macOS.release.xcconfig"; path = "Target Support Files/Pods-PiBar for macOS/Pods-PiBar for macOS.release.xcconfig"; sourceTree = "<group>"; };
+		FADC58092194CBF2E4F9D976 /* Pods-PiBar for macOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PiBar for macOS.debug.xcconfig"; path = "Target Support Files/Pods-PiBar for macOS/Pods-PiBar for macOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		440DE45E2482D37C00C55354 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		449395CF2471ABD600FA0C34 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				441E78A9247E21DE00FBC7A0 /* LaunchAtLogin.framework in Frameworks */,
-				32954590BDD997C520227DB6 /* Pods_PiBar.framework in Frameworks */,
+				D8E2BD45380E2681F4F7BF99 /* Pods_PiBar_for_macOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,8 +119,25 @@
 			children = (
 				A8CE572444810D388817476D /* Pods-PiBar.debug.xcconfig */,
 				08A4966FFD2196F42B1CA80F /* Pods-PiBar.release.xcconfig */,
+				FADC58092194CBF2E4F9D976 /* Pods-PiBar for macOS.debug.xcconfig */,
+				DCE170268940B6C31FF721B6 /* Pods-PiBar for macOS.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		440DE4622482D37D00C55354 /* PiBar for iOS */ = {
+			isa = PBXGroup;
+			children = (
+				440DE4632482D37D00C55354 /* AppDelegate.swift */,
+				440DE4652482D37D00C55354 /* SceneDelegate.swift */,
+				440DE4672482D37D00C55354 /* FirstViewController.swift */,
+				440DE4692482D37D00C55354 /* SecondViewController.swift */,
+				440DE46B2482D37D00C55354 /* Main.storyboard */,
+				440DE46E2482D37D00C55354 /* Assets.xcassets */,
+				440DE4702482D37D00C55354 /* LaunchScreen.storyboard */,
+				440DE4732482D37D00C55354 /* Info.plist */,
+			);
+			path = "PiBar for iOS";
 			sourceTree = "<group>";
 		};
 		4415D73224731E2F009E0B31 /* Data Sources */ = {
@@ -161,7 +203,8 @@
 			isa = PBXGroup;
 			children = (
 				442F6F842471D334008F1101 /* README.md */,
-				449395D42471ABD600FA0C34 /* PiBar */,
+				449395D42471ABD600FA0C34 /* PiBar for macOS */,
+				440DE4622482D37D00C55354 /* PiBar for iOS */,
 				449395D32471ABD600FA0C34 /* Products */,
 				214831E348424C32082556DF /* Pods */,
 				913B94517DDE1EF8E0C98FB2 /* Frameworks */,
@@ -171,12 +214,13 @@
 		449395D32471ABD600FA0C34 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				449395D22471ABD600FA0C34 /* PiBar.app */,
+				449395D22471ABD600FA0C34 /* PiBar for macOS.app */,
+				440DE4612482D37C00C55354 /* PiBar for iOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		449395D42471ABD600FA0C34 /* PiBar */ = {
+		449395D42471ABD600FA0C34 /* PiBar for macOS */ = {
 			isa = PBXGroup;
 			children = (
 				449395DE2471ABD700FA0C34 /* Info.plist */,
@@ -188,7 +232,7 @@
 				441E78A6247DE6CB00FBC7A0 /* Views */,
 				44AC125F2476F1F300851ED9 /* Utilities */,
 			);
-			path = PiBar;
+			path = "PiBar for macOS";
 			sourceTree = "<group>";
 		};
 		449395E92471B10500FA0C34 /* Main Menu */ = {
@@ -213,7 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				441E78A8247E21DE00FBC7A0 /* LaunchAtLogin.framework */,
-				04F07DFA596CEEEADF9A90A0 /* Pods_PiBar.framework */,
+				AB442844C550DE69A8DE1422 /* Pods_PiBar_for_macOS.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -221,12 +265,29 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		449395D12471ABD600FA0C34 /* PiBar */ = {
+		440DE4602482D37C00C55354 /* PiBar for iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 449395E22471ABD700FA0C34 /* Build configuration list for PBXNativeTarget "PiBar" */;
+			buildConfigurationList = 440DE4742482D37D00C55354 /* Build configuration list for PBXNativeTarget "PiBar for iOS" */;
 			buildPhases = (
-				44B6DAF3247CC9A000D364EC /* Increment Build Number */,
+				440DE45D2482D37C00C55354 /* Sources */,
+				440DE45E2482D37C00C55354 /* Frameworks */,
+				440DE45F2482D37C00C55354 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "PiBar for iOS";
+			productName = "PiBar for iOS";
+			productReference = 440DE4612482D37C00C55354 /* PiBar for iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		449395D12471ABD600FA0C34 /* PiBar for macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 449395E22471ABD700FA0C34 /* Build configuration list for PBXNativeTarget "PiBar for macOS" */;
+			buildPhases = (
 				556BA81D41547EB1F3EC6986 /* [CP] Check Pods Manifest.lock */,
+				44B6DAF3247CC9A000D364EC /* Increment Build Number */,
 				449395CE2471ABD600FA0C34 /* Sources */,
 				449395CF2471ABD600FA0C34 /* Frameworks */,
 				449395D02471ABD600FA0C34 /* Resources */,
@@ -241,9 +302,9 @@
 			);
 			dependencies = (
 			);
-			name = PiBar;
+			name = "PiBar for macOS";
 			productName = PiBar;
-			productReference = 449395D22471ABD600FA0C34 /* PiBar.app */;
+			productReference = 449395D22471ABD600FA0C34 /* PiBar for macOS.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -252,10 +313,13 @@
 		449395CA2471ABD600FA0C34 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1140;
+				LastSwiftUpdateCheck = 1150;
 				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = "Brad Root";
 				TargetAttributes = {
+					440DE4602482D37C00C55354 = {
+						CreatedOnToolsVersion = 11.5;
+					};
 					449395D12471ABD600FA0C34 = {
 						CreatedOnToolsVersion = 11.4.1;
 					};
@@ -274,12 +338,23 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				449395D12471ABD600FA0C34 /* PiBar */,
+				449395D12471ABD600FA0C34 /* PiBar for macOS */,
+				440DE4602482D37C00C55354 /* PiBar for iOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		440DE45F2482D37C00C55354 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				440DE4722482D37D00C55354 /* LaunchScreen.storyboard in Resources */,
+				440DE46F2482D37D00C55354 /* Assets.xcassets in Resources */,
+				440DE46D2482D37D00C55354 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		449395D02471ABD600FA0C34 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -398,7 +473,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-PiBar-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-PiBar for macOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -411,20 +486,31 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PiBar/Pods-PiBar-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-PiBar for macOS/Pods-PiBar for macOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PiBar/Pods-PiBar-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-PiBar for macOS/Pods-PiBar for macOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PiBar/Pods-PiBar-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PiBar for macOS/Pods-PiBar for macOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		440DE45D2482D37C00C55354 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				440DE46A2482D37D00C55354 /* SecondViewController.swift in Sources */,
+				440DE4682482D37D00C55354 /* FirstViewController.swift in Sources */,
+				440DE4642482D37D00C55354 /* AppDelegate.swift in Sources */,
+				440DE4662482D37D00C55354 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		449395CE2471ABD600FA0C34 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -451,6 +537,22 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		440DE46B2482D37D00C55354 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				440DE46C2482D37D00C55354 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		440DE4702482D37D00C55354 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				440DE4712482D37D00C55354 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
 		449395DB2471ABD700FA0C34 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -462,6 +564,47 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		440DE4752482D37D00C55354 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2Y9M69QJKZ;
+				INFOPLIST_FILE = "PiBar for iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.amiantos.PiBar;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		440DE4762482D37D00C55354 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2Y9M69QJKZ;
+				INFOPLIST_FILE = "PiBar for iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.amiantos.PiBar;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		449395E02471ABD700FA0C34 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -577,10 +720,10 @@
 		};
 		449395E32471ABD700FA0C34 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A8CE572444810D388817476D /* Pods-PiBar.debug.xcconfig */;
+			baseConfigurationReference = FADC58092194CBF2E4F9D976 /* Pods-PiBar for macOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = PiBar/PiBar.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "PiBar for macOS/PiBar.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -591,7 +734,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
-				INFOPLIST_FILE = PiBar/Info.plist;
+				INFOPLIST_FILE = "PiBar for macOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -606,10 +749,10 @@
 		};
 		449395E42471ABD700FA0C34 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 08A4966FFD2196F42B1CA80F /* Pods-PiBar.release.xcconfig */;
+			baseConfigurationReference = DCE170268940B6C31FF721B6 /* Pods-PiBar for macOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = PiBar/PiBar.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "PiBar for macOS/PiBar.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -620,7 +763,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
-				INFOPLIST_FILE = PiBar/Info.plist;
+				INFOPLIST_FILE = "PiBar for macOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -636,6 +779,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		440DE4742482D37D00C55354 /* Build configuration list for PBXNativeTarget "PiBar for iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				440DE4752482D37D00C55354 /* Debug */,
+				440DE4762482D37D00C55354 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		449395CD2471ABD600FA0C34 /* Build configuration list for PBXProject "PiBar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -645,7 +797,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		449395E22471ABD700FA0C34 /* Build configuration list for PBXNativeTarget "PiBar" */ = {
+		449395E22471ABD700FA0C34 /* Build configuration list for PBXNativeTarget "PiBar for macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				449395E32471ABD700FA0C34 /* Debug */,

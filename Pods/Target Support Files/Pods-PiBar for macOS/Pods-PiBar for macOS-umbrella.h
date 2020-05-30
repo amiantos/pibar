@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_PiBarVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_PiBarVersionString[];
+FOUNDATION_EXPORT double Pods_PiBar_for_macOSVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_PiBar_for_macOSVersionString[];
 
