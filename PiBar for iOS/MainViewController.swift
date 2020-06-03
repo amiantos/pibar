@@ -15,6 +15,7 @@ class MainViewController: UIViewController {
         didSet {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
+                self.tableView.layoutSubviews()
             }
         }
     }
@@ -60,8 +61,8 @@ class MainViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        tableView.contentInset.bottom = networkOverviewView.frame.height - 25
-        tableView.scrollIndicatorInsets.bottom = networkOverviewView.frame.height - 60
+        tableView.contentInset.bottom = networkOverviewView.frame.height - view.safeAreaInsets.bottom
+        tableView.scrollIndicatorInsets.bottom = networkOverviewView.frame.height  - view.safeAreaInsets.bottom
     }
     
 
@@ -96,8 +97,19 @@ extension MainViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "piholeCell", for: indexPath)
 
+        guard let piholes = networkOverview?.piholes else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "piholeCell", for: indexPath)
+           return cell
+        }
+
+        let piholeIdentifiersAlphabetized: [String] = piholes.keys.sorted()
+
+//            for identifier in piholeIdentifiersAlphabetized {
+
+        let cell = tableView.dequeueReusableCell(withIdentifier: "piholeCell", for: indexPath) as! PiholeTableViewCell
+
+        cell.pihole = piholes[piholeIdentifiersAlphabetized[indexPath.row]]
         return cell
     }
 

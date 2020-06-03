@@ -18,6 +18,7 @@ class NetworkOverviewView: UIView {
     @IBOutlet var avgBlocklistLabel: UILabel!
 
     @IBOutlet var disableButton: UIButton!
+    @IBOutlet var viewQueriesButton: UIButton!
 
     @IBAction func disableButtonAction(_ sender: UIButton) {
         let seconds = sender.tag > 0 ? sender.tag : nil
@@ -30,7 +31,7 @@ class NetworkOverviewView: UIView {
             DispatchQueue.main.async {
                 guard let networkOverview = self.networkOverview else { return }
                 self.totalQueriesLabel.text = networkOverview.totalQueriesToday.string
-                self.blockedQueriesLabel.text = "\(networkOverview.adsBlockedToday.string) (\(networkOverview.adsPercentageToday.string))"
+                self.blockedQueriesLabel.text = networkOverview.adsBlockedToday.string
                 self.networkStatusLabel.text = networkOverview.networkStatus.rawValue
                 self.avgBlocklistLabel.text = networkOverview.averageBlocklist.string
             }
@@ -41,6 +42,7 @@ class NetworkOverviewView: UIView {
         super.layoutSubviews()
 
         disableButton.layer.cornerRadius = disableButton.frame.height / 2
+        viewQueriesButton.layer.cornerRadius = viewQueriesButton.frame.height / 2
     }
     
     /*
