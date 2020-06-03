@@ -188,7 +188,7 @@
                         <viewLayoutGuide key="safeArea" id="3Bs-43-LDN"/>
                     </view>
                     <navigationItem key="navigationItem" title="Your Pi-holes" id="IkU-yZ-ZtR">
-                        <barButtonItem key="leftBarButtonItem" title="Preferences" id="eSg-Xk-sx1">
+                        <barButtonItem key="leftBarButtonItem" title="Preferences" image="settings" id="eSg-Xk-sx1">
                             <connections>
                                 <segue destination="u6H-RD-4Cj" kind="popoverPresentation" popoverAnchorBarButtonItem="eSg-Xk-sx1" id="jPd-ZW-Woe">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -315,4 +315,7 @@
             <point key="canvasLocation" x="2769.5652173913045" y="277.90178571428572"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="settings" width="24" height="24"/>
+    </resources>
 </document>

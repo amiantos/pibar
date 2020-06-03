@@ -11,6 +11,13 @@ import UIKit
 class MainViewController: UIViewController {
 
     private let manager: PiBarManager = PiBarManager()
+    private var networkOverview: PiholeNetworkOverview? {
+        didSet {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
 
     @IBOutlet weak var networkOverviewView: NetworkOverviewView!
     @IBOutlet weak var tableView: UITableView!
@@ -25,14 +32,24 @@ class MainViewController: UIViewController {
 
         networkOverviewView.manager = manager
 
-        Preferences.standard.set(piholes: [PiholeConnectionV2(
+        Preferences.standard.set(piholes: [
+            PiholeConnectionV2(
             hostname: "pi-hole.local",
             port: 80,
             useSSL: false,
             token: "",
             passwordProtected: false,
             adminPanelURL: "http://pi-hole.local/admin"
-            )])
+            ),
+            PiholeConnectionV2(
+            hostname: "rickenbacker.local",
+            port: 80,
+            useSSL: false,
+            token: "b17660b345e1871a06177e27b06404cd10088d3e19f5d4248b8b349e14f127b8",
+            passwordProtected: true,
+            adminPanelURL: "http://rickenbacker.local/admin"
+            ),
+        ])
 
         manager.delegate = self
 
@@ -63,6 +80,7 @@ class MainViewController: UIViewController {
 extension MainViewController: PiBarManagerDelegate {
     func updateNetwork(_ network: PiholeNetworkOverview) {
         networkOverviewView.networkOverview = network
+        networkOverview = network
     }
 }
 
@@ -72,7 +90,9 @@ extension MainViewController: UITableViewDelegate {
 
 extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        guard let networkOverview = self.networkOverview else { return 0 }
+
+        return networkOverview.piholes.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
