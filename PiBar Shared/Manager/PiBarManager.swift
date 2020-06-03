@@ -29,7 +29,7 @@ class PiBarManager: NSObject {
     private let operationQueue: OperationQueue = OperationQueue()
 
     override init() {
-        Log.logLevel = .off
+        Log.logLevel = .debug
         Log.useEmoji = true
 
         operationQueue.maxConcurrentOperationCount = 1

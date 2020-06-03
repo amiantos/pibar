@@ -34,6 +34,8 @@
 		442F6F8B24721523008F1101 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442F6F8A24721523008F1101 /* PreferencesViewController.swift */; };
 		4438184E247DE31A009D9B3F /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4438184D247DE31A009D9B3F /* AboutViewController.swift */; };
 		44381850247DE41B009D9B3F /* AboutWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4438184F247DE41B009D9B3F /* AboutWindowController.swift */; };
+		448C6F1C248746A2004C30BE /* NetworkOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448C6F1B248746A2004C30BE /* NetworkOverviewView.swift */; };
+		448C6F1E24874AF5004C30BE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448C6F1D24874AF5004C30BE /* MainViewController.swift */; };
 		449395D62471ABD600FA0C34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449395D52471ABD600FA0C34 /* AppDelegate.swift */; };
 		449395DA2471ABD700FA0C34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 449395D92471ABD700FA0C34 /* Assets.xcassets */; };
 		449395DD2471ABD700FA0C34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 449395DB2471ABD700FA0C34 /* Main.storyboard */; };
@@ -81,6 +83,8 @@
 		442F6F8A24721523008F1101 /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		4438184D247DE31A009D9B3F /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		4438184F247DE41B009D9B3F /* AboutWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutWindowController.swift; sourceTree = "<group>"; };
+		448C6F1B248746A2004C30BE /* NetworkOverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkOverviewView.swift; sourceTree = "<group>"; };
+		448C6F1D24874AF5004C30BE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		449395D22471ABD600FA0C34 /* PiBar for macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PiBar for macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		449395D52471ABD600FA0C34 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		449395D92471ABD700FA0C34 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -139,6 +143,8 @@
 				440DE46E2482D37D00C55354 /* Assets.xcassets */,
 				440DE4702482D37D00C55354 /* LaunchScreen.storyboard */,
 				440DE4732482D37D00C55354 /* Info.plist */,
+				448C6F1B248746A2004C30BE /* NetworkOverviewView.swift */,
+				448C6F1D24874AF5004C30BE /* MainViewController.swift */,
 			);
 			path = "PiBar for iOS";
 			sourceTree = "<group>";
@@ -219,8 +225,8 @@
 				440DE4772482D54E00C55354 /* PiBar Shared */,
 				449395D42471ABD600FA0C34 /* PiBar for macOS */,
 				440DE4622482D37D00C55354 /* PiBar for iOS */,
-				449395D32471ABD600FA0C34 /* Products */,
 				214831E348424C32082556DF /* Pods */,
+				449395D32471ABD600FA0C34 /* Products */,
 				913B94517DDE1EF8E0C98FB2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -515,6 +521,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				448C6F1C248746A2004C30BE /* NetworkOverviewView.swift in Sources */,
+				448C6F1E24874AF5004C30BE /* MainViewController.swift in Sources */,
 				440DE4782482D58B00C55354 /* Extensions.swift in Sources */,
 				440DE47E2482D59C00C55354 /* AsyncOperation.swift in Sources */,
 				440DE4792482D58D00C55354 /* Logging.swift in Sources */,
