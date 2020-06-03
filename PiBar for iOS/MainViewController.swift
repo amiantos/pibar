@@ -25,11 +25,11 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        networkOverviewView.layer.cornerRadius = 50
-        networkOverviewView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+        let maskLayer = CAShapeLayer()
+        maskLayer.path = UIBezierPath(roundedRect: view.bounds, byRoundingCorners: [.topLeft, .topRight], cornerRadii: CGSize(width: 38.5, height: 38.5)).cgPath
+        networkOverviewView.layer.mask = maskLayer
         networkOverviewView.clipsToBounds = true
-
+    
         networkOverviewView.manager = manager
 
         Preferences.standard.set(piholes: [
