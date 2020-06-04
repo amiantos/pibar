@@ -107,8 +107,10 @@ class NetworkOverviewView: UIView {
                     batchCount += 1
                 }
             }
-            let entry = BarChartDataEntry(x: x, yValues: [summedDomains, summedAds])
-            yVals.append(entry)
+            if !summedDomains.isZero || !summedAds.isZero {
+                let entry = BarChartDataEntry(x: x, yValues: [summedDomains, summedAds])
+                yVals.append(entry)
+            }
         }
 
         if yVals.isEmpty { return }
@@ -122,7 +124,7 @@ class NetworkOverviewView: UIView {
         } else {
             set1 = BarChartDataSet(entries: yVals)
             set1.label = "Queries Over Time"
-            set1.colors = [.systemRed, .darkGray]
+            set1.colors = [UIColor(named: "red") ?? .systemRed, .darkGray]
             set1.drawValuesEnabled = false
 
             let data = BarChartData(dataSet: set1)

@@ -35,7 +35,7 @@ class PiholeTableViewCell: UITableViewCell {
 
     fileprivate func roundCorners() {
         let maskLayer = CAShapeLayer()
-        maskLayer.path = UIBezierPath(roundedRect: containerView.bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 20, height: 20)).cgPath
+        maskLayer.path = UIBezierPath(roundedRect: containerView.bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 15, height: 15)).cgPath
         containerView.layer.mask = maskLayer
         containerView.clipsToBounds = true
     }

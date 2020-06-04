@@ -56,8 +56,11 @@ class MainViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        tableView.contentInset.bottom = networkOverviewView.frame.height - view.safeAreaInsets.bottom
-        tableView.scrollIndicatorInsets.bottom = networkOverviewView.frame.height  - view.safeAreaInsets.bottom
+        tableView.contentInset.bottom = networkOverviewView.frame.height - view.safeAreaInsets.bottom + 10
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            // I like how insets look on iPhone, but not iPad
+            tableView.scrollIndicatorInsets.bottom = networkOverviewView.frame.height  - view.safeAreaInsets.bottom
+        }
     }
 
     /*
