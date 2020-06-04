@@ -43,6 +43,7 @@ class PiBarManager: NSObject {
             adsBlockedToday: 0,
             adsPercentageToday: 0.0,
             averageBlocklist: 0,
+            overTimeData: nil,
             piholes: [:]
         )
         super.init()
@@ -143,6 +144,7 @@ class PiBarManager: NSObject {
             adsBlockedToday: 0,
             adsPercentageToday: 0.0,
             averageBlocklist: 0,
+            overTimeData: nil,
             piholes: [:]
         )
     }
@@ -204,6 +206,7 @@ class PiBarManager: NSObject {
             adsBlockedToday: networkBlockedQueries(),
             adsPercentageToday: networkPercentageBlocked(),
             averageBlocklist: networkBlocklist(),
+            overTimeData: generateNetworkOverTimeData(),
             piholes: piholes
         )
     }
@@ -277,5 +280,78 @@ class PiBarManager: NSObject {
         }
 
         return false
+    }
+
+    private func generateNetworkOverTimeData() -> PiholeNetworkOverTimeData? {
+        if piholes.isEmpty {
+            return nil
+        }
+
+        var piholesOverTimeData: [String: [Double: (Double, Double)]] = [:]
+
+        for (identifier, pihole) in piholes {
+            piholesOverTimeData[identifier] = normalizeOverTimeData(pihole)
+        }
+
+        var overview: [Double: (Double, Double)] = [:]
+
+        var hours: Set<Double> = []
+        for identifier in piholes.keys {
+            guard let data = piholesOverTimeData[identifier] else { continue }
+            hours = hours.union(data.keys)
+        }
+
+        var maximumHourlyValue: Double = 0.0
+
+        for hour in hours {
+            var summedData: (Double, Double) = (0, 0)
+            for identifier in piholes.keys {
+                guard let data = piholesOverTimeData[identifier] else { continue }
+                let queryData: (Double, Double) = data[hour] ?? (0, 0)
+                summedData = (summedData.0 + queryData.0, summedData.1 + queryData.1)
+
+                let hourlyTotalQueries: Double = summedData.0 + summedData.1
+                maximumHourlyValue = hourlyTotalQueries > maximumHourlyValue ? hourlyTotalQueries : maximumHourlyValue
+            }
+            overview[hour] = summedData
+        }
+
+        return PiholeNetworkOverTimeData(
+            overview: overview,
+            maximumValue: maximumHourlyValue,
+            piholes: piholesOverTimeData)
+    }
+
+    private func normalizeOverTimeData(_ pihole: Pihole) -> [Double: (Double, Double)] {
+        var overTimeData: [Double: (Double, Double)] = [:]
+        if let domainsOverTime = pihole.overTimeData?.domainsOverTime,
+            let adsOverTime = pihole.overTimeData?.adsOverTime {
+
+            var hour: Double = 0
+            var batchCount: Int = 0
+            var summedDomains: Double = 0.0
+            var summedAds: Double = 0.0
+
+            let sorted = domainsOverTime.sorted { $0.key < $1.key }
+
+            for (key, value) in sorted {
+                if batchCount < 5 {
+                    summedDomains += Double(value)
+                    summedAds += Double(adsOverTime[key] ?? 0)
+                    batchCount += 1
+                } else {
+                    overTimeData[hour] =  (summedDomains, summedAds)
+                    hour += 1
+                    summedDomains = 0
+                    summedAds = 0
+                    batchCount = 0
+                }
+            }
+            if !summedDomains.isZero || !summedAds.isZero {
+                overTimeData[hour] =  (summedDomains, summedAds)
+            }
+        }
+
+        return overTimeData
     }
 }

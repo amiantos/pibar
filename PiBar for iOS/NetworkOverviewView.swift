@@ -56,61 +56,34 @@ class NetworkOverviewView: UIView {
     }
 
     func createChart() {
-
-        chart.delegate = self
-
+        // Chart setup
         chart.chartDescription?.enabled = false
-
         chart.isUserInteractionEnabled = false
-
         chart.leftAxis.drawLabelsEnabled = false
         chart.legend.enabled = false
-
         chart.minOffset = 0
-
         chart.xAxis.drawGridLinesEnabled = false
         chart.leftAxis.drawGridLinesEnabled = false
         chart.leftAxis.axisMinimum = 0
         chart.leftAxis.drawAxisLineEnabled = false
         chart.xAxis.drawAxisLineEnabled = false
-
         chart.xAxis.enabled = false
         chart.leftAxis.enabled = false
-
-
         let xAxis = chart.xAxis
         xAxis.labelPosition = .bottom
-
         chart.rightAxis.enabled = false
         chart.xAxis.drawLabelsEnabled = false
 
+        // Chart Data
         var yVals: [BarChartDataEntry] = []
-        var x: Double = 0
-        var batchCount: Int = 0
-        var summedDomains: Double = 0.0
-        var summedAds: Double = 0.0
 
-        if let domainsOverTime = networkOverview?.piholes["pi-hole.local"]?.overTimeData?.domainsOverTime,
-            let adsOverTime = networkOverview?.piholes["pi-hole.local"]?.overTimeData?.adsOverTime {
-            let sorted = domainsOverTime.sorted { $0.key < $1.key }
-            for (key, value) in sorted {
-                if batchCount == 5 {
-                    let entry = BarChartDataEntry(x: x, yValues: [summedDomains, summedAds])
-                    yVals.append(entry)
-                    x += 1
-                    summedDomains = 0
-                    summedAds = 0
-                    batchCount = 0
-                } else {
-                    summedDomains += Double(value)
-                    summedAds += Double(adsOverTime[key]!)
-                    batchCount += 1
-                }
-            }
-            if !summedDomains.isZero || !summedAds.isZero {
-                let entry = BarChartDataEntry(x: x, yValues: [summedDomains, summedAds])
-                yVals.append(entry)
-            }
+        guard let dataOverTime = networkOverview?.overTimeData, !dataOverTime.overview.isEmpty else { return }
+
+        let sorted = dataOverTime.overview.sorted { $0.key < $1.key }
+
+        for (key, value) in sorted {
+            let entry = BarChartDataEntry(x: key, yValues: [value.0, value.1])
+            yVals.append(entry)
         }
 
         if yVals.isEmpty { return }
@@ -119,6 +92,7 @@ class NetworkOverviewView: UIView {
         if let set = chart.data?.dataSets.first as? BarChartDataSet {
             set1 = set
             set1.replaceEntries(yVals)
+            chart.leftAxis.axisMaximum = dataOverTime.maximumValue
             chart.data?.notifyDataChanged()
             chart.notifyDataSetChanged()
         } else {
@@ -126,6 +100,8 @@ class NetworkOverviewView: UIView {
             set1.label = "Queries Over Time"
             set1.colors = [UIColor(named: "red") ?? .systemRed, .darkGray]
             set1.drawValuesEnabled = false
+
+            chart.leftAxis.axisMaximum = dataOverTime.maximumValue
 
             let data = BarChartData(dataSet: set1)
             data.barWidth = 0.8
@@ -140,9 +116,5 @@ class NetworkOverviewView: UIView {
         // Drawing code
     }
     */
-
-}
-
-extension NetworkOverviewView: ChartViewDelegate {
 
 }

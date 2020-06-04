@@ -107,6 +107,12 @@ extension MainViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "piholeCell", for: indexPath) as! PiholeTableViewCell
 
         cell.pihole = piholes[piholeIdentifiersAlphabetized[indexPath.row]]
+
+        if let overTimeData = networkOverview?.overTimeData,
+            let piholeData = overTimeData.piholes[piholeIdentifiersAlphabetized[indexPath.row]] {
+            cell.chartData = (overTimeData.maximumValue, piholeData)
+        }
+
         return cell
     }
 

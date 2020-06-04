@@ -158,5 +158,13 @@ struct PiholeNetworkOverview {
     let adsPercentageToday: Double
     let averageBlocklist: Int
 
+    let overTimeData: PiholeNetworkOverTimeData?
+
     let piholes: [String: Pihole]
+}
+
+struct PiholeNetworkOverTimeData {
+    let overview: [Double: (Double, Double)]
+    let maximumValue: Double
+    let piholes: [String: [Double: (Double, Double)]]
 }
