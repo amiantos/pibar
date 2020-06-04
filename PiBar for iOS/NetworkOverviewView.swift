@@ -71,6 +71,8 @@ class NetworkOverviewView: UIView {
         chart.xAxis.drawGridLinesEnabled = false
         chart.leftAxis.drawGridLinesEnabled = false
         chart.leftAxis.axisMinimum = 0
+        chart.leftAxis.drawAxisLineEnabled = false
+        chart.xAxis.drawAxisLineEnabled = false
 
         chart.xAxis.enabled = false
         chart.leftAxis.enabled = false
@@ -84,14 +86,29 @@ class NetworkOverviewView: UIView {
 
         var yVals: [BarChartDataEntry] = []
         var x: Double = 0
+        var batchCount: Int = 0
+        var summedDomains: Double = 0.0
+        var summedAds: Double = 0.0
+
         if let domainsOverTime = networkOverview?.piholes["pi-hole.local"]?.overTimeData?.domainsOverTime,
             let adsOverTime = networkOverview?.piholes["pi-hole.local"]?.overTimeData?.adsOverTime {
             let sorted = domainsOverTime.sorted { $0.key < $1.key }
             for (key, value) in sorted {
-                let entry = BarChartDataEntry(x: x, yValues: [Double(adsOverTime[key]!), Double(value)])
-                yVals.append(entry)
-                x += 1
+                if batchCount == 5 {
+                    let entry = BarChartDataEntry(x: x, yValues: [summedDomains, summedAds])
+                    yVals.append(entry)
+                    x += 1
+                    summedDomains = 0
+                    summedAds = 0
+                    batchCount = 0
+                } else {
+                    summedDomains += Double(value)
+                    summedAds += Double(adsOverTime[key]!)
+                    batchCount += 1
+                }
             }
+            let entry = BarChartDataEntry(x: x, yValues: [summedDomains, summedAds])
+            yVals.append(entry)
         }
 
         if yVals.isEmpty { return }
@@ -105,10 +122,11 @@ class NetworkOverviewView: UIView {
         } else {
             set1 = BarChartDataSet(entries: yVals)
             set1.label = "Queries Over Time"
-            set1.colors = [.clear, .systemRed]
+            set1.colors = [.systemRed, .darkGray]
+            set1.drawValuesEnabled = false
 
             let data = BarChartData(dataSet: set1)
-            data.barWidth = 1.2
+            data.barWidth = 0.8
             chart.data = data
         }
     }
