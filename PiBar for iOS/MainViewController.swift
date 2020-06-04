@@ -26,11 +26,6 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let maskLayer = CAShapeLayer()
-        maskLayer.path = UIBezierPath(roundedRect: view.bounds, byRoundingCorners: [.topLeft, .topRight], cornerRadii: CGSize(width: 38.5, height: 38.5)).cgPath
-        networkOverviewView.layer.mask = maskLayer
-        networkOverviewView.clipsToBounds = true
-    
         networkOverviewView.manager = manager
 
         Preferences.standard.set(piholes: [
@@ -64,7 +59,6 @@ class MainViewController: UIViewController {
         tableView.contentInset.bottom = networkOverviewView.frame.height - view.safeAreaInsets.bottom
         tableView.scrollIndicatorInsets.bottom = networkOverviewView.frame.height  - view.safeAreaInsets.bottom
     }
-    
 
     /*
     // MARK: - Navigation

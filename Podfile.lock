@@ -1,20 +1,26 @@
 PODS:
+  - Charts (3.5.0):
+    - Charts/Core (= 3.5.0)
+  - Charts/Core (3.5.0)
   - HotKey (0.1.2)
   - SwiftLint (0.39.2)
 
 DEPENDENCIES:
+  - Charts
   - HotKey
   - SwiftLint
 
 SPEC REPOS:
   trunk:
+    - Charts
     - HotKey
     - SwiftLint
 
 SPEC CHECKSUMS:
+  Charts: 40a08591df1f8ad5c223ddedfb1a06da92f24f7c
   HotKey: ad59450195936c10992438c4210f673de5aee43e
   SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
 
-PODFILE CHECKSUM: daaba820bd022a7fe651de8cba3e1d0268f9b367
+PODFILE CHECKSUM: c2e80d933e60ddedf45d9176975578a449f44603
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.9.3

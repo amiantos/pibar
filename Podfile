@@ -6,3 +6,12 @@ target 'PiBar for macOS' do
   pod 'HotKey'
 
 end
+
+target 'PiBar for iOS' do
+  platform :ios, '11.4'
+  use_frameworks!
+
+  pod 'SwiftLint'
+  pod 'Charts'
+
+end

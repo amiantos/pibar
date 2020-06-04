@@ -20,37 +20,57 @@ final class UpdatePiholeOperation: AsyncOperation {
 
     override func main() {
         Log.debug("Updating Pi-hole: \(pihole.identifier)")
+
+        var enabled: Bool? = true
+        var online = true
+        var canBeManaged: Bool = false
+
+        var receivedSummary: PiholeAPISummary?
+        var receivedOverTimeData: PiholeOverTimeData?
+
+        let group = DispatchGroup()
+
+        group.enter()
         pihole.api.fetchSummary { summary in
             Log.debug("Received Summary for \(self.pihole.identifier)")
-            var enabled: Bool? = true
-            var online = true
-            var canBeManaged: Bool = false
-
-            if let summary = summary {
-                if summary.status != "enabled" {
-                    enabled = false
-                }
-                if !self.pihole.api.connection.token.isEmpty || !self.pihole.api.connection.passwordProtected {
-                    canBeManaged = true
-                }
-            } else {
-                enabled = nil
-                online = false
-                canBeManaged = false
-            }
-
-            let updatedPihole: Pihole = Pihole(
-                api: self.pihole.api,
-                identifier: self.pihole.api.identifier,
-                online: online,
-                summary: summary,
-                canBeManaged: canBeManaged,
-                enabled: enabled
-            )
-
-            self.pihole = updatedPihole
-
-            self.state = .isFinished
+            receivedSummary = summary
+            group.leave()
         }
+
+        group.enter()
+        pihole.api.fetchOverTimeData { overTimeData in
+            Log.debug("Received Over Time Data for \(self.pihole.identifier)")
+            receivedOverTimeData = overTimeData
+            group.leave()
+        }
+
+        group.wait()
+
+        if let summary = receivedSummary {
+            if summary.status != "enabled" {
+                enabled = false
+            }
+            if !self.pihole.api.connection.token.isEmpty || !self.pihole.api.connection.passwordProtected {
+                canBeManaged = true
+            }
+        } else {
+            enabled = nil
+            online = false
+            canBeManaged = false
+        }
+
+        let updatedPihole: Pihole = Pihole(
+            api: self.pihole.api,
+            identifier: self.pihole.api.identifier,
+            online: online,
+            summary: receivedSummary,
+            overTimeData: receivedOverTimeData,
+            canBeManaged: canBeManaged,
+            enabled: enabled
+        )
+
+        self.pihole = updatedPihole
+
+        self.state = .isFinished
     }
 }

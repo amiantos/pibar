@@ -19,6 +19,8 @@ class PiholeTableViewCell: UITableViewCell {
                 self.blockedQueriesLabel.text = summary.adsBlockedToday.string
                 self.blocklistLabel.text = summary.domainsBeingBlocked.string
                 self.currentStatusLabel.text = summary.status.capitalized
+
+//                guard let overTimeData = pihole.overTimeData else { return }
             }
         }
     }
@@ -32,11 +34,8 @@ class PiholeTableViewCell: UITableViewCell {
     @IBOutlet weak var containerView: UIView!
 
     fileprivate func roundCorners() {
-        let cornerPath = UIBezierPath(roundedRect: containerView.bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 20, height: 20)).cgPath
-
         let maskLayer = CAShapeLayer()
-        maskLayer.path = cornerPath
-
+        maskLayer.path = UIBezierPath(roundedRect: containerView.bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 20, height: 20)).cgPath
         containerView.layer.mask = maskLayer
         containerView.clipsToBounds = true
     }

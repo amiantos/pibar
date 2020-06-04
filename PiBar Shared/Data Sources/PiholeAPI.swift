@@ -100,6 +100,7 @@ final class PiholeAPI {
             let object = try jsonDecoder.decode(T.self, from: jsonData)
             return object
         } catch {
+            Log.debug(error.localizedDescription)
             return nil
         }
     }
@@ -151,6 +152,16 @@ final class PiholeAPI {
         DispatchQueue.global(qos: .background).async {
             self.get(Endpoints.topItems) { string in
                 completion(string)
+            }
+        }
+    }
+
+    func fetchOverTimeData(completion: @escaping (PiholeOverTimeData?) -> Void) {
+        DispatchQueue.global(qos: .background).async {
+            self.get(Endpoints.overTimeData10mins) { string in
+                guard let jsonString = string,
+                    let overTimeData: PiholeOverTimeData = self.decodeJSON(jsonString) else { return completion(nil) }
+                completion(overTimeData)
             }
         }
     }

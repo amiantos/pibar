@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		322617A9F42112CA6678F716 /* Pods_PiBar_for_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 974EF8C581C413D7313D458F /* Pods_PiBar_for_iOS.framework */; };
 		440DE4642482D37D00C55354 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440DE4632482D37D00C55354 /* AppDelegate.swift */; };
 		440DE4662482D37D00C55354 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440DE4652482D37D00C55354 /* SceneDelegate.swift */; };
 		440DE46D2482D37D00C55354 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 440DE46B2482D37D00C55354 /* Main.storyboard */; };
@@ -99,6 +100,9 @@
 		449395ED2471C47F00FA0C34 /* PiholeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiholeAPI.swift; sourceTree = "<group>"; };
 		44B6DAF1247C70F500D364EC /* PiholeSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiholeSettingsViewController.swift; sourceTree = "<group>"; };
 		44FFB091247627B100DCEDEC /* PiBarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiBarManager.swift; sourceTree = "<group>"; };
+		5D3D6C1A46DF2617F8C7B902 /* Pods-PiBar for iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PiBar for iOS.release.xcconfig"; path = "Target Support Files/Pods-PiBar for iOS/Pods-PiBar for iOS.release.xcconfig"; sourceTree = "<group>"; };
+		61E78EDFF852EC8679380516 /* Pods-PiBar for iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PiBar for iOS.debug.xcconfig"; path = "Target Support Files/Pods-PiBar for iOS/Pods-PiBar for iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		974EF8C581C413D7313D458F /* Pods_PiBar_for_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PiBar_for_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8CE572444810D388817476D /* Pods-PiBar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PiBar.debug.xcconfig"; path = "Target Support Files/Pods-PiBar/Pods-PiBar.debug.xcconfig"; sourceTree = "<group>"; };
 		AB442844C550DE69A8DE1422 /* Pods_PiBar_for_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PiBar_for_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCE170268940B6C31FF721B6 /* Pods-PiBar for macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PiBar for macOS.release.xcconfig"; path = "Target Support Files/Pods-PiBar for macOS/Pods-PiBar for macOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -110,6 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				322617A9F42112CA6678F716 /* Pods_PiBar_for_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +137,8 @@
 				08A4966FFD2196F42B1CA80F /* Pods-PiBar.release.xcconfig */,
 				FADC58092194CBF2E4F9D976 /* Pods-PiBar for macOS.debug.xcconfig */,
 				DCE170268940B6C31FF721B6 /* Pods-PiBar for macOS.release.xcconfig */,
+				61E78EDFF852EC8679380516 /* Pods-PiBar for iOS.debug.xcconfig */,
+				5D3D6C1A46DF2617F8C7B902 /* Pods-PiBar for iOS.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -278,6 +285,7 @@
 			children = (
 				441E78A8247E21DE00FBC7A0 /* LaunchAtLogin.framework */,
 				AB442844C550DE69A8DE1422 /* Pods_PiBar_for_macOS.framework */,
+				974EF8C581C413D7313D458F /* Pods_PiBar_for_iOS.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -289,9 +297,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 440DE4742482D37D00C55354 /* Build configuration list for PBXNativeTarget "PiBar for iOS" */;
 			buildPhases = (
+				B5518C6557009A6933ED466D /* [CP] Check Pods Manifest.lock */,
 				440DE45D2482D37C00C55354 /* Sources */,
 				440DE45E2482D37C00C55354 /* Frameworks */,
 				440DE45F2482D37C00C55354 /* Resources */,
+				E0873B6BD66E09A2764D8708 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -500,6 +510,28 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		B5518C6557009A6933ED466D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PiBar for iOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		CF30F66DAC81C5868939E5C0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -515,6 +547,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PiBar for macOS/Pods-PiBar for macOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E0873B6BD66E09A2764D8708 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PiBar for iOS/Pods-PiBar for iOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PiBar for iOS/Pods-PiBar for iOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PiBar for iOS/Pods-PiBar for iOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -596,12 +645,13 @@
 /* Begin XCBuildConfiguration section */
 		440DE4752482D37D00C55354 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 61E78EDFF852EC8679380516 /* Pods-PiBar for iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2Y9M69QJKZ;
 				INFOPLIST_FILE = "PiBar for iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -616,12 +666,13 @@
 		};
 		440DE4762482D37D00C55354 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5D3D6C1A46DF2617F8C7B902 /* Pods-PiBar for iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2Y9M69QJKZ;
 				INFOPLIST_FILE = "PiBar for iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

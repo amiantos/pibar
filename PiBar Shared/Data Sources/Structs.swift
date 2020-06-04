@@ -110,6 +110,11 @@ struct PiholeAPIStatus: Decodable {
     let status: String
 }
 
+struct PiholeOverTimeData: Decodable {
+    let domainsOverTime: [String: Int]
+    let adsOverTime: [String: Int]
+}
+
 // MARK: - Pi-hole Network
 
 enum PiholeNetworkStatus: String {
@@ -127,6 +132,7 @@ struct Pihole {
     let identifier: String
     let online: Bool
     let summary: PiholeAPISummary?
+    let overTimeData: PiholeOverTimeData?
     let canBeManaged: Bool?
     let enabled: Bool?
 

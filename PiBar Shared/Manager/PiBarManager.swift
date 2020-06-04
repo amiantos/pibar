@@ -161,6 +161,7 @@ class PiBarManager: NSObject {
                 identifier: $0.identifier,
                 online: false,
                 summary: nil,
+                overTimeData: nil,
                 canBeManaged: nil,
                 enabled: nil
             )
