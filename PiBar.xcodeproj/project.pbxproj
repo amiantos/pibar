@@ -150,14 +150,10 @@
 			children = (
 				440DE4632482D37D00C55354 /* AppDelegate.swift */,
 				440DE4652482D37D00C55354 /* SceneDelegate.swift */,
-				440DE46B2482D37D00C55354 /* Main.storyboard */,
 				440DE46E2482D37D00C55354 /* Assets.xcassets */,
 				440DE4702482D37D00C55354 /* LaunchScreen.storyboard */,
 				440DE4732482D37D00C55354 /* Info.plist */,
-				448C6F1B248746A2004C30BE /* NetworkOverviewView.swift */,
-				448C6F1D24874AF5004C30BE /* MainViewController.swift */,
-				448C6F1F2488286E004C30BE /* PiholeTableViewCell.swift */,
-				444821DD248AE1C000665395 /* PiBarChartView.swift */,
+				444821E0248AFB2000665395 /* Views */,
 			);
 			path = "PiBar for iOS";
 			sourceTree = "<group>";
@@ -229,6 +225,34 @@
 				4438184F247DE41B009D9B3F /* AboutWindowController.swift */,
 			);
 			path = About;
+			sourceTree = "<group>";
+		};
+		444821E0248AFB2000665395 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				440DE46B2482D37D00C55354 /* Main.storyboard */,
+				444821E1248AFB3A00665395 /* Main View */,
+				444821E2248AFB4400665395 /* Extras */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		444821E1248AFB3A00665395 /* Main View */ = {
+			isa = PBXGroup;
+			children = (
+				448C6F1D24874AF5004C30BE /* MainViewController.swift */,
+				448C6F1B248746A2004C30BE /* NetworkOverviewView.swift */,
+				448C6F1F2488286E004C30BE /* PiholeTableViewCell.swift */,
+			);
+			path = "Main View";
+			sourceTree = "<group>";
+		};
+		444821E2248AFB4400665395 /* Extras */ = {
+			isa = PBXGroup;
+			children = (
+				444821DD248AE1C000665395 /* PiBarChartView.swift */,
+			);
+			path = Extras;
 			sourceTree = "<group>";
 		};
 		449395C92471ABD600FA0C34 = {
