@@ -6,11 +6,10 @@
 //  Copyright © 2020 Brad Root. All rights reserved.
 //
 
-import UIKit
 import Charts
+import UIKit
 
 class NetworkOverviewView: UIView {
-
     weak var manager: PiBarManager?
 
     @IBOutlet var totalQueriesLabel: UILabel!
@@ -49,10 +48,13 @@ class NetworkOverviewView: UIView {
         viewQueriesButton.layer.cornerRadius = viewQueriesButton.frame.height / 2
 
         let maskLayer = CAShapeLayer()
-        maskLayer.path = UIBezierPath(roundedRect: bounds, byRoundingCorners: [.topLeft, .topRight], cornerRadii: CGSize(width: 38.5, height: 38.5)).cgPath
+        maskLayer.path = UIBezierPath(
+            roundedRect: bounds,
+            byRoundingCorners: [.topLeft, .topRight],
+            cornerRadii: CGSize(width: 38.5, height: 38.5)
+        ).cgPath
         layer.mask = maskLayer
         clipsToBounds = true
-
     }
 
     func updateChart() {
@@ -60,13 +62,12 @@ class NetworkOverviewView: UIView {
         guard let dataOverTime = networkOverview?.overTimeData, !dataOverTime.overview.isEmpty else { return }
         chart.loadDataOverTime(dataOverTime.overview, maxValue: dataOverTime.maximumValue)
     }
-    
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
 
+    /*
+     // Only override draw() if you perform custom drawing.
+     // An empty implementation adversely affects performance during animation.
+     override func draw(_ rect: CGRect) {
+         // Drawing code
+     }
+     */
 }

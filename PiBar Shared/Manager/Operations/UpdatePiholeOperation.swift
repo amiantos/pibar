@@ -50,7 +50,7 @@ final class UpdatePiholeOperation: AsyncOperation {
             if summary.status != "enabled" {
                 enabled = false
             }
-            if !self.pihole.api.connection.token.isEmpty || !self.pihole.api.connection.passwordProtected {
+            if !pihole.api.connection.token.isEmpty || !pihole.api.connection.passwordProtected {
                 canBeManaged = true
             }
         } else {
@@ -60,8 +60,8 @@ final class UpdatePiholeOperation: AsyncOperation {
         }
 
         let updatedPihole: Pihole = Pihole(
-            api: self.pihole.api,
-            identifier: self.pihole.api.identifier,
+            api: pihole.api,
+            identifier: pihole.api.identifier,
             online: online,
             summary: receivedSummary,
             overTimeData: receivedOverTimeData,
@@ -69,8 +69,8 @@ final class UpdatePiholeOperation: AsyncOperation {
             enabled: enabled
         )
 
-        self.pihole = updatedPihole
+        pihole = updatedPihole
 
-        self.state = .isFinished
+        state = .isFinished
     }
 }

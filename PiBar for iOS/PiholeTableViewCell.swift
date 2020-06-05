@@ -6,11 +6,10 @@
 //  Copyright © 2020 Brad Root. All rights reserved.
 //
 
-import UIKit
 import Charts
+import UIKit
 
 class PiholeTableViewCell: UITableViewCell {
-
     var pihole: Pihole? {
         didSet {
             DispatchQueue.main.async {
@@ -32,19 +31,23 @@ class PiholeTableViewCell: UITableViewCell {
         }
     }
 
-    @IBOutlet weak var hostnameLabel: UILabel!
-    @IBOutlet weak var currentStatusLabel: UILabel!
-    @IBOutlet weak var totalQueriesLabel: UILabel!
-    @IBOutlet weak var blockedQueriesLabel: UILabel!
-    @IBOutlet weak var blocklistLabel: UILabel!
+    @IBOutlet var hostnameLabel: UILabel!
+    @IBOutlet var currentStatusLabel: UILabel!
+    @IBOutlet var totalQueriesLabel: UILabel!
+    @IBOutlet var blockedQueriesLabel: UILabel!
+    @IBOutlet var blocklistLabel: UILabel!
 
-    @IBOutlet weak var containerView: UIView!
+    @IBOutlet var containerView: UIView!
 
-    @IBOutlet weak var chart: PiBarChartView!
+    @IBOutlet var chart: PiBarChartView!
 
     fileprivate func roundCorners() {
         let maskLayer = CAShapeLayer()
-        maskLayer.path = UIBezierPath(roundedRect: containerView.bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 15, height: 15)).cgPath
+        maskLayer.path = UIBezierPath(
+            roundedRect: containerView.bounds,
+            byRoundingCorners: .allCorners,
+            cornerRadii: CGSize(width: 15, height: 15)
+        ).cgPath
         containerView.layer.mask = maskLayer
         containerView.clipsToBounds = true
     }
@@ -65,5 +68,4 @@ class PiholeTableViewCell: UITableViewCell {
         if chartData.1.isEmpty { return }
         chart.loadDataOverTime(chartData.1, maxValue: chartData.0)
     }
-
 }

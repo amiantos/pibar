@@ -319,14 +319,14 @@ class PiBarManager: NSObject {
         return PiholeNetworkOverTimeData(
             overview: overview,
             maximumValue: maximumHourlyValue,
-            piholes: piholesOverTimeData)
+            piholes: piholesOverTimeData
+        )
     }
 
     private func normalizeOverTimeData(_ pihole: Pihole) -> [Double: (Double, Double)] {
         var overTimeData: [Double: (Double, Double)] = [:]
         if let domainsOverTime = pihole.overTimeData?.domainsOverTime,
             let adsOverTime = pihole.overTimeData?.adsOverTime {
-
             var hour: Double = 0
             var batchCount: Int = 0
             var summedDomains: Double = 0.0
@@ -340,7 +340,7 @@ class PiBarManager: NSObject {
                     summedAds += Double(adsOverTime[key] ?? 0)
                     batchCount += 1
                 } else {
-                    overTimeData[hour] =  (summedDomains, summedAds)
+                    overTimeData[hour] = (summedDomains, summedAds)
                     hour += 1
                     summedDomains = 0
                     summedAds = 0
@@ -348,7 +348,7 @@ class PiBarManager: NSObject {
                 }
             }
             if !summedDomains.isZero || !summedAds.isZero {
-                overTimeData[hour] =  (summedDomains, summedAds)
+                overTimeData[hour] = (summedDomains, summedAds)
             }
         }
 

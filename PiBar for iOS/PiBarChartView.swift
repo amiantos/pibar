@@ -26,10 +26,13 @@ class PiBarChartView: BarChartView {
         legend.enabled = false
         minOffset = 0
 
-        xAxis.drawGridLinesEnabled = false
+        xAxis.drawGridLinesEnabled = true
         xAxis.drawAxisLineEnabled = false
         xAxis.drawLabelsEnabled = false
-        xAxis.enabled = false
+        xAxis.enabled = true
+
+        xAxis.gridColor = UIColor(named: "chartGridLines") ?? UIColor.darkGray
+        xAxis.gridLineWidth = 0.5
 
         leftAxis.enabled = false
         leftAxis.drawGridLinesEnabled = false
@@ -40,7 +43,7 @@ class PiBarChartView: BarChartView {
         rightAxis.enabled = false
     }
 
-    func loadDataOverTime(_ dataOverTime: [Double : (Double, Double)], maxValue: Double) {
+    func loadDataOverTime(_ dataOverTime: [Double: (Double, Double)], maxValue: Double) {
         var yVals: [BarChartDataEntry] = []
         let sorted = dataOverTime.sorted { $0.key < $1.key }
 
@@ -51,7 +54,9 @@ class PiBarChartView: BarChartView {
 
         if yVals.isEmpty { return }
 
-        var set1: BarChartDataSet! = nil
+        xAxis.labelCount = yVals.count
+
+        var set1: BarChartDataSet!
         if let set = data?.dataSets.first as? BarChartDataSet {
             set1 = set
             set1.replaceEntries(yVals)
