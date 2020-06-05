@@ -21,7 +21,7 @@ class NetworkOverviewView: UIView {
     @IBOutlet var disableButton: UIButton!
     @IBOutlet var viewQueriesButton: UIButton!
 
-    @IBOutlet var chart: BarChartView!
+    @IBOutlet var chart: PiBarChartView!
 
     @IBAction func disableButtonAction(_ sender: UIButton) {
         let seconds = sender.tag > 0 ? sender.tag : nil
@@ -37,7 +37,7 @@ class NetworkOverviewView: UIView {
                 self.blockedQueriesLabel.text = networkOverview.adsBlockedToday.string
                 self.networkStatusLabel.text = networkOverview.networkStatus.rawValue
                 self.avgBlocklistLabel.text = networkOverview.averageBlocklist.string
-                self.createChart()
+                self.updateChart()
             }
         }
     }
@@ -55,58 +55,10 @@ class NetworkOverviewView: UIView {
 
     }
 
-    func createChart() {
-        // Chart setup
-        chart.chartDescription?.enabled = false
-        chart.isUserInteractionEnabled = false
-        chart.leftAxis.drawLabelsEnabled = false
-        chart.legend.enabled = false
-        chart.minOffset = 0
-        chart.xAxis.drawGridLinesEnabled = false
-        chart.leftAxis.drawGridLinesEnabled = false
-        chart.leftAxis.axisMinimum = 0
-        chart.leftAxis.drawAxisLineEnabled = false
-        chart.xAxis.drawAxisLineEnabled = false
-        chart.xAxis.enabled = false
-        chart.leftAxis.enabled = false
-        let xAxis = chart.xAxis
-        xAxis.labelPosition = .bottom
-        chart.rightAxis.enabled = false
-        chart.xAxis.drawLabelsEnabled = false
-
+    func updateChart() {
         // Chart Data
-        var yVals: [BarChartDataEntry] = []
-
         guard let dataOverTime = networkOverview?.overTimeData, !dataOverTime.overview.isEmpty else { return }
-
-        let sorted = dataOverTime.overview.sorted { $0.key < $1.key }
-
-        for (key, value) in sorted {
-            let entry = BarChartDataEntry(x: key, yValues: [value.0, value.1])
-            yVals.append(entry)
-        }
-
-        if yVals.isEmpty { return }
-
-        var set1: BarChartDataSet! = nil
-        if let set = chart.data?.dataSets.first as? BarChartDataSet {
-            set1 = set
-            set1.replaceEntries(yVals)
-            chart.leftAxis.axisMaximum = dataOverTime.maximumValue
-            chart.data?.notifyDataChanged()
-            chart.notifyDataSetChanged()
-        } else {
-            set1 = BarChartDataSet(entries: yVals)
-            set1.label = "Queries Over Time"
-            set1.colors = [UIColor(named: "red") ?? .systemRed, .darkGray]
-            set1.drawValuesEnabled = false
-
-            chart.leftAxis.axisMaximum = dataOverTime.maximumValue
-
-            let data = BarChartData(dataSet: set1)
-            data.barWidth = 0.8
-            chart.data = data
-        }
+        chart.loadDataOverTime(dataOverTime.overview, maxValue: dataOverTime.maximumValue)
     }
     
     /*

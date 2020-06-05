@@ -27,7 +27,7 @@ class PiholeTableViewCell: UITableViewCell {
     var chartData: (Double, [Double: (Double, Double)]) = (0, [:]) {
         didSet {
             DispatchQueue.main.async {
-                self.setupChart()
+                self.updateChart()
             }
         }
     }
@@ -40,7 +40,7 @@ class PiholeTableViewCell: UITableViewCell {
 
     @IBOutlet weak var containerView: UIView!
 
-    @IBOutlet weak var chart: BarChartView!
+    @IBOutlet weak var chart: PiBarChartView!
 
     fileprivate func roundCorners() {
         let maskLayer = CAShapeLayer()
@@ -61,59 +61,9 @@ class PiholeTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    func setupChart() {
+    func updateChart() {
         if chartData.1.isEmpty { return }
-
-        // Chart setup
-        chart.chartDescription?.enabled = false
-        chart.isUserInteractionEnabled = false
-        chart.leftAxis.drawLabelsEnabled = false
-        chart.legend.enabled = false
-        chart.minOffset = 0
-        chart.xAxis.drawGridLinesEnabled = false
-        chart.leftAxis.drawGridLinesEnabled = false
-        chart.leftAxis.axisMinimum = 0
-        chart.leftAxis.drawAxisLineEnabled = false
-        chart.xAxis.drawAxisLineEnabled = false
-        chart.xAxis.enabled = false
-        chart.leftAxis.enabled = false
-        let xAxis = chart.xAxis
-        xAxis.labelPosition = .bottom
-        chart.rightAxis.enabled = false
-        chart.xAxis.drawLabelsEnabled = false
-
-        // Chart Data
-        var yVals: [BarChartDataEntry] = []
-
-        let sorted = chartData.1.sorted { $0.key < $1.key }
-
-        for (key, value) in sorted {
-            let entry = BarChartDataEntry(x: key, yValues: [value.0, value.1])
-            yVals.append(entry)
-        }
-
-        if yVals.isEmpty { return }
-
-        var set1: BarChartDataSet! = nil
-        if let set = chart.data?.dataSets.first as? BarChartDataSet {
-            set1 = set
-            set1.replaceEntries(yVals)
-//            chart.leftAxis.axisMaximum = chartData.0
-            chart.data?.notifyDataChanged()
-            chart.notifyDataSetChanged()
-        } else {
-            set1 = BarChartDataSet(entries: yVals)
-            set1.label = "Queries Over Time"
-            set1.colors = [UIColor(named: "red") ?? .systemRed, .darkGray]
-            set1.drawValuesEnabled = false
-
-//            chart.leftAxis.axisMaximum = chartData.0
-
-            let data = BarChartData(dataSet: set1)
-            data.barWidth = 0.8
-            chart.data = data
-        }
-
+        chart.loadDataOverTime(chartData.1, maxValue: chartData.0)
     }
 
 }

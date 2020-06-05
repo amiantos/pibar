@@ -35,6 +35,7 @@
 		442F6F8B24721523008F1101 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442F6F8A24721523008F1101 /* PreferencesViewController.swift */; };
 		4438184E247DE31A009D9B3F /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4438184D247DE31A009D9B3F /* AboutViewController.swift */; };
 		44381850247DE41B009D9B3F /* AboutWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4438184F247DE41B009D9B3F /* AboutWindowController.swift */; };
+		444821DE248AE1C000665395 /* PiBarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444821DD248AE1C000665395 /* PiBarChartView.swift */; };
 		448C6F1C248746A2004C30BE /* NetworkOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448C6F1B248746A2004C30BE /* NetworkOverviewView.swift */; };
 		448C6F1E24874AF5004C30BE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448C6F1D24874AF5004C30BE /* MainViewController.swift */; };
 		448C6F202488286E004C30BE /* PiholeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448C6F1F2488286E004C30BE /* PiholeTableViewCell.swift */; };
@@ -85,6 +86,7 @@
 		442F6F8A24721523008F1101 /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		4438184D247DE31A009D9B3F /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		4438184F247DE41B009D9B3F /* AboutWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutWindowController.swift; sourceTree = "<group>"; };
+		444821DD248AE1C000665395 /* PiBarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiBarChartView.swift; sourceTree = "<group>"; };
 		448C6F1B248746A2004C30BE /* NetworkOverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkOverviewView.swift; sourceTree = "<group>"; };
 		448C6F1D24874AF5004C30BE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		448C6F1F2488286E004C30BE /* PiholeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiholeTableViewCell.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 				448C6F1B248746A2004C30BE /* NetworkOverviewView.swift */,
 				448C6F1D24874AF5004C30BE /* MainViewController.swift */,
 				448C6F1F2488286E004C30BE /* PiholeTableViewCell.swift */,
+				444821DD248AE1C000665395 /* PiBarChartView.swift */,
 			);
 			path = "PiBar for iOS";
 			sourceTree = "<group>";
@@ -575,6 +578,7 @@
 			files = (
 				448C6F1C248746A2004C30BE /* NetworkOverviewView.swift in Sources */,
 				448C6F1E24874AF5004C30BE /* MainViewController.swift in Sources */,
+				444821DE248AE1C000665395 /* PiBarChartView.swift in Sources */,
 				440DE4782482D58B00C55354 /* Extensions.swift in Sources */,
 				440DE47E2482D59C00C55354 /* AsyncOperation.swift in Sources */,
 				440DE4792482D58D00C55354 /* Logging.swift in Sources */,
