@@ -13,12 +13,20 @@ class PiholeTableViewCell: UITableViewCell {
     var pihole: Pihole? {
         didSet {
             DispatchQueue.main.async {
-                guard let pihole = self.pihole, let summary = pihole.summary else { return }
+                guard let pihole = self.pihole else { return }
                 self.hostnameLabel.text = pihole.api.connection.hostname
+
+                guard let summary = pihole.summary else {
+                    self.totalQueriesLabel.text = "0"
+                    self.blockedQueriesLabel.text = "0"
+                    self.blocklistLabel.text = "0"
+                    self.currentStatusLabel.text = "Offline"
+                    return
+                }
                 self.totalQueriesLabel.text = summary.dnsQueriesToday.string
                 self.blockedQueriesLabel.text = summary.adsBlockedToday.string
                 self.blocklistLabel.text = summary.domainsBeingBlocked.string
-                self.currentStatusLabel.text = summary.status.capitalized
+                self.currentStatusLabel.text = pihole.status.rawValue.capitalized
             }
         }
     }

@@ -60,7 +60,10 @@ class PiBarChartView: BarChartView {
         if let set = data?.dataSets.first as? BarChartDataSet {
             set1 = set
             set1.replaceEntries(yVals)
+
+            // TODO: Tie into preferences
             leftAxis.axisMaximum = maxValue
+
             data?.notifyDataChanged()
             notifyDataSetChanged()
         } else {
@@ -69,6 +72,7 @@ class PiBarChartView: BarChartView {
             set1.colors = [UIColor(named: "red") ?? .systemRed, .darkGray]
             set1.drawValuesEnabled = false
 
+            // TODO: Tie into preferences
             leftAxis.axisMaximum = maxValue
 
             let barChartData = BarChartData(dataSet: set1)
