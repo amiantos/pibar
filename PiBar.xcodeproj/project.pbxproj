@@ -46,6 +46,7 @@
 		449395E82471AC9D00FA0C34 /* MainMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449395E72471AC9D00FA0C34 /* MainMenuController.swift */; };
 		449395EC2471B1EB00FA0C34 /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449395EB2471B1EB00FA0C34 /* PreferencesWindowController.swift */; };
 		449395EE2471C47F00FA0C34 /* PiholeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449395ED2471C47F00FA0C34 /* PiholeAPI.swift */; };
+		44A69B2724ECE2D200B49EB2 /* AddDeviceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A69B2624ECE2D200B49EB2 /* AddDeviceTableViewController.swift */; };
 		44B6DAF2247C70F500D364EC /* PiholeSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B6DAF1247C70F500D364EC /* PiholeSettingsViewController.swift */; };
 		44FFB092247627B100DCEDEC /* PiBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FFB091247627B100DCEDEC /* PiBarManager.swift */; };
 		D8E2BD45380E2681F4F7BF99 /* Pods_PiBar_for_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB442844C550DE69A8DE1422 /* Pods_PiBar_for_macOS.framework */; };
@@ -100,6 +101,7 @@
 		449395E72471AC9D00FA0C34 /* MainMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuController.swift; sourceTree = "<group>"; };
 		449395EB2471B1EB00FA0C34 /* PreferencesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
 		449395ED2471C47F00FA0C34 /* PiholeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiholeAPI.swift; sourceTree = "<group>"; };
+		44A69B2624ECE2D200B49EB2 /* AddDeviceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeviceTableViewController.swift; sourceTree = "<group>"; };
 		44B6DAF1247C70F500D364EC /* PiholeSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiholeSettingsViewController.swift; sourceTree = "<group>"; };
 		44FFB091247627B100DCEDEC /* PiBarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiBarManager.swift; sourceTree = "<group>"; };
 		5D3D6C1A46DF2617F8C7B902 /* Pods-PiBar for iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PiBar for iOS.release.xcconfig"; path = "Target Support Files/Pods-PiBar for iOS/Pods-PiBar for iOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 				440DE46B2482D37D00C55354 /* Main.storyboard */,
 				444821E1248AFB3A00665395 /* Main View */,
 				444821E2248AFB4400665395 /* Extras */,
+				44A69B2824ECE2DD00B49EB2 /* Add Device */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -296,6 +299,14 @@
 				449395E52471AC0700FA0C34 /* MainMenu.xib */,
 			);
 			path = "Main Menu";
+			sourceTree = "<group>";
+		};
+		44A69B2824ECE2DD00B49EB2 /* Add Device */ = {
+			isa = PBXGroup;
+			children = (
+				44A69B2624ECE2D200B49EB2 /* AddDeviceTableViewController.swift */,
+			);
+			path = "Add Device";
 			sourceTree = "<group>";
 		};
 		44AC125F2476F1F300851ED9 /* Utilities */ = {
@@ -620,6 +631,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				448C6F1C248746A2004C30BE /* NetworkOverviewView.swift in Sources */,
+				44A69B2724ECE2D200B49EB2 /* AddDeviceTableViewController.swift in Sources */,
 				448C6F1E24874AF5004C30BE /* MainViewController.swift in Sources */,
 				444821DE248AE1C000665395 /* PiBarChartView.swift in Sources */,
 				440DE4782482D58B00C55354 /* Extensions.swift in Sources */,
