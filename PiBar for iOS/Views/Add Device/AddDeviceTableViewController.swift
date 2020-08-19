@@ -44,12 +44,13 @@ class AddDeviceTableViewController: UITableViewController, UITextFieldDelegate {
 
     // TableView
 
-    override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath == IndexPath(row: 2, section: 0) {
             // Selected "Use SSL" cell
         } else if indexPath == IndexPath(row: 1, section: 1) {
             // Selected "Where do I find my API token?"
         }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
