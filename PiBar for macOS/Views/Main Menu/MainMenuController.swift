@@ -165,7 +165,8 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
 
     private func launchWebAdmin(for identifier: String) {
         guard let pihole = networkOverview?.piholes[identifier],
-            let adminURL = URL(string: pihole.api.connection.adminPanelURL) else {
+            let adminURL = URL(string: pihole.api.connection.adminPanelURL)
+        else {
             Log.debug("Could not find Pi-hole with identifier \(identifier)")
             return
         }

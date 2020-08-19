@@ -9,12 +9,11 @@
 //  https://github.com/danielgindi/Charts
 //
 
-import Foundation
 import CoreGraphics
+import Foundation
 
 @objc
-public protocol IShapeRenderer: class
-{
+public protocol IShapeRenderer: AnyObject {
     /// Renders the provided ScatterDataSet with a shape.
     ///
     /// - Parameters:
@@ -28,5 +27,6 @@ public protocol IShapeRenderer: class
         dataSet: IScatterChartDataSet,
         viewPortHandler: ViewPortHandler,
         point: CGPoint,
-        color: NSUIColor)
+        color: NSUIColor
+    )
 }

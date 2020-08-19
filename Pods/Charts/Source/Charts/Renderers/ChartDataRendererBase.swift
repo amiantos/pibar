@@ -9,20 +9,19 @@
 //  https://github.com/danielgindi/Charts
 //
 
-import Foundation
 import CoreGraphics
+import Foundation
 
 #if canImport(UIKit)
     import UIKit
 #endif
 
 #if canImport(Cocoa)
-import Cocoa
+    import Cocoa
 #endif
 
 @objc(ChartDataRendererBase)
-open class DataRenderer: Renderer
-{
+open class DataRenderer: Renderer {
     /// An array of accessibility elements that are presented to the ChartViewBase accessibility methods.
     ///
     /// Note that the order of elements in this array determines the order in which they are presented and navigated by
@@ -33,44 +32,38 @@ open class DataRenderer: Renderer
     @objc final var accessibleChartElements: [NSUIAccessibilityElement] = []
 
     @objc public let animator: Animator
-    
-    @objc public init(animator: Animator, viewPortHandler: ViewPortHandler)
-    {
+
+    @objc public init(animator: Animator, viewPortHandler: ViewPortHandler) {
         self.animator = animator
 
         super.init(viewPortHandler: viewPortHandler)
     }
 
-    @objc open func drawData(context: CGContext)
-    {
+    @objc open func drawData(context _: CGContext) {
         fatalError("drawData() cannot be called on DataRenderer")
     }
-    
-    @objc open func drawValues(context: CGContext)
-    {
+
+    @objc open func drawValues(context _: CGContext) {
         fatalError("drawValues() cannot be called on DataRenderer")
     }
-    
-    @objc open func drawExtras(context: CGContext)
-    {
+
+    @objc open func drawExtras(context _: CGContext) {
         fatalError("drawExtras() cannot be called on DataRenderer")
     }
-    
+
     /// Draws all highlight indicators for the values that are currently highlighted.
     ///
     /// - Parameters:
     ///   - indices: the highlighted values
-    @objc open func drawHighlighted(context: CGContext, indices: [Highlight])
-    {
+    @objc open func drawHighlighted(context _: CGContext, indices _: [Highlight]) {
         fatalError("drawHighlighted() cannot be called on DataRenderer")
     }
-    
+
     /// An opportunity for initializing internal buffers used for rendering with a new size.
     /// Since this might do memory allocations, it should only be called if necessary.
-    @objc open func initBuffers() { }
-    
-    @objc open func isDrawingValuesAllowed(dataProvider: ChartDataProvider?) -> Bool
-    {
+    @objc open func initBuffers() {}
+
+    @objc open func isDrawingValuesAllowed(dataProvider: ChartDataProvider?) -> Bool {
         guard let data = dataProvider?.data else { return false }
         return data.entryCount < Int(CGFloat(dataProvider?.maxVisibleCount ?? 0) * viewPortHandler.scaleX)
     }
@@ -83,8 +76,8 @@ open class DataRenderer: Renderer
     ///   - defaultDescription: A simple string describing the type/design of Chart.
     /// - Returns: A header ```NSUIAccessibilityElement``` that can be added to accessibleChartElements.
     @objc internal func createAccessibleHeader(usingChart chart: ChartViewBase,
-                                        andData data: ChartData,
-                                        withDefaultDescription defaultDescription: String = "Chart") -> NSUIAccessibilityElement
+                                               andData data: ChartData,
+                                               withDefaultDescription defaultDescription: String = "Chart") -> NSUIAccessibilityElement
     {
         let chartDescriptionText = chart.chartDescription?.text ?? defaultDescription
         let dataSetDescriptions = data.dataSets.map { $0.label ?? "" }
@@ -92,7 +85,7 @@ open class DataRenderer: Renderer
         let dataSetCount = data.dataSets.count
 
         let
-        element = NSUIAccessibilityElement(accessibilityContainer: chart)
+            element = NSUIAccessibilityElement(accessibilityContainer: chart)
         element.accessibilityLabel = chartDescriptionText + ". \(dataSetCount) dataset\(dataSetCount == 1 ? "" : "s"). \(dataSetDescriptionText)"
         element.accessibilityFrame = chart.bounds
         element.isHeader = true
