@@ -50,6 +50,10 @@ class AddDeviceTableViewController: UITableViewController, UITextFieldDelegate {
         dismiss(animated: true, completion: nil)
     }
 
+    @IBAction func cancelButtonAction(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
+    }
+
     @IBOutlet var hostnameTextField: UITextField!
     @IBOutlet var portTextField: UITextField!
 
