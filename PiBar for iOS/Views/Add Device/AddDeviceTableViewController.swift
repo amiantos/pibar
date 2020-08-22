@@ -15,12 +15,12 @@ protocol AddDeviceDelegate: AnyObject {
 class AddDeviceTableViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet var saveButton: UIBarButtonItem!
     @IBAction func saveButtonAction(_: UIBarButtonItem) {
-        let hostname = (hostnameTextField.text == "" ? "pi.hole" : hostnameTextField.text) ?? "pi.hole"
+        let hostname = (hostnameTextField.text == "" ? "pi.hole" : hostnameTextField.text) ?? "pi.hole" // swiftlint:disable empty_string
         let port = Int(portTextField.text ?? "80") ?? 80
         var adminPanelURL = adminURLTextField.text ?? ""
         var apiToken = ""
         if let token = apiTokenTextField.text {
-            if token != "" {
+            if !token.isEmpty {
                 passwordProtected = true
                 apiToken = token
             }
