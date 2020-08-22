@@ -15,7 +15,7 @@ protocol AddDeviceDelegate: AnyObject {
 class AddDeviceTableViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet var saveButton: UIBarButtonItem!
     @IBAction func saveButtonAction(_: UIBarButtonItem) {
-        let hostname = (hostnameTextField.text == "" ? "pi.hole" : hostnameTextField.text) ?? "pi.hole" // swiftlint:disable empty_string
+        let hostname = ((hostnameTextField.text?.isEmpty)! ? "pi.hole" : hostnameTextField.text) ?? "pi.hole"
         let port = Int(portTextField.text ?? "80") ?? 80
         var adminPanelURL = adminURLTextField.text ?? ""
         var apiToken = ""
@@ -50,8 +50,8 @@ class AddDeviceTableViewController: UITableViewController, UITextFieldDelegate {
         dismiss(animated: true, completion: nil)
     }
 
-    @IBAction func cancelButtonAction(_ sender: UIBarButtonItem) {
-        self.dismiss(animated: true, completion: nil)
+    @IBAction func cancelButtonAction(_: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
     }
 
     @IBOutlet var hostnameTextField: UITextField!
@@ -111,6 +111,7 @@ class AddDeviceTableViewController: UITableViewController, UITextFieldDelegate {
             showUseSSLAlert()
         } else if indexPath == IndexPath(row: 1, section: 1) {
             // Selected "Where do I find my API token?"
+            showTokenHelp()
         }
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -119,7 +120,7 @@ class AddDeviceTableViewController: UITableViewController, UITextFieldDelegate {
 extension AddDeviceTableViewController {
     private func updateAdminURLPlaceholder() {
         let adminURLString = PiholeConnectionV2.generateAdminPanelURL(
-            hostname: (hostnameTextField.text == "" ? "pi.hole" : hostnameTextField.text) ?? "pi.hole",
+            hostname: ((hostnameTextField.text?.isEmpty)! ? "pi.hole" : hostnameTextField.text) ?? "pi.hole",
             port: Int(portTextField.text ?? "80") ?? 80,
             useSSL: useSSLStatus
         )
@@ -181,14 +182,14 @@ extension AddDeviceTableViewController {
         var passwordProtected = false
         var apiToken = ""
         if let token = apiTokenTextField.text {
-            if token != "" {
+            if token.isEmpty {
                 passwordProtected = true
                 apiToken = token
             }
         }
 
         let connection = PiholeConnectionV2(
-            hostname: (hostnameTextField.text == "" ? "pi.hole" : hostnameTextField.text) ?? "pi.hole",
+            hostname: ((hostnameTextField.text?.isEmpty)! ? "pi.hole" : hostnameTextField.text) ?? "pi.hole",
             port: Int(portTextField.text ?? "80") ?? 80,
             useSSL: useSSLStatus,
             token: apiToken,

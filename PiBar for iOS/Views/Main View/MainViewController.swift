@@ -64,8 +64,7 @@ class MainViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender _: Any?) {
         if segue.identifier == "showAddDeviceSegue",
             let navController = segue.destination as? UINavigationController,
-            let view = navController.topViewController as? AddDeviceTableViewController
-        {
+            let view = navController.topViewController as? AddDeviceTableViewController {
             view.delegate = self
         }
     }
@@ -100,8 +99,7 @@ extension MainViewController: UITableViewDataSource {
         cell.pihole = piholes[piholeIdentifiersAlphabetized[indexPath.row]]
 
         if let overTimeData = networkOverview?.overTimeData,
-            let piholeData = overTimeData.piholes[piholeIdentifiersAlphabetized[indexPath.row]]
-        {
+            let piholeData = overTimeData.piholes[piholeIdentifiersAlphabetized[indexPath.row]] {
             cell.chartData = (overTimeData.maximumValue, piholeData)
         }
 

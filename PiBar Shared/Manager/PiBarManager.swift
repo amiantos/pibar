@@ -326,8 +326,7 @@ class PiBarManager: NSObject {
     private func normalizeOverTimeData(_ pihole: Pihole) -> [Double: (Double, Double)] {
         var overTimeData: [Double: (Double, Double)] = [:]
         if let domainsOverTime = pihole.overTimeData?.domainsOverTime,
-            let adsOverTime = pihole.overTimeData?.adsOverTime
-        {
+            let adsOverTime = pihole.overTimeData?.adsOverTime {
             var hour: Double = 0
             var batchCount: Int = 0
             var summedDomains: Double = 0.0
