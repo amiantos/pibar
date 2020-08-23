@@ -45,8 +45,6 @@ PiBar gives you all the tools you need to manage your [Pi-hole](https://pi-hole.
 
 **Note: PiBar is a Universal Purchase on the App Store, you get all available (macOS / iOS / iPadOS) and any future supported platforms.**
 
----
-
 ## macOS Quick Start
 
 1. Launch PiBar
@@ -56,8 +54,6 @@ PiBar gives you all the tools you need to manage your [Pi-hole](https://pi-hole.
 5. Add more Pi-holes if you have them :)
 6. Adjust your menu bar display preferences
 7. Close the Preferences window and enjoy!
-
----
 
 ## Like PiBar a lot?
 
