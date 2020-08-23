@@ -25,12 +25,13 @@ PiBar gives you all the tools you need to manage your [Pi-hole](https://pi-hole.
 - Toggle your Pi-hole(s) on/off from the menu or anywhere via ⌘⌥⇧P
 - Supports macOS 10.12 (Sierra) and later
 
-## Screenshots
+## macOS Screenshots
 
-| macOS | iOS / iPad OS |
-| --- | --- |
-| ![PiBar for macOS Screenshots](/.github/screenshots.jpg?raw=true) | ... |
+![PiBar for macOS Screenshots](/.github/screenshots.jpg?raw=true)
 
+## iOS Screenshots
+
+...
 
 ## Download
 
