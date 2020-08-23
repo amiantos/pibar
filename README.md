@@ -41,9 +41,9 @@ PiBar gives you all the tools you need to manage your [Pi-hole](https://pi-hole.
 
 ### iOS & iPadOS
 - [Beta test pre-release versions on TestFlight](#)
-- Or, [Purchase PiBar on the App Store](#)
+- Or, [Purchase PiBar on the App Store](#) to show your support
 
-**Note: PiBar is a Universal Purchase on the App Store, you get all available (macOS / iOS / iPadOS) and any future supported platforms.**
+⚠️ **Note**: PiBar is a Universal Purchase on the App Store, you get all available platforms in one purchase.
 
 ## macOS Quick Start
 
