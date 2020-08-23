@@ -69,7 +69,7 @@ PiBar gives you all the tools you need to manage your [Pi-hole](https://pi-hole.
 
 ## Credits
 
-- PiBar was built by [Brad Root](https://github.com/amiantos)
+- PiBar was designed and built by [Brad Root](https://github.com/amiantos)
 - PiBar's wonderful icon was designed by [Jozef Bañuelos](https://jozef.design)
 - Pi-hole® is a registered trademark of Pi-hole LLC.
 - PiBar is an independent project and is not directly affiliated with Pi-hole LLC or the Pi-hole community.
