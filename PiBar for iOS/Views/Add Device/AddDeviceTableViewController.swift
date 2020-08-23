@@ -58,6 +58,7 @@ class AddDeviceTableViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet var portTextField: UITextField!
 
     @IBOutlet var useSSLStatusLabel: UILabel!
+    @IBOutlet var useSSLContentView: UIView!
 
     @IBOutlet var apiTokenTextField: UITextField!
     @IBOutlet var adminURLTextField: UITextField!
@@ -119,23 +120,25 @@ class AddDeviceTableViewController: UITableViewController, UITextFieldDelegate {
 
 extension AddDeviceTableViewController {
     private func updateAdminURLPlaceholder() {
+        var parsedPort: Int = 0
+        if let port = portTextField.text, !port.isEmpty {
+            parsedPort = Int(port) ?? 80
+        } else {
+            parsedPort = useSSLStatus ? 443 : 80
+        }
         let adminURLString = PiholeConnectionV2.generateAdminPanelURL(
             hostname: ((hostnameTextField.text?.isEmpty)! ? "pi.hole" : hostnameTextField.text) ?? "pi.hole",
-            port: Int(portTextField.text ?? "80") ?? 80,
+            port: parsedPort,
             useSSL: useSSLStatus
         )
         adminURLTextField.placeholder = "\(adminURLString)"
     }
 
     private func showUseSSLAlert() {
-        var alertStyle = UIAlertController.Style.actionSheet
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            alertStyle = UIAlertController.Style.alert
-        }
         let actionSheet = UIAlertController(
             title: "Use SSL?",
             message: "Select whether this connection should use SSL or not.",
-            preferredStyle: alertStyle
+            preferredStyle: UIAlertController.Style.actionSheet
         )
         let actionOn = UIAlertAction(title: "Yes", style: .default) { _ in
             self.useSSLStatus = true
@@ -156,6 +159,16 @@ extension AddDeviceTableViewController {
         actionSheet.addAction(actionOn)
         actionSheet.addAction(actionOff)
         actionSheet.addAction(actionCancel)
+
+        if let popoverController = actionSheet.popoverPresentationController {
+            popoverController.sourceView = view
+            popoverController.sourceRect = CGRect(
+                x: useSSLContentView.bounds.midY,
+                y: useSSLContentView.bounds.midX,
+                width: useSSLContentView.bounds.width,
+                height: useSSLContentView.bounds.height
+            )
+        }
 
         present(actionSheet, animated: true, completion: nil)
     }

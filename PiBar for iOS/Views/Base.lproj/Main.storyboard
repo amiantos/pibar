@@ -648,6 +648,7 @@
                         <outlet property="saveButton" destination="sLZ-uC-qL0" id="P3t-25-aYS"/>
                         <outlet property="testButton" destination="ud9-nk-zM0" id="wRp-Jj-WVJ"/>
                         <outlet property="testingStatusLabel" destination="V2v-HN-8On" id="ijh-Xk-zSS"/>
+                        <outlet property="useSSLContentView" destination="wHm-XX-cql" id="QCU-tp-u3P"/>
                         <outlet property="useSSLStatusLabel" destination="ilJ-Ic-ixT" id="cN0-gV-LZa"/>
                     </connections>
                 </tableViewController>
@@ -930,7 +931,7 @@
                             </segments>
                         </segmentedControl>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="9oP-2d-BYH">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="queryCell" id="9oP-2d-BYH">
                                 <rect key="frame" x="0.0" y="59" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9oP-2d-BYH" id="0dA-Ga-GOd">
