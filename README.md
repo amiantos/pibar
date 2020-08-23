@@ -1,4 +1,4 @@
-# PiBar
+# PiBar for Pi-hole
 
 PiBar gives you all the tools you need to manage your [Pi-hole](https://pi-hole.net)(s) within macOS, iOS, or iPadOS.
 
@@ -15,8 +15,9 @@ PiBar gives you all the tools you need to manage your [Pi-hole](https://pi-hole.
 - "Family Mode" simplifies app controls for family members
 - Query log with ability to add to allow / deny lists
 - Customizable user interface color with full light / dark mode support
-- (Coming Soon) Widgets
-- (Coming Soon) Apple Watch app and complications
+- Widgets *(Coming Soon)*
+- Apple Watch app and complications *(Coming Soon)*
+- Supports iOS & iPadOS 12.4 and later
 
 ## macOS Features
 
@@ -24,13 +25,12 @@ PiBar gives you all the tools you need to manage your [Pi-hole](https://pi-hole.
 - Toggle your Pi-hole(s) on/off from the menu or anywhere via ⌘⌥⇧P
 - Supports macOS 10.12 (Sierra) and later
 
-## macOS Screenshots
+## Screenshots
 
-![PiBar for macOS Screenshots](/.github/screenshots.jpg?raw=true)
+| macOS | iOS / iPad OS |
+| --- | --- |
+| ![PiBar for macOS Screenshots](/.github/screenshots.jpg?raw=true) | ... |
 
-## iOS Screenshots
-
-...
 
 ## Download
 
