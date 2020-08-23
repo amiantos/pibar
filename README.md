@@ -1,28 +1,52 @@
-# PiBar for macOS
+# PiBar
 
-PiBar gives you all the tools you need to manage your [Pi-hole](https://pi-hole.net)(s) right from your macOS menu bar.
+PiBar gives you all the tools you need to manage your [Pi-hole](https://pi-hole.net)(s) within macOS, iOS, or iPadOS.
+
 
 ## Features
-
-- Display DNS query stats in your macOS menu bar
+- Convienent Pi-hole controls tailored to each platform
 - Supports multiple Pi-holes (inc. quadruple failover setups!)
-- Toggle your Pi-hole(s) on/off from the menu or anywhere via ⌘⌥⇧P
 - Displays warnings if any or all of your Pi-holes are inaccessible or disabled
 - No capital "h" in the word "hole" in the app or in the code
 - Beautiful app icon
 - Totally FOSS
+
+## iOS / iPadOS Features
+- "Family Mode" simplifies app controls for family members
+- Query log with ability to add to allow / deny lists
+- Customizable user interface color with full light / dark mode support
+- (Coming Soon) Widgets
+- (Coming Soon) Apple Watch app and complications
+
+## macOS Features
+
+- Display DNS query stats in your macOS menu bar
+- Toggle your Pi-hole(s) on/off from the menu or anywhere via ⌘⌥⇧P
 - Supports macOS 10.12 (Sierra) and later
 
-## Screenshots
+## macOS Screenshots
 
-![PiBar Screenshots](/.github/screenshots.jpg?raw=true)
+![PiBar for macOS Screenshots](/.github/screenshots.jpg?raw=true)
+
+## iOS Screenshots
+
+...
 
 ## Download
 
+### macOS
 - [Download PiBar v1.1 for macOS 10.12 and later](https://s3.amazonaws.com/amiantos/PiBar-1.1.zip)
 - Or, [Purchase PiBar on the App Store](https://apps.apple.com/us/app/pibar-for-pi-hole/id1514292645?ls=1) for automatic updates.
 
-## Quick Start
+### iOS & iPadOS
+- [Beta test pre-release versions on TestFlight](#)
+- Or, [Purchase PiBar on the App Store](#)
+
+**Note: PiBar is a Universal Purchase on the App Store, you get all available (macOS / iOS / iPadOS) and any future supported platforms.**
+
+---
+
+## macOS Quick Start
 
 1. Launch PiBar
 2. Click on the PiBar icon in your menu bar and go to Preferences
@@ -31,6 +55,8 @@ PiBar gives you all the tools you need to manage your [Pi-hole](https://pi-hole.
 5. Add more Pi-holes if you have them :)
 6. Adjust your menu bar display preferences
 7. Close the Preferences window and enjoy!
+
+---
 
 ## Like PiBar a lot?
 
