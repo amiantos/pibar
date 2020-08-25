@@ -15,39 +15,7 @@ protocol AddDeviceDelegate: AnyObject {
 class AddDeviceTableViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet var saveButton: UIBarButtonItem!
     @IBAction func saveButtonAction(_: UIBarButtonItem) {
-        let hostname = ((hostnameTextField.text?.isEmpty)! ? "pi.hole" : hostnameTextField.text) ?? "pi.hole"
-        let port = Int(portTextField.text ?? "80") ?? 80
-        var adminPanelURL = adminURLTextField.text ?? ""
-        var apiToken = ""
-        if let token = apiTokenTextField.text {
-            if !token.isEmpty {
-                passwordProtected = true
-                apiToken = token
-            }
-        }
-
-        if adminPanelURL.isEmpty {
-            adminPanelURL = PiholeConnectionV2.generateAdminPanelURL(
-                hostname: hostname,
-                port: port,
-                useSSL: useSSLStatus
-            )
-        }
-
-        let connection = PiholeConnectionV2(
-            hostname: hostname,
-            port: port,
-            useSSL: useSSLStatus,
-            token: apiToken,
-            passwordProtected: passwordProtected,
-            adminPanelURL: adminPanelURL
-        )
-
-        var piholes = Preferences.standard.piholes
-        piholes.append(connection)
-        Preferences.standard.set(piholes: piholes)
-        delegate?.updatedConnections()
-        dismiss(animated: true, completion: nil)
+        saveConnection()
     }
 
     @IBAction func cancelButtonAction(_: UIBarButtonItem) {
@@ -226,6 +194,43 @@ extension AddDeviceTableViewController {
             }
         }
     }
+
+    fileprivate func saveConnection() {
+        let hostname = ((hostnameTextField.text?.isEmpty)! ? "pi.hole" : hostnameTextField.text) ?? "pi.hole"
+        let port = Int(portTextField.text ?? "80") ?? 80
+        var adminPanelURL = adminURLTextField.text ?? ""
+        var apiToken = ""
+        if let token = apiTokenTextField.text {
+            if !token.isEmpty {
+                passwordProtected = true
+                apiToken = token
+            }
+        }
+
+        if adminPanelURL.isEmpty {
+            adminPanelURL = PiholeConnectionV2.generateAdminPanelURL(
+                hostname: hostname,
+                port: port,
+                useSSL: useSSLStatus
+            )
+        }
+
+        let connection = PiholeConnectionV2(
+            hostname: hostname,
+            port: port,
+            useSSL: useSSLStatus,
+            token: apiToken,
+            passwordProtected: passwordProtected,
+            adminPanelURL: adminPanelURL
+        )
+
+        var piholes = Preferences.standard.piholes
+        piholes.append(connection)
+        Preferences.standard.set(piholes: piholes)
+        delegate?.updatedConnections()
+        dismiss(animated: true, completion: nil)
+    }
+
 }
 
 extension UITextField {

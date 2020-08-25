@@ -185,12 +185,12 @@
                                 </connections>
                             </tableView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="20Q-NF-L6o" customClass="NetworkOverviewView" customModule="PiBar_for_iOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="510.5" width="414" height="385.5"/>
+                                <rect key="frame" x="0.0" y="511" width="414" height="385"/>
                                 <subviews>
                                     <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eCz-8l-Bf5">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="385.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="385"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="1Jz-Ju-wbC">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="385.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="385"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="oPM-lt-rbg">
@@ -659,7 +659,7 @@
         <!--Preferences-->
         <scene sceneID="sOA-rL-qMP">
             <objects>
-                <tableViewController id="arG-RH-fe4" sceneMemberID="viewController">
+                <tableViewController id="arG-RH-fe4" customClass="PreferencesTableViewController" customModule="PiBar_for_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Mbb-gz-tmG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -845,23 +845,6 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="VPt-Bw-DF6" style="IBUITableViewCellStyleDefault" id="X9v-u2-wH1">
-                                        <rect key="frame" x="20" y="515.5" width="374" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="X9v-u2-wH1" id="P3C-b8-Qey">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VPt-Bw-DF6">
-                                                    <rect key="frame" x="20" y="0.0" width="315" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -871,7 +854,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Preferences" id="iHv-VE-j12">
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="Ag6-du-esi"/>
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="Ag6-du-esi">
+                            <color key="tintColor" name="red"/>
+                            <connections>
+                                <action selector="doneButtonAction:" destination="arG-RH-fe4" id="340-Sy-D2p"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0fm-lt-ElR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
