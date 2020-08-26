@@ -230,7 +230,6 @@ extension AddDeviceTableViewController {
         delegate?.updatedConnections()
         dismiss(animated: true, completion: nil)
     }
-
 }
 
 extension UITextField {

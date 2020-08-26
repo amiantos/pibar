@@ -16,6 +16,7 @@ class ThemeManager {
             applyColor(color: foundColor)
         }
     }
+
     static func setColor(color: String) {
         if let foundColor = UIColor(named: color) {
             Preferences.standard.set(interfaceColor: color)

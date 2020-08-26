@@ -9,8 +9,7 @@
 import UIKit
 
 class PiBarLabel: UILabel {
-
-   @objc dynamic var configurableTextColor: UIColor {
+    @objc dynamic var configurableTextColor: UIColor {
         get {
             return textColor
         }
@@ -18,5 +17,4 @@ class PiBarLabel: UILabel {
             textColor = newValue
         }
     }
-
 }

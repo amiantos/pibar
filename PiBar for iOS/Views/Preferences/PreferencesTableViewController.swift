@@ -9,14 +9,13 @@
 import UIKit
 
 class PreferencesTableViewController: UITableViewController {
+    @IBOutlet var interfaceColorLabel: UILabel!
 
-    @IBOutlet weak var interfaceColorLabel: UILabel!
-
-    @IBAction func doneButtonAction(_ sender: UIBarButtonItem) {
+    @IBAction func doneButtonAction(_: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
 
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_: Bool) {
         interfaceColorLabel.text = Preferences.standard.interfaceColor.capitalized
     }
 
@@ -31,9 +30,8 @@ class PreferencesTableViewController: UITableViewController {
             UIApplication.shared.open(URL(string: "https://reddit.com/r/pibar")!)
 
         } else if indexPath == IndexPath(row: 2, section: 2) {
-                   UIApplication.shared.open(URL(string: "https://twitter.com/amiantos")!)
+            UIApplication.shared.open(URL(string: "https://twitter.com/amiantos")!)
         }
         tableView.deselectRow(at: indexPath, animated: true)
     }
-
 }

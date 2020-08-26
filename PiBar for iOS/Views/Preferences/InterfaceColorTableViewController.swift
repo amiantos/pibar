@@ -9,12 +9,11 @@
 import UIKit
 
 class InterfaceColorTableViewController: UITableViewController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
             set(color: "red")
