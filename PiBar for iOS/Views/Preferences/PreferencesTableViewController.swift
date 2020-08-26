@@ -10,8 +10,14 @@ import UIKit
 
 class PreferencesTableViewController: UITableViewController {
 
+    @IBOutlet weak var interfaceColorLabel: UILabel!
+
     @IBAction func doneButtonAction(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        interfaceColorLabel.text = Preferences.standard.interfaceColor.capitalized
     }
 
     override func viewDidLoad() {

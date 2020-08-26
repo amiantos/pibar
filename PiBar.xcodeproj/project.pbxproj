@@ -48,6 +48,9 @@
 		449395EE2471C47F00FA0C34 /* PiholeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449395ED2471C47F00FA0C34 /* PiholeAPI.swift */; };
 		44A69B2724ECE2D200B49EB2 /* AddDeviceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A69B2624ECE2D200B49EB2 /* AddDeviceTableViewController.swift */; };
 		44B6DAF2247C70F500D364EC /* PiholeSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B6DAF1247C70F500D364EC /* PiholeSettingsViewController.swift */; };
+		44CD689424F5E3ED00115820 /* InterfaceColorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CD689324F5E3ED00115820 /* InterfaceColorTableViewController.swift */; };
+		44CD689624F5E96100115820 /* PiBarLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CD689524F5E96100115820 /* PiBarLabel.swift */; };
+		44CD689824F5ED2B00115820 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CD689724F5ED2B00115820 /* ThemeManager.swift */; };
 		44CF8F9824F4B538005A21B6 /* PreferencesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CF8F9724F4B538005A21B6 /* PreferencesTableViewController.swift */; };
 		44FFB092247627B100DCEDEC /* PiBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FFB091247627B100DCEDEC /* PiBarManager.swift */; };
 		D8E2BD45380E2681F4F7BF99 /* Pods_PiBar_for_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB442844C550DE69A8DE1422 /* Pods_PiBar_for_macOS.framework */; };
@@ -104,6 +107,9 @@
 		449395ED2471C47F00FA0C34 /* PiholeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiholeAPI.swift; sourceTree = "<group>"; };
 		44A69B2624ECE2D200B49EB2 /* AddDeviceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeviceTableViewController.swift; sourceTree = "<group>"; };
 		44B6DAF1247C70F500D364EC /* PiholeSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiholeSettingsViewController.swift; sourceTree = "<group>"; };
+		44CD689324F5E3ED00115820 /* InterfaceColorTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceColorTableViewController.swift; sourceTree = "<group>"; };
+		44CD689524F5E96100115820 /* PiBarLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiBarLabel.swift; sourceTree = "<group>"; };
+		44CD689724F5ED2B00115820 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		44CF8F9724F4B538005A21B6 /* PreferencesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesTableViewController.swift; sourceTree = "<group>"; };
 		44FFB091247627B100DCEDEC /* PiBarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiBarManager.swift; sourceTree = "<group>"; };
 		5D3D6C1A46DF2617F8C7B902 /* Pods-PiBar for iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PiBar for iOS.release.xcconfig"; path = "Target Support Files/Pods-PiBar for iOS/Pods-PiBar for iOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -158,6 +164,7 @@
 				440DE4702482D37D00C55354 /* LaunchScreen.storyboard */,
 				440DE4732482D37D00C55354 /* Info.plist */,
 				444821E0248AFB2000665395 /* Views */,
+				44CD689724F5ED2B00115820 /* ThemeManager.swift */,
 			);
 			path = "PiBar for iOS";
 			sourceTree = "<group>";
@@ -238,6 +245,7 @@
 				444821E1248AFB3A00665395 /* Main View */,
 				44A69B2824ECE2DD00B49EB2 /* Add Device */,
 				44CF8F9624F4B4FE005A21B6 /* Preferences */,
+				44CD689524F5E96100115820 /* PiBarLabel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -317,6 +325,7 @@
 			isa = PBXGroup;
 			children = (
 				44CF8F9724F4B538005A21B6 /* PreferencesTableViewController.swift */,
+				44CD689324F5E3ED00115820 /* InterfaceColorTableViewController.swift */,
 			);
 			path = Preferences;
 			sourceTree = "<group>";
@@ -638,11 +647,14 @@
 				44A69B2724ECE2D200B49EB2 /* AddDeviceTableViewController.swift in Sources */,
 				448C6F1E24874AF5004C30BE /* MainViewController.swift in Sources */,
 				444821DE248AE1C000665395 /* PiBarChartView.swift in Sources */,
+				44CD689424F5E3ED00115820 /* InterfaceColorTableViewController.swift in Sources */,
 				440DE4782482D58B00C55354 /* Extensions.swift in Sources */,
+				44CD689824F5ED2B00115820 /* ThemeManager.swift in Sources */,
 				440DE47E2482D59C00C55354 /* AsyncOperation.swift in Sources */,
 				440DE4792482D58D00C55354 /* Logging.swift in Sources */,
 				440DE47A2482D59000C55354 /* Structs.swift in Sources */,
 				440DE47B2482D59300C55354 /* PiholeAPI.swift in Sources */,
+				44CD689624F5E96100115820 /* PiBarLabel.swift in Sources */,
 				440DE47F2482D59F00C55354 /* UpdatePiholeOperation.swift in Sources */,
 				440DE47D2482D59900C55354 /* PiBarManager.swift in Sources */,
 				440DE4642482D37D00C55354 /* AppDelegate.swift in Sources */,

@@ -22,6 +22,7 @@ struct Preferences {
         static let verboseLabels = "verboseLabels"
         static let shortcutEnabled = "shortcutEnabled"
         static let pollingRate = "pollingRate"
+        static let interfaceColor = "interfaceColor"
     }
 
     static var standard: UserDefaults {
@@ -36,6 +37,7 @@ struct Preferences {
             Key.verboseLabels: false,
             Key.shortcutEnabled: true,
             Key.pollingRate: 3,
+            Key.interfaceColor: "red",
         ])
 
         return database
@@ -154,6 +156,14 @@ extension UserDefaults {
         set(pollingRate, for: Preferences.Key.pollingRate)
     }
 
+    var interfaceColor: String {
+        return string(forKey: Preferences.Key.interfaceColor) ?? "red"
+    }
+
+    func set(interfaceColor: String) {
+        set(interfaceColor, for: Preferences.Key.interfaceColor)
+    }
+
     // Helpers
 
     var showTitle: Bool {
@@ -163,6 +173,7 @@ extension UserDefaults {
 
 private extension UserDefaults {
     func set(_ object: Any?, for key: String) {
+        Log.debug("Saving \(String(describing: object)) to \(key)")
         set(object, forKey: key)
         synchronize()
     }

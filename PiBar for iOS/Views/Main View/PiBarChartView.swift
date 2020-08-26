@@ -9,6 +9,9 @@
 import Charts
 
 class PiBarChartView: BarChartView {
+
+    var color: UIColor = UIColor(named: "red") ?? .systemRed
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupChartPreferences()
@@ -69,7 +72,7 @@ class PiBarChartView: BarChartView {
         } else {
             set1 = BarChartDataSet(entries: yVals)
             set1.label = "Queries Over Time"
-            set1.colors = [UIColor(named: "red") ?? .systemRed, .darkGray]
+            set1.colors = [color, .darkGray]
             set1.drawValuesEnabled = false
 
             // TODO: Tie into preferences
@@ -80,4 +83,22 @@ class PiBarChartView: BarChartView {
             data = barChartData
         }
     }
+
+    func redrawChart() {
+        if let set = data?.dataSets.first as? BarChartDataSet {
+            set.colors = [color, .darkGray]
+            data?.notifyDataChanged()
+            notifyDataSetChanged()
+        }
+    }
+
+    @objc dynamic var chartColor: UIColor {
+         get {
+             return color
+         }
+         set {
+            color = newValue
+            redrawChart()
+         }
+     }
 }
