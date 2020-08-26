@@ -73,7 +73,7 @@
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Queries" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q6t-30-0yJ" customClass="PiBarLabel" customModule="PiBar_for_iOS" customModuleProvider="target">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="53.5" height="18"/>
                                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                                                    <nil key="textColor"/>
+                                                                                    <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UMW-K5-Z4e">
@@ -190,7 +190,7 @@
                                     <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eCz-8l-Bf5">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="385.5"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="1Jz-Ju-wbC">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="385.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="386"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="oPM-lt-rbg">
@@ -1037,7 +1037,7 @@
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
                                 <constraint firstItem="Cdw-Vs-xrP" firstAttribute="leading" secondItem="qfB-Uf-8Vh" secondAttribute="leading" constant="40" id="ACn-af-jy8"/>
-                                <constraint firstAttribute="trailing" secondItem="Cdw-Vs-xrP" secondAttribute="trailing" constant="40" id="deZ-GW-LjM"/>
+                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Cdw-Vs-xrP" secondAttribute="trailing" constant="40" id="deZ-GW-LjM"/>
                                 <constraint firstAttribute="bottom" secondItem="Cdw-Vs-xrP" secondAttribute="bottom" id="eA0-aF-UNS"/>
                                 <constraint firstItem="Cdw-Vs-xrP" firstAttribute="top" secondItem="qfB-Uf-8Vh" secondAttribute="top" id="vp8-3y-aZM"/>
                             </constraints>
@@ -1053,7 +1053,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Normalize Charts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DjX-Sw-nTP">
-                                                    <rect key="frame" x="20" y="11" width="133" height="22"/>
+                                                    <rect key="frame" x="20" y="11" width="265" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1065,6 +1065,7 @@
                                             <constraints>
                                                 <constraint firstItem="DjX-Sw-nTP" firstAttribute="top" secondItem="GLn-tw-mLO" secondAttribute="topMargin" id="40s-PP-4QA"/>
                                                 <constraint firstItem="J0j-UQ-I3E" firstAttribute="centerY" secondItem="GLn-tw-mLO" secondAttribute="centerY" id="Akl-57-hVy"/>
+                                                <constraint firstItem="J0j-UQ-I3E" firstAttribute="leading" secondItem="DjX-Sw-nTP" secondAttribute="trailing" constant="20" id="Opv-0z-6sf"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="DjX-Sw-nTP" secondAttribute="bottom" id="Qg5-Qh-4Fm"/>
                                                 <constraint firstAttribute="trailing" secondItem="J0j-UQ-I3E" secondAttribute="trailing" constant="20" id="QgJ-Aq-kpP"/>
                                                 <constraint firstItem="DjX-Sw-nTP" firstAttribute="leading" secondItem="GLn-tw-mLO" secondAttribute="leadingMargin" id="hdo-zE-6qH"/>
