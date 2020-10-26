@@ -43,3 +43,28 @@ extension Collection where Element: BinaryInteger {
     // swiftlint:disable colon
     func average<T: FloatingPoint>() -> T { isEmpty ? .zero : T(sum()) / T(count) }
 }
+
+extension Bundle {
+    // Thanks to: https://stackoverflow.com/a/62383907/2117288
+    public var appVersionShort: String? {
+        if let result = infoDictionary?["CFBundleShortVersionString"] as? String {
+            return result
+        } else {
+            return "⚠️"
+        }
+    }
+    public var appVersionLong: String? {
+        if let result = infoDictionary?["CFBundleVersion"] as? String {
+            return result
+        } else {
+            return "⚠️"
+        }
+    }
+    public var appName: String? {
+        if let result = infoDictionary?["CFBundleName"] as? String {
+            return result
+        } else {
+            return "⚠️"
+        }
+    }
+}

@@ -24,6 +24,14 @@ class ThemeManager {
         }
     }
 
+    static func getColor() -> UIColor? {
+        let colorString = Preferences.standard.interfaceColor
+        if let foundColor = UIColor(named: colorString) {
+            return foundColor
+        }
+        return nil
+    }
+
     static func applyColor(color: UIColor) {
         UINavigationBar.appearance().tintColor = color
         UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: color], for: .normal)
