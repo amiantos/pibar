@@ -1,5 +1,6 @@
 disabled_rules:
-  - trailing_comma
+  - trailing_comma # swiftformat is not copacetic
+  - opening_brace # swiftformat is not copacetic
 opt_in_rules:
   - empty_count
   - empty_string

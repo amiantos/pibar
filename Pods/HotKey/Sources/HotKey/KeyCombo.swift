@@ -8,7 +8,7 @@ public struct KeyCombo: Equatable {
 
     public var key: Key? {
         get {
-            return Key(carbonKeyCode: carbonKeyCode)
+            Key(carbonKeyCode: carbonKeyCode)
         }
 
         set {
@@ -18,7 +18,7 @@ public struct KeyCombo: Equatable {
 
     public var modifiers: NSEvent.ModifierFlags {
         get {
-            return NSEvent.ModifierFlags(carbonFlags: carbonModifiers)
+            NSEvent.ModifierFlags(carbonFlags: carbonModifiers)
         }
 
         set {
@@ -27,7 +27,7 @@ public struct KeyCombo: Equatable {
     }
 
     public var isValid: Bool {
-        return carbonKeyCode >= 0
+        carbonKeyCode >= 0
     }
 
     // MARK: - Initializers
@@ -45,21 +45,21 @@ public struct KeyCombo: Equatable {
     // MARK: - Converting Keys
 
     public static func carbonKeyCodeToString(_: UInt32) -> String? {
-        return nil
+        nil
     }
 }
 
-extension KeyCombo {
-    public var dictionary: [String: Any] {
-        return [
+public extension KeyCombo {
+    var dictionary: [String: Any] {
+        [
             "keyCode": Int(carbonKeyCode),
             "modifiers": Int(carbonModifiers),
         ]
     }
 
-    public init?(dictionary: [String: Any]) {
+    init?(dictionary: [String: Any]) {
         guard let keyCode = dictionary["keyCode"] as? Int,
-            let modifiers = dictionary["modifiers"] as? Int
+              let modifiers = dictionary["modifiers"] as? Int
         else {
             return nil
         }

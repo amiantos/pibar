@@ -1,8 +1,8 @@
 import AppKit
 import Carbon
 
-extension NSEvent.ModifierFlags {
-    public var carbonFlags: UInt32 {
+public extension NSEvent.ModifierFlags {
+    var carbonFlags: UInt32 {
         var carbonFlags: UInt32 = 0
 
         if contains(.command) {
@@ -24,7 +24,7 @@ extension NSEvent.ModifierFlags {
         return carbonFlags
     }
 
-    public init(carbonFlags: UInt32) {
+    init(carbonFlags: UInt32) {
         self.init()
 
         if carbonFlags & UInt32(cmdKey) == UInt32(cmdKey) {

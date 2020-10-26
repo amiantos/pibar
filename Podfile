@@ -1,12 +1,17 @@
-# Uncomment the next line to define a global platform for your project
-platform :osx, '10.12'
-
-target 'PiBar' do
-  # Comment the next line if you don't want to use dynamic frameworks
+target 'PiBar for macOS' do
+  platform :osx, '10.12'
   use_frameworks!
 
-  # Pods for PiBar
   pod 'SwiftLint'
   pod 'HotKey'
+
+end
+
+target 'PiBar for iOS' do
+  platform :ios, '11.4'
+  use_frameworks!
+
+  pod 'SwiftLint'
+  pod 'Charts'
 
 end
