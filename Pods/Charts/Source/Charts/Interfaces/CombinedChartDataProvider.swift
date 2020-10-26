@@ -9,10 +9,11 @@
 //  https://github.com/danielgindi/Charts
 //
 
-import CoreGraphics
 import Foundation
+import CoreGraphics
 
 @objc
-public protocol CombinedChartDataProvider: LineChartDataProvider, BarChartDataProvider, BubbleChartDataProvider, CandleChartDataProvider, ScatterChartDataProvider {
+public protocol CombinedChartDataProvider: LineChartDataProvider, BarChartDataProvider, BubbleChartDataProvider, CandleChartDataProvider, ScatterChartDataProvider
+{
     var combinedData: CombinedChartData? { get }
 }

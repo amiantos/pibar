@@ -23,6 +23,7 @@ struct Preferences {
         static let shortcutEnabled = "shortcutEnabled"
         static let pollingRate = "pollingRate"
         static let interfaceColor = "interfaceColor"
+        static let normalizeCharts = "normalizeCharts"
     }
 
     static var standard: UserDefaults {

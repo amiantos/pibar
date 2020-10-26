@@ -9,12 +9,13 @@
 //  https://github.com/danielgindi/Charts
 //
 
-import CoreGraphics
 import Foundation
+import CoreGraphics
 
 @objc
-public protocol LineChartDataProvider: BarLineScatterCandleBubbleChartDataProvider {
+public protocol LineChartDataProvider: BarLineScatterCandleBubbleChartDataProvider
+{
     var lineData: LineChartData? { get }
-
+    
     func getAxis(_ axis: YAxis.AxisDependency) -> YAxis
 }

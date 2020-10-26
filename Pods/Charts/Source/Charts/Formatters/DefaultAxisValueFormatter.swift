@@ -12,20 +12,22 @@
 import Foundation
 
 @objc(ChartDefaultAxisValueFormatter)
-open class DefaultAxisValueFormatter: NSObject, IAxisValueFormatter {
+open class DefaultAxisValueFormatter: NSObject, IAxisValueFormatter
+{
     public typealias Block = (
         _ value: Double,
-        _ axis: AxisBase?
-    ) -> String
-
+        _ axis: AxisBase?) -> String
+    
     @objc open var block: Block?
-
+    
     @objc open var hasAutoDecimals: Bool = false
-
+    
     private var _formatter: NumberFormatter?
-    @objc open var formatter: NumberFormatter? {
+    @objc open var formatter: NumberFormatter?
+    {
         get { return _formatter }
-        set {
+        set
+        {
             hasAutoDecimals = false
             _formatter = newValue
         }
@@ -33,53 +35,61 @@ open class DefaultAxisValueFormatter: NSObject, IAxisValueFormatter {
 
     // TODO: Documentation. Especially the nil case
     private var _decimals: Int?
-    open var decimals: Int? {
+    open var decimals: Int?
+    {
         get { return _decimals }
-        set {
+        set
+        {
             _decimals = newValue
-
-            if let digits = newValue {
+            
+            if let digits = newValue
+            {
                 self.formatter?.minimumFractionDigits = digits
                 self.formatter?.maximumFractionDigits = digits
                 self.formatter?.usesGroupingSeparator = true
             }
         }
     }
-
-    override public init() {
+    
+    public override init()
+    {
         super.init()
-
-        formatter = NumberFormatter()
+        
+        self.formatter = NumberFormatter()
         hasAutoDecimals = true
     }
-
-    @objc public init(formatter: NumberFormatter) {
+    
+    @objc public init(formatter: NumberFormatter)
+    {
         super.init()
-
+        
         self.formatter = formatter
     }
-
-    @objc public init(decimals: Int) {
+    
+    @objc public init(decimals: Int)
+    {
         super.init()
-
-        formatter = NumberFormatter()
-        formatter?.usesGroupingSeparator = true
+        
+        self.formatter = NumberFormatter()
+        self.formatter?.usesGroupingSeparator = true
         self.decimals = decimals
         hasAutoDecimals = true
     }
-
-    @objc public init(block: @escaping Block) {
+    
+    @objc public init(block: @escaping Block)
+    {
         super.init()
-
+        
         self.block = block
     }
-
-    @objc public static func with(block: @escaping Block) -> DefaultAxisValueFormatter? {
+    
+    @objc public static func with(block: @escaping Block) -> DefaultAxisValueFormatter?
+    {
         return DefaultAxisValueFormatter(block: block)
     }
-
+    
     open func stringForValue(_ value: Double,
-                             axis: AxisBase?) -> String
+                               axis: AxisBase?) -> String
     {
         if let block = block {
             return block(value, axis)

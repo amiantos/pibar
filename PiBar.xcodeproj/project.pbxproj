@@ -353,6 +353,7 @@
 				440DE45F2482D37C00C55354 /* Resources */,
 				E0873B6BD66E09A2764D8708 /* [CP] Embed Pods Frameworks */,
 				444821DF248AE87200665395 /* SwiftLint */,
+				441D68932546382600ED81AB /* Increment Build Number */,
 			);
 			buildRules = (
 			);
@@ -376,8 +377,8 @@
 				CF30F66DAC81C5868939E5C0 /* [CP] Embed Pods Frameworks */,
 				441E78AB247E21DE00FBC7A0 /* Embed Frameworks */,
 				441E78A7247E203700FBC7A0 /* LaunchAtLogin */,
-				441E78AC247E221800FBC7A0 /* ShellScript */,
-				441E78B5247ECBD700FBC7A0 /* ShellScript */,
+				441E78AC247E221800FBC7A0 /* Carthage */,
+				441E78B5247ECBD700FBC7A0 /* Sign LaunchAtLogin */,
 			);
 			buildRules = (
 			);
@@ -395,7 +396,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1150;
-				LastUpgradeCheck = 1140;
+				LastUpgradeCheck = 1210;
 				ORGANIZATIONNAME = "Brad Root";
 				TargetAttributes = {
 					440DE4602482D37C00C55354 = {
@@ -468,6 +469,24 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
+		441D68932546382600ED81AB /* Increment Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Increment Build Number";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n";
+		};
 		441E78A7247E203700FBC7A0 /* LaunchAtLogin */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -486,7 +505,7 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PROJECT_DIR}/Carthage/Build/Mac/LaunchAtLogin.framework/Resources/copy-helper.sh\"\n";
 		};
-		441E78AC247E221800FBC7A0 /* ShellScript */ = {
+		441E78AC247E221800FBC7A0 /* Carthage */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -496,6 +515,7 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/Mac/LaunchAtLogin.framework",
 			);
+			name = Carthage;
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -504,7 +524,7 @@
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
-		441E78B5247ECBD700FBC7A0 /* ShellScript */ = {
+		441E78B5247ECBD700FBC7A0 /* Sign LaunchAtLogin */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -513,6 +533,7 @@
 			);
 			inputPaths = (
 			);
+			name = "Sign LaunchAtLogin";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -787,6 +808,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -811,6 +833,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -847,6 +870,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -865,6 +889,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;

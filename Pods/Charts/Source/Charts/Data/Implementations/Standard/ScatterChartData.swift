@@ -9,20 +9,24 @@
 //  https://github.com/danielgindi/Charts
 //
 
-import CoreGraphics
 import Foundation
+import CoreGraphics
 
-open class ScatterChartData: BarLineScatterCandleBubbleChartData {
-    override public init() {
+open class ScatterChartData: BarLineScatterCandleBubbleChartData
+{
+    public override init()
+    {
         super.init()
     }
-
-    override public init(dataSets: [IChartDataSet]?) {
+    
+    public override init(dataSets: [IChartDataSet]?)
+    {
         super.init(dataSets: dataSets)
     }
-
+    
     /// - Returns: The maximum shape-size across all DataSets.
-    @objc open func getGreatestShapeSize() -> CGFloat {
+    @objc open func getGreatestShapeSize() -> CGFloat
+    {
         return (_dataSets as? [IScatterChartDataSet])?
             .max { $0.scatterShapeSize < $1.scatterShapeSize }?
             .scatterShapeSize ?? 0

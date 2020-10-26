@@ -9,11 +9,12 @@
 //  https://github.com/danielgindi/Charts
 //
 
-import CoreGraphics
 import Foundation
+import CoreGraphics
 
 @objc
-public protocol IPieChartDataSet: IChartDataSet {
+public protocol IPieChartDataSet: IChartDataSet
+{
     // MARK: - Styling functions and accessors
 
     /// the space in pixels between the pie-slices
@@ -59,4 +60,5 @@ public protocol IPieChartDataSet: IChartDataSet {
 
     /// get/sets the color for the highlighted sector
     var highlightColor: NSUIColor? { get set }
+
 }
