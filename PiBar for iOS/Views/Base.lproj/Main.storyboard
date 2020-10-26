@@ -186,12 +186,12 @@
                                 </connections>
                             </tableView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="20Q-NF-L6o" customClass="NetworkOverviewView" customModule="PiBar_for_iOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="510.5" width="414" height="385.5"/>
+                                <rect key="frame" x="0.0" y="511" width="414" height="385"/>
                                 <subviews>
                                     <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eCz-8l-Bf5">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="385.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="385"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="1Jz-Ju-wbC">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="385.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="385"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="oPM-lt-rbg">
@@ -756,8 +756,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Off" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Pox-kL-8Wy">
-                                                    <rect key="frame" x="310.5" y="12" width="24.5" height="20.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="On" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Pox-kL-8Wy">
+                                                    <rect key="frame" x="312.5" y="12" width="22.5" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" systemColor="secondaryLabelColor"/>
@@ -865,6 +865,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="interfaceColorLabel" destination="4Qg-df-gS2" id="qmY-xR-dK1"/>
+                        <outlet property="normalizeChartsLabel" destination="Pox-kL-8Wy" id="6Mg-dW-QiR"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0fm-lt-ElR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1018,7 +1019,7 @@
         <!--Normalize Charts-->
         <scene sceneID="m6L-F0-ALc">
             <objects>
-                <tableViewController title="Normalize Charts" id="iBV-fE-trA" sceneMemberID="viewController">
+                <tableViewController title="Normalize Charts" id="iBV-fE-trA" customClass="NormalizeChartsTableViewController" customModule="PiBar_for_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="MAw-2s-m8k">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1028,9 +1029,9 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cdw-Vs-xrP">
-                                    <rect key="frame" x="40" y="0.0" width="334" height="91"/>
-                                    <string key="text">Normalize charts ensures that all charts are drawn using the same Y-axis, determined by the combined chart shown in the Overview panel.</string>
-                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                    <rect key="frame" x="40" y="0.0" width="334" height="62.5"/>
+                                    <string key="text">Normalize charts ensures that all charts are drawn using the same Y-axis, determined by the combined chart shown in the Overview panel. This makes it easier to visually see how load is distributed between your Pi-holes.</string>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -1039,7 +1040,7 @@
                             <constraints>
                                 <constraint firstItem="Cdw-Vs-xrP" firstAttribute="leading" secondItem="qfB-Uf-8Vh" secondAttribute="leading" constant="40" id="ACn-af-jy8"/>
                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Cdw-Vs-xrP" secondAttribute="trailing" constant="40" id="deZ-GW-LjM"/>
-                                <constraint firstAttribute="bottom" secondItem="Cdw-Vs-xrP" secondAttribute="bottom" id="eA0-aF-UNS"/>
+                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Cdw-Vs-xrP" secondAttribute="bottom" id="eA0-aF-UNS"/>
                                 <constraint firstItem="Cdw-Vs-xrP" firstAttribute="top" secondItem="qfB-Uf-8Vh" secondAttribute="top" id="vp8-3y-aZM"/>
                             </constraints>
                         </view>
@@ -1059,8 +1060,11 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="J0j-UQ-I3E">
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J0j-UQ-I3E">
                                                     <rect key="frame" x="305" y="6.5" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="toggleDidChange:" destination="iBV-fE-trA" eventType="valueChanged" id="kWf-5z-y5C"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -1082,6 +1086,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="ehf-aI-CVl"/>
+                    <connections>
+                        <outlet property="normalizeChartsToggle" destination="J0j-UQ-I3E" id="xgl-xF-8Uo"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aj7-Jb-PvE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

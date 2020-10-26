@@ -39,6 +39,7 @@ struct Preferences {
             Key.shortcutEnabled: true,
             Key.pollingRate: 3,
             Key.interfaceColor: "red",
+            Key.normalizeCharts: true,
         ])
 
         return database
@@ -163,6 +164,14 @@ extension UserDefaults {
 
     func set(interfaceColor: String) {
         set(interfaceColor, for: Preferences.Key.interfaceColor)
+    }
+
+    var normalizeCharts: Bool {
+        return bool(forKey: Preferences.Key.normalizeCharts)
+    }
+
+    func set(normalizeCharts: Bool) {
+        set(normalizeCharts, for: Preferences.Key.normalizeCharts)
     }
 
     // Helpers

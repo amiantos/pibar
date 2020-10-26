@@ -10,6 +10,7 @@ import UIKit
 
 class PreferencesTableViewController: UITableViewController {
     @IBOutlet var interfaceColorLabel: UILabel!
+    @IBOutlet weak var normalizeChartsLabel: UILabel!
 
     @IBAction func doneButtonAction(_: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
@@ -17,6 +18,7 @@ class PreferencesTableViewController: UITableViewController {
 
     override func viewWillAppear(_: Bool) {
         interfaceColorLabel.text = Preferences.standard.interfaceColor.capitalized
+        normalizeChartsLabel.text = Preferences.standard.normalizeCharts ? "On" : "Off"
     }
 
     override func viewDidLoad() {

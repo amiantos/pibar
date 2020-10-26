@@ -33,6 +33,7 @@
 		442F6F872471E8DF008F1101 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442F6F862471E8DF008F1101 /* Extensions.swift */; };
 		442F6F89247212D2008F1101 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442F6F88247212D1008F1101 /* Preferences.swift */; };
 		442F6F8B24721523008F1101 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442F6F8A24721523008F1101 /* PreferencesViewController.swift */; };
+		44306C9C25466124001EDCD2 /* NormalizeChartsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44306C9B25466124001EDCD2 /* NormalizeChartsTableViewController.swift */; };
 		4438184E247DE31A009D9B3F /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4438184D247DE31A009D9B3F /* AboutViewController.swift */; };
 		44381850247DE41B009D9B3F /* AboutWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4438184F247DE41B009D9B3F /* AboutWindowController.swift */; };
 		444821DE248AE1C000665395 /* PiBarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444821DD248AE1C000665395 /* PiBarChartView.swift */; };
@@ -89,6 +90,7 @@
 		442F6F862471E8DF008F1101 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		442F6F88247212D1008F1101 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		442F6F8A24721523008F1101 /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
+		44306C9B25466124001EDCD2 /* NormalizeChartsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalizeChartsTableViewController.swift; sourceTree = "<group>"; };
 		4438184D247DE31A009D9B3F /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		4438184F247DE41B009D9B3F /* AboutWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutWindowController.swift; sourceTree = "<group>"; };
 		444821DD248AE1C000665395 /* PiBarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiBarChartView.swift; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 			children = (
 				44CF8F9724F4B538005A21B6 /* PreferencesTableViewController.swift */,
 				44CD689324F5E3ED00115820 /* InterfaceColorTableViewController.swift */,
+				44306C9B25466124001EDCD2 /* NormalizeChartsTableViewController.swift */,
 			);
 			path = Preferences;
 			sourceTree = "<group>";
@@ -671,6 +674,7 @@
 				44CD689424F5E3ED00115820 /* InterfaceColorTableViewController.swift in Sources */,
 				440DE4782482D58B00C55354 /* Extensions.swift in Sources */,
 				44CD689824F5ED2B00115820 /* ThemeManager.swift in Sources */,
+				44306C9C25466124001EDCD2 /* NormalizeChartsTableViewController.swift in Sources */,
 				440DE47E2482D59C00C55354 /* AsyncOperation.swift in Sources */,
 				440DE4792482D58D00C55354 /* Logging.swift in Sources */,
 				440DE47A2482D59000C55354 /* Structs.swift in Sources */,

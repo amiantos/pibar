@@ -63,8 +63,11 @@ class PiBarChartView: BarChartView {
             set1 = set
             set1.replaceEntries(yVals)
 
-            // TODO: Tie into preferences
-            leftAxis.axisMaximum = maxValue
+            if Preferences.standard.normalizeCharts {
+                leftAxis.axisMaximum = maxValue
+            } else {
+                leftAxis.resetCustomAxisMax()
+            }
 
             data?.notifyDataChanged()
             notifyDataSetChanged()
@@ -74,8 +77,11 @@ class PiBarChartView: BarChartView {
             set1.colors = [color, .darkGray]
             set1.drawValuesEnabled = false
 
-            // TODO: Tie into preferences
-            leftAxis.axisMaximum = maxValue
+            if Preferences.standard.normalizeCharts {
+                leftAxis.axisMaximum = maxValue
+            } else {
+                leftAxis.resetCustomAxisMax()
+            }
 
             let barChartData = BarChartData(dataSet: set1)
             barChartData.barWidth = 0.8

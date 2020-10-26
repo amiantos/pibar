@@ -27,6 +27,7 @@ class ThemeManager {
     static func applyColor(color: UIColor) {
         UINavigationBar.appearance().tintColor = color
         UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: color], for: .normal)
+        UISwitch.appearance().onTintColor = color
         PiBarLabel.appearance().configurableTextColor = color
         PiBarChartView.appearance().chartColor = color
 
