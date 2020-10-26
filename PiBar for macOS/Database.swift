@@ -39,7 +39,7 @@ struct PBDatabase {
 
 extension UserDefaults {
     var hostname: String {
-        return string(forKey: PBDatabase.Key.hostname) ?? "pi-hole.local"
+        string(forKey: PBDatabase.Key.hostname) ?? "pi-hole.local"
     }
 
     var port: Int {
@@ -48,27 +48,27 @@ extension UserDefaults {
     }
 
     var token: String {
-        return string(forKey: PBDatabase.Key.token) ?? ""
+        string(forKey: PBDatabase.Key.token) ?? ""
     }
 
     var showBlocked: Bool {
-        return bool(forKey: PBDatabase.Key.showBlocked)
+        bool(forKey: PBDatabase.Key.showBlocked)
     }
 
     var showQueries: Bool {
-        return bool(forKey: PBDatabase.Key.showQueries)
+        bool(forKey: PBDatabase.Key.showQueries)
     }
 
     var showPercentage: Bool {
-        return bool(forKey: PBDatabase.Key.showPercentage)
+        bool(forKey: PBDatabase.Key.showPercentage)
     }
 
     var showLabels: Bool {
-        return bool(forKey: PBDatabase.Key.showLabels)
+        bool(forKey: PBDatabase.Key.showLabels)
     }
 
     var verboseLabels: Bool {
-        return bool(forKey: PBDatabase.Key.verboseLabels)
+        bool(forKey: PBDatabase.Key.verboseLabels)
     }
 }
 

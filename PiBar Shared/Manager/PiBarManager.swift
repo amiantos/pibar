@@ -26,7 +26,7 @@ class PiBarManager: NSObject {
 
     private var timer: Timer?
     private var updateInterval: TimeInterval
-    private let operationQueue: OperationQueue = OperationQueue()
+    private let operationQueue = OperationQueue()
 
     override init() {
         Log.logLevel = .debug
@@ -326,7 +326,7 @@ class PiBarManager: NSObject {
     private func normalizeOverTimeData(_ pihole: Pihole) -> [Double: (Double, Double)] {
         var overTimeData: [Double: (Double, Double)] = [:]
         if let domainsOverTime = pihole.overTimeData?.domainsOverTime,
-            let adsOverTime = pihole.overTimeData?.adsOverTime
+           let adsOverTime = pihole.overTimeData?.adsOverTime
         {
             var hour: Double = 0
             var batchCount: Int = 0

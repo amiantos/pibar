@@ -17,7 +17,7 @@ class AsyncOperation: Operation {
     }
 
     override var isAsynchronous: Bool {
-        return true
+        true
     }
 
     var state = State.isReady {
@@ -32,11 +32,11 @@ class AsyncOperation: Operation {
     }
 
     override var isExecuting: Bool {
-        return state == .isExecuting
+        state == .isExecuting
     }
 
     override var isFinished: Bool {
-        return state == .isFinished
+        state == .isFinished
     }
 
     override func start() {

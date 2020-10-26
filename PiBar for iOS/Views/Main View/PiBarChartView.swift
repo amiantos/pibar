@@ -9,7 +9,7 @@
 import Charts
 
 class PiBarChartView: BarChartView {
-    var color: UIColor = UIColor(named: "red") ?? .systemRed
+    var color = UIColor(named: "red") ?? .systemRed
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -99,7 +99,7 @@ class PiBarChartView: BarChartView {
 
     @objc dynamic var chartColor: UIColor {
         get {
-            return color
+            color
         }
         set {
             color = newValue

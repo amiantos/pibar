@@ -203,7 +203,7 @@ extension PreferencesViewController: NSTableViewDataSource {
 extension PreferencesViewController: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         var text: String = ""
-        var cellIdentifier: NSUserInterfaceItemIdentifier = NSUserInterfaceItemIdentifier(rawValue: "")
+        var cellIdentifier = NSUserInterfaceItemIdentifier(rawValue: "")
 
         let pihole = Preferences.standard.piholes[row]
         if tableColumn == tableView.tableColumns[0] {

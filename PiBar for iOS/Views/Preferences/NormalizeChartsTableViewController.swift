@@ -9,8 +9,7 @@
 import UIKit
 
 class NormalizeChartsTableViewController: UITableViewController {
-
-    @IBOutlet weak var normalizeChartsToggle: UISwitch!
+    @IBOutlet var normalizeChartsToggle: UISwitch!
     @IBAction func toggleDidChange(_ sender: UISwitch) {
         Preferences.standard.set(normalizeCharts: sender.isOn)
     }
@@ -24,5 +23,4 @@ class NormalizeChartsTableViewController: UITableViewController {
 
         normalizeChartsToggle.isOn = Preferences.standard.normalizeCharts
     }
-
 }

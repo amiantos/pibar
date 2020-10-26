@@ -44,23 +44,25 @@ extension Collection where Element: BinaryInteger {
     func average<T: FloatingPoint>() -> T { isEmpty ? .zero : T(sum()) / T(count) }
 }
 
-extension Bundle {
+public extension Bundle {
     // Thanks to: https://stackoverflow.com/a/62383907/2117288
-    public var appVersionShort: String? {
+    var appVersionShort: String? {
         if let result = infoDictionary?["CFBundleShortVersionString"] as? String {
             return result
         } else {
             return "⚠️"
         }
     }
-    public var appVersionLong: String? {
+
+    var appVersionLong: String? {
         if let result = infoDictionary?["CFBundleVersion"] as? String {
             return result
         } else {
             return "⚠️"
         }
     }
-    public var appName: String? {
+
+    var appName: String? {
         if let result = infoDictionary?["CFBundleName"] as? String {
             return result
         } else {

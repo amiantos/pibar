@@ -11,15 +11,12 @@
 
 import Foundation
 
-open class BarLineScatterCandleBubbleChartData: ChartData
-{
-    public override init()
-    {
+open class BarLineScatterCandleBubbleChartData: ChartData {
+    override public init() {
         super.init()
     }
-    
-    public override init(dataSets: [IChartDataSet]?)
-    {
+
+    override public init(dataSets: [IChartDataSet]?) {
         super.init(dataSets: dataSets)
     }
 }

@@ -11,7 +11,7 @@ import UIKit
 class PiBarLabel: UILabel {
     @objc dynamic var configurableTextColor: UIColor {
         get {
-            return textColor
+            textColor
         }
         set {
             textColor = newValue

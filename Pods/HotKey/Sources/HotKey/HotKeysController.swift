@@ -116,7 +116,7 @@ final class HotKeysController {
 
         // Ensure we have a HotKey registered for this ID
         guard hotKeyID.signature == eventHotKeySignature,
-            let hotKey = self.hotKey(for: hotKeyID.id)
+              let hotKey = self.hotKey(for: hotKeyID.id)
         else {
             return OSStatus(eventNotHandledErr)
         }
@@ -178,5 +178,5 @@ final class HotKeysController {
 }
 
 private func hotKeyEventHandler(eventHandlerCall _: EventHandlerCallRef?, event: EventRef?, userData _: UnsafeMutableRawPointer?) -> OSStatus {
-    return HotKeysController.handleCarbonEvent(event)
+    HotKeysController.handleCarbonEvent(event)
 }

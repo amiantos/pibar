@@ -98,7 +98,7 @@ extension UserDefaults {
     }
 
     var showBlocked: Bool {
-        return bool(forKey: Preferences.Key.showBlocked)
+        bool(forKey: Preferences.Key.showBlocked)
     }
 
     func set(showBlocked: Bool) {
@@ -106,7 +106,7 @@ extension UserDefaults {
     }
 
     var showQueries: Bool {
-        return bool(forKey: Preferences.Key.showQueries)
+        bool(forKey: Preferences.Key.showQueries)
     }
 
     func set(showQueries: Bool) {
@@ -114,7 +114,7 @@ extension UserDefaults {
     }
 
     var showPercentage: Bool {
-        return bool(forKey: Preferences.Key.showPercentage)
+        bool(forKey: Preferences.Key.showPercentage)
     }
 
     func set(showPercentage: Bool) {
@@ -122,7 +122,7 @@ extension UserDefaults {
     }
 
     var showLabels: Bool {
-        return bool(forKey: Preferences.Key.showLabels)
+        bool(forKey: Preferences.Key.showLabels)
     }
 
     func set(showLabels: Bool) {
@@ -130,7 +130,7 @@ extension UserDefaults {
     }
 
     var verboseLabels: Bool {
-        return bool(forKey: Preferences.Key.verboseLabels)
+        bool(forKey: Preferences.Key.verboseLabels)
     }
 
     func set(verboseLabels: Bool) {
@@ -138,7 +138,7 @@ extension UserDefaults {
     }
 
     var shortcutEnabled: Bool {
-        return bool(forKey: Preferences.Key.shortcutEnabled)
+        bool(forKey: Preferences.Key.shortcutEnabled)
     }
 
     func set(shortcutEnabled: Bool) {
@@ -159,7 +159,7 @@ extension UserDefaults {
     }
 
     var interfaceColor: String {
-        return string(forKey: Preferences.Key.interfaceColor) ?? "red"
+        string(forKey: Preferences.Key.interfaceColor) ?? "red"
     }
 
     func set(interfaceColor: String) {
@@ -167,7 +167,7 @@ extension UserDefaults {
     }
 
     var normalizeCharts: Bool {
-        return bool(forKey: Preferences.Key.normalizeCharts)
+        bool(forKey: Preferences.Key.normalizeCharts)
     }
 
     func set(normalizeCharts: Bool) {
@@ -177,7 +177,7 @@ extension UserDefaults {
     // Helpers
 
     var showTitle: Bool {
-        return showQueries || showBlocked || showPercentage
+        showQueries || showBlocked || showPercentage
     }
 }
 

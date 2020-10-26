@@ -15,7 +15,7 @@ import HotKey
 class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarManagerDelegate {
     private let toggleHotKey = HotKey(key: .p, modifiers: [.command, .option, .shift])
 
-    private let manager: PiBarManager = PiBarManager()
+    private let manager = PiBarManager()
 
     private var networkOverview: PiholeNetworkOverview?
 
@@ -165,7 +165,7 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
 
     private func launchWebAdmin(for identifier: String) {
         guard let pihole = networkOverview?.piholes[identifier],
-            let adminURL = URL(string: pihole.api.connection.adminPanelURL)
+              let adminURL = URL(string: pihole.api.connection.adminPanelURL)
         else {
             Log.debug("Could not find Pi-hole with identifier \(identifier)")
             return

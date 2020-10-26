@@ -35,8 +35,8 @@ class InterfaceColorTableViewController: UITableViewController {
     }
 }
 
-extension InterfaceColorTableViewController {
-    fileprivate func set(color: String) {
+private extension InterfaceColorTableViewController {
+    func set(color: String) {
         ThemeManager.setColor(color: color)
     }
 }

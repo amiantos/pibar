@@ -9,7 +9,7 @@
 import UIKit
 
 class MainViewController: UIViewController {
-    private let manager: PiBarManager = PiBarManager()
+    private let manager = PiBarManager()
     private var networkOverview: PiholeNetworkOverview? {
         didSet {
             DispatchQueue.main.async {
@@ -63,8 +63,8 @@ class MainViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender _: Any?) {
         if segue.identifier == "showAddDeviceSegue",
-            let navController = segue.destination as? UINavigationController,
-            let view = navController.topViewController as? AddDeviceTableViewController
+           let navController = segue.destination as? UINavigationController,
+           let view = navController.topViewController as? AddDeviceTableViewController
         {
             view.delegate = self
         }
@@ -89,7 +89,7 @@ extension MainViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let piholes = networkOverview?.piholes,
-            let cell = tableView.dequeueReusableCell(withIdentifier: "piholeCell", for: indexPath) as? PiholeTableViewCell
+              let cell = tableView.dequeueReusableCell(withIdentifier: "piholeCell", for: indexPath) as? PiholeTableViewCell
         else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "piholeCell", for: indexPath)
             return cell
@@ -100,7 +100,7 @@ extension MainViewController: UITableViewDataSource {
         cell.pihole = piholes[piholeIdentifiersAlphabetized[indexPath.row]]
 
         if let overTimeData = networkOverview?.overTimeData,
-            let piholeData = overTimeData.piholes[piholeIdentifiersAlphabetized[indexPath.row]]
+           let piholeData = overTimeData.piholes[piholeIdentifiersAlphabetized[indexPath.row]]
         {
             cell.chartData = (overTimeData.maximumValue, piholeData)
         }

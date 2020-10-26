@@ -19,7 +19,7 @@ final class PiholeAPI {
     let connection: PiholeConnectionV2
 
     var identifier: String {
-        return "\(connection.hostname)"
+        "\(connection.hostname)"
     }
 
     private let path: String = "/admin/api.php"
@@ -113,7 +113,7 @@ final class PiholeAPI {
     }
 
     var admin: URL {
-        return URL(string: "http://\(connection.hostname):\(connection.port)/admin")!
+        URL(string: "http://\(connection.hostname):\(connection.port)/admin")!
     }
 
     // MARK: - Testing
@@ -140,7 +140,7 @@ final class PiholeAPI {
         DispatchQueue.global(qos: .background).async {
             self.get(Endpoints.summary) { string in
                 guard let jsonString = string,
-                    let summary: PiholeAPISummary = self.decodeJSON(jsonString) else { return completion(nil) }
+                      let summary: PiholeAPISummary = self.decodeJSON(jsonString) else { return completion(nil) }
                 completion(summary)
             }
         }
@@ -160,7 +160,7 @@ final class PiholeAPI {
         DispatchQueue.global(qos: .background).async {
             self.get(Endpoints.overTimeData10mins) { string in
                 guard let jsonString = string,
-                    let overTimeData: PiholeOverTimeData = self.decodeJSON(jsonString) else { return completion(nil) }
+                      let overTimeData: PiholeOverTimeData = self.decodeJSON(jsonString) else { return completion(nil) }
                 completion(overTimeData)
             }
         }
@@ -174,7 +174,7 @@ final class PiholeAPI {
             }
             self.get(Endpoints.disable, argument: secondsString) { string in
                 guard let jsonString = string,
-                    let _: PiholeAPIStatus = self.decodeJSON(jsonString) else { return completion(false) }
+                      let _: PiholeAPIStatus = self.decodeJSON(jsonString) else { return completion(false) }
                 completion(true)
             }
         }
@@ -184,7 +184,7 @@ final class PiholeAPI {
         DispatchQueue.global(qos: .background).async {
             self.get(Endpoints.enable) { string in
                 guard let jsonString = string,
-                    let _: PiholeAPIStatus = self.decodeJSON(jsonString) else { return completion(false) }
+                      let _: PiholeAPIStatus = self.decodeJSON(jsonString) else { return completion(false) }
                 completion(true)
             }
         }

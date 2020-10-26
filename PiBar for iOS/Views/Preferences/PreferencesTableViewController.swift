@@ -7,12 +7,12 @@
 //
 
 import Foundation
-import UIKit
 import MessageUI
+import UIKit
 
 class PreferencesTableViewController: UITableViewController {
     @IBOutlet var interfaceColorLabel: UILabel!
-    @IBOutlet weak var normalizeChartsLabel: UILabel!
+    @IBOutlet var normalizeChartsLabel: UILabel!
 
     @IBAction func doneButtonAction(_: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
@@ -64,7 +64,8 @@ extension PreferencesTableViewController: MFMailComposeViewControllerDelegate {
             let alert = UIAlertController(
                 title: "Unable to Compose",
                 message: "PiBar was unable to compose an email for you, please email bradroot@me.com if you need help.",
-                preferredStyle: .alert)
+                preferredStyle: .alert
+            )
             if let themeColor = ThemeManager.getColor() {
                 alert.view.tintColor = themeColor
             }
@@ -74,7 +75,7 @@ extension PreferencesTableViewController: MFMailComposeViewControllerDelegate {
         }
     }
 
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith _: MFMailComposeResult, error _: Error?) {
         controller.dismiss(animated: true)
     }
 }

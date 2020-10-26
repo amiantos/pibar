@@ -1,7 +1,7 @@
 import Foundation
 import ServiceManagement
 
-public struct LaunchAtLogin {
+public enum LaunchAtLogin {
     private static let id = "\(Bundle.main.bundleIdentifier!)-LaunchAtLoginHelper"
 
     public static var isEnabled: Bool {

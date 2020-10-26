@@ -59,7 +59,7 @@ final class UpdatePiholeOperation: AsyncOperation {
             canBeManaged = false
         }
 
-        let updatedPihole: Pihole = Pihole(
+        let updatedPihole = Pihole(
             api: pihole.api,
             identifier: pihole.api.identifier,
             online: online,
