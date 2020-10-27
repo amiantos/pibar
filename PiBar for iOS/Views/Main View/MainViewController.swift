@@ -67,6 +67,11 @@ class MainViewController: UIViewController {
            let view = navController.topViewController as? AddDeviceTableViewController
         {
             view.delegate = self
+        } else if segue.identifier == "showPreferences",
+            let navController = segue.destination as? UINavigationController,
+            let view = navController.topViewController as? PreferencesTableViewController
+        {
+            view.delegate = self
         }
     }
 }
@@ -75,6 +80,12 @@ extension MainViewController: PiBarManagerDelegate {
     func updateNetwork(_ network: PiholeNetworkOverview) {
         networkOverviewView.networkOverview = network
         networkOverview = network
+    }
+}
+
+extension MainViewController: PreferencesDelegate {
+    func updatedPreferences() {
+        manager.setPollingRate(to: Preferences.standard.pollingRate)
     }
 }
 

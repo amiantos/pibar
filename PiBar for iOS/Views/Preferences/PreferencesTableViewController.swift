@@ -10,9 +10,16 @@ import Foundation
 import MessageUI
 import UIKit
 
+protocol PreferencesDelegate: AnyObject {
+    func updatedPreferences()
+}
+
 class PreferencesTableViewController: UITableViewController {
+    weak var delegate: PreferencesDelegate?
+
     @IBOutlet var interfaceColorLabel: UILabel!
     @IBOutlet var normalizeChartsLabel: UILabel!
+    @IBOutlet var pollingRateLabel: UILabel!
 
     @IBAction func doneButtonAction(_: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
@@ -21,6 +28,16 @@ class PreferencesTableViewController: UITableViewController {
     override func viewWillAppear(_: Bool) {
         interfaceColorLabel.text = Preferences.standard.interfaceColor.capitalized
         normalizeChartsLabel.text = Preferences.standard.normalizeCharts ? "On" : "Off"
+
+        let pollingRate = Preferences.standard.pollingRate
+        switch pollingRate {
+        case 60:
+            pollingRateLabel.text = "1 minute"
+        case 300:
+            pollingRateLabel.text = "5 minutes"
+        default:
+            pollingRateLabel.text = "\(pollingRate) seconds"
+        }
     }
 
     override func viewDidLoad() {
@@ -39,6 +56,20 @@ class PreferencesTableViewController: UITableViewController {
             sendEmail()
         }
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender _: Any?) {
+        if segue.identifier == "showPollingRate",
+           let view = segue.destination as? PollingRateTableViewController
+        {
+            view.delegate = self
+        }
+    }
+}
+
+extension PreferencesTableViewController: PreferencesDelegate {
+    func updatedPreferences() {
+        delegate?.updatedPreferences()
     }
 }
 
