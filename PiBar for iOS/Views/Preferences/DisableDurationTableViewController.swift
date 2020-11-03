@@ -1,14 +1,14 @@
 //
-//  PollingRateTableViewController.swift
+//  DisableDurationTableViewController.swift
 //  PiBar for iOS
 //
-//  Created by Brad Root on 10/26/20.
+//  Created by Brad Root on 11/2/20.
 //  Copyright © 2020 Brad Root. All rights reserved.
 //
 
 import UIKit
 
-class PollingRateTableViewController: UITableViewController {
+class DisableDurationTableViewController: UITableViewController {
     weak var selectedCell: UITableViewCell?
     weak var delegate: PreferencesDelegate?
 
@@ -21,19 +21,21 @@ class PollingRateTableViewController: UITableViewController {
 
         // there is undoubtedly a better way to do this, but this works
         var indexPath = IndexPath(row: 0, section: 0)
-        switch Preferences.standard.pollingRate {
-        case 5:
-            indexPath = IndexPath(row: 1, section: 0)
-        case 10:
-            indexPath = IndexPath(row: 2, section: 0)
-        case 15:
-            indexPath = IndexPath(row: 3, section: 0)
-        case 30:
-            indexPath = IndexPath(row: 4, section: 0)
-        case 60:
-            indexPath = IndexPath(row: 5, section: 0)
-        case 300:
+        switch Preferences.standard.defaultDisableDuration {
+        case -1:
+            indexPath = IndexPath(row: 0, section: 0)
+        case 0:
             indexPath = IndexPath(row: 6, section: 0)
+        case 10:
+            indexPath = IndexPath(row: 1, section: 0)
+        case 30:
+            indexPath = IndexPath(row: 2, section: 0)
+        case 300:
+            indexPath = IndexPath(row: 3, section: 0)
+        case 900:
+            indexPath = IndexPath(row: 4, section: 0)
+        case 3600:
+            indexPath = IndexPath(row: 5, section: 0)
         default:
             indexPath = IndexPath(row: 0, section: 0)
         }
@@ -47,7 +49,7 @@ class PollingRateTableViewController: UITableViewController {
         selectedCell?.accessoryType = .none
         if let cell = tableView.cellForRow(at: indexPath) {
             cell.accessoryType = .checkmark
-            Preferences.standard.set(pollingRate: cell.tag)
+            Preferences.standard.set(defaultDisableDuration: cell.tag)
             selectedCell = cell
             delegate?.updatedPreferences()
         }

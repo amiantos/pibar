@@ -24,6 +24,7 @@ struct Preferences {
         static let pollingRate = "pollingRate"
         static let interfaceColor = "interfaceColor"
         static let normalizeCharts = "normalizeCharts"
+        static let defaultDisableDuration = "defaultDisableDuration"
     }
 
     static var standard: UserDefaults {
@@ -40,6 +41,7 @@ struct Preferences {
             Key.pollingRate: 3,
             Key.interfaceColor: "red",
             Key.normalizeCharts: true,
+            Key.defaultDisableDuration: -1,
         ])
 
         return database
@@ -172,6 +174,14 @@ extension UserDefaults {
 
     func set(normalizeCharts: Bool) {
         set(normalizeCharts, for: Preferences.Key.normalizeCharts)
+    }
+
+    var defaultDisableDuration: Int {
+        integer(forKey: Preferences.Key.defaultDisableDuration)
+    }
+
+    func set(defaultDisableDuration: Int) {
+        set(defaultDisableDuration, for: Preferences.Key.defaultDisableDuration)
     }
 
     // Helpers

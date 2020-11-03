@@ -20,6 +20,8 @@ class PreferencesTableViewController: UITableViewController {
     @IBOutlet var interfaceColorLabel: UILabel!
     @IBOutlet var normalizeChartsLabel: UILabel!
     @IBOutlet var pollingRateLabel: UILabel!
+    @IBOutlet weak var disableDurationLabel: UILabel!
+
 
     @IBAction func doneButtonAction(_: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
@@ -37,6 +39,26 @@ class PreferencesTableViewController: UITableViewController {
             pollingRateLabel.text = "5 minutes"
         default:
             pollingRateLabel.text = "\(pollingRate) seconds"
+        }
+
+        let disableDuration = Preferences.standard.defaultDisableDuration
+        switch disableDuration {
+        case -1:
+            disableDurationLabel.text = "Always Ask"
+        case 0:
+            disableDurationLabel.text = "Permanently"
+        case 10:
+            disableDurationLabel.text = "10 Seconds"
+        case 30:
+            disableDurationLabel.text = "30 Seconds"
+        case 300:
+            disableDurationLabel.text = "5 Minutes"
+        case 900:
+            disableDurationLabel.text = "15 Minutes"
+        case 3600:
+            disableDurationLabel.text = "1 Hour"
+        default:
+            disableDurationLabel.text = "Always Ask"
         }
     }
 
@@ -61,6 +83,10 @@ class PreferencesTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender _: Any?) {
         if segue.identifier == "showPollingRate",
            let view = segue.destination as? PollingRateTableViewController
+        {
+            view.delegate = self
+        } else if segue.identifier == "showDisableDuration",
+                  let view = segue.destination as? DisableDurationTableViewController
         {
             view.delegate = self
         }
