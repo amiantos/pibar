@@ -23,9 +23,16 @@ class NetworkOverviewView: UIView {
     @IBOutlet var chart: PiBarChartView!
 
     @IBAction func disableButtonAction(_ sender: UIButton) {
-        let seconds = sender.tag > 0 ? sender.tag : nil
-        Log.info("Disabling via Menu for \(String(describing: seconds)) seconds")
-        manager?.disableNetwork(seconds: seconds)
+        let seconds = Preferences.standard.defaultDisableDuration
+        if seconds > 0 {
+            Log.info("Disabling via Menu for \(String(describing: seconds)) seconds")
+            manager?.disableNetwork(seconds: seconds)
+        } else if seconds == 0 {
+            Log.info("Disabling via Menu permanently")
+            manager?.disableNetwork()
+        } else {
+            // Show selection menu...
+        }
     }
 
     var networkOverview: PiholeNetworkOverview? {
