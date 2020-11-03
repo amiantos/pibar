@@ -186,12 +186,12 @@
                                 </connections>
                             </tableView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="20Q-NF-L6o" customClass="NetworkOverviewView" customModule="PiBar_for_iOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="510.5" width="414" height="385.5"/>
+                                <rect key="frame" x="0.0" y="511" width="414" height="385"/>
                                 <subviews>
                                     <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eCz-8l-Bf5">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="385.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="385"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="1Jz-Ju-wbC">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="385.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="385"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="oPM-lt-rbg">
@@ -798,6 +798,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Pxk-kb-qLx" kind="show" id="3TB-ml-bU1"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -1184,7 +1187,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q3K-vI-pTt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5414" y="-598"/>
+            <point key="canvasLocation" x="5412" y="-810"/>
         </scene>
         <!--Interface Color-->
         <scene sceneID="POM-RY-9bg">
@@ -1387,7 +1390,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aj7-Jb-PvE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5410" y="-1240"/>
+            <point key="canvasLocation" x="5413" y="-1501"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PPc-8K-vCt">
@@ -1497,6 +1500,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s7R-uB-v4S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2737.68115942029" y="-113.16964285714285"/>
+        </scene>
+        <!--Family Mode-->
+        <scene sceneID="KSF-ni-sw6">
+            <objects>
+                <viewController id="Pxk-kb-qLx" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zQI-zB-G1i">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Family Mode coming soon!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zeb-Pa-a5D">
+                                <rect key="frame" x="105.5" y="422" width="203.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="zQZ-QK-cnO"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Zeb-Pa-a5D" firstAttribute="centerY" secondItem="zQZ-QK-cnO" secondAttribute="centerY" id="5NU-J0-1Lx"/>
+                            <constraint firstItem="Zeb-Pa-a5D" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="zQZ-QK-cnO" secondAttribute="leading" constant="100.5" id="JdI-ji-Evv"/>
+                            <constraint firstItem="zQZ-QK-cnO" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Zeb-Pa-a5D" secondAttribute="trailing" constant="100.5" id="hIA-2o-deD"/>
+                            <constraint firstItem="Zeb-Pa-a5D" firstAttribute="centerX" secondItem="zQZ-QK-cnO" secondAttribute="centerX" id="iSG-8x-Y6X"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Family Mode" id="zgs-iJ-OEp"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7cI-KE-I2Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6135" y="-810"/>
         </scene>
     </scenes>
     <resources>
