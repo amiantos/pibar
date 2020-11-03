@@ -33,7 +33,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension UIApplication {
-
     static func topViewController() -> UIViewController? {
         guard var top = shared.keyWindow?.rootViewController else {
             return nil

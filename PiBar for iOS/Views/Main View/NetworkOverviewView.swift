@@ -44,7 +44,7 @@ class NetworkOverviewView: UIView {
 
     @IBOutlet var chart: PiBarChartView!
 
-    @IBAction func disableButtonAction(_ sender: UIButton) {
+    @IBAction func disableButtonAction(_: UIButton) {
         if buttonBehavior == .disable {
             let seconds = Preferences.standard.defaultDisableDuration
             if seconds > 0 {
@@ -123,7 +123,7 @@ class NetworkOverviewView: UIView {
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         disableActionSheet.addAction(cancelAction)
 
-        let permAction = UIAlertAction(title: "Permanently", style: .destructive) { (_) in
+        let permAction = UIAlertAction(title: "Permanently", style: .destructive) { _ in
             self.manager?.disableNetwork()
         }
         disableActionSheet.addAction(permAction)
@@ -136,7 +136,7 @@ class NetworkOverviewView: UIView {
             (10, "10 Seconds"),
         ]
         for time in disableTimes {
-            let action = UIAlertAction(title: time.1, style: .default) { (_) in
+            let action = UIAlertAction(title: time.1, style: .default) { _ in
                 self.manager?.disableNetwork(seconds: time.0)
             }
             disableActionSheet.addAction(action)
@@ -144,5 +144,4 @@ class NetworkOverviewView: UIView {
 
         UIApplication.topViewController()?.present(disableActionSheet, animated: true, completion: nil)
     }
-
 }
