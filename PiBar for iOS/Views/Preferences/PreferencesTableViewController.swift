@@ -20,8 +20,7 @@ class PreferencesTableViewController: UITableViewController {
     @IBOutlet var interfaceColorLabel: UILabel!
     @IBOutlet var normalizeChartsLabel: UILabel!
     @IBOutlet var pollingRateLabel: UILabel!
-    @IBOutlet weak var disableDurationLabel: UILabel!
-
+    @IBOutlet var disableDurationLabel: UILabel!
 
     @IBAction func doneButtonAction(_: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
@@ -86,7 +85,7 @@ class PreferencesTableViewController: UITableViewController {
         {
             view.delegate = self
         } else if segue.identifier == "showDisableDuration",
-                  let view = segue.destination as? DisableDurationTableViewController
+            let view = segue.destination as? DisableDurationTableViewController
         {
             view.delegate = self
         }
