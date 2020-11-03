@@ -31,3 +31,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     @available(iOS 13.0, *)
     func application(_: UIApplication, didDiscardSceneSessions _: Set<UISceneSession>) {}
 }
+
+extension UIApplication {
+
+    static func topViewController() -> UIViewController? {
+        guard var top = shared.keyWindow?.rootViewController else {
+            return nil
+        }
+        while let next = top.presentedViewController {
+            top = next
+        }
+        return top
+    }
+}

@@ -9,8 +9,30 @@
 import Charts
 import UIKit
 
+enum ButtonBehavior {
+    case enable
+    case disable
+    case pending
+}
+
 class NetworkOverviewView: UIView {
     weak var manager: PiBarManager?
+
+    var buttonBehavior: ButtonBehavior = .disable {
+        didSet {
+            switch buttonBehavior {
+            case .enable:
+                disableButton.setTitle("Enable", for: .normal)
+                disableButton.isEnabled = true
+            case .disable:
+                disableButton.setTitle("Disable", for: .normal)
+                disableButton.isEnabled = true
+            case .pending:
+                disableButton.setTitle("Disable", for: .normal)
+                disableButton.isEnabled = false
+            }
+        }
+    }
 
     @IBOutlet var totalQueriesLabel: UILabel!
     @IBOutlet var blockedQueriesLabel: UILabel!
@@ -23,15 +45,19 @@ class NetworkOverviewView: UIView {
     @IBOutlet var chart: PiBarChartView!
 
     @IBAction func disableButtonAction(_ sender: UIButton) {
-        let seconds = Preferences.standard.defaultDisableDuration
-        if seconds > 0 {
-            Log.info("Disabling via Menu for \(String(describing: seconds)) seconds")
-            manager?.disableNetwork(seconds: seconds)
-        } else if seconds == 0 {
-            Log.info("Disabling via Menu permanently")
-            manager?.disableNetwork()
-        } else {
-            // Show selection menu...
+        if buttonBehavior == .disable {
+            let seconds = Preferences.standard.defaultDisableDuration
+            if seconds > 0 {
+                Log.info("Disabling via Menu for \(String(describing: seconds)) seconds")
+                manager?.disableNetwork(seconds: seconds)
+            } else if seconds == 0 {
+                Log.info("Disabling via Menu permanently")
+                manager?.disableNetwork()
+            } else {
+                showDisableMenu()
+            }
+        } else if buttonBehavior == .enable {
+            manager?.enableNetwork()
         }
     }
 
@@ -43,6 +69,24 @@ class NetworkOverviewView: UIView {
                 self.blockedQueriesLabel.text = networkOverview.adsBlockedToday.string
                 self.networkStatusLabel.text = networkOverview.networkStatus.rawValue
                 self.avgBlocklistLabel.text = networkOverview.averageBlocklist.string
+
+                switch networkOverview.networkStatus {
+                case .enabled:
+                    self.buttonBehavior = .disable
+                case .disabled:
+                    self.buttonBehavior = .enable
+                case .partiallyEnabled:
+                    self.buttonBehavior = .disable
+                case .offline:
+                    self.buttonBehavior = .pending
+                case .partiallyOffline:
+                    self.buttonBehavior = .disable
+                case .noneSet:
+                    self.buttonBehavior = .pending
+                case .initializing:
+                    self.buttonBehavior = .pending
+                }
+
                 self.updateChart()
             }
         }
@@ -70,11 +114,35 @@ class NetworkOverviewView: UIView {
         chart.loadDataOverTime(dataOverTime.overview, maxValue: dataOverTime.maximumValue)
     }
 
-    /*
-     // Only override draw() if you perform custom drawing.
-     // An empty implementation adversely affects performance during animation.
-     override func draw(_ rect: CGRect) {
-         // Drawing code
-     }
-     */
+    func showDisableMenu() {
+        let disableActionSheet = UIAlertController(title: "Disable Pi-holes", message: nil, preferredStyle: .actionSheet)
+
+        disableActionSheet.popoverPresentationController?.sourceView = disableButton.superview!
+        disableActionSheet.popoverPresentationController?.sourceRect = disableButton.frame
+
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        disableActionSheet.addAction(cancelAction)
+
+        let permAction = UIAlertAction(title: "Permanently", style: .destructive) { (_) in
+            self.manager?.disableNetwork()
+        }
+        disableActionSheet.addAction(permAction)
+
+        let disableTimes: [(Int, String)] = [
+            (3600, "1 Hour"),
+            (900, "15 Minutes"),
+            (300, "5 Minutes"),
+            (30, "30 Seconds"),
+            (10, "10 Seconds"),
+        ]
+        for time in disableTimes {
+            let action = UIAlertAction(title: time.1, style: .default) { (_) in
+                self.manager?.disableNetwork(seconds: time.0)
+            }
+            disableActionSheet.addAction(action)
+        }
+
+        UIApplication.topViewController()?.present(disableActionSheet, animated: true, completion: nil)
+    }
+
 }
