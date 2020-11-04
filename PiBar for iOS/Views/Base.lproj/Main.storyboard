@@ -186,12 +186,12 @@
                                 </connections>
                             </tableView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="20Q-NF-L6o" customClass="NetworkOverviewView" customModule="PiBar_for_iOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="510.5" width="414" height="385.5"/>
+                                <rect key="frame" x="0.0" y="511" width="414" height="385"/>
                                 <subviews>
                                     <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eCz-8l-Bf5">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="385.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="385"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="1Jz-Ju-wbC">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="386"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="385"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="oPM-lt-rbg">
@@ -1042,7 +1042,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rWf-9a-yDc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4661" y="-810"/>
+            <point key="canvasLocation" x="4577" y="-810"/>
         </scene>
         <!--Default Disable Duration-->
         <scene sceneID="IH4-J1-8kD">
@@ -1187,7 +1187,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q3K-vI-pTt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5412" y="-810"/>
+            <point key="canvasLocation" x="5328" y="-810"/>
         </scene>
         <!--Interface Color-->
         <scene sceneID="POM-RY-9bg">
@@ -1331,7 +1331,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zcs-gO-GRa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4661" y="-1501"/>
+            <point key="canvasLocation" x="4577" y="-1501"/>
         </scene>
         <!--Normalize Charts-->
         <scene sceneID="m6L-F0-ALc">
@@ -1390,7 +1390,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aj7-Jb-PvE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5413" y="-1501"/>
+            <point key="canvasLocation" x="5328" y="-1501"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PPc-8K-vCt">
@@ -1451,11 +1451,55 @@
                             <outlet property="delegate" destination="9l6-v7-hGl" id="6eV-jS-cU3"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Query Log" id="fJO-NE-fc3"/>
+                    <navigationItem key="navigationItem" title="Query Log" id="fJO-NE-fc3">
+                        <barButtonItem key="rightBarButtonItem" title="Edit Lists" id="KSQ-2h-EQR">
+                            <connections>
+                                <segue destination="TU3-Qv-hmr" kind="show" id="A6c-hE-ebs"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="suE-70-6Ed" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3648" y="613"/>
+        </scene>
+        <!--Edit Lists-->
+        <scene sceneID="fqc-vx-C5K">
+            <objects>
+                <tableViewController id="TU3-Qv-hmr" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="KWe-Ew-xUX">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="QKK-M7-GgU">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QKK-M7-GgU" id="ojP-l9-dBG">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="TU3-Qv-hmr" id="kgt-MZ-pyO"/>
+                            <outlet property="delegate" destination="TU3-Qv-hmr" id="wGk-qf-XOQ"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Edit Lists" id="JVd-Zy-fML">
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="5kz-LR-vYc">
+                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Allow"/>
+                                <segment title="Deny"/>
+                            </segments>
+                        </segmentedControl>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fwv-aj-5Yd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4577" y="613"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Suk-Qc-qb4">
@@ -1521,7 +1565,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7cI-KE-I2Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6135" y="-810"/>
+            <point key="canvasLocation" x="6051" y="-810"/>
         </scene>
     </scenes>
     <resources>
