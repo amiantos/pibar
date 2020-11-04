@@ -33,6 +33,8 @@ final class PiholeAPI {
         static let enable = PiholeAPIEndpoint(queryParameter: "enable", authorizationRequired: true)
         static let disable = PiholeAPIEndpoint(queryParameter: "disable", authorizationRequired: true)
         static let recentBlocked = PiholeAPIEndpoint(queryParameter: "recentBlocked", authorizationRequired: false)
+        static let getAllQueries = PiholeAPIEndpoint(queryParameter: "getAllQueries", authorizationRequired: true)
+
     }
 
     init() {
@@ -162,6 +164,17 @@ final class PiholeAPI {
                 guard let jsonString = string,
                       let overTimeData: PiholeOverTimeData = self.decodeJSON(jsonString) else { return completion(nil) }
                 completion(overTimeData)
+            }
+        }
+    }
+
+    func fetchQueries(count: Int = 100, completion: @escaping (PiholeQueriesData?) -> Void) {
+        DispatchQueue.global(qos: .background).async {
+            let countString = String(count)
+            self.get(Endpoints.getAllQueries, argument: countString) { (string) in
+                guard let jsonString = string,
+                      let allQueriesData: PiholeQueriesData = self.decodeJSON(jsonString) else { return completion(nil) }
+                completion(allQueriesData)
             }
         }
     }

@@ -115,6 +115,10 @@ struct PiholeOverTimeData: Decodable {
     let adsOverTime: [String: Int]
 }
 
+struct PiholeQueriesData: Decodable {
+    let data: [[String]]
+}
+
 // MARK: - Pi-hole Network
 
 enum PiholeNetworkStatus: String {
