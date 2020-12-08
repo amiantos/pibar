@@ -49,6 +49,7 @@
       "size" : "60x60"
     },
     {
+      "filename" : "pibar_icon_20px.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "20x20"
@@ -60,11 +61,13 @@
       "size" : "20x20"
     },
     {
+      "filename" : "pibar_icon_29px.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "29x29"
     },
     {
+      "filename" : "pibar_icon_58px-1.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "29x29"
@@ -82,16 +85,19 @@
       "size" : "40x40"
     },
     {
+      "filename" : "pibar_icon_76px.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "76x76"
     },
     {
+      "filename" : "pibar_icon_152px.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "76x76"
     },
     {
+      "filename" : "pibar_icon_167px.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "83.5x83.5"
