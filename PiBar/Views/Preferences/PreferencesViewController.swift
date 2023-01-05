@@ -10,7 +10,6 @@
 //  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import Cocoa
-import LaunchAtLogin
 
 protocol PreferencesDelegate: AnyObject {
     func updatedPreferences()
@@ -41,7 +40,6 @@ class PreferencesViewController: NSViewController {
     @IBOutlet var verboseLabelsCheckbox: NSButton!
 
     @IBOutlet var shortcutEnabledCheckbox: NSButton!
-    @IBOutlet var launchAtLoginCheckbox: NSButton!
     @IBOutlet var pollingRateTextField: NSTextField!
 
     @IBOutlet var editButton: NSButton!
@@ -123,8 +121,6 @@ class PreferencesViewController: NSViewController {
             verboseLabelsCheckbox.isEnabled = showLabelsCheckbox.state == .on ? true : false
         }
 
-        launchAtLoginCheckbox.state = LaunchAtLogin.isEnabled ? .on : .off
-
         pollingRateTextField.stringValue = "\(Preferences.standard.pollingRate)"
     }
 
@@ -143,12 +139,6 @@ class PreferencesViewController: NSViewController {
         Preferences.standard.set(verboseLabels: verboseLabelsCheckbox.state == .on ? true : false)
 
         Preferences.standard.set(shortcutEnabled: shortcutEnabledCheckbox.state == .on ? true : false)
-
-        if launchAtLoginCheckbox.state == .on {
-            LaunchAtLogin.isEnabled = true
-        } else {
-            LaunchAtLogin.isEnabled = false
-        }
 
         let input = pollingRateTextField.stringValue
         if let intValue = Int(input), intValue >= 3 {

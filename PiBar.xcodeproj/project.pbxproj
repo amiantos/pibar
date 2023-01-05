@@ -3,14 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		32954590BDD997C520227DB6 /* Pods_PiBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04F07DFA596CEEEADF9A90A0 /* Pods_PiBar.framework */; };
 		4415D73424731FE0009E0B31 /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4415D73324731FE0009E0B31 /* Structs.swift */; };
 		4415D73624747331009E0B31 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4415D73524747331009E0B31 /* Logging.swift */; };
-		441D936A25DD905100D7CA85 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 441D936925DD905100D7CA85 /* LaunchAtLogin */; };
 		441E78AE247E3AF300FBC7A0 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441E78AD247E3AF300FBC7A0 /* AsyncOperation.swift */; };
 		441E78B0247E3BC500FBC7A0 /* UpdatePiholeOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441E78AF247E3BC500FBC7A0 /* UpdatePiholeOperation.swift */; };
 		441E78B4247E3F9400FBC7A0 /* ChangePiholeStatusOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441E78B3247E3F9400FBC7A0 /* ChangePiholeStatusOperation.swift */; };
@@ -78,7 +77,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				441D936A25DD905100D7CA85 /* LaunchAtLogin in Frameworks */,
 				32954590BDD997C520227DB6 /* Pods_PiBar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -237,7 +235,6 @@
 			);
 			name = PiBar;
 			packageProductDependencies = (
-				441D936925DD905100D7CA85 /* LaunchAtLogin */,
 			);
 			productName = PiBar;
 			productReference = 449395D22471ABD600FA0C34 /* PiBar.app */;
@@ -268,7 +265,6 @@
 			);
 			mainGroup = 449395C92471ABD600FA0C34;
 			packageReferences = (
-				441D936825DD905100D7CA85 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */,
 			);
 			productRefGroup = 449395D32471ABD600FA0C34 /* Products */;
 			projectDirPath = "";
@@ -547,6 +543,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = PiBar/PiBar.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 671;
@@ -576,6 +573,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = PiBar/PiBar.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 671;
@@ -620,25 +618,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		441D936825DD905100D7CA85 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		441D936925DD905100D7CA85 /* LaunchAtLogin */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 441D936825DD905100D7CA85 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */;
-			productName = LaunchAtLogin;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 449395CA2471ABD600FA0C34 /* Project object */;
 }

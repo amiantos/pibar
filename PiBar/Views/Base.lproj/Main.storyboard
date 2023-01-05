@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -53,17 +53,17 @@
             <objects>
                 <viewController id="8lv-Nf-Li8" customClass="AboutViewController" customModule="PiBar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="4DW-02-72t">
-                        <rect key="frame" x="0.0" y="0.0" width="270" height="273"/>
+                        <rect key="frame" x="0.0" y="0.0" width="270" height="275"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box title="About" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="JNj-dj-3s6">
-                                <rect key="frame" x="17" y="16" width="236" height="239"/>
+                                <rect key="frame" x="17" y="16" width="236" height="241"/>
                                 <view key="contentView" id="EhY-3x-KuI">
-                                    <rect key="frame" x="3" y="3" width="230" height="233"/>
+                                    <rect key="frame" x="4" y="5" width="228" height="233"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TtV-qo-CDH" userLabel="GitHub URL">
-                                            <rect key="frame" x="20" y="69" width="190" height="16"/>
+                                            <rect key="frame" x="20" y="69" width="188" height="16"/>
                                             <buttonCell key="cell" type="bevel" title="github.com/amiantos/pibar" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="5B4-TG-p0I">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -73,7 +73,7 @@
                                             </connections>
                                         </button>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="59Q-Jm-Cbr">
-                                            <rect key="frame" x="18" y="16" width="194" height="42"/>
+                                            <rect key="frame" x="18" y="16" width="192" height="42"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" id="WN0-cg-lqh">
                                                 <font key="font" metaFont="label" size="11"/>
                                                 <string key="title">PiBar © 2020 Brad Root 
@@ -84,11 +84,11 @@ of Pi-hole LLC.</string>
                                             </textFieldCell>
                                         </textField>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QQK-OP-L9S">
-                                            <rect key="frame" x="83" y="153" width="64" height="64"/>
+                                            <rect key="frame" x="82" y="153" width="64" height="64"/>
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="iconImage" id="ISi-XG-hOU"/>
                                         </imageView>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HRV-Iq-n3o">
-                                            <rect key="frame" x="77" y="108" width="77" height="38"/>
+                                            <rect key="frame" x="76" y="108" width="77" height="38"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="PiBar" id="ryo-yk-Q62">
                                                 <font key="font" metaFont="system" size="32"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -96,7 +96,7 @@ of Pi-hole LLC.</string>
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gPz-LR-6t6">
-                                            <rect key="frame" x="81" y="94" width="68" height="14"/>
+                                            <rect key="frame" x="80" y="94" width="68" height="14"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Version 1.1.1" id="oRj-Vt-ZIN">
                                                 <font key="font" metaFont="label" size="11"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -144,12 +144,12 @@ of Pi-hole LLC.</string>
         <scene sceneID="PXR-hs-Mxg">
             <objects>
                 <viewController id="GTm-9k-36S" customClass="PreferencesViewController" customModule="PiBar" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="77P-BY-lJe">
-                        <rect key="frame" x="0.0" y="0.0" width="535" height="418"/>
+                    <view key="view" misplaced="YES" id="77P-BY-lJe">
+                        <rect key="frame" x="0.0" y="0.0" width="538" height="409"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="J44-eX-Cmj">
-                                <rect key="frame" x="18" y="335" width="269" height="67"/>
+                                <rect key="frame" x="19" y="212" width="269" height="181"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Pi-holes" id="1au-rN-a6J">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -157,25 +157,25 @@ of Pi-hole LLC.</string>
                                 </textFieldCell>
                             </textField>
                             <box title="Pi-holes" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="rf3-sM-sEw">
-                                <rect key="frame" x="17" y="57" width="271" height="272"/>
+                                <rect key="frame" x="17" y="57" width="272" height="149"/>
                                 <view key="contentView" id="U8L-6W-MRA">
-                                    <rect key="frame" x="3" y="3" width="265" height="266"/>
+                                    <rect key="frame" x="4" y="5" width="264" height="141"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <scrollView verticalHuggingPriority="249" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="7by-VC-c7V">
-                                            <rect key="frame" x="20" y="52" width="225" height="194"/>
+                                            <rect key="frame" x="20" y="52" width="225" height="69"/>
                                             <clipView key="contentView" id="7U0-rZ-cjX">
-                                                <rect key="frame" x="1" y="1" width="223" height="192"/>
+                                                <rect key="frame" x="1" y="1" width="223" height="67"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="none" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="lI7-le-hIe" viewBased="YES" id="ILp-pd-N6u">
-                                                        <rect key="frame" x="0.0" y="0.0" width="223" height="167"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="223" height="42"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
-                                                            <tableColumn width="150" minWidth="40" maxWidth="1000" id="6Az-AI-g5G">
+                                                            <tableColumn width="121" minWidth="40" maxWidth="1000" id="6Az-AI-g5G">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Hostname">
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -188,11 +188,11 @@ of Pi-hole LLC.</string>
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                 <prototypeCellViews>
                                                                     <tableCellView identifier="hostnameCell" id="TXu-ee-LVQ">
-                                                                        <rect key="frame" x="1" y="1" width="155" height="17"/>
+                                                                        <rect key="frame" x="1" y="1" width="126" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
                                                                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="9dL-In-WC2">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="155" height="17"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="126" height="17"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="17" id="fs9-rj-VQ2"/>
                                                                                 </constraints>
@@ -227,7 +227,7 @@ of Pi-hole LLC.</string>
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                 <prototypeCellViews>
                                                                     <tableCellView identifier="portCell" id="dAY-Du-JhP">
-                                                                        <rect key="frame" x="159" y="1" width="62" height="17"/>
+                                                                        <rect key="frame" x="130" y="1" width="62" height="17"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
                                                                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="RbF-1c-Sbq" userLabel="Port">
@@ -326,30 +326,30 @@ of Pi-hole LLC.</string>
                                 </view>
                                 <font key="titleFont" size="14" name="HelveticaNeue"/>
                             </box>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iau-X6-RVt">
-                                <rect key="frame" x="303" y="386" width="214" height="16"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iau-X6-RVt">
+                                <rect key="frame" x="304" y="377" width="215" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Preferences" id="KWY-Db-no8">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <box ambiguous="YES" borderType="line" title="Preferences" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="kjd-Se-RaQ" userLabel="Preferences">
-                                <rect key="frame" x="302" y="57" width="216" height="323"/>
-                                <view key="contentView" ambiguous="YES" id="lOO-sf-eYN">
-                                    <rect key="frame" x="3" y="3" width="210" height="317"/>
+                            <box borderType="line" title="Preferences" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="kjd-Se-RaQ" userLabel="Preferences">
+                                <rect key="frame" x="303" y="56" width="218" height="315"/>
+                                <view key="contentView" id="lOO-sf-eYN">
+                                    <rect key="frame" x="4" y="5" width="210" height="307"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u9t-W8-YCX">
-                                            <rect key="frame" x="18" y="287" width="174" height="16"/>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="u9t-W8-YCX">
+                                            <rect key="frame" x="18" y="277" width="174" height="16"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Menu Bar Stats" id="sk4-gL-hKh">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pTP-wb-bab">
-                                            <rect key="frame" x="18" y="147" width="172" height="18"/>
+                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pTP-wb-bab">
+                                            <rect key="frame" x="18" y="128" width="172" height="18"/>
                                             <buttonCell key="cell" type="check" title="Verbose Labels" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="5hK-vU-hfH">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -358,8 +358,8 @@ of Pi-hole LLC.</string>
                                                 </connections>
                                             </buttonCell>
                                         </button>
-                                        <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fXy-Gb-chu">
-                                            <rect key="frame" x="18" y="219" width="172" height="18"/>
+                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fXy-Gb-chu">
+                                            <rect key="frame" x="18" y="204" width="172" height="18"/>
                                             <buttonCell key="cell" type="check" title="Percentage Blocked" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="8HH-3L-FeK">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -368,8 +368,8 @@ of Pi-hole LLC.</string>
                                                 </connections>
                                             </buttonCell>
                                         </button>
-                                        <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rAy-oa-e4o">
-                                            <rect key="frame" x="18" y="263" width="172" height="18"/>
+                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rAy-oa-e4o">
+                                            <rect key="frame" x="18" y="252" width="172" height="18"/>
                                             <buttonCell key="cell" type="check" title="Total Queries Today" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="42R-my-5Tv">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -378,23 +378,23 @@ of Pi-hole LLC.</string>
                                                 </connections>
                                             </buttonCell>
                                         </button>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fhh-w3-SVx">
-                                            <rect key="frame" x="18" y="193" width="174" height="16"/>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fhh-w3-SVx">
+                                            <rect key="frame" x="18" y="177" width="174" height="16"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Menu Bar Labels" id="l9j-oo-af3">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pm7-2a-Lcf">
-                                            <rect key="frame" x="18" y="121" width="174" height="16"/>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pm7-2a-Lcf">
+                                            <rect key="frame" x="18" y="101" width="174" height="16"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Other" id="fvi-02-uIF">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V5k-NI-f2s">
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="V5k-NI-f2s">
                                             <rect key="frame" x="18" y="49" width="174" height="16"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Polling Rate" id="uIp-y1-oZg">
                                                 <font key="font" metaFont="system"/>
@@ -402,8 +402,8 @@ of Pi-hole LLC.</string>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XD6-Xz-dyn">
-                                            <rect key="frame" x="18" y="169" width="172" height="18"/>
+                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XD6-Xz-dyn">
+                                            <rect key="frame" x="18" y="152" width="172" height="18"/>
                                             <buttonCell key="cell" type="check" title="Show Labels" bezelStyle="regularSquare" imagePosition="left" inset="2" id="KhV-ji-e9I">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -412,8 +412,8 @@ of Pi-hole LLC.</string>
                                                 </connections>
                                             </buttonCell>
                                         </button>
-                                        <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MiM-8y-LcW">
-                                            <rect key="frame" x="18" y="241" width="172" height="18"/>
+                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MiM-8y-LcW">
+                                            <rect key="frame" x="18" y="228" width="172" height="18"/>
                                             <buttonCell key="cell" type="check" title="Blocked Queries Today" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Vkd-pK-s3u">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -422,23 +422,13 @@ of Pi-hole LLC.</string>
                                                 </connections>
                                             </buttonCell>
                                         </button>
-                                        <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xv5-Li-uDo">
-                                            <rect key="frame" x="18" y="97" width="172" height="18"/>
+                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xv5-Li-uDo">
+                                            <rect key="frame" x="18" y="76" width="172" height="18"/>
                                             <buttonCell key="cell" type="check" title="Enable ⌘⌥⇧P Shortcut" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="L41-Mt-pHb">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                                 <connections>
                                                     <action selector="checkboxAction:" target="GTm-9k-36S" id="WHU-h8-VKk"/>
-                                                </connections>
-                                            </buttonCell>
-                                        </button>
-                                        <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o8Y-zF-1Yn">
-                                            <rect key="frame" x="18" y="75" width="172" height="18"/>
-                                            <buttonCell key="cell" type="check" title="Launch at Login" bezelStyle="regularSquare" imagePosition="left" inset="2" id="5xj-EF-PSH">
-                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                                <connections>
-                                                    <action selector="checkboxAction:" target="GTm-9k-36S" id="yLZ-bc-1Pm"/>
                                                 </connections>
                                             </buttonCell>
                                         </button>
@@ -467,12 +457,10 @@ of Pi-hole LLC.</string>
                                         <constraint firstItem="rAy-oa-e4o" firstAttribute="leading" secondItem="lOO-sf-eYN" secondAttribute="leading" constant="20" id="1TY-KA-tGv"/>
                                         <constraint firstItem="fhh-w3-SVx" firstAttribute="top" secondItem="fXy-Gb-chu" secondAttribute="bottom" constant="12" id="1fZ-PO-ckT"/>
                                         <constraint firstAttribute="trailing" secondItem="pm7-2a-Lcf" secondAttribute="trailing" constant="20" id="5Wm-1G-loY"/>
-                                        <constraint firstItem="o8Y-zF-1Yn" firstAttribute="top" secondItem="xv5-Li-uDo" secondAttribute="bottom" constant="8" id="7tL-l3-Ne2"/>
                                         <constraint firstItem="u9t-W8-YCX" firstAttribute="top" secondItem="lOO-sf-eYN" secondAttribute="top" constant="14" id="9tM-gu-UHA"/>
                                         <constraint firstItem="pm7-2a-Lcf" firstAttribute="leading" secondItem="lOO-sf-eYN" secondAttribute="leading" constant="20" id="AVb-U7-TrR"/>
                                         <constraint firstItem="LiH-xW-Xt3" firstAttribute="leading" secondItem="gxv-8Y-s1p" secondAttribute="trailing" constant="6" id="EKN-fg-SKC"/>
                                         <constraint firstItem="pm7-2a-Lcf" firstAttribute="top" secondItem="pTP-wb-bab" secondAttribute="bottom" constant="12" id="EMt-XF-aPc"/>
-                                        <constraint firstItem="o8Y-zF-1Yn" firstAttribute="leading" secondItem="lOO-sf-eYN" secondAttribute="leading" constant="20" id="ERv-mM-DJd"/>
                                         <constraint firstAttribute="trailing" secondItem="LiH-xW-Xt3" secondAttribute="trailing" constant="20" id="I9f-gR-oQC"/>
                                         <constraint firstAttribute="bottom" secondItem="gxv-8Y-s1p" secondAttribute="bottom" constant="20" id="MoM-R1-knx"/>
                                         <constraint firstItem="gxv-8Y-s1p" firstAttribute="leading" secondItem="lOO-sf-eYN" secondAttribute="leading" constant="20" id="NTO-27-Spd"/>
@@ -482,12 +470,12 @@ of Pi-hole LLC.</string>
                                         <constraint firstItem="pTP-wb-bab" firstAttribute="leading" secondItem="lOO-sf-eYN" secondAttribute="leading" constant="20" id="WmB-me-bcj"/>
                                         <constraint firstAttribute="trailing" secondItem="u9t-W8-YCX" secondAttribute="trailing" constant="20" id="XwA-vb-UiM"/>
                                         <constraint firstItem="rAy-oa-e4o" firstAttribute="top" secondItem="u9t-W8-YCX" secondAttribute="bottom" constant="8" id="ZS2-x0-7fr"/>
+                                        <constraint firstItem="V5k-NI-f2s" firstAttribute="top" secondItem="xv5-Li-uDo" secondAttribute="bottom" constant="12" id="Zke-EE-UDm"/>
                                         <constraint firstItem="fXy-Gb-chu" firstAttribute="top" secondItem="MiM-8y-LcW" secondAttribute="bottom" constant="8" id="cOs-MK-bnJ"/>
                                         <constraint firstItem="pTP-wb-bab" firstAttribute="top" secondItem="XD6-Xz-dyn" secondAttribute="bottom" constant="8" id="dWA-pw-XhA"/>
                                         <constraint firstAttribute="trailing" secondItem="xv5-Li-uDo" secondAttribute="trailing" constant="20" id="eBP-sg-boq"/>
                                         <constraint firstItem="MiM-8y-LcW" firstAttribute="top" secondItem="rAy-oa-e4o" secondAttribute="bottom" constant="8" id="eCi-LE-HQ6"/>
                                         <constraint firstAttribute="trailing" secondItem="pTP-wb-bab" secondAttribute="trailing" constant="20" id="ehD-w0-KF6"/>
-                                        <constraint firstItem="V5k-NI-f2s" firstAttribute="top" secondItem="o8Y-zF-1Yn" secondAttribute="bottom" constant="12" id="f4K-UF-rTf"/>
                                         <constraint firstItem="xv5-Li-uDo" firstAttribute="leading" secondItem="lOO-sf-eYN" secondAttribute="leading" constant="20" id="gDg-mU-2H6"/>
                                         <constraint firstItem="XD6-Xz-dyn" firstAttribute="top" secondItem="fhh-w3-SVx" secondAttribute="bottom" constant="8" id="gbj-kL-mJC"/>
                                         <constraint firstAttribute="trailing" secondItem="fhh-w3-SVx" secondAttribute="trailing" constant="20" id="hce-iC-SR4"/>
@@ -500,13 +488,12 @@ of Pi-hole LLC.</string>
                                         <constraint firstItem="fXy-Gb-chu" firstAttribute="leading" secondItem="lOO-sf-eYN" secondAttribute="leading" constant="20" id="qFh-jL-l7o"/>
                                         <constraint firstItem="gxv-8Y-s1p" firstAttribute="top" secondItem="V5k-NI-f2s" secondAttribute="bottom" constant="8" id="rAT-Zw-P5f"/>
                                         <constraint firstAttribute="trailing" secondItem="XD6-Xz-dyn" secondAttribute="trailing" constant="20" id="u51-8W-YbO"/>
-                                        <constraint firstAttribute="trailing" secondItem="o8Y-zF-1Yn" secondAttribute="trailing" constant="20" id="vf9-qg-104"/>
                                         <constraint firstItem="xv5-Li-uDo" firstAttribute="top" secondItem="pm7-2a-Lcf" secondAttribute="bottom" constant="8" id="z4x-Pk-hed"/>
                                     </constraints>
                                 </view>
                             </box>
-                            <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xkZ-Dc-82N">
-                                <rect key="frame" x="408" y="13" width="114" height="32"/>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xkZ-Dc-82N">
+                                <rect key="frame" x="411" y="13" width="114" height="32"/>
                                 <buttonCell key="cell" type="push" title="Save &amp; Close" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="f3R-6s-MoK">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -538,7 +525,6 @@ of Pi-hole LLC.</string>
                     </view>
                     <connections>
                         <outlet property="editButton" destination="UaV-nP-7Dw" id="MZb-jQ-rWV"/>
-                        <outlet property="launchAtLoginCheckbox" destination="o8Y-zF-1Yn" id="vZO-L4-1ql"/>
                         <outlet property="pollingRateTextField" destination="gxv-8Y-s1p" id="1WS-E7-ekX"/>
                         <outlet property="removeButton" destination="tFg-7b-Rry" id="Hnp-f3-vw3"/>
                         <outlet property="shortcutEnabledCheckbox" destination="xv5-Li-uDo" id="2X1-v2-Zg4"/>
@@ -559,7 +545,7 @@ of Pi-hole LLC.</string>
             <objects>
                 <viewController storyboardIdentifier="piHoleDialog" id="JhG-OK-RWV" customClass="PiholeSettingsViewController" customModule="PiBar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="VTg-m3-cFh">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="284"/>
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="285"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vRR-BU-YIk">
@@ -583,13 +569,13 @@ of Pi-hole LLC.</string>
                                 </connections>
                             </button>
                             <box title="Pi-hole Settings" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="3K7-bD-5VH">
-                                <rect key="frame" x="17" y="56" width="416" height="190"/>
+                                <rect key="frame" x="17" y="56" width="416" height="191"/>
                                 <view key="contentView" id="xIe-VM-MBv">
-                                    <rect key="frame" x="3" y="3" width="410" height="184"/>
+                                    <rect key="frame" x="4" y="5" width="408" height="183"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textField verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DfX-5W-cje">
-                                            <rect key="frame" x="99" y="143" width="106" height="21"/>
+                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DfX-5W-cje">
+                                            <rect key="frame" x="99" y="142" width="104" height="21"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="pi.hole" drawsBackground="YES" id="OnA-u0-rmY">
                                                 <font key="font" usesAppearanceFont="YES"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -600,7 +586,7 @@ of Pi-hole LLC.</string>
                                             </connections>
                                         </textField>
                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="i4e-zs-pkU">
-                                            <rect key="frame" x="251" y="143" width="48" height="21"/>
+                                            <rect key="frame" x="249" y="142" width="48" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" priority="250" constant="48" id="rt7-vm-50T"/>
                                             </constraints>
@@ -614,7 +600,7 @@ of Pi-hole LLC.</string>
                                             </connections>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MAW-Ao-XAm">
-                                            <rect key="frame" x="18" y="146" width="75" height="16"/>
+                                            <rect key="frame" x="18" y="145" width="75" height="16"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Hostname:" id="gtZ-N9-HyG">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -622,7 +608,7 @@ of Pi-hole LLC.</string>
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ut9-zN-gOe">
-                                            <rect key="frame" x="211" y="146" width="34" height="16"/>
+                                            <rect key="frame" x="209" y="145" width="34" height="16"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Port:" id="1id-2a-G2U">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -630,7 +616,7 @@ of Pi-hole LLC.</string>
                                             </textFieldCell>
                                         </textField>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ey9-va-KwP">
-                                            <rect key="frame" x="313" y="144" width="77" height="18"/>
+                                            <rect key="frame" x="311" y="144" width="77" height="18"/>
                                             <buttonCell key="cell" type="check" title="Use SSL" bezelStyle="regularSquare" imagePosition="left" inset="2" id="B8q-U5-9nB">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -640,15 +626,15 @@ of Pi-hole LLC.</string>
                                             </connections>
                                         </button>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gNv-Mk-yT2">
-                                            <rect key="frame" x="18" y="105" width="75" height="16"/>
+                                            <rect key="frame" x="18" y="104" width="75" height="16"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="API Token:" id="i0I-aw-SzO">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bHH-DP-Aad">
-                                            <rect key="frame" x="99" y="102" width="263" height="21"/>
+                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bHH-DP-Aad">
+                                            <rect key="frame" x="99" y="101" width="261" height="21"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Leave blank if no password" drawsBackground="YES" id="Dz6-14-hXD">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -659,7 +645,7 @@ of Pi-hole LLC.</string>
                                             </connections>
                                         </textField>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8yS-Xd-FIv">
-                                            <rect key="frame" x="263" y="13" width="134" height="32"/>
+                                            <rect key="frame" x="261" y="13" width="134" height="32"/>
                                             <buttonCell key="cell" type="push" title="Test Connection" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Jse-Qu-5I1">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -669,7 +655,7 @@ of Pi-hole LLC.</string>
                                             </connections>
                                         </button>
                                         <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3yj-eZ-X0Q">
-                                            <rect key="frame" x="18" y="23" width="238" height="16"/>
+                                            <rect key="frame" x="18" y="23" width="236" height="16"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" id="qJD-6U-lOR">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -677,7 +663,7 @@ of Pi-hole LLC.</string>
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Pmr-bw-vTK">
-                                            <rect key="frame" x="99" y="60" width="291" height="21"/>
+                                            <rect key="frame" x="99" y="60" width="289" height="21"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="zmA-hX-b4k">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -688,7 +674,7 @@ of Pi-hole LLC.</string>
                                             </connections>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PT9-i1-RMA">
-                                            <rect key="frame" x="18" y="64" width="75" height="16"/>
+                                            <rect key="frame" x="18" y="63" width="75" height="16"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Admin URL:" id="sRK-zn-AHQ">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -696,7 +682,7 @@ of Pi-hole LLC.</string>
                                             </textFieldCell>
                                         </textField>
                                         <button horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NsD-tG-Ia3">
-                                            <rect key="frame" x="367" y="97" width="25" height="25"/>
+                                            <rect key="frame" x="365" y="97" width="25" height="25"/>
                                             <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HYj-1Y-QRD">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -743,7 +729,7 @@ of Pi-hole LLC.</string>
                                 </view>
                             </box>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dnY-PR-vdq">
-                                <rect key="frame" x="18" y="252" width="414" height="16"/>
+                                <rect key="frame" x="18" y="253" width="414" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Pi-hole" id="hHW-QN-ohW">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
