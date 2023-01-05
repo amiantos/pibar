@@ -227,7 +227,6 @@
 				4415D73124731CA2009E0B31 /* Run SwiftLint */,
 				CF30F66DAC81C5868939E5C0 /* [CP] Embed Pods Frameworks */,
 				441E78AB247E21DE00FBC7A0 /* Embed Frameworks */,
-				441E78A7247E203700FBC7A0 /* LaunchAtLogin */,
 			);
 			buildRules = (
 			);
@@ -307,24 +306,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
-		};
-		441E78A7247E203700FBC7A0 /* LaunchAtLogin */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = LaunchAtLogin;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${BUILT_PRODUCTS_DIR}/LaunchAtLogin_LaunchAtLogin.bundle/Contents/Resources/copy-helper-swiftpm.sh\"\n";
 		};
 		44B6DAF3247CC9A000D364EC /* Increment Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
