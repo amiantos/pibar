@@ -22,13 +22,13 @@ class PiholeAPI: NSObject {
     private let timeout: Int = 2
 
     private enum Endpoints {
-        static let summary = PiholeAPIEndpoint(queryParameter: "summaryRaw", authorizationRequired: false)
-        static let overTimeData10mins = PiholeAPIEndpoint(queryParameter: "overTimeData10mins", authorizationRequired: false)
+        static let summary = PiholeAPIEndpoint(queryParameter: "summaryRaw", authorizationRequired: true)
+        static let overTimeData10mins = PiholeAPIEndpoint(queryParameter: "overTimeData10mins", authorizationRequired: true)
         static let topItems = PiholeAPIEndpoint(queryParameter: "topItems", authorizationRequired: true)
         static let topClients = PiholeAPIEndpoint(queryParameter: "topClients", authorizationRequired: true)
         static let enable = PiholeAPIEndpoint(queryParameter: "enable", authorizationRequired: true)
         static let disable = PiholeAPIEndpoint(queryParameter: "disable", authorizationRequired: true)
-        static let recentBlocked = PiholeAPIEndpoint(queryParameter: "recentBlocked", authorizationRequired: false)
+        static let recentBlocked = PiholeAPIEndpoint(queryParameter: "recentBlocked", authorizationRequired: true)
     }
 
     override init() {
