@@ -80,6 +80,44 @@ extension PiholeConnectionV2 {
     }
 }
 
+// PiBar v1.2 format
+struct PiholeConnectionV3: Codable {
+    let hostname: String
+    let port: Int
+    let useSSL: Bool
+    let token: String
+    let passwordProtected: Bool
+    let adminPanelURL: String
+    let isV6: Bool
+}
+
+extension PiholeConnectionV3 {
+    init?(data: Data) {
+        let jsonDecoder = JSONDecoder()
+        do {
+            let object = try jsonDecoder.decode(PiholeConnectionV3.self, from: data)
+            self = object
+        } catch {
+            Log.debug("Couldn't decode connection: \(error.localizedDescription)")
+            return nil
+        }
+    }
+
+    func encode() -> Data? {
+        let jsonEncoder = JSONEncoder()
+        if let data = try? jsonEncoder.encode(self) {
+            return data
+        } else {
+            return nil
+        }
+    }
+
+    static func generateAdminPanelURL(hostname: String, port: Int, useSSL: Bool) -> String {
+        let prefix: String = useSSL ? "https" : "http"
+        return "\(prefix)://\(hostname):\(port)/admin/"
+    }
+}
+
 enum PiholeConnectionTestResult {
     case success
     case failure
@@ -123,12 +161,14 @@ enum PiholeNetworkStatus: String {
 }
 
 struct Pihole {
-    let api: PiholeAPI
+    let api: PiholeAPI?
+    let api6: Pihole6API?
     let identifier: String
     let online: Bool
     let summary: PiholeAPISummary?
     let canBeManaged: Bool?
     let enabled: Bool?
+    let isV6: Bool
 
     var status: PiholeNetworkStatus {
         if !online {

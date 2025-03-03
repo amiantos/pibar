@@ -29,7 +29,7 @@ class PiBarManager: NSObject {
     private let operationQueue: OperationQueue = OperationQueue()
 
     override init() {
-        Log.logLevel = .off
+        Log.logLevel = .debug
         Log.useEmoji = true
 
         operationQueue.maxConcurrentOperationCount = 1
@@ -147,23 +147,41 @@ class PiBarManager: NSObject {
         )
     }
 
-    private func createPiholes(_ connections: [PiholeConnectionV2]) {
+    private func createPiholes(_ connections: [PiholeConnectionV3]) {
         Log.debug("Manager: Updating Connections")
 
         stopTimer()
         piholes.removeAll()
         createNewNetwork()
-
-        let apis = connections.map { PiholeAPI(connection: $0) }
-        apis.forEach {
-            piholes[$0.identifier] = Pihole(
-                api: $0,
-                identifier: $0.identifier,
-                online: false,
-                summary: nil,
-                canBeManaged: nil,
-                enabled: nil
-            )
+        
+        for connection in connections {
+            Log.debug("Manager: Updating Connection: \(connection.hostname)")
+            if connection.isV6 {
+                let api = Pihole6API(connection: connection)
+                piholes[api.identifier] = Pihole(
+                    api: nil,
+                    api6: api,
+                    identifier: api.identifier,
+                    online: false,
+                    summary: nil,
+                    canBeManaged: nil,
+                    enabled: nil,
+                    isV6: true
+                )
+            } else {
+                let api = PiholeAPI(connection: connection)
+                piholes[api.identifier] = Pihole(
+                    api: api,
+                    api6: nil,
+                    identifier: api.identifier,
+                    online: false,
+                    summary: nil,
+                    canBeManaged: nil,
+                    enabled: nil,
+                    isV6: false
+                )
+                    
+            }
         }
 
         updatePiholes()
@@ -181,13 +199,23 @@ class PiBarManager: NSObject {
         }
 
         for pihole in piholes.values {
-            Log.debug("Creating operation for \(pihole.identifier)")
-            let operation = UpdatePiholeOperation(pihole)
-            operation.completionBlock = { [unowned operation] in
-                self.piholes[pihole.identifier] = operation.pihole
+            if pihole.isV6 {
+                Log.debug("Creating operation for \(pihole.identifier)")
+                let operation = UpdatePiholeV6Operation(pihole)
+                operation.completionBlock = { [unowned operation] in
+                    self.piholes[pihole.identifier] = operation.pihole
+                }
+                completionOperation.addDependency(operation)
+                operationQueue.addOperation(operation)
+            } else {
+                Log.debug("Creating operation for \(pihole.identifier)")
+                let operation = UpdatePiholeOperation(pihole)
+                operation.completionBlock = { [unowned operation] in
+                    self.piholes[pihole.identifier] = operation.pihole
+                }
+                completionOperation.addDependency(operation)
+                operationQueue.addOperation(operation)
             }
-            completionOperation.addDependency(operation)
-            operationQueue.addOperation(operation)
         }
 
         operationQueue.addOperation(completionOperation)

@@ -16,7 +16,7 @@ enum Status {
     case disable
 }
 
-final class ChangePiholeStatusOperation: AsyncOperation {
+final class ChangePiholeStatusOperation: AsyncOperation, @unchecked Sendable {
     private let pihole: Pihole
     private let status: Status
     private let seconds: Int?
@@ -28,12 +28,23 @@ final class ChangePiholeStatusOperation: AsyncOperation {
     }
 
     override func main() {
-        if status == .disable {
-            pihole.api.disable(seconds: seconds) { _ in
-                self.state = .isFinished
+        if let legacyAPI = pihole.api {
+            if status == .disable {
+                legacyAPI.disable(seconds: seconds) { _ in
+                    self.state = .isFinished
+                }
+            } else {
+                legacyAPI.enable { _ in
+                    self.state = .isFinished
+                }
             }
-        } else {
-            pihole.api.enable { _ in
+        } else if let newAPI = pihole.api6 {
+            Task {
+                if status == .disable {
+                    _ = try? await newAPI.disable(seconds: seconds)
+                } else {
+                    _ = try? await newAPI.enable()
+                }
                 self.state = .isFinished
             }
         }

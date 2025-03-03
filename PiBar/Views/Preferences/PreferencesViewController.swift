@@ -10,6 +10,8 @@
 //  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import Cocoa
+import LaunchAtLogin
+
 
 protocol PreferencesDelegate: AnyObject {
     func updatedPreferences()
@@ -27,6 +29,15 @@ class PreferencesViewController: NSViewController {
         }
         return controller
     }()
+    
+    lazy var piholeV6SheetController: PiholeV6SettingsViewController? = {
+        guard let controller = self.storyboard!.instantiateController(
+            withIdentifier: "piHoleDialogV6"
+        ) as? PiholeV6SettingsViewController else {
+            return nil
+        }
+        return controller
+    }()
 
     // MARK: - Outlets
 
@@ -40,6 +51,7 @@ class PreferencesViewController: NSViewController {
     @IBOutlet var verboseLabelsCheckbox: NSButton!
 
     @IBOutlet var shortcutEnabledCheckbox: NSButton!
+    @IBOutlet var launchAtLogincheckbox: NSButton!
     @IBOutlet var pollingRateTextField: NSTextField!
 
     @IBOutlet var editButton: NSButton!
@@ -48,22 +60,69 @@ class PreferencesViewController: NSViewController {
     // MARK: - Actions
 
     @IBAction func addButtonActiom(_: NSButton) {
+        let alert = NSAlert()
+        alert.messageText = "Pi-hole Version"
+        alert.informativeText = "What version of Pi-hole would you like to add?"
+        alert.alertStyle = .warning
+        
+        // Adding buttons
+        alert.addButton(withTitle: "Pi-hole v6+") // Index 0
+        alert.addButton(withTitle: "Pi-hole v5 or earlier") // Index 1
+        alert.addButton(withTitle: "Cancel")   // Index 2
+
+        // Display alert and handle response
+        let response = alert.runModal()
+        
+        switch response {
+        case .alertFirstButtonReturn:
+            newPihole()
+        case .alertSecondButtonReturn:
+            legacyVersion()
+        case .alertThirdButtonReturn:
+            handleCancel()
+        default:
+            break
+        }
+    }
+    
+    func newPihole() {
+        guard let controller = piholeV6SheetController else { return }
+        controller.delegate = self
+        controller.connection = nil
+        controller.currentIndex = -1
+        presentAsSheet(controller)
+    }
+    
+    func legacyVersion() {
         guard let controller = piholeSheetController else { return }
         controller.delegate = self
         controller.connection = nil
         controller.currentIndex = -1
         presentAsSheet(controller)
     }
+    
+    func handleCancel() {
+        print("Cancel selected")
+        // Handle cancellation if needed
+    }
 
     @IBAction func editButtonAction(_: NSButton) {
-        guard let controller = piholeSheetController else { return }
         if tableView.selectedRow >= 0 {
             let pihole = Preferences.standard.piholes[tableView.selectedRow]
-            controller.delegate = self
-            controller.connection = pihole
-            controller.currentIndex = tableView.selectedRow
+            if pihole.isV6 {
+                guard let controller = piholeV6SheetController else { return }
+                controller.delegate = self
+                controller.connection = pihole
+                controller.currentIndex = tableView.selectedRow
+                presentAsSheet(controller)
+            } else {
+                guard let controller = piholeSheetController else { return }
+                controller.delegate = self
+                controller.connection = pihole
+                controller.currentIndex = tableView.selectedRow
+                presentAsSheet(controller)
+            }
         }
-        presentAsSheet(controller)
     }
 
     @IBAction func removeButtonAction(_: NSButton) {
@@ -81,7 +140,11 @@ class PreferencesViewController: NSViewController {
     @IBAction func checkboxAction(_: NSButtonCell) {
         saveSettings()
     }
-
+    
+    @IBAction func launchAtLoginAction(_ sender: NSButton) {
+        
+    }
+    
     @IBAction func pollingRateTextFieldAction(_: NSTextField) {
         saveSettings()
     }
@@ -120,6 +183,8 @@ class PreferencesViewController: NSViewController {
             showLabelsCheckbox.isEnabled = true
             verboseLabelsCheckbox.isEnabled = showLabelsCheckbox.state == .on ? true : false
         }
+        
+        launchAtLogincheckbox.state = LaunchAtLogin.isEnabled ? .on : .off
 
         pollingRateTextField.stringValue = "\(Preferences.standard.pollingRate)"
     }
@@ -139,6 +204,13 @@ class PreferencesViewController: NSViewController {
         Preferences.standard.set(verboseLabels: verboseLabelsCheckbox.state == .on ? true : false)
 
         Preferences.standard.set(shortcutEnabled: shortcutEnabledCheckbox.state == .on ? true : false)
+        
+        if launchAtLogincheckbox.state == .on {
+            LaunchAtLogin.isEnabled = true
+        } else {
+            LaunchAtLogin.isEnabled = false
+        }
+
 
         let input = pollingRateTextField.stringValue
         if let intValue = Int(input), intValue >= 3 {
@@ -154,7 +226,26 @@ class PreferencesViewController: NSViewController {
 }
 
 extension PreferencesViewController: PiholeSettingsViewControllerDelegate {
-    func savePiholeConnection(_ connection: PiholeConnectionV2, at index: Int) {
+    func savePiholeConnection(_ connection: PiholeConnectionV3, at index: Int) {
+        var piholes = Preferences.standard.piholes
+        if index == -1 {
+            piholes.append(connection)
+            Preferences.standard.set(piholes: piholes)
+            let newRowIndexSet = IndexSet(integer: piholes.count - 1)
+            tableView.insertRows(at: newRowIndexSet, withAnimation: .slideDown)
+            tableView.selectRowIndexes(newRowIndexSet, byExtendingSelection: false)
+        } else {
+            piholes[index] = connection
+            Preferences.standard.set(piholes: piholes)
+            tableView.reloadData()
+            tableView.selectRowIndexes(IndexSet(integer: index), byExtendingSelection: false)
+        }
+        delegate?.updatedConnections()
+    }
+}
+
+extension PreferencesViewController: PiholeV6SettingsViewControllerDelegate {
+    func savePiholeV3Connection(_ connection: PiholeConnectionV3, at index: Int) {
         var piholes = Preferences.standard.piholes
         if index == -1 {
             piholes.append(connection)
@@ -202,6 +293,9 @@ extension PreferencesViewController: NSTableViewDelegate {
         } else if tableColumn == tableView.tableColumns[1] {
             text = "\(pihole.port)"
             cellIdentifier = NSUserInterfaceItemIdentifier(rawValue: "portCell")
+        } else if tableColumn == tableView.tableColumns[2] {
+            text = pihole.isV6 ? ">=6" : "<6"
+            cellIdentifier = NSUserInterfaceItemIdentifier(rawValue: "versionCell")
         }
         if let cell = tableView.makeView(withIdentifier: cellIdentifier, owner: nil) as? NSTableCellView {
             cell.textField?.stringValue = text

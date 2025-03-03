@@ -11,7 +11,7 @@
 
 import Foundation
 
-final class UpdatePiholeOperation: AsyncOperation {
+final class UpdatePiholeOperation: AsyncOperation, @unchecked Sendable {
     private(set) var pihole: Pihole
 
     init(_ pihole: Pihole) {
@@ -20,7 +20,7 @@ final class UpdatePiholeOperation: AsyncOperation {
 
     override func main() {
         Log.debug("Updating Pi-hole: \(pihole.identifier)")
-        pihole.api.fetchSummary { summary in
+        pihole.api!.fetchSummary { summary in
             Log.debug("Received Summary for \(self.pihole.identifier)")
             var enabled: Bool? = true
             var online = true
@@ -30,7 +30,7 @@ final class UpdatePiholeOperation: AsyncOperation {
                 if summary.status != "enabled" {
                     enabled = false
                 }
-                if !self.pihole.api.connection.token.isEmpty || !self.pihole.api.connection.passwordProtected {
+                if !self.pihole.api!.connection.token.isEmpty || !self.pihole.api!.connection.passwordProtected {
                     canBeManaged = true
                 }
             } else {
@@ -40,12 +40,13 @@ final class UpdatePiholeOperation: AsyncOperation {
             }
 
             let updatedPihole: Pihole = Pihole(
-                api: self.pihole.api,
-                identifier: self.pihole.api.identifier,
+                api: self.pihole.api!,
+                api6: nil,
+                identifier: self.pihole.api!.identifier,
                 online: online,
                 summary: summary,
                 canBeManaged: canBeManaged,
-                enabled: enabled
+                enabled: enabled, isV6: false
             )
 
             self.pihole = updatedPihole
