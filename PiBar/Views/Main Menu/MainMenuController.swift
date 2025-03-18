@@ -48,6 +48,7 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
     @IBOutlet var enableNetworkMenuItem: NSMenuItem!
     @IBOutlet var webAdminMenuItem: NSMenuItem!
 
+
     // MARK: - Sub-menus for Multi-hole Setups
 
     private var networkStatusMenu = NSMenu()
@@ -164,12 +165,16 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
     }
 
     private func launchWebAdmin(for identifier: String) {
-        guard let pihole = networkOverview?.piholes[identifier],
-            let adminURL = URL(string: pihole.api.connection.adminPanelURL) else {
+        guard let pihole = networkOverview?.piholes[identifier] else {
             Log.debug("Could not find Pi-hole with identifier \(identifier)")
             return
         }
-        NSWorkspace.shared.open(adminURL)
+        if let legacyAPI = pihole.api, let adminURL = URL(string: legacyAPI.connection.adminPanelURL) {
+            NSWorkspace.shared.open(adminURL)
+        } else if let newAPI = pihole.api6, let adminURL = URL(string: newAPI.connection.adminPanelURL) {
+            NSWorkspace.shared.open(adminURL)
+        }
+        
     }
 
     // MARK: - UI Updates

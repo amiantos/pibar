@@ -3,11 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		32954590BDD997C520227DB6 /* Pods_PiBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04F07DFA596CEEEADF9A90A0 /* Pods_PiBar.framework */; };
 		4415D73424731FE0009E0B31 /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4415D73324731FE0009E0B31 /* Structs.swift */; };
 		4415D73624747331009E0B31 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4415D73524747331009E0B31 /* Logging.swift */; };
 		441E78AE247E3AF300FBC7A0 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441E78AD247E3AF300FBC7A0 /* AsyncOperation.swift */; };
@@ -19,6 +18,7 @@
 		442F6F8B24721523008F1101 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442F6F8A24721523008F1101 /* PreferencesViewController.swift */; };
 		4438184E247DE31A009D9B3F /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4438184D247DE31A009D9B3F /* AboutViewController.swift */; };
 		44381850247DE41B009D9B3F /* AboutWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4438184F247DE41B009D9B3F /* AboutWindowController.swift */; };
+		447CCB5C2D87FBA200811F7C /* UpdatePiholeV6Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447CCB5B2D87FB9C00811F7C /* UpdatePiholeV6Operation.swift */; };
 		449395D62471ABD600FA0C34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449395D52471ABD600FA0C34 /* AppDelegate.swift */; };
 		449395DA2471ABD700FA0C34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 449395D92471ABD700FA0C34 /* Assets.xcassets */; };
 		449395DD2471ABD700FA0C34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 449395DB2471ABD700FA0C34 /* Main.storyboard */; };
@@ -27,6 +27,10 @@
 		449395EC2471B1EB00FA0C34 /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449395EB2471B1EB00FA0C34 /* PreferencesWindowController.swift */; };
 		449395EE2471C47F00FA0C34 /* PiholeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449395ED2471C47F00FA0C34 /* PiholeAPI.swift */; };
 		44B6DAF2247C70F500D364EC /* PiholeSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B6DAF1247C70F500D364EC /* PiholeSettingsViewController.swift */; };
+		44E390C22D877DDE002196DC /* HotKey in Frameworks */ = {isa = PBXBuildFile; productRef = 44E390C12D877DDE002196DC /* HotKey */; };
+		44E390C42D8785E1002196DC /* Pihole6API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E390C32D8785E1002196DC /* Pihole6API.swift */; };
+		44E390C72D87C3E2002196DC /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 44E390C62D87C3E2002196DC /* LaunchAtLogin */; };
+		44E390C92D87ED53002196DC /* PiholeV6SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E390C82D87ED49002196DC /* PiholeV6SettingsViewController.swift */; };
 		44FFB092247627B100DCEDEC /* PiBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FFB091247627B100DCEDEC /* PiBarManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -44,8 +48,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		04F07DFA596CEEEADF9A90A0 /* Pods_PiBar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PiBar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		08A4966FFD2196F42B1CA80F /* Pods-PiBar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PiBar.release.xcconfig"; path = "Target Support Files/Pods-PiBar/Pods-PiBar.release.xcconfig"; sourceTree = "<group>"; };
 		4415D73324731FE0009E0B31 /* Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
 		4415D73524747331009E0B31 /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 		441E78AD247E3AF300FBC7A0 /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
@@ -57,6 +59,7 @@
 		442F6F8A24721523008F1101 /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		4438184D247DE31A009D9B3F /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		4438184F247DE41B009D9B3F /* AboutWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutWindowController.swift; sourceTree = "<group>"; };
+		447CCB5B2D87FB9C00811F7C /* UpdatePiholeV6Operation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePiholeV6Operation.swift; sourceTree = "<group>"; };
 		449395D22471ABD600FA0C34 /* PiBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PiBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		449395D52471ABD600FA0C34 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		449395D92471ABD700FA0C34 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -68,8 +71,9 @@
 		449395EB2471B1EB00FA0C34 /* PreferencesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
 		449395ED2471C47F00FA0C34 /* PiholeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiholeAPI.swift; sourceTree = "<group>"; };
 		44B6DAF1247C70F500D364EC /* PiholeSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiholeSettingsViewController.swift; sourceTree = "<group>"; };
+		44E390C32D8785E1002196DC /* Pihole6API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pihole6API.swift; sourceTree = "<group>"; };
+		44E390C82D87ED49002196DC /* PiholeV6SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiholeV6SettingsViewController.swift; sourceTree = "<group>"; };
 		44FFB091247627B100DCEDEC /* PiBarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiBarManager.swift; sourceTree = "<group>"; };
-		A8CE572444810D388817476D /* Pods-PiBar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PiBar.debug.xcconfig"; path = "Target Support Files/Pods-PiBar/Pods-PiBar.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,27 +81,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32954590BDD997C520227DB6 /* Pods_PiBar.framework in Frameworks */,
+				44E390C72D87C3E2002196DC /* LaunchAtLogin in Frameworks */,
+				44E390C22D877DDE002196DC /* HotKey in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		214831E348424C32082556DF /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				A8CE572444810D388817476D /* Pods-PiBar.debug.xcconfig */,
-				08A4966FFD2196F42B1CA80F /* Pods-PiBar.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		4415D73224731E2F009E0B31 /* Data Sources */ = {
 			isa = PBXGroup;
 			children = (
 				4415D73324731FE0009E0B31 /* Structs.swift */,
 				449395ED2471C47F00FA0C34 /* PiholeAPI.swift */,
+				44E390C32D8785E1002196DC /* Pihole6API.swift */,
 				442F6F88247212D1008F1101 /* Preferences.swift */,
 			);
 			path = "Data Sources";
@@ -117,6 +114,7 @@
 		441E78B1247E3ECB00FBC7A0 /* Operations */ = {
 			isa = PBXGroup;
 			children = (
+				447CCB5B2D87FB9C00811F7C /* UpdatePiholeV6Operation.swift */,
 				441E78AD247E3AF300FBC7A0 /* AsyncOperation.swift */,
 				441E78AF247E3BC500FBC7A0 /* UpdatePiholeOperation.swift */,
 				441E78B3247E3F9400FBC7A0 /* ChangePiholeStatusOperation.swift */,
@@ -136,6 +134,7 @@
 		442F6F8C24723D60008F1101 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
+				44E390C82D87ED49002196DC /* PiholeV6SettingsViewController.swift */,
 				442F6F8A24721523008F1101 /* PreferencesViewController.swift */,
 				449395EB2471B1EB00FA0C34 /* PreferencesWindowController.swift */,
 				44B6DAF1247C70F500D364EC /* PiholeSettingsViewController.swift */,
@@ -158,7 +157,6 @@
 				442F6F842471D334008F1101 /* README.md */,
 				449395D42471ABD600FA0C34 /* PiBar */,
 				449395D32471ABD600FA0C34 /* Products */,
-				214831E348424C32082556DF /* Pods */,
 				913B94517DDE1EF8E0C98FB2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -207,7 +205,6 @@
 		913B94517DDE1EF8E0C98FB2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				04F07DFA596CEEEADF9A90A0 /* Pods_PiBar.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -219,13 +216,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 449395E22471ABD700FA0C34 /* Build configuration list for PBXNativeTarget "PiBar" */;
 			buildPhases = (
-				44B6DAF3247CC9A000D364EC /* Increment Build Number */,
-				556BA81D41547EB1F3EC6986 /* [CP] Check Pods Manifest.lock */,
 				449395CE2471ABD600FA0C34 /* Sources */,
 				449395CF2471ABD600FA0C34 /* Frameworks */,
 				449395D02471ABD600FA0C34 /* Resources */,
-				4415D73124731CA2009E0B31 /* Run SwiftLint */,
-				CF30F66DAC81C5868939E5C0 /* [CP] Embed Pods Frameworks */,
+				447CCB5D2D895B5800811F7C /* ShellScript */,
 				441E78AB247E21DE00FBC7A0 /* Embed Frameworks */,
 			);
 			buildRules = (
@@ -234,6 +228,8 @@
 			);
 			name = PiBar;
 			packageProductDependencies = (
+				44E390C12D877DDE002196DC /* HotKey */,
+				44E390C62D87C3E2002196DC /* LaunchAtLogin */,
 			);
 			productName = PiBar;
 			productReference = 449395D22471ABD600FA0C34 /* PiBar.app */;
@@ -245,8 +241,9 @@
 		449395CA2471ABD600FA0C34 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1140;
-				LastUpgradeCheck = 1140;
+				LastUpgradeCheck = 1620;
 				ORGANIZATIONNAME = "Brad Root";
 				TargetAttributes = {
 					449395D12471ABD600FA0C34 = {
@@ -264,6 +261,8 @@
 			);
 			mainGroup = 449395C92471ABD600FA0C34;
 			packageReferences = (
+				44E390C02D877DDE002196DC /* XCRemoteSwiftPackageReference "HotKey" */,
+				44E390C52D87C3E2002196DC /* XCRemoteSwiftPackageReference "LaunchAtLogin-Legacy" */,
 			);
 			productRefGroup = 449395D32471ABD600FA0C34 /* Products */;
 			projectDirPath = "";
@@ -289,8 +288,9 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4415D73124731CA2009E0B31 /* Run SwiftLint */ = {
+		447CCB5D2D895B5800811F7C /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -298,71 +298,13 @@
 			);
 			inputPaths = (
 			);
-			name = "Run SwiftLint";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
-		};
-		44B6DAF3247CC9A000D364EC /* Increment Build Number */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Increment Build Number";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "#buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\n#buildNumber=$(($buildNumber + 1))\n#/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n";
-		};
-		556BA81D41547EB1F3EC6986 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-PiBar-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CF30F66DAC81C5868939E5C0 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PiBar/Pods-PiBar-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PiBar/Pods-PiBar-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PiBar/Pods-PiBar-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${BUILT_PRODUCTS_DIR}/LaunchAtLogin_LaunchAtLogin.bundle/Contents/Resources/copy-helper-swiftpm.sh\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -383,10 +325,13 @@
 				449395EE2471C47F00FA0C34 /* PiholeAPI.swift in Sources */,
 				4438184E247DE31A009D9B3F /* AboutViewController.swift in Sources */,
 				449395D62471ABD600FA0C34 /* AppDelegate.swift in Sources */,
+				44E390C92D87ED53002196DC /* PiholeV6SettingsViewController.swift in Sources */,
 				44FFB092247627B100DCEDEC /* PiBarManager.swift in Sources */,
 				442F6F8B24721523008F1101 /* PreferencesViewController.swift in Sources */,
 				4415D73624747331009E0B31 /* Logging.swift in Sources */,
 				449395E82471AC9D00FA0C34 /* MainMenuController.swift in Sources */,
+				447CCB5C2D87FBA200811F7C /* UpdatePiholeV6Operation.swift in Sources */,
+				44E390C42D8785E1002196DC /* Pihole6API.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,6 +353,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -430,6 +376,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -437,9 +384,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -468,6 +417,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -490,6 +440,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -497,9 +448,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -519,7 +472,6 @@
 		};
 		449395E32471ABD700FA0C34 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A8CE572444810D388817476D /* Pods-PiBar.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = PiBar/PiBar.entitlements;
@@ -528,19 +480,18 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 680;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 2Y9M69QJKZ;
 				ENABLE_HARDENED_RUNTIME = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
-				);
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = PiBar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MARKETING_VERSION = 1.1.2;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = net.amiantos.PiBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -549,7 +500,6 @@
 		};
 		449395E42471ABD700FA0C34 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 08A4966FFD2196F42B1CA80F /* Pods-PiBar.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = PiBar/PiBar.entitlements;
@@ -558,19 +508,18 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 680;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 2Y9M69QJKZ;
 				ENABLE_HARDENED_RUNTIME = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
-				);
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = PiBar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MARKETING_VERSION = 1.1.2;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = net.amiantos.PiBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -599,6 +548,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		44E390C02D877DDE002196DC /* XCRemoteSwiftPackageReference "HotKey" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/soffes/HotKey";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		44E390C52D87C3E2002196DC /* XCRemoteSwiftPackageReference "LaunchAtLogin-Legacy" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin-Legacy";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		44E390C12D877DDE002196DC /* HotKey */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 44E390C02D877DDE002196DC /* XCRemoteSwiftPackageReference "HotKey" */;
+			productName = HotKey;
+		};
+		44E390C62D87C3E2002196DC /* LaunchAtLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 44E390C52D87C3E2002196DC /* XCRemoteSwiftPackageReference "LaunchAtLogin-Legacy" */;
+			productName = LaunchAtLogin;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 449395CA2471ABD600FA0C34 /* Project object */;
 }
