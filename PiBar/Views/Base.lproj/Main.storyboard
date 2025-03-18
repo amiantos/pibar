@@ -149,7 +149,7 @@ of Pi-hole LLC.</string>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="J44-eX-Cmj">
-                                <rect key="frame" x="19" y="176" width="304" height="241"/>
+                                <rect key="frame" x="19" y="376" width="304" height="41"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Pi-holes" id="1au-rN-a6J">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -157,19 +157,19 @@ of Pi-hole LLC.</string>
                                 </textFieldCell>
                             </textField>
                             <box title="Pi-holes" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="rf3-sM-sEw">
-                                <rect key="frame" x="17" y="57" width="308" height="113"/>
+                                <rect key="frame" x="17" y="57" width="308" height="313"/>
                                 <view key="contentView" id="U8L-6W-MRA">
-                                    <rect key="frame" x="4" y="5" width="300" height="105"/>
+                                    <rect key="frame" x="4" y="5" width="300" height="305"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <scrollView verticalHuggingPriority="249" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="7by-VC-c7V">
-                                            <rect key="frame" x="20" y="52" width="260" height="33"/>
+                                            <rect key="frame" x="20" y="52" width="260" height="233"/>
                                             <clipView key="contentView" id="7U0-rZ-cjX">
-                                                <rect key="frame" x="1" y="1" width="258" height="31"/>
+                                                <rect key="frame" x="1" y="1" width="258" height="231"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="none" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="lI7-le-hIe" viewBased="YES" id="ILp-pd-N6u">
-                                                        <rect key="frame" x="0.0" y="0.0" width="258" height="19"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="258" height="206"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -304,7 +304,7 @@ of Pi-hole LLC.</string>
                                                 <rect key="frame" x="-100" y="-100" width="173" height="16"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
-                                            <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="zox-0B-Gbu">
+                                            <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="zox-0B-Gbu">
                                                 <rect key="frame" x="243" y="26" width="16" height="6"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
@@ -823,7 +823,7 @@ of Pi-hole LLC.</string>
             <objects>
                 <viewController storyboardIdentifier="piHoleDialogV6" id="DCw-Ag-BHe" customClass="PiholeV6SettingsViewController" customModule="PiBar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Aq6-2c-i1T">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="264"/>
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="345"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KV7-hP-ia0">
@@ -847,13 +847,13 @@ of Pi-hole LLC.</string>
                                 </connections>
                             </button>
                             <box title="Pi-hole Settings" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="8Kd-Fq-egr">
-                                <rect key="frame" x="17" y="56" width="416" height="170"/>
+                                <rect key="frame" x="17" y="56" width="416" height="251"/>
                                 <view key="contentView" id="XmN-OI-mNu">
-                                    <rect key="frame" x="4" y="5" width="408" height="162"/>
+                                    <rect key="frame" x="4" y="5" width="408" height="243"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zoi-sT-FJT">
-                                            <rect key="frame" x="95" y="121" width="112" height="21"/>
+                                            <rect key="frame" x="95" y="202" width="112" height="21"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="pi.hole" drawsBackground="YES" id="H4C-Bw-duK">
                                                 <font key="font" usesAppearanceFont="YES"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -864,7 +864,7 @@ of Pi-hole LLC.</string>
                                             </connections>
                                         </textField>
                                         <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pg1-9N-tHV">
-                                            <rect key="frame" x="249" y="121" width="48" height="21"/>
+                                            <rect key="frame" x="249" y="202" width="48" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" priority="250" constant="48" id="naz-Tf-wUu"/>
                                             </constraints>
@@ -878,15 +878,15 @@ of Pi-hole LLC.</string>
                                             </connections>
                                         </textField>
                                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qhp-qS-rFd">
-                                            <rect key="frame" x="18" y="124" width="66" height="16"/>
-                                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Hostname" id="l52-nW-qrX">
+                                            <rect key="frame" x="18" y="205" width="66" height="16"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Host / IP" id="l52-nW-qrX">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
                                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bTz-Vl-KSW">
-                                            <rect key="frame" x="213" y="124" width="30" height="16"/>
+                                            <rect key="frame" x="213" y="205" width="30" height="16"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Port" id="7X2-8P-Itf">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -894,7 +894,7 @@ of Pi-hole LLC.</string>
                                             </textFieldCell>
                                         </textField>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="il2-k4-vNq">
-                                            <rect key="frame" x="311" y="123" width="77" height="18"/>
+                                            <rect key="frame" x="311" y="204" width="77" height="18"/>
                                             <buttonCell key="cell" type="check" title="Use SSL" bezelStyle="regularSquare" imagePosition="left" inset="2" id="uWr-c0-3yA">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -904,7 +904,7 @@ of Pi-hole LLC.</string>
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="L4G-cQ-STM">
-                                            <rect key="frame" x="284" y="13" width="111" height="32"/>
+                                            <rect key="frame" x="149" y="13" width="111" height="32"/>
                                             <buttonCell key="cell" type="push" title="Authenticate" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xAs-7y-ClD">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -914,7 +914,7 @@ of Pi-hole LLC.</string>
                                             </connections>
                                         </button>
                                         <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MYH-IG-W5N">
-                                            <rect key="frame" x="95" y="81" width="293" height="21"/>
+                                            <rect key="frame" x="95" y="162" width="293" height="21"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="vmg-nd-SVi">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -922,7 +922,7 @@ of Pi-hole LLC.</string>
                                             </textFieldCell>
                                         </textField>
                                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eJc-qE-ZRT">
-                                            <rect key="frame" x="18" y="84" width="71" height="16"/>
+                                            <rect key="frame" x="18" y="165" width="71" height="16"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Admin URL" id="kIL-AW-bXO">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -930,7 +930,7 @@ of Pi-hole LLC.</string>
                                             </textFieldCell>
                                         </textField>
                                         <secureTextField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AKM-Pr-fbO">
-                                            <rect key="frame" x="95" y="19" width="123" height="21"/>
+                                            <rect key="frame" x="86" y="56" width="183" height="21"/>
                                             <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="djE-vA-VMR">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -941,24 +941,24 @@ of Pi-hole LLC.</string>
                                             </secureTextFieldCell>
                                         </secureTextField>
                                         <box horizontalHuggingPriority="249" verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="Cj5-kw-kMc">
-                                            <rect key="frame" x="156" y="56" width="96" height="9"/>
+                                            <rect key="frame" x="156" y="137" width="96" height="9"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="96" id="9Gd-tZ-Dqe"/>
                                                 <constraint firstAttribute="height" constant="5" id="arP-Yz-8eH"/>
                                             </constraints>
                                         </box>
                                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TqR-XM-Ulg">
-                                            <rect key="frame" x="18" y="23" width="71" height="16"/>
-                                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Password" id="af7-TK-wb8">
+                                            <rect key="frame" x="17" y="59" width="63" height="16"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Password" id="af7-TK-wb8">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
                                         <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VS1-Ob-nwy">
-                                            <rect key="frame" x="226" y="19" width="57" height="21"/>
+                                            <rect key="frame" x="331" y="56" width="57" height="21"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="57" id="dxc-Qr-PSC"/>
+                                                <constraint firstAttribute="width" constant="57" id="L1G-vC-aaT"/>
                                             </constraints>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="000000" drawsBackground="YES" id="usc-2E-jWt">
                                                 <font key="font" metaFont="system"/>
@@ -966,44 +966,72 @@ of Pi-hole LLC.</string>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
+                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="z4d-uC-sjd">
+                                            <rect key="frame" x="135" y="115" width="138" height="16"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Sign into your Pi-hole" id="C7C-fh-Xsd">
+                                                <font key="font" metaFont="systemMedium" size="13"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1Cr-n8-Pai">
+                                            <rect key="frame" x="287" y="59" width="38" height="16"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="TOTP" id="bcC-ug-cDe">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ggy-V6-ryy">
+                                            <rect key="frame" x="29" y="93" width="345" height="14"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Leave both fields blank if your Pi-hole does not have a password." id="Fn5-Yh-UVQ">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="TqR-XM-Ulg" firstAttribute="leading" secondItem="XmN-OI-mNu" secondAttribute="leading" constant="20" symbolic="YES" id="0uR-so-WEm"/>
                                         <constraint firstItem="qhp-qS-rFd" firstAttribute="leading" secondItem="XmN-OI-mNu" secondAttribute="leading" constant="20" id="2NA-x5-SJx"/>
-                                        <constraint firstAttribute="bottom" secondItem="TqR-XM-Ulg" secondAttribute="bottom" constant="23" id="3vo-CN-AT2"/>
+                                        <constraint firstItem="z4d-uC-sjd" firstAttribute="centerX" secondItem="XmN-OI-mNu" secondAttribute="centerX" id="2Ok-QC-T2w"/>
                                         <constraint firstItem="bTz-Vl-KSW" firstAttribute="top" secondItem="XmN-OI-mNu" secondAttribute="top" constant="22" id="4ku-3A-srN"/>
-                                        <constraint firstItem="AKM-Pr-fbO" firstAttribute="leading" secondItem="TqR-XM-Ulg" secondAttribute="trailing" constant="8" id="Avm-YQ-h11"/>
+                                        <constraint firstItem="AKM-Pr-fbO" firstAttribute="leading" secondItem="TqR-XM-Ulg" secondAttribute="trailing" constant="8" symbolic="YES" id="62p-KT-tUu"/>
+                                        <constraint firstItem="AKM-Pr-fbO" firstAttribute="top" secondItem="ggy-V6-ryy" secondAttribute="bottom" constant="16" id="8NN-eK-kLj"/>
+                                        <constraint firstItem="L4G-cQ-STM" firstAttribute="centerX" secondItem="XmN-OI-mNu" secondAttribute="centerX" id="B7M-3L-jzc"/>
+                                        <constraint firstItem="z4d-uC-sjd" firstAttribute="top" secondItem="Cj5-kw-kMc" secondAttribute="bottom" constant="8" symbolic="YES" id="E01-el-0C0"/>
                                         <constraint firstItem="zoi-sT-FJT" firstAttribute="top" secondItem="XmN-OI-mNu" secondAttribute="top" constant="20" id="FAz-g7-gNu"/>
-                                        <constraint firstItem="AKM-Pr-fbO" firstAttribute="top" secondItem="Cj5-kw-kMc" secondAttribute="bottom" constant="18" id="FtY-Fq-z9T"/>
                                         <constraint firstItem="il2-k4-vNq" firstAttribute="centerY" secondItem="pg1-9N-tHV" secondAttribute="centerY" id="G3r-GE-gwU"/>
-                                        <constraint firstAttribute="bottom" secondItem="VS1-Ob-nwy" secondAttribute="bottom" constant="19" id="G3t-NV-yp6"/>
                                         <constraint firstItem="zoi-sT-FJT" firstAttribute="leading" secondItem="qhp-qS-rFd" secondAttribute="trailing" constant="13" id="Hc2-gc-zqQ"/>
                                         <constraint firstItem="qhp-qS-rFd" firstAttribute="top" secondItem="XmN-OI-mNu" secondAttribute="top" constant="22" id="IUG-b2-9dn"/>
                                         <constraint firstItem="eJc-qE-ZRT" firstAttribute="leading" secondItem="XmN-OI-mNu" secondAttribute="leading" constant="20" id="JVb-Rp-mef"/>
+                                        <constraint firstItem="ggy-V6-ryy" firstAttribute="top" secondItem="z4d-uC-sjd" secondAttribute="bottom" constant="8" symbolic="YES" id="LuZ-eR-PZD"/>
+                                        <constraint firstItem="VS1-Ob-nwy" firstAttribute="centerY" secondItem="AKM-Pr-fbO" secondAttribute="centerY" id="Nl8-ay-n7M"/>
                                         <constraint firstItem="MYH-IG-W5N" firstAttribute="leading" secondItem="zoi-sT-FJT" secondAttribute="leading" id="PRL-U0-u6r"/>
+                                        <constraint firstItem="1Cr-n8-Pai" firstAttribute="centerY" secondItem="VS1-Ob-nwy" secondAttribute="centerY" id="TRF-tD-yzW"/>
                                         <constraint firstItem="Cj5-kw-kMc" firstAttribute="centerX" secondItem="XmN-OI-mNu" secondAttribute="centerX" id="Tb3-UO-Oor"/>
                                         <constraint firstItem="pg1-9N-tHV" firstAttribute="top" secondItem="XmN-OI-mNu" secondAttribute="top" constant="20" id="VHr-HV-n2l"/>
                                         <constraint firstItem="Cj5-kw-kMc" firstAttribute="top" secondItem="MYH-IG-W5N" secondAttribute="bottom" constant="18" id="VkU-6L-dB4"/>
                                         <constraint firstItem="MYH-IG-W5N" firstAttribute="top" secondItem="zoi-sT-FJT" secondAttribute="bottom" constant="19" id="WhN-c3-yY9"/>
-                                        <constraint firstAttribute="bottom" secondItem="L4G-cQ-STM" secondAttribute="bottom" constant="20" id="Xcf-XZ-Tvx"/>
-                                        <constraint firstAttribute="bottom" secondItem="AKM-Pr-fbO" secondAttribute="bottom" constant="19" id="eI9-hd-wt1"/>
-                                        <constraint firstItem="VS1-Ob-nwy" firstAttribute="leading" secondItem="AKM-Pr-fbO" secondAttribute="trailing" constant="8" symbolic="YES" id="enN-sa-o1p"/>
-                                        <constraint firstItem="L4G-cQ-STM" firstAttribute="leading" secondItem="VS1-Ob-nwy" secondAttribute="trailing" constant="8" symbolic="YES" id="fFN-qE-47g"/>
+                                        <constraint firstItem="ggy-V6-ryy" firstAttribute="centerX" secondItem="XmN-OI-mNu" secondAttribute="centerX" id="Za1-u5-ve5"/>
+                                        <constraint firstItem="L4G-cQ-STM" firstAttribute="top" secondItem="AKM-Pr-fbO" secondAttribute="bottom" constant="16" id="cU6-09-Su8"/>
+                                        <constraint firstItem="TqR-XM-Ulg" firstAttribute="leading" secondItem="XmN-OI-mNu" secondAttribute="leading" constant="19" id="cl3-oo-Hqi"/>
+                                        <constraint firstAttribute="trailing" secondItem="VS1-Ob-nwy" secondAttribute="trailing" constant="20" symbolic="YES" id="dYW-YE-2Xj"/>
+                                        <constraint firstAttribute="bottom" secondItem="L4G-cQ-STM" secondAttribute="bottom" constant="20" symbolic="YES" id="dp6-cx-DyB"/>
                                         <constraint firstItem="bTz-Vl-KSW" firstAttribute="leading" secondItem="zoi-sT-FJT" secondAttribute="trailing" constant="8" id="h0V-qP-x7z"/>
                                         <constraint firstItem="il2-k4-vNq" firstAttribute="leading" secondItem="pg1-9N-tHV" secondAttribute="trailing" constant="16" id="kXe-uq-Ske"/>
-                                        <constraint firstItem="AKM-Pr-fbO" firstAttribute="leading" secondItem="MYH-IG-W5N" secondAttribute="leading" id="oIM-At-bkL"/>
+                                        <constraint firstItem="VS1-Ob-nwy" firstAttribute="leading" secondItem="1Cr-n8-Pai" secondAttribute="trailing" constant="8" symbolic="YES" id="lNR-gD-JP4"/>
                                         <constraint firstAttribute="trailing" secondItem="il2-k4-vNq" secondAttribute="trailing" constant="20" id="p7n-bA-ByG"/>
                                         <constraint firstItem="MYH-IG-W5N" firstAttribute="leading" secondItem="eJc-qE-ZRT" secondAttribute="trailing" constant="8" id="po7-d3-ap8"/>
-                                        <constraint firstItem="VS1-Ob-nwy" firstAttribute="top" secondItem="Cj5-kw-kMc" secondAttribute="bottom" constant="18" id="rQ5-ug-EET"/>
-                                        <constraint firstAttribute="trailing" secondItem="L4G-cQ-STM" secondAttribute="trailing" constant="20" id="tGT-Z1-Fs0"/>
                                         <constraint firstAttribute="trailing" secondItem="MYH-IG-W5N" secondAttribute="trailing" constant="20" id="tbF-wP-TeQ"/>
                                         <constraint firstItem="pg1-9N-tHV" firstAttribute="leading" secondItem="bTz-Vl-KSW" secondAttribute="trailing" constant="8" id="vJW-SU-wfD"/>
                                         <constraint firstItem="eJc-qE-ZRT" firstAttribute="top" secondItem="qhp-qS-rFd" secondAttribute="bottom" constant="24" id="wPt-nC-plX"/>
+                                        <constraint firstItem="TqR-XM-Ulg" firstAttribute="centerY" secondItem="AKM-Pr-fbO" secondAttribute="centerY" id="wfy-7n-12r"/>
+                                        <constraint firstItem="1Cr-n8-Pai" firstAttribute="leading" secondItem="AKM-Pr-fbO" secondAttribute="trailing" constant="20" id="ywB-O2-YOn"/>
                                     </constraints>
                                 </view>
                             </box>
                             <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KKx-ek-P7y">
-                                <rect key="frame" x="18" y="232" width="414" height="16"/>
+                                <rect key="frame" x="18" y="313" width="414" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Pi-hole v6 and later" id="xvz-0j-gRA">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1052,7 +1080,7 @@ of Pi-hole LLC.</string>
                 </viewController>
                 <customObject id="jaW-bX-ROp" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1104" y="382"/>
+            <point key="canvasLocation" x="1104" y="440"/>
         </scene>
     </scenes>
     <resources>

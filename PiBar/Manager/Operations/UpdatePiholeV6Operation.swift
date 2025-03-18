@@ -23,7 +23,7 @@ final class UpdatePiholeV6Operation: AsyncOperation, @unchecked Sendable {
         Task {
             var enabled: Bool? = true
             var online = true
-            var canBeManaged: Bool = false
+            var canBeManaged: Bool = true
             
             do {
                 let result = try await pihole.api6!.fetchSummary()
