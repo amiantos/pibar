@@ -1,12 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "pibar_icon_32px@2x.png",
+      "filename" : "pibar_icon_256px.png",
       "idiom" : "mac",
       "scale" : "1x"
     },
     {
-      "filename" : "pibar_icon_128px@2x.png",
+      "filename" : "pibar_icon_256px@2x.png",
       "idiom" : "mac",
       "scale" : "2x"
     }
