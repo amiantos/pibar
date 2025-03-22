@@ -17,13 +17,13 @@ PiBar gives you all the tools you need to manage your [Pi-hole](https://pi-hole.
 
 ![PiBar Screenshots](/.github/screenshots.jpg?raw=true)
 
-## Download
+## Download (Pi-hole 5 and older)
 
 - [Download PiBar v1.1.2 for macOS 10.12 and later](https://s3.amazonaws.com/amiantos/PiBar-1.1.2.zip)
 - Or, [Purchase PiBar on the App Store](https://apps.apple.com/us/app/pibar-for-pi-hole/id1514292645?ls=1) for automatic updates.
 - Or, `brew install pibar` to install using Homebrew.
 
-## Pi-hole 6 Support Beta
+## Download Beta (Pi-hole 6)
 
 - [Download PiBar v1.2 Beta for macOS 10.15 and later](https://amiantos.s3.us-east-1.amazonaws.com/PiBar-1.2-beta.zip)
 - Provide feedback via [GitHub](https://github.com/amiantos/pibar/issues/56#issuecomment-2745123904), [Reddit](https://www.reddit.com/r/PiBar/comments/1jdzue6/macos_12_beta_pihole_6_support/), or [Email](mailto:bradroot@me.com?subject=PiBar%201.2%20Beta%20Feedback).
