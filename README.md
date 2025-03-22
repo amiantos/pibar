@@ -23,6 +23,10 @@ PiBar gives you all the tools you need to manage your [Pi-hole](https://pi-hole.
 - Or, [Purchase PiBar on the App Store](https://apps.apple.com/us/app/pibar-for-pi-hole/id1514292645?ls=1) for automatic updates.
 - Or, `brew install pibar` to install using Homebrew.
 
+## Pi-hole 6 Support Beta
+
+- [Download PiBar v1.2 Beta for macOS 10.15 and later](https://amiantos.s3.us-east-1.amazonaws.com/PiBar-1.2-beta.zip)
+
 ## Quick Start
 
 1. Launch PiBar
