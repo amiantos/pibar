@@ -32,6 +32,7 @@
 		44E390C72D87C3E2002196DC /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 44E390C62D87C3E2002196DC /* LaunchAtLogin */; };
 		44E390C92D87ED53002196DC /* PiholeV6SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44E390C82D87ED49002196DC /* PiholeV6SettingsViewController.swift */; };
 		44FFB092247627B100DCEDEC /* PiBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FFB091247627B100DCEDEC /* PiBarManager.swift */; };
+		7DFE62342E0938CA0097B220 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 7DFE62332E0938CA0097B220 /* KeychainAccess */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -83,6 +84,7 @@
 			files = (
 				44E390C72D87C3E2002196DC /* LaunchAtLogin in Frameworks */,
 				44E390C22D877DDE002196DC /* HotKey in Frameworks */,
+				7DFE62342E0938CA0097B220 /* KeychainAccess in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,6 +232,7 @@
 			packageProductDependencies = (
 				44E390C12D877DDE002196DC /* HotKey */,
 				44E390C62D87C3E2002196DC /* LaunchAtLogin */,
+				7DFE62332E0938CA0097B220 /* KeychainAccess */,
 			);
 			productName = PiBar;
 			productReference = 449395D22471ABD600FA0C34 /* PiBar.app */;
@@ -263,6 +266,7 @@
 			packageReferences = (
 				44E390C02D877DDE002196DC /* XCRemoteSwiftPackageReference "HotKey" */,
 				44E390C52D87C3E2002196DC /* XCRemoteSwiftPackageReference "LaunchAtLogin-Legacy" */,
+				7DFE62322E0938CA0097B220 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 			);
 			productRefGroup = 449395D32471ABD600FA0C34 /* Products */;
 			projectDirPath = "";
@@ -566,6 +570,14 @@
 				kind = branch;
 			};
 		};
+		7DFE62322E0938CA0097B220 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -578,6 +590,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 44E390C52D87C3E2002196DC /* XCRemoteSwiftPackageReference "LaunchAtLogin-Legacy" */;
 			productName = LaunchAtLogin;
+		};
+		7DFE62332E0938CA0097B220 /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7DFE62322E0938CA0097B220 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
