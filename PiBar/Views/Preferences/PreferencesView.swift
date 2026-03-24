@@ -24,7 +24,7 @@ struct PreferencesView: View {
                 Table(store.connections, selection: $selection) {
                     TableColumn("Hostname", value: \.hostname)
                     TableColumn("Port") { connection in
-                        Text("\(connection.port)")
+                        Text(String(connection.port))
                     }
                     .width(50)
                     TableColumn("Version") { connection in
