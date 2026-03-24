@@ -35,6 +35,7 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
         window.title = "PiBar Preferences"
         window.styleMask = [.titled, .closable, .miniaturizable]
         window.setContentSize(NSSize(width: 480, height: 680))
+        window.setFrameAutosaveName("PiBarPreferences")
         return window
     }()
 
@@ -51,6 +52,7 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
         window.title = "Recent Requests"
         window.styleMask = [.titled, .closable, .resizable]
         window.setContentSize(NSSize(width: 500, height: 500))
+        window.setFrameAutosaveName("PiBarRecentRequests")
         window.isReleasedWhenClosed = false
         return window
     }()
@@ -103,7 +105,9 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
 
     @IBAction func configureMenuBarAction(_: NSMenuItem) {
         preferencesStore.load()
-        preferencesWindow.center()
+        if !preferencesWindow.setFrameUsingName("PiBarPreferences") {
+            preferencesWindow.center()
+        }
         preferencesWindow.makeKeyAndOrderFront(nil)
         NSApp.activate(ignoringOtherApps: true)
     }
@@ -129,7 +133,9 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
     }
 
     @IBAction func domainManagementAction(_: NSMenuItem) {
-        domainManagementWindow.center()
+        if !domainManagementWindow.setFrameUsingName("PiBarRecentRequests") {
+            domainManagementWindow.center()
+        }
         domainManagementWindow.makeKeyAndOrderFront(nil)
         NSApp.activate(ignoringOtherApps: true)
     }
