@@ -28,6 +28,8 @@
 		AABB000400000000000002CC /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABB000400000000000001CC /* PreferencesView.swift */; };
 		AABB000500000000000002CC /* AddPiholeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABB000500000000000001CC /* AddPiholeView.swift */; };
 		AABB000600000000000002CC /* EditPiholeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABB000600000000000001CC /* EditPiholeView.swift */; };
+		AABB000800000000000002CC /* DomainManagementStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABB000800000000000001CC /* DomainManagementStore.swift */; };
+		AABB000900000000000002CC /* DomainManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABB000900000000000001CC /* DomainManagementView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -66,6 +68,8 @@
 		AABB000400000000000001CC /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
 		AABB000500000000000001CC /* AddPiholeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPiholeView.swift; sourceTree = "<group>"; };
 		AABB000600000000000001CC /* EditPiholeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPiholeView.swift; sourceTree = "<group>"; };
+		AABB000800000000000001CC /* DomainManagementStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainManagementStore.swift; sourceTree = "<group>"; };
+		AABB000900000000000001CC /* DomainManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainManagementView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,8 +103,18 @@
 				449395E92471B10500FA0C34 /* Main Menu */,
 				442F6F8C24723D60008F1101 /* Preferences */,
 				44381851247DE467009D9B3F /* About */,
+				AABB001000000000000001CC /* Domain Management */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		AABB001000000000000001CC /* Domain Management */ = {
+			isa = PBXGroup;
+			children = (
+				AABB000800000000000001CC /* DomainManagementStore.swift */,
+				AABB000900000000000001CC /* DomainManagementView.swift */,
+			);
+			path = "Domain Management";
 			sourceTree = "<group>";
 		};
 		441E78B2247E3ED700FBC7A0 /* Manager */ = {
@@ -286,6 +300,8 @@
 				AABB000400000000000002CC /* PreferencesView.swift in Sources */,
 				AABB000500000000000002CC /* AddPiholeView.swift in Sources */,
 				AABB000600000000000002CC /* EditPiholeView.swift in Sources */,
+				AABB000800000000000002CC /* DomainManagementStore.swift in Sources */,
+				AABB000900000000000002CC /* DomainManagementView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

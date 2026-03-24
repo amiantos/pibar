@@ -94,6 +94,58 @@ class Pihole6API: PiholeAPIProtocol {
         )
     }
 
+    // MARK: - Queries & Domain Management
+
+    func fetchRecentQueries(count: Int) async throws -> [PiholeQuery] {
+        let response: Pihole6QueriesResponse = try await authenticatedGet("/queries?length=\(count)")
+        let allowedStatuses: Set<String> = [
+            "FORWARDED", "CACHE", "CACHE_STALE", "RETRIED", "RETRIED_DNSSEC",
+            "IN_PROGRESS", "DBBUSY", "UNKNOWN"
+        ]
+        return response.queries.map { item in
+            PiholeQuery(
+                domain: item.domain,
+                timestamp: Date(timeIntervalSince1970: item.time),
+                blocked: !allowedStatuses.contains(item.status),
+                client: item.client.ip ?? item.client.name ?? "unknown",
+                piholeIdentifier: identifier
+            )
+        }
+    }
+
+    func addToAllowList(domain: String) async throws {
+        let (resolvedDomain, kind) = Self.resolveWildcard(domain)
+        let _: Pihole6DomainResponse = try await authenticatedPost(
+            "/domains/allow/\(kind)",
+            body: Pihole6DomainRequest(domain: resolvedDomain, comment: nil)
+        )
+    }
+
+    func addToDenyList(domain: String) async throws {
+        let (resolvedDomain, kind) = Self.resolveWildcard(domain)
+        let _: Pihole6DomainResponse = try await authenticatedPost(
+            "/domains/deny/\(kind)",
+            body: Pihole6DomainRequest(domain: resolvedDomain, comment: nil)
+        )
+    }
+
+    /// Determines if domain should be added as exact or regex.
+    /// Converts wildcard (*.example.com) to regex format.
+    /// Passes through raw regex as-is.
+    private static func resolveWildcard(_ domain: String) -> (String, String) {
+        if domain.hasPrefix("*.") {
+            let base = String(domain.dropFirst(2))
+            let escaped = NSRegularExpression.escapedPattern(for: base)
+            return ("(\\.|^)\(escaped)$", "regex")
+        }
+        if domain.contains("(") || domain.contains("[") || domain.contains("\\") ||
+           domain.contains("^") || domain.contains("$") || domain.contains("|") ||
+           domain.contains("+") || domain.contains("?") || domain.contains("{") {
+            return (domain, "regex")
+        }
+        return (domain, "exact")
+    }
+
     // MARK: - Authenticated requests with auto-refresh
 
     private func authenticatedGet<T: Decodable>(_ path: String) async throws -> T {

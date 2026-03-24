@@ -66,6 +66,79 @@ class PiBarManager {
         }
     }
 
+    // MARK: - Domain Management
+
+    func fetchAllRecentQueries(count: Int = 100) async -> [PiholeQuery] {
+        await withTaskGroup(of: [PiholeQuery].self) { group in
+            for pihole in piholes.values {
+                group.addTask {
+                    do {
+                        return try await withThrowingTaskGroup(of: [PiholeQuery].self) { inner in
+                            inner.addTask {
+                                try await pihole.api.fetchRecentQueries(count: count)
+                            }
+                            inner.addTask {
+                                try await Task.sleep(for: .seconds(10))
+                                throw CancellationError()
+                            }
+                            let result = try await inner.next() ?? []
+                            inner.cancelAll()
+                            return result
+                        }
+                    } catch {
+                        Log.error("Failed to fetch queries from \(pihole.identifier): \(error)")
+                        return []
+                    }
+                }
+            }
+            var allQueries: [PiholeQuery] = []
+            for await queries in group {
+                allQueries.append(contentsOf: queries)
+            }
+            return allQueries
+        }
+    }
+
+    func addToAllowListOnAll(domain: String) async -> [String] {
+        await withTaskGroup(of: String?.self) { group in
+            for pihole in piholes.values {
+                group.addTask {
+                    do {
+                        try await pihole.api.addToAllowList(domain: domain)
+                        return nil
+                    } catch {
+                        return "\(pihole.identifier): \(error.localizedDescription)"
+                    }
+                }
+            }
+            var errors: [String] = []
+            for await error in group {
+                if let error { errors.append(error) }
+            }
+            return errors
+        }
+    }
+
+    func addToDenyListOnAll(domain: String) async -> [String] {
+        await withTaskGroup(of: String?.self) { group in
+            for pihole in piholes.values {
+                group.addTask {
+                    do {
+                        try await pihole.api.addToDenyList(domain: domain)
+                        return nil
+                    } catch {
+                        return "\(pihole.identifier): \(error.localizedDescription)"
+                    }
+                }
+            }
+            var errors: [String] = []
+            for await error in group {
+                if let error { errors.append(error) }
+            }
+            return errors
+        }
+    }
+
     func toggleNetwork() {
         let status = networkStatus()
         if status == .enabled || status == .partiallyEnabled {

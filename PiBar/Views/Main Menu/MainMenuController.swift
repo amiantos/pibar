@@ -38,6 +38,23 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
         return window
     }()
 
+    // MARK: - Recent Requests Window
+
+    private lazy var domainManagementStore: DomainManagementStore = {
+        DomainManagementStore(manager: manager)
+    }()
+
+    private lazy var domainManagementWindow: NSWindow = {
+        let view = DomainManagementView(store: domainManagementStore)
+        let hostingController = NSHostingController(rootView: view)
+        let window = NSWindow(contentViewController: hostingController)
+        window.title = "Recent Requests"
+        window.styleMask = [.titled, .closable, .resizable]
+        window.setContentSize(NSSize(width: 500, height: 500))
+        window.isReleasedWhenClosed = false
+        return window
+    }()
+
     // MARK: - About Window
 
     private lazy var aboutWindow: NSWindow = {
@@ -63,6 +80,7 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
     @IBOutlet var disableNetworkMenuItem: NSMenuItem!
     @IBOutlet var enableNetworkMenuItem: NSMenuItem!
     @IBOutlet var webAdminMenuItem: NSMenuItem!
+    @IBOutlet var domainManagementMenuItem: NSMenuItem!
 
     // MARK: - Sub-menus for Multi-hole Setups
 
@@ -107,6 +125,12 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
     @IBAction func aboutAction(_: NSMenuItem) {
         aboutWindow.center()
         aboutWindow.makeKeyAndOrderFront(nil)
+        NSApp.activate(ignoringOtherApps: true)
+    }
+
+    @IBAction func domainManagementAction(_: NSMenuItem) {
+        domainManagementWindow.center()
+        domainManagementWindow.makeKeyAndOrderFront(nil)
         NSApp.activate(ignoringOtherApps: true)
     }
 
@@ -463,19 +487,23 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
         if !networkOverview.canBeManaged {
             disableNetworkMenuItem.isEnabled = false
             enableNetworkMenuItem.isEnabled = false
+            domainManagementMenuItem.isEnabled = false
         } else if currentStatus == .enabled || currentStatus == .partiallyEnabled {
             enableNetworkMenuItem.isEnabled = false
             enableNetworkMenuItem.isHidden = true
             disableNetworkMenuItem.isEnabled = true
             disableNetworkMenuItem.isHidden = false
+            domainManagementMenuItem.isEnabled = true
         } else if currentStatus == .disabled {
             enableNetworkMenuItem.isEnabled = true
             enableNetworkMenuItem.isHidden = false
             disableNetworkMenuItem.isEnabled = false
             disableNetworkMenuItem.isHidden = true
+            domainManagementMenuItem.isEnabled = true
         } else {
             disableNetworkMenuItem.isEnabled = false
             enableNetworkMenuItem.isEnabled = false
+            domainManagementMenuItem.isEnabled = false
         }
 
         if networkOverview.piholes.count > 1 {

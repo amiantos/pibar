@@ -58,6 +58,59 @@ class PiholeAPI: PiholeAPIProtocol {
         let _: PiholeAPIStatus = try await get(query: query)
     }
 
+    // MARK: - Queries & Domain Management
+
+    func fetchRecentQueries(count: Int) async throws -> [PiholeQuery] {
+        let response: PiholeV5QueriesResponse = try await get(query: "getAllQueries=\(count)")
+        return response.data.compactMap { row -> PiholeQuery? in
+            // row format: [timestamp, type, domain, client, status, ...]
+            guard row.count >= 5 else { return nil }
+            let timestampInt = Double(row[0]) ?? 0
+            let domain = row[2]
+            let client = row[3]
+            let statusCode = Int(row[4]) ?? 0
+            // Status 1=forwarded, 2=cache, 3=blocked(gravity), 4+=blocked(other)
+            let blocked = statusCode >= 3
+            return PiholeQuery(
+                domain: domain,
+                timestamp: Date(timeIntervalSince1970: timestampInt),
+                blocked: blocked,
+                client: client,
+                piholeIdentifier: identifier
+            )
+        }
+    }
+
+    func addToAllowList(domain: String) async throws {
+        let (resolvedDomain, list) = Self.resolveWildcard(domain, allow: true)
+        let _ = try await getRaw(query: "list=\(list)&add=\(resolvedDomain)")
+    }
+
+    func addToDenyList(domain: String) async throws {
+        let (resolvedDomain, list) = Self.resolveWildcard(domain, allow: false)
+        let _ = try await getRaw(query: "list=\(list)&add=\(resolvedDomain)")
+    }
+
+    /// Determines if domain should be added as exact or regex.
+    /// Converts wildcard (*.example.com) to regex format.
+    /// Passes through raw regex as-is.
+    private static func resolveWildcard(_ domain: String, allow: Bool) -> (String, String) {
+        let isRegex: Bool
+        if domain.hasPrefix("*.") {
+            let base = String(domain.dropFirst(2))
+            let escaped = NSRegularExpression.escapedPattern(for: base)
+            let regex = "(\\.|^)\(escaped)$"
+            return (regex, allow ? "regex_white" : "regex_black")
+        }
+        isRegex = domain.contains("(") || domain.contains("[") || domain.contains("\\") ||
+            domain.contains("^") || domain.contains("$") || domain.contains("|") ||
+            domain.contains("+") || domain.contains("?") || domain.contains("{")
+        if isRegex {
+            return (domain, allow ? "regex_white" : "regex_black")
+        }
+        return (domain, allow ? "white" : "black")
+    }
+
     // MARK: - Testing
 
     func testConnection() async throws -> Bool {

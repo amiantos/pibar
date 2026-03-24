@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="23504" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="24127" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24127"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner"/>
@@ -12,6 +11,7 @@
         <customObject id="Ufk-kp-3MV" customClass="MainMenuController" customModule="PiBar" customModuleProvider="target">
             <connections>
                 <outlet property="disableNetworkMenuItem" destination="kZY-sQ-RsG" id="phQ-zg-2b9"/>
+                <outlet property="domainManagementMenuItem" destination="8Sv-gA-qly" id="ssz-Lc-bpr"/>
                 <outlet property="enableNetworkMenuItem" destination="BI6-Ri-lBb" id="Gye-Na-1Ks"/>
                 <outlet property="mainBlocklistMenuItem" destination="6lr-WP-jec" id="gfK-1e-FmL"/>
                 <outlet property="mainMenu" destination="aKJ-Vr-amD" id="W3G-ke-MuW"/>
@@ -304,6 +304,13 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="gzf-LJ-6hp"/>
+                <menuItem title="Recent Requests" enabled="NO" id="8Sv-gA-qly" userLabel="Recent Requests">
+                    <modifierMask key="keyEquivalentModifierMask" shift="YES"/>
+                    <connections>
+                        <action selector="domainManagementAction:" target="Ufk-kp-3MV" id="HvC-7A-g0r"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="KKj-Z5-V5m"/>
                 <menuItem title="Enable Pi-hole" hidden="YES" enabled="NO" keyEquivalent="p" id="BI6-Ri-lBb">
                     <connections>
                         <action selector="enableMenuBarAction:" target="Ufk-kp-3MV" id="6rU-7E-Pgf"/>
