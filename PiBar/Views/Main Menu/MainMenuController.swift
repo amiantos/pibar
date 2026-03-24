@@ -34,7 +34,7 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
         let window = NSWindow(contentViewController: hostingController)
         window.title = "PiBar Preferences"
         window.styleMask = [.titled, .closable, .miniaturizable]
-        window.setContentSize(NSSize(width: 480, height: 500))
+        window.setContentSize(NSSize(width: 480, height: 680))
         return window
     }()
 

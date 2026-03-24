@@ -94,7 +94,7 @@ struct PreferencesView: View {
             }
         }
         .formStyle(.grouped)
-        .frame(minWidth: 480, minHeight: 450)
+        .frame(minWidth: 480, minHeight: 680)
         .sheet(isPresented: $showingAddSheet) {
             AddPiholeView(store: store)
         }
