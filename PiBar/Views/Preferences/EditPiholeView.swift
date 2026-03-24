@@ -28,6 +28,7 @@ struct EditPiholeView: View {
     @State private var totp: String = ""
     @State private var isAuthenticating: Bool = false
     @State private var authError: String = ""
+    @State private var requiresTOTP: Bool = false
     @State private var showReAuth: Bool = false
 
     var body: some View {
@@ -68,10 +69,8 @@ struct EditPiholeView: View {
                     if connection.version == .v6 {
                         SecureField("Password", text: $password)
                             .textFieldStyle(.roundedBorder)
-                        if connection.requiresTOTP {
-                            TextField("TOTP Code", text: $totp)
-                                .textFieldStyle(.roundedBorder)
-                        }
+                        TextField("TOTP Code (if enabled)", text: $totp)
+                            .textFieldStyle(.roundedBorder)
                     } else {
                         TextField("API Token", text: $apiToken)
                             .textFieldStyle(.roundedBorder)
@@ -109,6 +108,7 @@ struct EditPiholeView: View {
             useSSL = connection.useSSL
             adminPanelURL = connection.adminPanelURL
             savePassword = connection.savePassword
+            requiresTOTP = connection.requiresTOTP
         }
     }
 
@@ -122,7 +122,7 @@ struct EditPiholeView: View {
             passwordProtected: connection.passwordProtected,
             adminPanelURL: adminPanelURL,
             savePassword: connection.version == .v6 ? savePassword : false,
-            requiresTOTP: connection.requiresTOTP
+            requiresTOTP: requiresTOTP
         )
         store.updateConnection(updated)
     }
@@ -144,7 +144,7 @@ struct EditPiholeView: View {
                 passwordProtected: true,
                 adminPanelURL: adminPanelURL,
                 savePassword: savePassword,
-                requiresTOTP: connection.requiresTOTP
+                requiresTOTP: !totp.isEmpty || requiresTOTP
             )
             let api = Pihole6API(connection: tempConnection)
 
@@ -154,6 +154,12 @@ struct EditPiholeView: View {
                 if session.valid {
                     if let sid = session.sid {
                         tempConnection.saveToken(sid)
+                    }
+                    // Update TOTP requirement based on server response
+                    requiresTOTP = session.totp
+                    // If TOTP is needed, disable password saving (can't auto-refresh with TOTP)
+                    if session.totp {
+                        savePassword = false
                     }
                     if savePassword {
                         api.savePasswordForRefresh(password)

@@ -23,7 +23,7 @@ class AddPiholeViewModel {
     var step: Step = .hostname
     var hostname: String = ""
     var customPort: String = ""
-    var useCustomPort: Bool = false
+    var useSSL: Bool = false
     var statusMessage: String = ""
     var errorMessage: String = ""
 
@@ -52,8 +52,12 @@ class AddPiholeViewModel {
         statusMessage = "Detecting Pi-hole..."
 
         do {
-            let port = useCustomPort ? Int(customPort) : nil
-            let result = try await detector.detect(hostname: hostname.trimmingCharacters(in: .whitespacesAndNewlines), customPort: port)
+            var port = customPort.isEmpty ? nil : Int(customPort)
+            if port == nil && useSSL {
+                port = 443
+            }
+            let sslOverride: Bool? = (port != nil || useSSL) ? useSSL : nil
+            let result = try await detector.detect(hostname: hostname.trimmingCharacters(in: .whitespacesAndNewlines), customPort: port, useSSL: sslOverride)
             detectionResult = result
 
             let useSSL = result.useSSL
@@ -202,17 +206,20 @@ struct AddPiholeView: View {
             Text("Add Pi-hole")
                 .font(.headline)
 
-            TextField("Hostname or IP address", text: $viewModel.hostname)
-                .textFieldStyle(.roundedBorder)
-
-            DisclosureGroup("Advanced") {
-                Toggle("Custom port", isOn: $viewModel.useCustomPort)
-                if viewModel.useCustomPort {
-                    TextField("Port", text: $viewModel.customPort)
-                        .textFieldStyle(.roundedBorder)
-                        .frame(width: 80)
-                }
+            HStack {
+                TextField("Hostname or IP address", text: $viewModel.hostname)
+                    .textFieldStyle(.roundedBorder)
+                TextField(viewModel.useSSL ? "443" : "80", text: $viewModel.customPort)
+                    .textFieldStyle(.roundedBorder)
+                    .frame(width: 60)
+                    .onChange(of: viewModel.customPort) {
+                        if viewModel.customPort == "443" {
+                            viewModel.useSSL = true
+                        }
+                    }
             }
+
+            Toggle("Use SSL", isOn: $viewModel.useSSL)
 
             if !viewModel.errorMessage.isEmpty {
                 Text(viewModel.errorMessage)
@@ -267,8 +274,10 @@ struct AddPiholeView: View {
                         .textFieldStyle(.roundedBorder)
                 }
 
-                Toggle("Save password for automatic reconnection", isOn: $viewModel.savePassword)
-                    .font(.caption)
+                if viewModel.detectionResult?.totpRequired != true {
+                    Toggle("Save password for automatic reconnection", isOn: $viewModel.savePassword)
+                        .font(.caption)
+                }
             } else {
                 TextField("API Token", text: $viewModel.apiToken)
                     .textFieldStyle(.roundedBorder)

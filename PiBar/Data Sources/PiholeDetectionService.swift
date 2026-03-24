@@ -51,18 +51,20 @@ actor PiholeDetectionService {
         return URLSession(configuration: config, delegate: sessionDelegate, delegateQueue: nil)
     }()
 
-    /// Detect Pi-hole at the given hostname, optionally with a specific port
-    func detect(hostname: String, customPort: Int? = nil) async throws -> DetectionResult {
-        let (port, useSSL) = try await detectConnectivity(hostname: hostname, customPort: customPort)
-        return try await detectVersion(hostname: hostname, port: port, useSSL: useSSL)
+    /// Detect Pi-hole at the given hostname, optionally with a specific port and SSL preference
+    func detect(hostname: String, customPort: Int? = nil, useSSL: Bool? = nil) async throws -> DetectionResult {
+        let (port, ssl) = try await detectConnectivity(hostname: hostname, customPort: customPort, useSSL: useSSL)
+        return try await detectVersion(hostname: hostname, port: port, useSSL: ssl)
     }
 
     // MARK: - Port/SSL Detection
 
-    private func detectConnectivity(hostname: String, customPort: Int?) async throws -> (Int, Bool) {
+    private func detectConnectivity(hostname: String, customPort: Int?, useSSL: Bool?) async throws -> (Int, Bool) {
         if let port = customPort {
-            // For 443, assume SSL. Otherwise try HTTP first (most common for custom ports).
-            // Skip canConnect — go straight to version detection which validates connectivity.
+            // If user specified SSL preference, use it. Otherwise infer from port.
+            if let ssl = useSSL {
+                return (port, ssl)
+            }
             if port == 443 {
                 return (port, true)
             }
