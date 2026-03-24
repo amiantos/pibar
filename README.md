@@ -10,6 +10,8 @@ PiBar gives you all the tools you need to manage your [Pi-hole](https://pi-hole.
 - Supports multiple Pi-holes (inc. quadruple failover setups!)
 - Toggle your Pi-hole(s) on/off from the menu or anywhere via ⌘⌥⇧P
 - Displays warnings if any or all of your Pi-holes are inaccessible or disabled
+- View recent DNS queries and add domains to allow/deny lists across all your Pi-holes
+- Supports wildcard and regex domain entries
 - Pi-hole v6 session auto-refresh with saved password support
 - Credentials stored securely in macOS Keychain
 - No capital "h" in the word "hole" in the app or in the code
@@ -50,6 +52,7 @@ PiBar gives you all the tools you need to manage your [Pi-hole](https://pi-hole.
 - **Smart Pi-hole Detection** -- Just enter a hostname and PiBar figures out the rest: Pi-hole version (v5 or v6), port, and whether SSL is needed.
 - **Pi-hole v6 Support** -- Full support for Pi-hole v6's password-based authentication, including TOTP. Optionally save your password so PiBar can automatically reconnect when your session expires.
 - **SwiftUI Preferences** -- The preferences window has been completely rebuilt in SwiftUI, replacing the old storyboard-based UI.
+- **Recent Requests** -- View recently blocked and allowed DNS queries across all your Pi-holes, and quickly add domains to allow or deny lists. Supports exact domains, wildcards (`*.example.com`), and raw regex.
 - **Keychain Storage** -- API tokens and passwords are now stored in the macOS Keychain instead of UserDefaults.
 - **Modern Architecture** -- The entire networking layer has been rewritten with Swift async/await, replacing the old callback and OperationQueue patterns.
 - **macOS 15 Sequoia** -- PiBar 2.0 requires macOS 15 or later. Users on older macOS versions can continue using PiBar v1.1.2.
