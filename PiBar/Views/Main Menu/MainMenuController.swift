@@ -11,6 +11,7 @@
 
 import Cocoa
 import HotKey
+import SwiftUI
 
 class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarManagerDelegate {
     private let toggleHotKey = HotKey(key: .p, modifiers: [.command, .option, .shift])
@@ -19,23 +20,38 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
 
     private var networkOverview: PiholeNetworkOverview?
 
+    // MARK: - Preferences (SwiftUI)
+
+    private lazy var preferencesStore: PreferencesStore = {
+        let store = PreferencesStore()
+        store.delegate = self
+        return store
+    }()
+
+    private lazy var preferencesWindow: NSWindow = {
+        let view = PreferencesView(store: preferencesStore)
+        let hostingController = NSHostingController(rootView: view)
+        let window = NSWindow(contentViewController: hostingController)
+        window.title = "PiBar Preferences"
+        window.styleMask = [.titled, .closable, .miniaturizable]
+        window.setContentSize(NSSize(width: 480, height: 500))
+        return window
+    }()
+
+    // MARK: - About Window
+
+    private lazy var aboutWindow: NSWindow = {
+        let hostingController = NSHostingController(rootView: AboutView())
+        let window = NSWindow(contentViewController: hostingController)
+        window.title = "About PiBar"
+        window.styleMask = [.titled, .closable]
+        window.isReleasedWhenClosed = false
+        return window
+    }()
+
     // MARK: - Internal Views
 
     private let statusBarItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-
-    private lazy var preferencesWindowController = NSStoryboard(
-        name: "Main",
-        bundle: nil
-    ).instantiateController(
-        withIdentifier: "PreferencesWindowContoller"
-    ) as? PreferencesWindowController
-
-    private lazy var aboutWindowController = NSStoryboard(
-        name: "Main",
-        bundle: nil
-    ).instantiateController(
-        withIdentifier: "AboutWindowController"
-    ) as? NSWindowController
 
     // MARK: - Outlets
 
@@ -47,7 +63,6 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
     @IBOutlet var disableNetworkMenuItem: NSMenuItem!
     @IBOutlet var enableNetworkMenuItem: NSMenuItem!
     @IBOutlet var webAdminMenuItem: NSMenuItem!
-
 
     // MARK: - Sub-menus for Multi-hole Setups
 
@@ -69,7 +84,10 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
     // MARK: - Actions
 
     @IBAction func configureMenuBarAction(_: NSMenuItem) {
-        preferencesWindowController?.showWindow(self)
+        preferencesStore.load()
+        preferencesWindow.center()
+        preferencesWindow.makeKeyAndOrderFront(nil)
+        NSApp.activate(ignoringOtherApps: true)
     }
 
     @IBAction func quitMenuBarAction(_: NSMenuItem) {
@@ -87,7 +105,9 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
     }
 
     @IBAction func aboutAction(_: NSMenuItem) {
-        aboutWindowController?.showWindow(self)
+        aboutWindow.center()
+        aboutWindow.makeKeyAndOrderFront(nil)
+        NSApp.activate(ignoringOtherApps: true)
     }
 
     // MARK: - View Lifecycle
@@ -107,10 +127,6 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
         mainMenu.delegate = self
 
         enableKeyboardShortcut()
-
-        if let viewController = preferencesWindowController?.contentViewController as? PreferencesViewController {
-            viewController.delegate = self
-        }
     }
 
     // MARK: - Keyboard Shortcut
@@ -165,16 +181,12 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
     }
 
     private func launchWebAdmin(for identifier: String) {
-        guard let pihole = networkOverview?.piholes[identifier] else {
+        guard let pihole = networkOverview?.piholes[identifier],
+              let adminURL = pihole.api.adminURL else {
             Log.debug("Could not find Pi-hole with identifier \(identifier)")
             return
         }
-        if let legacyAPI = pihole.api, let adminURL = URL(string: legacyAPI.connection.adminPanelURL) {
-            NSWorkspace.shared.open(adminURL)
-        } else if let newAPI = pihole.api6, let adminURL = URL(string: newAPI.connection.adminPanelURL) {
-            NSWorkspace.shared.open(adminURL)
-        }
-        
+        NSWorkspace.shared.open(adminURL)
     }
 
     // MARK: - UI Updates
@@ -186,7 +198,7 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
 
         if Preferences.standard.shortcutEnabled {
             enableKeyboardShortcut()
-        } else if !Preferences.standard.shortcutEnabled {
+        } else {
             disableKeyboardShortcut()
         }
 
@@ -264,7 +276,6 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
             titleElements = [currentStatus.rawValue]
         }
 
-        // Set title
         let titleString = titleElements.joined(separator: " ")
         setMenuBarTitle(titleString)
     }
@@ -386,7 +397,6 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
             let piholeIdentifiersAlphabetized: [String] = piholes.keys.sorted()
 
             for identifier in piholeIdentifiersAlphabetized {
-                // Web Admin Submenu
                 if webAdminMenuItems[identifier] == nil {
                     let menuItem = NSMenuItem(
                         title: identifier,
