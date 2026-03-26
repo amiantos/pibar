@@ -12,7 +12,7 @@
 		442F6F852471D334008F1101 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 442F6F842471D334008F1101 /* README.md */; };
 		442F6F872471E8DF008F1101 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442F6F862471E8DF008F1101 /* Extensions.swift */; };
 		442F6F89247212D2008F1101 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442F6F88247212D1008F1101 /* Preferences.swift */; };
-		AABB000700000000000002CC /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABB000700000000000001CC /* AboutView.swift */; };
+		4473DC542F750A7600474FE8 /* pibar.icon in Resources */ = {isa = PBXBuildFile; fileRef = 4473DC532F750A7600474FE8 /* pibar.icon */; };
 		449395D62471ABD600FA0C34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449395D52471ABD600FA0C34 /* AppDelegate.swift */; };
 		449395DA2471ABD700FA0C34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 449395D92471ABD700FA0C34 /* Assets.xcassets */; };
 		449395E62471AC0700FA0C34 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 449395E52471AC0700FA0C34 /* MainMenu.xib */; };
@@ -28,6 +28,7 @@
 		AABB000400000000000002CC /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABB000400000000000001CC /* PreferencesView.swift */; };
 		AABB000500000000000002CC /* AddPiholeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABB000500000000000001CC /* AddPiholeView.swift */; };
 		AABB000600000000000002CC /* EditPiholeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABB000600000000000001CC /* EditPiholeView.swift */; };
+		AABB000700000000000002CC /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABB000700000000000001CC /* AboutView.swift */; };
 		AABB000800000000000002CC /* DomainManagementStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABB000800000000000001CC /* DomainManagementStore.swift */; };
 		AABB000900000000000002CC /* DomainManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABB000900000000000001CC /* DomainManagementView.swift */; };
 /* End PBXBuildFile section */
@@ -51,7 +52,7 @@
 		442F6F842471D334008F1101 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		442F6F862471E8DF008F1101 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		442F6F88247212D1008F1101 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
-		AABB000700000000000001CC /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		4473DC532F750A7600474FE8 /* pibar.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = pibar.icon; sourceTree = "<group>"; };
 		449395D22471ABD600FA0C34 /* PiBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PiBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		449395D52471ABD600FA0C34 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		449395D92471ABD700FA0C34 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -68,6 +69,7 @@
 		AABB000400000000000001CC /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
 		AABB000500000000000001CC /* AddPiholeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPiholeView.swift; sourceTree = "<group>"; };
 		AABB000600000000000001CC /* EditPiholeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPiholeView.swift; sourceTree = "<group>"; };
+		AABB000700000000000001CC /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		AABB000800000000000001CC /* DomainManagementStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainManagementStore.swift; sourceTree = "<group>"; };
 		AABB000900000000000001CC /* DomainManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainManagementView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -106,15 +108,6 @@
 				AABB001000000000000001CC /* Domain Management */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		AABB001000000000000001CC /* Domain Management */ = {
-			isa = PBXGroup;
-			children = (
-				AABB000800000000000001CC /* DomainManagementStore.swift */,
-				AABB000900000000000001CC /* DomainManagementView.swift */,
-			);
-			path = "Domain Management";
 			sourceTree = "<group>";
 		};
 		441E78B2247E3ED700FBC7A0 /* Manager */ = {
@@ -173,6 +166,7 @@
 				4415D73224731E2F009E0B31 /* Data Sources */,
 				441E78A6247DE6CB00FBC7A0 /* Views */,
 				44AC125F2476F1F300851ED9 /* Utilities */,
+				4473DC532F750A7600474FE8 /* pibar.icon */,
 			);
 			path = PiBar;
 			sourceTree = "<group>";
@@ -201,6 +195,15 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AABB001000000000000001CC /* Domain Management */ = {
+			isa = PBXGroup;
+			children = (
+				AABB000800000000000001CC /* DomainManagementStore.swift */,
+				AABB000900000000000001CC /* DomainManagementView.swift */,
+			);
+			path = "Domain Management";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -274,6 +277,7 @@
 				449395DA2471ABD700FA0C34 /* Assets.xcassets in Resources */,
 				442F6F852471D334008F1101 /* README.md in Resources */,
 				449395E62471AC0700FA0C34 /* MainMenu.xib in Resources */,
+				4473DC542F750A7600474FE8 /* pibar.icon in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,9 +310,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		449395E02471ABD700FA0C34 /* Debug */ = {
@@ -439,7 +440,7 @@
 		449395E32471ABD700FA0C34 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = pibar;
 				CODE_SIGN_ENTITLEMENTS = PiBar/PiBar.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
@@ -469,7 +470,7 @@
 		449395E42471ABD700FA0C34 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = pibar;
 				CODE_SIGN_ENTITLEMENTS = PiBar/PiBar.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";

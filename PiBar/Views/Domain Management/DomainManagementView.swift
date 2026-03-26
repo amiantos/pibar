@@ -127,3 +127,28 @@ struct DomainManagementView: View {
         }
     }
 }
+
+#Preview {
+    let store = DomainManagementStore(
+        blockedDomains: [
+            DomainEntry(domain: "ads.doubleclick.net", queryCount: 47, lastSeen: Date()),
+            DomainEntry(domain: "tracker.facebook.com", queryCount: 32, lastSeen: Date()),
+            DomainEntry(domain: "analytics.google.com", queryCount: 28, lastSeen: Date()),
+            DomainEntry(domain: "pixel.adsafeprotected.com", queryCount: 19, lastSeen: Date()),
+            DomainEntry(domain: "cdn.mxpnl.com", queryCount: 12, lastSeen: Date()),
+            DomainEntry(domain: "telemetry.microsoft.com", queryCount: 8, lastSeen: Date()),
+            DomainEntry(domain: "metrics.icloud.com", queryCount: 5, lastSeen: Date()),
+            DomainEntry(domain: "sb.scorecardresearch.com", queryCount: 3, lastSeen: Date()),
+        ],
+        allowedDomains: [
+            DomainEntry(domain: "github.com", queryCount: 89, lastSeen: Date()),
+            DomainEntry(domain: "api.apple.com", queryCount: 64, lastSeen: Date()),
+            DomainEntry(domain: "dns.google", queryCount: 51, lastSeen: Date()),
+            DomainEntry(domain: "mastodon.social", queryCount: 33, lastSeen: Date()),
+            DomainEntry(domain: "cdn.jsdelivr.net", queryCount: 22, lastSeen: Date()),
+            DomainEntry(domain: "fonts.googleapis.com", queryCount: 17, lastSeen: Date()),
+        ]
+    )
+    store.actionMessage = "Added ads.doubleclick.net to allow list."
+    return DomainManagementView(store: store)
+}

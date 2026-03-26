@@ -21,10 +21,17 @@ class DomainManagementStore {
     var actionMessage: String?
     var manualDomain: String = ""
 
-    private let manager: PiBarManager
+    private let manager: PiBarManager?
 
     init(manager: PiBarManager) {
         self.manager = manager
+    }
+
+    /// Preview/mock initializer
+    init(blockedDomains: [DomainEntry], allowedDomains: [DomainEntry]) {
+        self.manager = nil
+        self.blockedDomains = blockedDomains
+        self.allowedDomains = allowedDomains
     }
 
     func loadQueries() async {
@@ -32,6 +39,7 @@ class DomainManagementStore {
         errorMessage = nil
         defer { isLoading = false }
 
+        guard let manager else { isLoading = false; return }
         let queries = await manager.fetchAllRecentQueries(count: 100)
 
         // Group by domain and blocked status
@@ -65,6 +73,7 @@ class DomainManagementStore {
 
     func addToAllowList(domain: String) async {
         actionMessage = nil
+        guard let manager else { return }
         let errors = await manager.addToAllowListOnAll(domain: domain)
         if errors.isEmpty {
             actionMessage = "Added \(domain) to allow list."
@@ -76,6 +85,7 @@ class DomainManagementStore {
 
     func addToDenyList(domain: String) async {
         actionMessage = nil
+        guard let manager else { return }
         let errors = await manager.addToDenyListOnAll(domain: domain)
         if errors.isEmpty {
             actionMessage = "Added \(domain) to deny list."
