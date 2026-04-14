@@ -117,11 +117,20 @@ class PiBarManager {
     }
 
     private func activePiholes() -> [Pihole] {
-        piholes.values.filter { !($0.api.connection.ignoreWhenOffline && !$0.online) }
+        let filtered = piholes.values.filter { !($0.api.connection.ignoreWhenOffline && !$0.online) }
+        // Failsafe: if every Pi-hole is ignored-and-offline, fall back to showing
+        // all of them so the user isn't left with an empty, uninteractive menu.
+        if filtered.isEmpty && !piholes.isEmpty {
+            return Array(piholes.values)
+        }
+        return filtered
     }
 
     private func hasIgnoredOfflinePiholes() -> Bool {
-        piholes.values.contains { $0.api.connection.ignoreWhenOffline && !$0.online }
+        let ignored = piholes.values.filter { $0.api.connection.ignoreWhenOffline && !$0.online }
+        guard !ignored.isEmpty else { return false }
+        // Don't claim "ignored offline" when the failsafe has un-ignored them.
+        return ignored.count != piholes.count
     }
 
     // MARK: - Private
