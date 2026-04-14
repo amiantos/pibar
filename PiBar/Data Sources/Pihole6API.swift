@@ -59,7 +59,7 @@ class Pihole6API: PiholeAPIProtocol {
     /// Save password to Keychain for auto-refresh
     func savePasswordForRefresh(_ password: String) {
         self.savedPassword = password
-        KeychainService.save(password: password, forAccount: "\(connection.id.uuidString)-password")
+        _ = KeychainService.save(password: password, forAccount: "\(connection.id.uuidString)-password")
     }
 
     // MARK: - PiholeAPIProtocol

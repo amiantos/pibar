@@ -83,7 +83,7 @@ struct PiholeConnection: Codable, Identifiable, Hashable {
     }
 
     func saveToken(_ token: String) {
-        KeychainService.save(password: token, forAccount: id.uuidString)
+        _ = KeychainService.save(password: token, forAccount: id.uuidString)
     }
 
     func deleteToken() {
