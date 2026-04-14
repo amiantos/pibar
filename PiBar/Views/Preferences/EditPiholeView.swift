@@ -21,6 +21,7 @@ struct EditPiholeView: View {
     @State private var useSSL: Bool = false
     @State private var adminPanelURL: String = ""
     @State private var savePassword: Bool = false
+    @State private var ignoreWhenOffline: Bool = false
 
     // Re-auth fields
     @State private var password: String = ""
@@ -54,13 +55,22 @@ struct EditPiholeView: View {
                 Toggle("Use SSL", isOn: $useSSL)
             }
 
-            TextField("Admin Panel URL", text: $adminPanelURL)
-                .textFieldStyle(.roundedBorder)
+            VStack(alignment: .leading, spacing: 4) {
+                TextField("Admin Panel URL", text: $adminPanelURL)
+                    .textFieldStyle(.roundedBorder)
+                Text("Override this if you access the admin panel at a different URL (e.g., behind a reverse proxy).")
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
+                    .padding(.horizontal, 4)
+            }
 
             if connection.version == .v6 {
                 Toggle("Save password for automatic reconnection", isOn: $savePassword)
                     .font(.caption)
             }
+
+            Toggle("Ignore when offline", isOn: $ignoreWhenOffline)
+                .font(.caption)
 
             Divider()
 
@@ -109,10 +119,15 @@ struct EditPiholeView: View {
             adminPanelURL = connection.adminPanelURL
             savePassword = connection.savePassword
             requiresTOTP = connection.requiresTOTP
+            ignoreWhenOffline = connection.ignoreWhenOffline
         }
     }
 
     private func saveChanges() {
+        let effectiveSavePassword = connection.version == .v6 ? savePassword : false
+        if !effectiveSavePassword {
+            connection.deleteSavedPassword()
+        }
         let updated = PiholeConnection(
             id: connection.id,
             hostname: hostname.trimmingCharacters(in: .whitespacesAndNewlines),
@@ -121,8 +136,9 @@ struct EditPiholeView: View {
             version: connection.version,
             passwordProtected: connection.passwordProtected,
             adminPanelURL: adminPanelURL,
-            savePassword: connection.version == .v6 ? savePassword : false,
-            requiresTOTP: requiresTOTP
+            savePassword: effectiveSavePassword,
+            requiresTOTP: requiresTOTP,
+            ignoreWhenOffline: ignoreWhenOffline
         )
         store.updateConnection(updated)
     }

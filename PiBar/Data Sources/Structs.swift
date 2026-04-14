@@ -38,6 +38,45 @@ struct PiholeConnection: Codable, Identifiable, Hashable {
     var adminPanelURL: String
     var savePassword: Bool
     var requiresTOTP: Bool
+    var ignoreWhenOffline: Bool
+
+    init(
+        id: UUID,
+        hostname: String,
+        port: Int,
+        useSSL: Bool,
+        version: PiholeVersion,
+        passwordProtected: Bool,
+        adminPanelURL: String,
+        savePassword: Bool,
+        requiresTOTP: Bool,
+        ignoreWhenOffline: Bool = false
+    ) {
+        self.id = id
+        self.hostname = hostname
+        self.port = port
+        self.useSSL = useSSL
+        self.version = version
+        self.passwordProtected = passwordProtected
+        self.adminPanelURL = adminPanelURL
+        self.savePassword = savePassword
+        self.requiresTOTP = requiresTOTP
+        self.ignoreWhenOffline = ignoreWhenOffline
+    }
+
+    init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        id = try c.decode(UUID.self, forKey: .id)
+        hostname = try c.decode(String.self, forKey: .hostname)
+        port = try c.decode(Int.self, forKey: .port)
+        useSSL = try c.decode(Bool.self, forKey: .useSSL)
+        version = try c.decode(PiholeVersion.self, forKey: .version)
+        passwordProtected = try c.decode(Bool.self, forKey: .passwordProtected)
+        adminPanelURL = try c.decode(String.self, forKey: .adminPanelURL)
+        savePassword = try c.decode(Bool.self, forKey: .savePassword)
+        requiresTOTP = try c.decode(Bool.self, forKey: .requiresTOTP)
+        ignoreWhenOffline = try c.decodeIfPresent(Bool.self, forKey: .ignoreWhenOffline) ?? false
+    }
 
     var token: String? {
         KeychainService.load(account: id.uuidString)
@@ -49,6 +88,11 @@ struct PiholeConnection: Codable, Identifiable, Hashable {
 
     func deleteToken() {
         KeychainService.delete(account: id.uuidString)
+        KeychainService.delete(account: "\(id.uuidString)-password")
+    }
+
+    func deleteSavedPassword() {
+        KeychainService.delete(account: "\(id.uuidString)-password")
     }
 
     static func generateAdminPanelURL(hostname: String, port: Int, useSSL: Bool) -> String {
@@ -307,6 +351,7 @@ struct PiholeNetworkOverview {
     let adsPercentageToday: Double
     let averageBlocklist: Int
     let piholes: [String: Pihole]
+    let hasIgnoredOfflinePiholes: Bool
 }
 
 // MARK: - Detection

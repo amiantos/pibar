@@ -45,7 +45,8 @@ class PiBarManager {
             adsBlockedToday: 0,
             adsPercentageToday: 0.0,
             averageBlocklist: 0,
-            piholes: [:]
+            piholes: [:],
+            hasIgnoredOfflinePiholes: false
         )
 
         loadConnections()
@@ -77,9 +78,10 @@ class PiBarManager {
 
     func disableNetwork(seconds: Int? = nil) {
         stopPolling()
+        let targets = activePiholes()
         Task {
             await withTaskGroup(of: Void.self) { group in
-                for pihole in piholes.values {
+                for pihole in targets {
                     group.addTask {
                         do {
                             try await pihole.api.disable(seconds: seconds)
@@ -96,9 +98,10 @@ class PiBarManager {
 
     func enableNetwork() {
         stopPolling()
+        let targets = activePiholes()
         Task {
             await withTaskGroup(of: Void.self) { group in
-                for pihole in piholes.values {
+                for pihole in targets {
                     group.addTask {
                         do {
                             try await pihole.api.enable()
@@ -111,6 +114,14 @@ class PiBarManager {
             await updateAllPiholes()
             startPolling()
         }
+    }
+
+    private func activePiholes() -> [Pihole] {
+        piholes.values.filter { !($0.api.connection.ignoreWhenOffline && !$0.online) }
+    }
+
+    private func hasIgnoredOfflinePiholes() -> Bool {
+        piholes.values.contains { $0.api.connection.ignoreWhenOffline && !$0.online }
     }
 
     // MARK: - Private
@@ -173,7 +184,8 @@ class PiBarManager {
             adsBlockedToday: 0,
             adsPercentageToday: 0.0,
             averageBlocklist: 0,
-            piholes: [:]
+            piholes: [:],
+            hasIgnoredOfflinePiholes: false
         )
     }
 
@@ -229,16 +241,17 @@ class PiBarManager {
             adsBlockedToday: networkBlockedQueries(),
             adsPercentageToday: networkPercentageBlocked(),
             averageBlocklist: networkBlocklist(),
-            piholes: piholes
+            piholes: piholes,
+            hasIgnoredOfflinePiholes: hasIgnoredOfflinePiholes()
         )
     }
 
     private func networkTotalQueries() -> Int {
-        piholes.values.reduce(0) { $0 + ($1.summary?.dnsQueriesToday ?? 0) }
+        activePiholes().reduce(0) { $0 + ($1.summary?.dnsQueriesToday ?? 0) }
     }
 
     private func networkBlockedQueries() -> Int {
-        piholes.values.reduce(0) { $0 + ($1.summary?.adsBlockedToday ?? 0) }
+        activePiholes().reduce(0) { $0 + ($1.summary?.adsBlockedToday ?? 0) }
     }
 
     private func networkPercentageBlocked() -> Double {
@@ -249,18 +262,21 @@ class PiBarManager {
     }
 
     private func networkBlocklist() -> Int {
-        let counts = piholes.values.map { $0.summary?.domainsBeingBlocked ?? 0 }
+        let counts = activePiholes().map { $0.summary?.domainsBeingBlocked ?? 0 }
         return counts.average()
     }
 
     private func networkStatus() -> PiholeNetworkStatus {
-        let summaries = piholes.values.compactMap(\.summary)
-
         if piholes.isEmpty { return .noneSet }
-        if summaries.isEmpty { return .offline }
-        if summaries.count < piholes.count { return .partiallyOffline }
 
-        let statuses = Set(piholes.values.compactMap(\.enabled))
+        let active = activePiholes()
+        if active.isEmpty { return .offline }
+
+        let summaries = active.compactMap(\.summary)
+        if summaries.isEmpty { return .offline }
+        if summaries.count < active.count { return .partiallyOffline }
+
+        let statuses = Set(active.compactMap(\.enabled))
         if statuses.count == 1 {
             return statuses.first! ? .enabled : .disabled
         }
@@ -268,6 +284,6 @@ class PiBarManager {
     }
 
     private func canManage() -> Bool {
-        piholes.values.contains { $0.canBeManaged }
+        activePiholes().contains { $0.canBeManaged }
     }
 }

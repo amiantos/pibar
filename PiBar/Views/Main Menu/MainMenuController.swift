@@ -285,7 +285,8 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
 
     private func updateStatusButtons() {
         guard let networkOverview = networkOverview else { return }
-        mainNetworkStatusMenuItem.title = "Status: \(networkOverview.networkStatus.rawValue)"
+        let asterisk = networkOverview.hasIgnoredOfflinePiholes ? "*" : ""
+        mainNetworkStatusMenuItem.title = "Status: \(networkOverview.networkStatus.rawValue)\(asterisk)"
         mainTotalQueriesMenuItem.title = "Queries: \(networkOverview.totalQueriesToday.string)"
         mainTotalBlockedMenuItem.title = "Blocked: " +
             "\(networkOverview.adsBlockedToday.string) " +
@@ -305,6 +306,7 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
 
             for identifier in piholeIdentifiersAlphabetized {
                 guard let pihole = piholes[identifier] else { continue }
+                let isIgnoredOffline = pihole.api.connection.ignoreWhenOffline && !pihole.online
 
                 // Status Submenu
                 if networkStatusMenuItems[identifier] == nil {
@@ -344,6 +346,7 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
 
                 if let menuItem = totalQueriesMenuItems[identifier] {
                     menuItem.title = "\(identifier): \((pihole.summary?.dnsQueriesToday ?? 0).string)"
+                    menuItem.isHidden = isIgnoredOffline
                 }
 
                 // Total Blocked Submenu
@@ -366,6 +369,7 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
                     menuItem.title = "\(identifier): " +
                         "\((pihole.summary?.adsBlockedToday ?? 0).string) " +
                         "(\((pihole.summary?.adsPercentageToday ?? 100.0).string))"
+                    menuItem.isHidden = isIgnoredOffline
                 }
 
                 // Blocklist Submenu
@@ -386,6 +390,7 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
 
                 if let menuItem = blocklistMenuItems[identifier] {
                     menuItem.title = "\(identifier): \((pihole.summary?.domainsBeingBlocked ?? 0).string)"
+                    menuItem.isHidden = isIgnoredOffline
                 }
             }
         }
@@ -400,6 +405,9 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
             let piholeIdentifiersAlphabetized: [String] = piholes.keys.sorted()
 
             for identifier in piholeIdentifiersAlphabetized {
+                guard let pihole = piholes[identifier] else { continue }
+                let isIgnoredOffline = pihole.api.connection.ignoreWhenOffline && !pihole.online
+
                 if webAdminMenuItems[identifier] == nil {
                     let menuItem = NSMenuItem(
                         title: identifier,
@@ -411,6 +419,8 @@ class MainMenuController: NSObject, NSMenuDelegate, PreferencesDelegate, PiBarMa
                     webAdminMenuItems[identifier] = menuItem
                     webAdminMenu.addItem(menuItem)
                 }
+
+                webAdminMenuItems[identifier]?.isHidden = isIgnoredOffline
 
                 if !webAdminMenuItem.hasSubmenu {
                     mainMenu.setSubmenu(webAdminMenu, for: webAdminMenuItem)

@@ -334,9 +334,17 @@ struct AddPiholeView: View {
                 }
             }
 
-            TextField("Admin Panel URL (optional override)", text: $viewModel.adminPanelURL)
-                .textFieldStyle(.roundedBorder)
-                .font(.caption)
+            VStack(alignment: .leading, spacing: 4) {
+                Text("Admin Panel URL")
+                    .font(.caption)
+                    .bold()
+                TextField("Admin Panel URL", text: $viewModel.adminPanelURL)
+                    .textFieldStyle(.roundedBorder)
+                    .font(.caption)
+                Text("Auto-detected from your Pi-hole. Override this if you access the admin panel at a different URL (e.g., behind a reverse proxy).")
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
+            }
 
             HStack {
                 Button("Back") {
