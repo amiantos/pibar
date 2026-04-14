@@ -29,8 +29,6 @@
 		AABB000500000000000002CC /* AddPiholeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABB000500000000000001CC /* AddPiholeView.swift */; };
 		AABB000600000000000002CC /* EditPiholeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABB000600000000000001CC /* EditPiholeView.swift */; };
 		AABB000700000000000002CC /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABB000700000000000001CC /* AboutView.swift */; };
-		AABB000800000000000002CC /* DomainManagementStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABB000800000000000001CC /* DomainManagementStore.swift */; };
-		AABB000900000000000002CC /* DomainManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABB000900000000000001CC /* DomainManagementView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -70,8 +68,6 @@
 		AABB000500000000000001CC /* AddPiholeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPiholeView.swift; sourceTree = "<group>"; };
 		AABB000600000000000001CC /* EditPiholeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPiholeView.swift; sourceTree = "<group>"; };
 		AABB000700000000000001CC /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
-		AABB000800000000000001CC /* DomainManagementStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainManagementStore.swift; sourceTree = "<group>"; };
-		AABB000900000000000001CC /* DomainManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainManagementView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,7 +101,6 @@
 				449395E92471B10500FA0C34 /* Main Menu */,
 				442F6F8C24723D60008F1101 /* Preferences */,
 				44381851247DE467009D9B3F /* About */,
-				AABB001000000000000001CC /* Domain Management */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -162,11 +157,11 @@
 				449395DF2471ABD700FA0C34 /* PiBar.entitlements */,
 				449395D92471ABD700FA0C34 /* Assets.xcassets */,
 				449395D52471ABD600FA0C34 /* AppDelegate.swift */,
+				4473DC532F750A7600474FE8 /* pibar.icon */,
 				441E78B2247E3ED700FBC7A0 /* Manager */,
 				4415D73224731E2F009E0B31 /* Data Sources */,
 				441E78A6247DE6CB00FBC7A0 /* Views */,
 				44AC125F2476F1F300851ED9 /* Utilities */,
-				4473DC532F750A7600474FE8 /* pibar.icon */,
 			);
 			path = PiBar;
 			sourceTree = "<group>";
@@ -195,15 +190,6 @@
 			children = (
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		AABB001000000000000001CC /* Domain Management */ = {
-			isa = PBXGroup;
-			children = (
-				AABB000800000000000001CC /* DomainManagementStore.swift */,
-				AABB000900000000000001CC /* DomainManagementView.swift */,
-			);
-			path = "Domain Management";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,8 +290,6 @@
 				AABB000400000000000002CC /* PreferencesView.swift in Sources */,
 				AABB000500000000000002CC /* AddPiholeView.swift in Sources */,
 				AABB000600000000000002CC /* EditPiholeView.swift in Sources */,
-				AABB000800000000000002CC /* DomainManagementStore.swift in Sources */,
-				AABB000900000000000002CC /* DomainManagementView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,7 +430,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 682;
+				CURRENT_PROJECT_VERSION = 683;
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -455,12 +439,13 @@
 				ENABLE_USER_SELECTED_FILES = readonly;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = PiBar/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = net.amiantos.PiBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -476,7 +461,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 682;
+				CURRENT_PROJECT_VERSION = 683;
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -485,12 +470,13 @@
 				ENABLE_USER_SELECTED_FILES = readonly;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = PiBar/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = net.amiantos.PiBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

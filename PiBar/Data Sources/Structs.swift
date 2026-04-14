@@ -95,9 +95,6 @@ protocol PiholeAPIProtocol: AnyObject {
     func fetchBlockingStatus() async throws -> Bool
     func enable() async throws
     func disable(seconds: Int?) async throws
-    func fetchRecentQueries(count: Int) async throws -> [PiholeQuery]
-    func addToAllowList(domain: String) async throws
-    func addToDenyList(domain: String) async throws
 }
 
 // MARK: - Unified Summary
@@ -322,54 +319,3 @@ struct DetectionResult {
     let totpRequired: Bool
 }
 
-// MARK: - Queries & Domain Management
-
-struct PiholeQuery: Identifiable, Hashable {
-    let id = UUID()
-    let domain: String
-    let timestamp: Date
-    let blocked: Bool
-    let client: String
-    let piholeIdentifier: String
-}
-
-struct DomainEntry: Identifiable, Hashable {
-    let id = UUID()
-    let domain: String
-    let queryCount: Int
-    let lastSeen: Date
-}
-
-// v5 query response
-struct PiholeV5QueriesResponse: Decodable {
-    let data: [[String]]
-}
-
-// v6 query response
-struct Pihole6QueriesResponse: Decodable {
-    let queries: [Pihole6QueryItem]
-    let took: Double?
-}
-
-struct Pihole6QueryItem: Decodable {
-    let id: Int
-    let time: Double
-    let domain: String
-    let client: Pihole6QueryClient
-    let status: String
-
-    struct Pihole6QueryClient: Decodable {
-        let ip: String?
-        let name: String?
-    }
-}
-
-// v6 domain management
-struct Pihole6DomainRequest: Encodable {
-    let domain: String
-    let comment: String?
-}
-
-struct Pihole6DomainResponse: Decodable {
-    let took: Double
-}
