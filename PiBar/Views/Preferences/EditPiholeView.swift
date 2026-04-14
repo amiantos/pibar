@@ -64,7 +64,7 @@ struct EditPiholeView: View {
                     .padding(.horizontal, 4)
             }
 
-            if connection.version == .v6 {
+            if connection.version == .v6 && !requiresTOTP {
                 Toggle("Save password for automatic reconnection", isOn: $savePassword)
                     .font(.caption)
             }
@@ -123,23 +123,40 @@ struct EditPiholeView: View {
         }
     }
 
-    private func saveChanges() {
-        let effectiveSavePassword = connection.version == .v6 ? savePassword : false
-        if !effectiveSavePassword {
-            connection.deleteSavedPassword()
-        }
-        let updated = PiholeConnection(
+    private func buildUpdatedConnection() -> PiholeConnection {
+        let cleanHostname = hostname.trimmingCharacters(in: .whitespacesAndNewlines)
+        let resolvedPort = Int(port) ?? connection.port
+        let trimmedAdminURL = adminPanelURL.trimmingCharacters(in: .whitespacesAndNewlines)
+        let resolvedAdminURL = trimmedAdminURL.isEmpty
+            ? PiholeConnection.generateAdminPanelURL(
+                hostname: cleanHostname,
+                port: resolvedPort,
+                useSSL: useSSL
+            )
+            : trimmedAdminURL
+        let effectiveSavePassword = connection.version == .v6 && !requiresTOTP && savePassword
+        return PiholeConnection(
             id: connection.id,
-            hostname: hostname.trimmingCharacters(in: .whitespacesAndNewlines),
-            port: Int(port) ?? connection.port,
+            hostname: cleanHostname,
+            port: resolvedPort,
             useSSL: useSSL,
             version: connection.version,
             passwordProtected: connection.passwordProtected,
-            adminPanelURL: adminPanelURL,
+            adminPanelURL: resolvedAdminURL,
             savePassword: effectiveSavePassword,
             requiresTOTP: requiresTOTP,
             ignoreWhenOffline: ignoreWhenOffline
         )
+    }
+
+    private func saveChanges() {
+        let updated = buildUpdatedConnection()
+        if !updated.savePassword {
+            connection.deleteSavedPassword()
+        }
+        // Reflect the normalized URL back into the form in case the user
+        // cleared it and we regenerated a default.
+        adminPanelURL = updated.adminPanelURL
         store.updateConnection(updated)
     }
 
@@ -182,6 +199,9 @@ struct EditPiholeView: View {
                     }
                     authError = ""
                     showReAuth = false
+                    // Persist the connection so PiBarManager rebuilds its cached
+                    // Pihole6API instance with the new SID from the Keychain.
+                    saveChanges()
                 } else {
                     authError = session.message ?? "Authentication failed."
                 }

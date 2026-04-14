@@ -86,6 +86,9 @@ class AddPiholeViewModel {
         let cleanHostname = hostname.trimmingCharacters(in: .whitespacesAndNewlines)
 
         if result.version == .v6 {
+            // TOTP connections can't auto-refresh their session, so never offer
+            // to save the password in that case.
+            if result.totpRequired { savePassword = false }
             let connection = PiholeConnection(
                 id: connectionID,
                 hostname: cleanHostname,
@@ -107,6 +110,8 @@ class AddPiholeViewModel {
                     if let sid = session.sid {
                         connection.saveToken(sid)
                     }
+                    // Server-confirmed TOTP also disables password saving.
+                    if session.totp { savePassword = false }
                     if savePassword {
                         api.savePasswordForRefresh(password)
                     }
@@ -155,6 +160,15 @@ class AddPiholeViewModel {
         let result = detectionResult!
         let cleanHostname = hostname.trimmingCharacters(in: .whitespacesAndNewlines)
 
+        let trimmedAdminURL = adminPanelURL.trimmingCharacters(in: .whitespacesAndNewlines)
+        let resolvedAdminURL = trimmedAdminURL.isEmpty
+            ? PiholeConnection.generateAdminPanelURL(
+                hostname: cleanHostname,
+                port: result.port,
+                useSSL: result.useSSL
+            )
+            : trimmedAdminURL
+
         let connection = PiholeConnection(
             id: connectionID,
             hostname: cleanHostname,
@@ -162,8 +176,8 @@ class AddPiholeViewModel {
             useSSL: result.useSSL,
             version: result.version,
             passwordProtected: result.passwordRequired,
-            adminPanelURL: adminPanelURL,
-            savePassword: result.version == .v6 ? savePassword : false,
+            adminPanelURL: resolvedAdminURL,
+            savePassword: result.version == .v6 && !result.totpRequired ? savePassword : false,
             requiresTOTP: result.totpRequired
         )
 

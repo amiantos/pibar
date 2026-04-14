@@ -25,19 +25,36 @@ enum DetectionError: Error, LocalizedError {
     }
 }
 
-/// Delegate that accepts self-signed certificates for local network Pi-holes
+/// Delegate that accepts self-signed certificates only for local-network Pi-holes
+/// (localhost, *.local, or RFC1918 addresses). All other hosts fall through to
+/// default trust evaluation so remote targets still get real cert validation.
 class InsecureSessionDelegate: NSObject, URLSessionDelegate {
     func urlSession(
         _ session: URLSession,
         didReceive challenge: URLAuthenticationChallenge,
         completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void
     ) {
-        if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust,
-           let trust = challenge.protectionSpace.serverTrust {
+        guard challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust,
+              let trust = challenge.protectionSpace.serverTrust else {
+            completionHandler(.performDefaultHandling, nil)
+            return
+        }
+        if Self.isLocalHost(challenge.protectionSpace.host) {
             completionHandler(.useCredential, URLCredential(trust: trust))
         } else {
             completionHandler(.performDefaultHandling, nil)
         }
+    }
+
+    static func isLocalHost(_ host: String) -> Bool {
+        let lower = host.lowercased()
+        if lower == "localhost" || lower.hasSuffix(".local") { return true }
+        let parts = lower.split(separator: ".").compactMap { Int($0) }
+        guard parts.count == 4, parts.allSatisfy({ (0...255).contains($0) }) else { return false }
+        if parts[0] == 10 { return true }
+        if parts[0] == 192 && parts[1] == 168 { return true }
+        if parts[0] == 172 && (16...31).contains(parts[1]) { return true }
+        return false
     }
 }
 

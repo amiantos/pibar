@@ -48,6 +48,7 @@ class PreferencesStore {
 
     func saveDisplaySettings() {
         let prefs = Preferences.standard
+        if !showLabels { verboseLabels = false }
         prefs.set(showBlocked: showBlocked)
         prefs.set(showQueries: showQueries)
         prefs.set(showPercentage: showPercentage)
