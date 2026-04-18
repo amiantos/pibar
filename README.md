@@ -4,39 +4,55 @@ PiBar gives you all the tools you need to manage your [Pi-hole](https://pi-hole.
 
 ## Features
 
+- Supports both Pi-hole v5 and Pi-hole v6+
+- Smart setup wizard that auto-detects your Pi-hole version, port, and SSL
 - Display DNS query stats in your macOS menu bar
 - Supports multiple Pi-holes (inc. quadruple failover setups!)
 - Toggle your Pi-hole(s) on/off from the menu or anywhere via ⌘⌥⇧P
 - Displays warnings if any or all of your Pi-holes are inaccessible or disabled
+- Pi-hole v6 session auto-refresh with saved password support
+- Credentials stored securely in macOS Keychain
 - No capital "h" in the word "hole" in the app or in the code
 - Beautiful app icon
 - Totally FOSS
-- Supports macOS 10.12 (Sierra) and later
 
 ## Screenshots
 
 ![PiBar Screenshots](/.github/screenshots.jpg?raw=true)
 
-## Download (Pi-hole 5 and older)
+## Download
 
-- [Download PiBar v1.1.2 for macOS 10.12 and later](https://s3.amazonaws.com/amiantos/PiBar-1.1.2.zip)
+### PiBar 1.2 (Pi-hole 5 and 6)
+
+- Requires macOS 15 (Sequoia) or later
+- [Download PiBar v1.2](https://s3.amazonaws.com/amiantos/PiBar-1.2.zip)
+
+### PiBar 1.1.2 (Pi-hole 5 and older)
+
+- Requires macOS 10.12 (Sierra) or later
+- [Download PiBar v1.1.2](https://s3.amazonaws.com/amiantos/PiBar-1.1.2.zip)
 - Or, [Purchase PiBar on the App Store](https://apps.apple.com/us/app/pibar-for-pi-hole/id1514292645?ls=1) for automatic updates.
 - Or, `brew install pibar` to install using Homebrew.
-
-## Download Beta (Pi-hole 6)
-
-- [Download PiBar v1.2 Beta for macOS 10.15 and later](https://amiantos.s3.us-east-1.amazonaws.com/PiBar-1.2-beta.zip)
-- Provide feedback via [GitHub](https://github.com/amiantos/pibar/issues/56#issuecomment-2745123904), [Reddit](https://www.reddit.com/r/PiBar/comments/1jdzue6/macos_12_beta_pihole_6_support/), or [Email](mailto:bradroot@me.com?subject=PiBar%201.2%20Beta%20Feedback).
 
 ## Quick Start
 
 1. Launch PiBar
 2. Click on the PiBar icon in your menu bar and go to Preferences
-3. Click Add to add your Pi-hole details
-4. Click Test, if the test is successful, click Save & Close
-5. Add more Pi-holes if you have them :)
-6. Adjust your menu bar display preferences
-7. Close the Preferences window and enjoy!
+3. Click Add and enter your Pi-hole's hostname or IP address
+4. PiBar will automatically detect your Pi-hole version and settings
+5. Enter your password (v6) or API token (v5) if prompted
+6. Add more Pi-holes if you have them :)
+7. Adjust your menu bar display preferences
+8. Close the Preferences window and enjoy!
+
+## What's New in 1.2
+
+- **Smart Pi-hole Detection** -- Just enter a hostname and PiBar figures out the rest: Pi-hole version (v5 or v6), port, and whether SSL is needed.
+- **Pi-hole v6 Support** -- Full support for Pi-hole v6's password-based authentication, including TOTP. Optionally save your password so PiBar can automatically reconnect when your session expires.
+- **SwiftUI Preferences** -- The preferences window has been completely rebuilt in SwiftUI, replacing the old storyboard-based UI.
+- **Keychain Storage** -- API tokens and passwords are now stored in the macOS Keychain instead of UserDefaults.
+- **Modern Architecture** -- The entire networking layer has been rewritten with Swift async/await, replacing the old callback and OperationQueue patterns.
+- **macOS 15 Sequoia** -- PiBar 1.2 requires macOS 15 or later. Users on older macOS versions can continue using PiBar v1.1.2.
 
 ## Like PiBar a lot?
 
@@ -53,6 +69,6 @@ PiBar gives you all the tools you need to manage your [Pi-hole](https://pi-hole.
 ## Credits
 
 - PiBar was built by [Brad Root](https://github.com/amiantos)
-- PiBar's wonderful icon was designed by [Jozef Bañuelos](https://jozef.design)
-- Pi-hole® is a registered trademark of Pi-hole LLC.
+- PiBar's wonderful icon was designed by [Jozef Banuelos](https://jozef.design)
+- Pi-hole is a registered trademark of Pi-hole LLC.
 - PiBar is an independent project and is not directly affiliated with Pi-hole LLC or the Pi-hole community.

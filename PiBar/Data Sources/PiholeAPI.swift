@@ -9,172 +9,120 @@
 //  License, v. 2.0. If a copy of the MPL was not distributed with this
 //  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import Cocoa
+import Foundation
 
-class PiholeAPI: NSObject {
-    let connection: PiholeConnectionV3
+class PiholeAPI: PiholeAPIProtocol {
+    let connection: PiholeConnection
 
     var identifier: String {
-        return "\(connection.hostname)"
+        return connection.hostname
     }
 
-    private let path: String = "/admin/api.php"
-    private let timeout: Int = 2
-
-    private enum Endpoints {
-        static let summary = PiholeAPIEndpoint(queryParameter: "summaryRaw", authorizationRequired: true)
-        static let overTimeData10mins = PiholeAPIEndpoint(queryParameter: "overTimeData10mins", authorizationRequired: true)
-        static let topItems = PiholeAPIEndpoint(queryParameter: "topItems", authorizationRequired: true)
-        static let topClients = PiholeAPIEndpoint(queryParameter: "topClients", authorizationRequired: true)
-        static let enable = PiholeAPIEndpoint(queryParameter: "enable", authorizationRequired: true)
-        static let disable = PiholeAPIEndpoint(queryParameter: "disable", authorizationRequired: true)
-        static let recentBlocked = PiholeAPIEndpoint(queryParameter: "recentBlocked", authorizationRequired: true)
+    var adminURL: URL? {
+        URL(string: connection.adminPanelURL)
     }
 
-    override init() {
-        connection = PiholeConnectionV3(
-            hostname: "pi.hole",
-            port: 80,
-            useSSL: false,
-            token: "",
-            passwordProtected: true,
-            adminPanelURL: "http://pi.hole/admin/",
-            isV6: false
-        )
-        super.init()
-    }
+    private let basePath = "/admin/api.php"
 
-    init(connection: PiholeConnectionV3) {
+    init(connection: PiholeConnection) {
         self.connection = connection
-        super.init()
     }
 
-    private func get(_ endpoint: PiholeAPIEndpoint, argument: String? = nil, completion: @escaping (String?) -> Void) {
-        var builtURLString = baseURL
+    // MARK: - PiholeAPIProtocol
 
-        if endpoint.authorizationRequired {
-            builtURLString.append(contentsOf: "?auth=\(connection.token)&\(endpoint.queryParameter)")
-        } else {
-            builtURLString.append(contentsOf: "?\(endpoint.queryParameter)")
-        }
-
-        if let argument = argument {
-            builtURLString.append(contentsOf: "=\(argument)")
-        }
-
-        Log.debug("Built API String: \(builtURLString)")
-
-        guard let builtURL = URL(string: builtURLString) else { return completion(nil) }
-
-        var urlRequest = URLRequest(url: builtURL)
-        urlRequest.httpMethod = "GET"
-        urlRequest.timeoutInterval = 3
-        let session = URLSession(configuration: .default)
-        let dataTask = session.dataTask(with: urlRequest) { data, response, error in
-            if error != nil {
-                return completion(nil)
-            }
-            if let response = response as? HTTPURLResponse {
-                if 200 ..< 300 ~= response.statusCode {
-                    if let data = data, let string = String(data: data, encoding: .utf8) {
-                        completion(string)
-                    } else {
-                        completion(nil)
-                    }
-                } else {
-                    completion(nil)
-                }
-            } else {
-                completion(nil)
-            }
-        }
-        dataTask.resume()
+    func fetchSummary() async throws -> PiholeAPISummary {
+        let raw: PiholeV5APISummary = try await get(query: "summaryRaw")
+        return PiholeAPISummary(
+            domainsBeingBlocked: raw.domainsBeingBlocked,
+            dnsQueriesToday: raw.dnsQueriesToday,
+            adsBlockedToday: raw.adsBlockedToday,
+            adsPercentageToday: raw.adsPercentageToday,
+            status: raw.status
+        )
     }
 
-    private func decodeJSON<T>(_ string: String) -> T? where T: Decodable {
-        do {
-            let jsonDecoder = JSONDecoder()
-            jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-            let jsonData = string.data(using: .utf8)!
-            let object = try jsonDecoder.decode(T.self, from: jsonData)
-            return object
-        } catch {
-            return nil
+    func fetchBlockingStatus() async throws -> Bool {
+        let summary = try await fetchSummary()
+        return summary.status == "enabled"
+    }
+
+    func enable() async throws {
+        let _: PiholeAPIStatus = try await get(query: "enable")
+    }
+
+    func disable(seconds: Int?) async throws {
+        var query = "disable"
+        if let seconds {
+            query += "=\(seconds)"
         }
-    }
-
-    // MARK: - URLs
-
-    private var baseURL: String {
-        let prefix = connection.useSSL ? "https" : "http"
-        return "\(prefix)://\(connection.hostname):\(connection.port)\(path)"
-    }
-
-    var admin: URL {
-        return URL(string: "http://\(connection.hostname):\(connection.port)/admin")!
+        let _: PiholeAPIStatus = try await get(query: query)
     }
 
     // MARK: - Testing
 
-    func testConnection(completion: @escaping (PiholeConnectionTestResult) -> Void) {
-        fetchTopItems { string in
-            DispatchQueue.main.async {
-                if let contents = string {
-                    if contents == "[]" {
-                        completion(.failureInvalidToken)
-                    } else {
-                        completion(.success)
-                    }
-                } else {
-                    completion(.failure)
-                }
-            }
+    func testConnection() async throws -> Bool {
+        let result: String = try await getRaw(query: "topItems")
+        return result != "[]"
+    }
+
+    // MARK: - Private
+
+    private var baseURL: String {
+        let prefix = connection.useSSL ? "https" : "http"
+        return "\(prefix)://\(connection.hostname):\(connection.port)\(basePath)"
+    }
+
+    private func get<T: Decodable>(query: String) async throws -> T {
+        let token = connection.token ?? ""
+        let urlString = "\(baseURL)?auth=\(token)&\(query)"
+        guard let url = URL(string: urlString) else {
+            throw APIError.invalidURL
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.timeoutInterval = 5
+
+        let (data, response) = try await URLSession.shared.data(for: request)
+
+        if let httpResponse = response as? HTTPURLResponse,
+           !(200..<300 ~= httpResponse.statusCode) {
+            throw APIError.invalidResponse(
+                statusCode: httpResponse.statusCode,
+                content: String(data: data, encoding: .utf8) ?? ""
+            )
+        }
+
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        do {
+            return try decoder.decode(T.self, from: data)
+        } catch {
+            throw APIError.decodingFailed
         }
     }
 
-    // MARK: - Endpoints
-
-    func fetchSummary(completion: @escaping (PiholeAPISummary?) -> Void) {
-        DispatchQueue.global(qos: .background).async {
-            self.get(Endpoints.summary) { string in
-                guard let jsonString = string,
-                    let summary: PiholeAPISummary = self.decodeJSON(jsonString) else { return completion(nil) }
-                completion(summary)
-            }
+    private func getRaw(query: String) async throws -> String {
+        let token = connection.token ?? ""
+        let urlString = "\(baseURL)?auth=\(token)&\(query)"
+        guard let url = URL(string: urlString) else {
+            throw APIError.invalidURL
         }
-    }
 
-    func fetchTopItems(completion: @escaping (String?) -> Void) {
-        // Only using this endpoint to verify the API token
-        // So we don't actually do anything with the output yet
-        DispatchQueue.global(qos: .background).async {
-            self.get(Endpoints.topItems) { string in
-                completion(string)
-            }
-        }
-    }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.timeoutInterval = 5
 
-    func disable(seconds: Int? = nil, completion: @escaping (Bool) -> Void) {
-        DispatchQueue.global(qos: .background).async {
-            var secondsString: String?
-            if let seconds = seconds {
-                secondsString = String(seconds)
-            }
-            self.get(Endpoints.disable, argument: secondsString) { string in
-                guard let jsonString = string,
-                    let _: PiholeAPIStatus = self.decodeJSON(jsonString) else { return completion(false) }
-                completion(true)
-            }
-        }
-    }
+        let (data, response) = try await URLSession.shared.data(for: request)
 
-    func enable(completion: @escaping (Bool) -> Void) {
-        DispatchQueue.global(qos: .background).async {
-            self.get(Endpoints.enable) { string in
-                guard let jsonString = string,
-                    let _: PiholeAPIStatus = self.decodeJSON(jsonString) else { return completion(false) }
-                completion(true)
-            }
+        if let httpResponse = response as? HTTPURLResponse,
+           !(200..<300 ~= httpResponse.statusCode) {
+            throw APIError.invalidResponse(
+                statusCode: httpResponse.statusCode,
+                content: String(data: data, encoding: .utf8) ?? ""
+            )
         }
+
+        return String(data: data, encoding: .utf8) ?? ""
     }
 }
