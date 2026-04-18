@@ -45,26 +45,14 @@ PiBar gives you all the tools you need to manage your [Pi-hole](https://pi-hole.
 7. Adjust your menu bar display preferences
 8. Close the Preferences window and enjoy!
 
-## What's New in 1.2
-
-- **Smart Pi-hole Detection** -- Just enter a hostname and PiBar figures out the rest: Pi-hole version (v5 or v6), port, and whether SSL is needed.
-- **Pi-hole v6 Support** -- Full support for Pi-hole v6's password-based authentication, including TOTP. Optionally save your password so PiBar can automatically reconnect when your session expires.
-- **SwiftUI Preferences** -- The preferences window has been completely rebuilt in SwiftUI, replacing the old storyboard-based UI.
-- **Keychain Storage** -- API tokens and passwords are now stored in the macOS Keychain instead of UserDefaults.
-- **Modern Architecture** -- The entire networking layer has been rewritten with Swift async/await, replacing the old callback and OperationQueue patterns.
-- **macOS 15 Sequoia** -- PiBar 1.2 requires macOS 15 or later. Users on older macOS versions can continue using PiBar v1.1.2.
-
 ## Like PiBar a lot?
 
 - [Purchase PiBar on the App Store](https://apps.apple.com/us/app/pibar-for-pi-hole/id1514292645?ls=1)
-- [Sponsor amiantos on GitHub](https://github.com/sponsors/amiantos)
-- [Become a patron on Patreon](https://www.patreon.com/amiantos)
 
 ## Get Help
 
 - Feel free to [post an issue](https://github.com/amiantos/pibar/issues/new) if you need help or have a feature suggestion. Dream big!
-- There's a subreddit over at [/r/PiBar](https://www.reddit.com/r/PiBar) if you want to talk about PiBar with the community. I'll also be posting news about updates and possible beta tests over there, so you should join if that sounds up your alley!
-- You can also write to me on Mastodon @[brad@mstdn.amiantos.net](https://mstdn.amiantos.net/brad)
+- There's also [a Discourse forum over here](https://discuss.bradroot.me/tags/c/projects/13/pibar/5) to discuss and seek support.
 
 ## Credits
 
