@@ -26,13 +26,13 @@ PiBar gives you all the tools you need to manage your [Pi-hole](https://pi-hole.
 
 - Requires macOS 15 (Sequoia) or later
 - [Download PiBar v1.2](https://s3.amazonaws.com/amiantos/PiBar-1.2.zip)
+- Or, [Purchase PiBar on the App Store](https://apps.apple.com/us/app/pibar-for-pi-hole/id1514292645?ls=1) for automatic updates.
 - Or, `brew install pibar` to install using Homebrew.
 
 ### PiBar 1.1.2 (Pi-hole 5 and older)
 
 - Requires macOS 10.12 (Sierra) or later
 - [Download PiBar v1.1.2](https://s3.amazonaws.com/amiantos/PiBar-1.1.2.zip)
-- Or, [Purchase PiBar on the App Store](https://apps.apple.com/us/app/pibar-for-pi-hole/id1514292645?ls=1) for automatic updates.
 
 ## Quick Start
 
