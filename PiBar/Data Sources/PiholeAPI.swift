@@ -83,7 +83,7 @@ class PiholeAPI: PiholeAPIProtocol {
         request.httpMethod = "GET"
         request.timeoutInterval = 5
 
-        let (data, response) = try await URLSession.shared.data(for: request)
+        let (data, response) = try await InsecureURLSession.shared.data(for: request)
 
         if let httpResponse = response as? HTTPURLResponse,
            !(200..<300 ~= httpResponse.statusCode) {
@@ -113,7 +113,7 @@ class PiholeAPI: PiholeAPIProtocol {
         request.httpMethod = "GET"
         request.timeoutInterval = 5
 
-        let (data, response) = try await URLSession.shared.data(for: request)
+        let (data, response) = try await InsecureURLSession.shared.data(for: request)
 
         if let httpResponse = response as? HTTPURLResponse,
            !(200..<300 ~= httpResponse.statusCode) {

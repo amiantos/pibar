@@ -58,15 +58,28 @@ class InsecureSessionDelegate: NSObject, URLSessionDelegate {
     }
 }
 
-actor PiholeDetectionService {
-    private let sessionDelegate = InsecureSessionDelegate()
+/// Shared URLSession that accepts self-signed certificates for local-network hosts.
+/// Used by detection and by the v5/v6 API clients so a Pi-hole on a private IP
+/// with a self-signed cert works end-to-end. Remote hosts still get default trust.
+enum InsecureURLSession {
+    private static let delegate = InsecureSessionDelegate()
 
-    private lazy var session: URLSession = {
+    static let shared: URLSession = {
+        let config = URLSessionConfiguration.default
+        return URLSession(configuration: config, delegate: delegate, delegateQueue: nil)
+    }()
+
+    /// Short-timeout ephemeral variant for the detection phase.
+    static let detection: URLSession = {
         let config = URLSessionConfiguration.ephemeral
         config.timeoutIntervalForRequest = 5
         config.timeoutIntervalForResource = 10
-        return URLSession(configuration: config, delegate: sessionDelegate, delegateQueue: nil)
+        return URLSession(configuration: config, delegate: delegate, delegateQueue: nil)
     }()
+}
+
+actor PiholeDetectionService {
+    private var session: URLSession { InsecureURLSession.detection }
 
     /// Detect Pi-hole at the given hostname, optionally with a specific port and SSL preference
     func detect(hostname: String, customPort: Int? = nil, useSSL: Bool? = nil) async throws -> DetectionResult {

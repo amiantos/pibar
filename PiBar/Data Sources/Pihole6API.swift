@@ -165,7 +165,7 @@ class Pihole6API: PiholeAPIProtocol {
     }
 
     private func perform<T: Decodable>(_ request: URLRequest) async throws -> T {
-        let (data, response) = try await URLSession.shared.data(for: request)
+        let (data, response) = try await InsecureURLSession.shared.data(for: request)
 
         if let httpResponse = response as? HTTPURLResponse,
            !(200..<300 ~= httpResponse.statusCode) {
