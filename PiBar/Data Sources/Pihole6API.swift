@@ -157,9 +157,9 @@ class Pihole6API: PiholeAPIProtocol {
         }
         if let body {
             request.httpBody = try? JSONEncoder().encode(body)
-            request.timeoutInterval = 5
+            request.timeoutInterval = 20
         } else {
-            request.timeoutInterval = 5
+            request.timeoutInterval = 20
         }
         return request
     }

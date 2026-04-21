@@ -81,7 +81,7 @@ class PiholeAPI: PiholeAPIProtocol {
 
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
-        request.timeoutInterval = 5
+        request.timeoutInterval = 20
 
         let (data, response) = try await InsecureURLSession.shared.data(for: request)
 
@@ -111,7 +111,7 @@ class PiholeAPI: PiholeAPIProtocol {
 
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
-        request.timeoutInterval = 5
+        request.timeoutInterval = 20
 
         let (data, response) = try await InsecureURLSession.shared.data(for: request)
 

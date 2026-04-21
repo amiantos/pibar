@@ -72,8 +72,8 @@ enum InsecureURLSession {
     /// Short-timeout ephemeral variant for the detection phase.
     static let detection: URLSession = {
         let config = URLSessionConfiguration.ephemeral
-        config.timeoutIntervalForRequest = 5
-        config.timeoutIntervalForResource = 10
+        config.timeoutIntervalForRequest = 10
+        config.timeoutIntervalForResource = 20
         return URLSession(configuration: config, delegate: delegate, delegateQueue: nil)
     }()
 }
@@ -120,7 +120,7 @@ actor PiholeDetectionService {
 
         var request = URLRequest(url: url)
         request.httpMethod = "HEAD"
-        request.timeoutInterval = 3
+        request.timeoutInterval = 10
 
         do {
             let (_, response) = try await session.data(for: request)
@@ -179,7 +179,7 @@ actor PiholeDetectionService {
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try? JSONEncoder().encode(PiholeV6PasswordRequest(password: "", totp: nil))
-        request.timeoutInterval = 5
+        request.timeoutInterval = 10
 
         let (data, response) = try await session.data(for: request)
 
@@ -210,7 +210,7 @@ actor PiholeDetectionService {
 
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
-        request.timeoutInterval = 5
+        request.timeoutInterval = 10
 
         do {
             let (data, response) = try await session.data(for: request)
