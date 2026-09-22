@@ -52,7 +52,7 @@ PiBar gives you all the tools you need to manage your [Pi-hole](https://pi-hole.
 ## Get Help
 
 - Feel free to [post an issue](https://github.com/amiantos/pibar/issues/new) if you need help or have a feature suggestion. Dream big!
-- There's also [a Discourse forum over here](https://discuss.bradroot.me/tags/c/projects/13/pibar/5) to discuss and seek support.
+- [Chat in **#amiantos**](https://web.libera.chat/#amiantos) on Libera.Chat. Yes, IRC! In 2026!
 
 ## Credits
 
